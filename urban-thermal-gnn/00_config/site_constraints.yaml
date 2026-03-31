@@ -1,0 +1,30 @@
+site:
+  width:     80.0
+  depth:     80.0
+  origin:    [0.0, 0.0]
+  latitude:  24.80
+  longitude: 120.97
+  timezone:  8.0
+
+regulations:
+  far:            2.5
+  bcr:            0.60
+  far_tolerance:  0.02
+  bcr_tolerance:  0.02
+  setback_min:    3.0
+  setback_road:   5.0
+  floor_height:   3.6
+  floors_min:     3
+  floors_max:     12
+  min_footprint:  80.0
+
+sampling:
+  n_scenarios:     300
+  n_buildings_min: 2
+  n_buildings_max: 5
+  allow_lshape:    true
+  random_seed:     42
+
+grid:
+  spacing:       2.0
+  sensor_height: 1.5

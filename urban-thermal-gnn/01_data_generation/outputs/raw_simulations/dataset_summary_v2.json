@@ -1,0 +1,46 @@
+{
+  "pipeline_version": "v2_high_resolution",
+  "n_scenarios": 300,
+  "split": {
+    "train": 205,
+    "val": 41,
+    "test": 54
+  },
+  "spatial_resolution": {
+    "grid_spacing_m": 1.0,
+    "scaling_factor": 2.0
+  },
+  "data_sources": [
+    "Central Weather Bureau (CWB)",
+    "MOENV IoT Sensor Network (824 stations)",
+    "Meta Global Canopy Height"
+  ],
+  "nodes_per_scenario": {
+    "min": 6241,
+    "max": 6241,
+    "mean": 6241.0
+  },
+  "n_timesteps": 11,
+  "normalization": {
+    "ta": {
+      "mean": 30.8255,
+      "std": 1.1458
+    },
+    "mrt": {
+      "mean": 55.1912,
+      "std": 11.7281
+    },
+    "va": {
+      "mean": 4.1134,
+      "std": 0.7666
+    },
+    "rh": {
+      "mean": 64.9091,
+      "std": 2.1086
+    },
+    "utci": {
+      "mean": 35.6146,
+      "std": 2.9841
+    }
+  }
+}

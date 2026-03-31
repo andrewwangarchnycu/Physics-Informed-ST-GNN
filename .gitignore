@@ -1,0 +1,29 @@
+# --- System & Compiled Files ---
+*.pyc
+*.pid
+*.log
+
+# --- Executables & Scripts ---
+*.sh
+*.bat
+*.ps1
+*.ghpy
+
+# --- Data & Large Files ---
+*.csv
+*.geojson
+*.npz
+*.pkl
+*.h5
+*.epw
+*.png
+
+# --- Configuration & Text ---
+# WARNING: Usually, you want to track .py, .toml, .yaml, and .json. 
+# Remove these from the list if they are your source code!
+
+
+
+
+*.txt
+*.pt

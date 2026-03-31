@@ -1,0 +1,14 @@
+{
+  "pythonVersion": "3.10",
+  "pythonPlatform": "Windows",
+  "extraPaths": [
+    "02_graph_construction",
+    "03_model",
+    "03_model/layers",
+    "03_model/loss",
+    "shared",
+    "sensing_integration"
+  ],
+  "reportMissingImports": "warning",
+  "reportMissingModuleSource": "none"
+}

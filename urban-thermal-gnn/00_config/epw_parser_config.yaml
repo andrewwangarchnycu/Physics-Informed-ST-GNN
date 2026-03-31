@@ -1,0 +1,17 @@
+epw:
+  path: "../../data/01_raw_epw/TWN_NOR_Hsinchu.City.467570_TMYx.2011-2025.epw"
+  auto_demo: false
+  target_months: [7]
+  typical_day_stat: "hottest"
+  sim_hour_start: 8
+  sim_hour_end:   18
+
+columns: {}
+constraints:
+  wind_speed_min: 0.5
+  ghi_min:        0.0
+
+output:
+  forcing_dir: "../../01_data_generation/outputs/raw_simulations"
+  save_json:   true
+  save_csv:    true
