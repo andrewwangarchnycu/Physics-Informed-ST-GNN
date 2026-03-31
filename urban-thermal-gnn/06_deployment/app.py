@@ -291,6 +291,7 @@ def _predict_sync(data: dict) -> dict:
 
     return {
         "sensor_pts":   sensor_pts.tolist(),       # [[x,y],...]
+        "utci":         utci.tolist(),             # (N_air, T) — alias
         "utci_all":     utci.tolist(),             # (N_air, T)
         "utci_mean":    utci_peak.tolist(),        # (N_air,) time-mean
         "utci_class":   classes.tolist(),          # (N_air,) 0-5
