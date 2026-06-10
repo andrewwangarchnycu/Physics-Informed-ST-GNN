@@ -17,6 +17,8 @@
 *.h5
 *.epw
 *.png
+*.svg
+*.pdf
 
 # --- Configuration & Text ---
 # WARNING: Usually, you want to track .py, .toml, .yaml, and .json. 

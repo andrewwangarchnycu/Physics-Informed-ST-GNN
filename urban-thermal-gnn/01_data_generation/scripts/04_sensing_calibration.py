@@ -30,9 +30,16 @@ from __future__ import annotations
 import argparse
 import json
 import pickle
+import sys
 import warnings
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+# Ensure project root is on path (works whether run from scripts/ or root)
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_ROOT = _SCRIPT_DIR.parents[1]   # urban-thermal-gnn/
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 import numpy as np
 
@@ -207,7 +214,104 @@ def load_sim_mean_fields(sim_dir: str,
 
 
 # ════════════════════════════════════════════════════════════════
-# 5. Main Program
+# 5. Multi-month calibration (v3)
+# ════════════════════════════════════════════════════════════════
+def run_multi_month_calibration(months:   List[int],
+                                 iot_csv:  str,
+                                 cwb_csv:  str,
+                                 epw_pkl:  str,
+                                 sim_dir:  str,
+                                 out_dir:  str,
+                                 site_lat: float,
+                                 site_lon: float,
+                                 method:   str,
+                                 cwb_dir:  str = "",
+                                 verbose:  bool = True) -> Dict:
+    """
+    Calibrate for each month independently and save seasonal params.
+
+    Returns
+    -------
+    Dict with per-month results + envelope statistics.
+    """
+    seasonal: Dict[str, Dict] = {}
+    print(f"\n[04] Multi-month calibration: months = {months}")
+
+    for m in months:
+        print(f"\n{'─'*60}")
+        print(f"  [04] Calibrating month {m} …")
+        # Resolve per-month CWB file from directory if provided
+        month_cwb = cwb_csv
+        if cwb_dir:
+            candidate = Path(cwb_dir) / f"cwb_data_{m}.csv"
+            if candidate.exists():
+                month_cwb = str(candidate)
+            else:
+                warnings.warn(f"[04] CWB file not found: {candidate}, "
+                              f"falling back to cwb_csv={cwb_csv!r}")
+        try:
+            result = main(
+                iot_csv  = iot_csv,
+                cwb_csv  = month_cwb,
+                epw_pkl  = epw_pkl,
+                sim_dir  = sim_dir,
+                out_dir  = out_dir,
+                month    = m,
+                site_lat = site_lat,
+                site_lon = site_lon,
+                method   = method,
+                verbose  = verbose,
+            )
+            seasonal[str(m)] = result
+        except Exception as exc:
+            warnings.warn(f"[04] Month {m} calibration failed: {exc}")
+            seasonal[str(m)] = {"error": str(exc)}
+
+    # Aggregate: mean params across successful months
+    param_keys = ["roughness_length", "albedo_road", "ta_bias_offset"]
+    agg_params: Dict[str, List[float]] = {k: [] for k in param_keys}
+    for m_result in seasonal.values():
+        p = m_result.get("params", {})
+        for k in param_keys:
+            if k in p:
+                agg_params[k].append(float(p[k]))
+
+    seasonal["_seasonal_mean"] = {
+        k: float(np.mean(v)) if v else 0.0
+        for k, v in agg_params.items()
+    }
+    seasonal["_months_calibrated"] = [
+        int(m) for m in seasonal
+        if str(m).lstrip("-").isdigit() and "error" not in seasonal[str(m)]
+    ]
+
+    out_json = Path(out_dir) / "calibrated_params_seasonal.json"
+    with open(out_json, "w", encoding="utf-8") as f:
+        json.dump(seasonal, f, indent=2, ensure_ascii=False)
+    print(f"\n  [04] ✓ Seasonal calibration saved: {out_json}")
+
+    # Print summary table
+    print(f"\n  {'Month':>6}  {'z₀':>6}  {'albedo':>8}  {'ta_bias':>9}  "
+          f"{'RMSE':>8}  {'n_obs':>6}")
+    print("  " + "─" * 50)
+    for m in months:
+        r = seasonal.get(str(m), {})
+        if "error" in r:
+            print(f"  {m:>6}  FAILED: {r['error'][:30]}")
+            continue
+        p = r.get("params", {})
+        print(f"  {m:>6}  "
+              f"{p.get('roughness_length', 0):.3f}  "
+              f"{p.get('albedo_road', 0):.4f}    "
+              f"{p.get('ta_bias_offset', 0):+.3f}     "
+              f"{r.get('final_rmse', 0):.3f}    "
+              f"{r.get('n_obs_hours', 0):>5}")
+
+    return seasonal
+
+
+# ════════════════════════════════════════════════════════════════
+# 6. Main Program (single month — original behaviour)
 # ════════════════════════════════════════════════════════════════
 def main(iot_csv:   str = "",
           cwb_csv:   str = "",
@@ -215,8 +319,8 @@ def main(iot_csv:   str = "",
           sim_dir:   str = "../outputs/raw_simulations",
           out_dir:   str = "../outputs/raw_simulations",
           month:     int = 7,
-          site_lat:  float = 25.07,
-          site_lon:  float = 121.55,
+          site_lat:  float = 24.80,   # Hsinchu
+          site_lon:  float = 120.97,  # Hsinchu
           method:    str = "differential_evolution",
           verbose:   bool = True) -> Dict:
 
@@ -382,27 +486,63 @@ def main(iot_csv:   str = "",
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--iot_csv",  default="",
-                    help="[REMOVED_ZH:3] IoT CSV [REMOVED_ZH:2]（[REMOVED_ZH:1]=[REMOVED_ZH:6]）")
+                    help="Single merged IoT CSV (optional; overridden by --iot_dir)")
+    ap.add_argument("--iot_dir",  default="",
+                    help="Folder containing moenviot_temperature/ and "
+                         "moenviot_humidity/ sub-directories of daily CSVs")
     ap.add_argument("--cwb_csv",  default="",
-                    help="[REMOVED_ZH:5] CSV [REMOVED_ZH:2]（[REMOVED_ZH:1]=[REMOVED_ZH:6]）")
+                    help="CWB station CSV path (optional; overridden by --cwb_dir)")
+    ap.add_argument("--cwb_dir",  default="",
+                    help="Folder containing cwb_data_<month>.csv files "
+                         "(used in multi-month mode)")
     ap.add_argument("--epw",      default="../outputs/raw_simulations/epw_data.pkl")
     ap.add_argument("--sim_dir",  default="../outputs/raw_simulations")
     ap.add_argument("--out",      default="../outputs/raw_simulations")
-    ap.add_argument("--month",    type=int,   default=7)
-    ap.add_argument("--lat",      type=float, default=25.07)
-    ap.add_argument("--lon",      type=float, default=121.55)
+    ap.add_argument("--month",    type=int,   default=7,
+                    help="Single month (ignored when --months is set)")
+    ap.add_argument("--months",   default="",
+                    help="Comma-separated list of months for multi-month "
+                         "calibration, e.g. 6,7,8,9 (summer season)")
+    # Hsinchu site (default)
+    ap.add_argument("--lat",      type=float, default=24.80)
+    ap.add_argument("--lon",      type=float, default=120.97)
     ap.add_argument("--method",   default="differential_evolution",
                     choices=["differential_evolution", "L-BFGS-B"])
     args = ap.parse_args()
 
-    main(
-        iot_csv  = args.iot_csv,
-        cwb_csv  = args.cwb_csv,
-        epw_pkl  = args.epw,
-        sim_dir  = args.sim_dir,
-        out_dir  = args.out,
-        month    = args.month,
-        site_lat = args.lat,
-        site_lon = args.lon,
-        method   = args.method,
-    )
+    # --iot_dir takes precedence over --iot_csv
+    iot_source = args.iot_dir if args.iot_dir else args.iot_csv
+
+    if args.months:
+        # Multi-month calibration (v3)
+        month_list = [int(m.strip()) for m in args.months.split(",")]
+        run_multi_month_calibration(
+            months   = month_list,
+            iot_csv  = iot_source,
+            cwb_csv  = args.cwb_csv,
+            cwb_dir  = args.cwb_dir,
+            epw_pkl  = args.epw,
+            sim_dir  = args.sim_dir,
+            out_dir  = args.out,
+            site_lat = args.lat,
+            site_lon = args.lon,
+            method   = args.method,
+        )
+    else:
+        # Single-month calibration (original behaviour)
+        cwb_src = args.cwb_csv
+        if args.cwb_dir:
+            candidate = Path(args.cwb_dir) / f"cwb_data_{args.month}.csv"
+            if candidate.exists():
+                cwb_src = str(candidate)
+        main(
+            iot_csv  = iot_source,
+            cwb_csv  = cwb_src,
+            epw_pkl  = args.epw,
+            sim_dir  = args.sim_dir,
+            out_dir  = args.out,
+            month    = args.month,
+            site_lat = args.lat,
+            site_lon = args.lon,
+            method   = args.method,
+        )

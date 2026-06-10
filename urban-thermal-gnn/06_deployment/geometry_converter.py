@@ -35,7 +35,7 @@
 from __future__ import annotations
 import sys, math
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 import numpy as np
 
 _HERE = Path(__file__).resolve().parent
@@ -49,6 +49,21 @@ try:
     _SHAPELY = True
 except ImportError:
     _SHAPELY = False
+
+# v3 optional integrations
+try:
+    from sensing_integration.osm_loader import (
+        compute_canyon_hw_ratios, canyon_wind_reduction,
+    )
+    _OSM_CANYON = True
+except ImportError:
+    _OSM_CANYON = False
+
+try:
+    from sensing_integration.canopy_loader import CanopyHeightLoader
+    _CANOPY = True
+except ImportError:
+    _CANOPY = False
 
 
 # ════════════════════════════════════════════════════════════════
@@ -278,23 +293,60 @@ def compute_nearest_building_height(sensor_pts: np.ndarray,
     return bh
 
 
-def compute_nearest_tree_height(sensor_pts: np.ndarray,
-                                 trees:      list) -> np.ndarray:
-    """[REMOVED_ZH:12] (m)；[REMOVED_ZH:6] 0"""
+def compute_nearest_tree_height(sensor_pts:    np.ndarray,
+                                 trees:          list,
+                                 canopy_loader=None) -> np.ndarray:
+    """
+    Nearest tree height per sensor point (m).
+
+    Parameters
+    ----------
+    canopy_loader : CanopyHeightLoader instance (v3).  When provided, samples
+                   the raster at each sensor point and uses the raster value
+                   where it exceeds the nearest-tree fallback.
+    """
     N  = len(sensor_pts)
     th = np.zeros(N, dtype=np.float32)
     if not trees:
+        # v3: even without explicit tree list, canopy raster may show canopy
+        if canopy_loader is not None and getattr(canopy_loader, "available", False):
+            pts_list = [(float(pt[0]), float(pt[1])) for pt in sensor_pts]
+            th = canopy_loader.sample_local_points(pts_list)
         return th
 
     for i, pt in enumerate(sensor_pts):
         min_d, nearest_h = np.inf, 0.0
         for t in trees:
-            d = math.hypot(pt[0]-t["x"], pt[1]-t["y"])
+            tx = t.get("x", t.get("pos", (0, 0))[0])
+            ty = t.get("y", t.get("pos", (0, 0))[1])
+            d  = math.hypot(pt[0] - tx, pt[1] - ty)
             if d < min_d:
                 min_d, nearest_h = d, float(t.get("height", 0))
         th[i] = nearest_h
 
+    # v3: blend with canopy raster (take max — raster reveals broader canopy)
+    if canopy_loader is not None and getattr(canopy_loader, "available", False):
+        pts_list   = [(float(pt[0]), float(pt[1])) for pt in sensor_pts]
+        raster_h   = canopy_loader.sample_local_points(pts_list)
+        th         = np.maximum(th, raster_h)
+
     return th
+
+
+def compute_street_canyon_factor(sensor_pts: np.ndarray,
+                                  roads:      list,
+                                  buildings:  list,
+                                  radius:     float = 30.0) -> np.ndarray:
+    """
+    Street canyon H/W ratio per sensor point (v3 feature dim 9).
+
+    Uses road geometry and flanking building heights.
+    Returns (N,) float32 clipped to [0, 5].
+    Falls back to zeros if OSM canyon module is unavailable.
+    """
+    if _OSM_CANYON and roads:
+        return compute_canyon_hw_ratios(sensor_pts, roads, buildings, radius)
+    return np.zeros(len(sensor_pts), dtype=np.float32)
 
 
 def estimate_mrt(ta_vals: np.ndarray,
@@ -339,10 +391,21 @@ class GNNInputBuilder:
 
     SIM_HOURS = list(range(8, 19))   # 8:00 – 18:00, T=11
 
-    def __init__(self, norm_stats: dict, epw_data, dim_air: int = 8):
-        self.norm_stats = norm_stats
-        self.epw_data   = epw_data
-        self.dim_air    = dim_air
+    def __init__(self, norm_stats: dict, epw_data, dim_air: int = 8,
+                 canopy_loader=None, osm_loader=None):
+        self.norm_stats     = norm_stats
+        self.epw_data       = epw_data
+        self.dim_air        = dim_air
+        self.canopy_loader  = canopy_loader   # v3: CanopyHeightLoader
+        self.osm_loader     = osm_loader      # v3: OSMLoader
+
+        # Pre-fetch OSM roads once for canyon computation (dim_air >= 10)
+        self._osm_roads: list = []
+        if osm_loader is not None and dim_air >= 10:
+            try:
+                self._osm_roads = osm_loader.get_road_segments_local()
+            except Exception:
+                pass
 
         # [REMOVED_ZH:9]（[REMOVED_ZH:5]）
         self._clim_map = self._build_clim_map()
@@ -356,7 +419,13 @@ class GNNInputBuilder:
         buildings      = payload.get("buildings", [])
         trees          = payload.get("trees", [])
         resolution     = float(payload.get("sensor_resolution", 2.0))
+        # v3: prefer OSM-derived material zones; fall back to payload zones
         material_zones = payload.get("material_zones", None)
+        if material_zones is None and self.osm_loader is not None:
+            try:
+                material_zones = self.osm_loader.get_material_zones()
+            except Exception:
+                pass
 
         # 1. [REMOVED_ZH:5]
         sensor_pts = generate_sensor_grid(site_pts, buildings, resolution)
@@ -428,9 +497,22 @@ class GNNInputBuilder:
         # static[REMOVED_ZH:4]（[REMOVED_ZH:6]）
         svf = compute_svf(sensor_pts, buildings)
         bh  = compute_nearest_building_height(sensor_pts, buildings)
-        th  = compute_nearest_tree_height(sensor_pts, trees)
+        # v3: use canopy raster for tree heights when available
+        th  = compute_nearest_tree_height(sensor_pts, trees,
+                                          canopy_loader=self.canopy_loader)
         bh_n = (bh / 50.0).astype(np.float32)
         th_n = (th / 12.0).astype(np.float32)
+
+        # v3: street canyon H/W ratio (used if dim_air >= 10)
+        canyon_hw = np.zeros(len(sensor_pts), dtype=np.float32)
+        if dim >= 10:
+            canyon_hw = compute_street_canyon_factor(
+                sensor_pts, self._osm_roads, buildings
+            )
+        # Canyon wind reduction factor (applied to va below)
+        canyon_wind_factor = np.ones(len(sensor_pts), dtype=np.float32)
+        if _OSM_CANYON and dim >= 10 and self._osm_roads:
+            canyon_wind_factor = canyon_wind_reduction(canyon_hw)
 
         # Resolve per-sensor material types from zones (for dim_air >= 9)
         sensor_materials = None
@@ -471,8 +553,8 @@ class GNNInputBuilder:
             va  = np.full(N, clim.wind_speed,  dtype=np.float32)
             ghi = float(clim.ghi)
 
-            # [REMOVED_ZH:2]Wind Speed[REMOVED_ZH:2]（[REMOVED_ZH:4]）
-            va *= (0.5 + 0.5 * svf)  # [REMOVED_ZH:9]
+            # Wind speed: SVF shielding + street canyon reduction (v3)
+            va *= (0.5 + 0.5 * svf) * canyon_wind_factor
 
             # MRT [REMOVED_ZH:2]
             mrt = estimate_mrt(ta, ghi, svf, in_shadow, sol_alt)
@@ -492,7 +574,7 @@ class GNNInputBuilder:
             feat[:, t_idx, 6] = bh_n
             feat[:, t_idx, 7] = th_n
 
-            # ── V2: surface temperature (9th feature) ─────────────
+            # ── V2: surface temperature (9th feature, index 8) ────
             if dim >= 9:
                 rh_frac = clim.rh / 100.0  # EPW stores 0-100
 
@@ -528,6 +610,11 @@ class GNNInputBuilder:
                 ts_n = ((ts_raw - ts_stats["mean"]) /
                         (ts_stats["std"] + 1e-8)).astype(np.float32)
                 feat[:, t_idx, 8] = ts_n
+
+            # ── V3: street canyon H/W ratio (10th feature, index 9) ─
+            if dim >= 10:
+                # Normalise: divide by 3 so typical canyon (H/W=1) → 0.33
+                feat[:, t_idx, 9] = (canyon_hw / 3.0).astype(np.float32)
 
         return feat
 

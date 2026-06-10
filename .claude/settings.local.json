@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(cat:*)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(find \"c:/Users/user/Desktop/UTIC GNN/Physics-Informed ST-GNN/urban-thermal-gnn\" -maxdepth 1 -name \"*.py\" -exec wc -l {} +)",
+      "Bash(\"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" -c \":*)",
+      "Bash(\"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" 01_data_generation/scripts/02_geometry_sampler.py --config 00_config/site_constraints.yaml --n 300 --out 01_data_generation/outputs/raw_simulations --use_osm --use_canopy --canopy_tif data/canopy/ETH_GlobalCanopyHeight_10m_2020_N24E120_Map.tif)",
+      "Bash(PYTHONUTF8=1 \"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" -X utf8 01_data_generation/scripts/02_geometry_sampler.py --config 00_config/site_constraints.yaml --n 300 --out 01_data_generation/outputs/raw_simulations --use_osm --use_canopy --canopy_tif data/canopy/ETH_GlobalCanopyHeight_10m_2020_N24E120_Map.tif)",
+      "Bash(PYTHONUTF8=1 \"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" -c \":*)",
+      "Bash(PYTHONUTF8=1 \"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" 01_data_generation/scripts/02_geometry_sampler.py --config 00_config/site_constraints.yaml --n 300 --out 01_data_generation/outputs/raw_simulations --use_osm --use_canopy --canopy_tif data/canopy/ETH_GlobalCanopyHeight_10m_2020_N24E120_Map.tif)",
+      "Bash(PYTHONUTF8=1 \"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" 01_data_generation/scripts/04_sensing_calibration.py --months 6,7,8 --epw ../outputs/raw_simulations/epw_data.pkl --sim_dir 01_data_generation/outputs/raw_simulations --out 01_data_generation/outputs/raw_simulations --lat 24.80 --lon 120.97)",
+      "Bash(PYTHONUTF8=1 \"C:/Users/user/anaconda3/envs/PytorchGPU/python.exe\" 04_sensing_calibration.py --months 6,7,8 --epw ../outputs/raw_simulations/epw_data.pkl --sim_dir ../outputs/raw_simulations --out ../outputs/raw_simulations --lat 24.80 --lon 120.97)",
+      "Bash(PYTHONUTF8=1 C:/Users/user/anaconda3/envs/PytorchGPU/python.exe -X utf8 04_sensing_calibration.py --iot_dir \"../inputs/iot_data\" --cwb_dir \"../inputs/cwb_data\" --months 6,7,8 --lat 24.80 --lon 120.97)"
     ]
   }
 }

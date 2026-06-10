@@ -86,6 +86,87 @@ class CWBStationLoader:
         self.site_lon = site_lon
         self.encoding = encoding
 
+    # ── MH Format Parser ────────────────────────────────────────
+    def _try_read_mh_format(self, month: int) -> Optional[pd.DataFrame]:
+        """
+        Parse CWB MH (Multifield Hourly) format.
+        Lines starting with '*' are comments; the line starting with '#'
+        is the column header; data rows follow.
+
+        Example header:
+          # stno, yyyymmddhh, PS01, TX01, RH01, WD01, WD02, WD07, WD08, PP01
+        Column mapping:
+          TX01 -> ta,  RH01 -> rh,  WD01 -> ws,  WD02 -> wd,  PP01 -> rain
+        """
+        try:
+            with open(self.csv_path, "r", encoding="utf-8-sig",
+                      errors="replace") as fh:
+                lines = fh.readlines()
+        except Exception:
+            return None
+
+        header_line: Optional[str] = None
+        data_lines: List[str] = []
+        for raw_line in lines:
+            stripped = raw_line.strip()
+            if not stripped:
+                continue
+            if stripped.startswith("#"):
+                header_line = stripped          # last # line wins
+            elif not stripped.startswith("*") and header_line is not None:
+                data_lines.append(stripped)
+
+        if header_line is None or not data_lines:
+            return None  # not MH format
+
+        # Parse column names
+        cols = [c.strip() for c in header_line.lstrip("# ").split(",")]
+        if "yyyymmddhh" not in cols:
+            return None
+
+        # Parse data rows
+        rows = []
+        for line in data_lines:
+            parts = [p.strip() for p in line.split(",")]
+            if len(parts) >= len(cols):
+                rows.append(parts[: len(cols)])
+
+        if not rows:
+            return None
+
+        df = pd.DataFrame(rows, columns=cols)
+
+        # Parse timestamp: yyyymmddhh -> datetime
+        ts_raw = df["yyyymmddhh"].str.strip().str.zfill(10)
+        df["timestamp"] = pd.to_datetime(ts_raw, format="%Y%m%d%H",
+                                          errors="coerce")
+        df = df.dropna(subset=["timestamp"])
+
+        # Rename to standard column names
+        mh_rename = {
+            "stno": "station_id",
+            "TX01": "ta",
+            "RH01": "rh",
+            "WD01": "ws",
+            "WD02": "wd",
+            "PP01": "rain",
+            "PS01": "pres",
+        }
+        df = df.rename(columns={k: v for k, v in mh_rename.items()
+                                 if k in df.columns})
+
+        # Convert numeric columns
+        numeric_cols = ["ta", "rh", "ws", "wd", "rain", "pres"]
+        for col in numeric_cols:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
+                # Replace all CWB special/missing codes (< -9)
+                df.loc[df[col] < -9.0, col] = np.nan
+
+        # Filter to target month
+        df = df[df["timestamp"].dt.month == month].copy()
+        return df if not df.empty else None
+
     def _make_demo(self, month: int = 7) -> pd.DataFrame:
         """[REMOVED_ZH:12]。"""
         np.random.seed(0)
@@ -148,22 +229,34 @@ class CWBStationLoader:
             warnings.warn(f"[CWB] CSV [REMOVED_ZH:3]: {self.csv_path}")
             raw = self._make_demo(month)
         else:
-            try:
-                raw = pd.read_csv(self.csv_path, encoding=self.encoding,
-                                   low_memory=False)
-            except UnicodeDecodeError:
-                raw = pd.read_csv(self.csv_path, encoding="big5",
-                                   low_memory=False)
+            # Try MH format first (CWB Multifield Hourly with * / # headers)
+            mh_df = self._try_read_mh_format(month)
+            if mh_df is not None:
+                if verbose:
+                    print(f"  [CWB] MH format detected: {len(mh_df)} rows "
+                          f"for month {month}")
+                raw = mh_df
+            else:
+                try:
+                    raw = pd.read_csv(self.csv_path, encoding=self.encoding,
+                                       low_memory=False)
+                except UnicodeDecodeError:
+                    raw = pd.read_csv(self.csv_path, encoding="big5",
+                                       low_memory=False)
+                raw = self._normalise_columns(raw)
+                raw = self._handle_special_values(raw)
+                raw["timestamp"] = pd.to_datetime(raw["timestamp"],
+                                                   errors="coerce")
+                raw = raw.dropna(subset=["timestamp"])
+                raw = raw[raw["timestamp"].dt.month == month].copy()
 
-        raw = self._normalise_columns(raw)
-        raw = self._handle_special_values(raw)
-
-        # [REMOVED_ZH:4]
-        raw["timestamp"] = pd.to_datetime(raw["timestamp"], errors="coerce")
-        raw = raw.dropna(subset=["timestamp"])
-
-        # [REMOVED_ZH:4]
-        raw = raw[raw["timestamp"].dt.month == month].copy()
+        # MH path already has timestamp parsed and month filtered;
+        # standard path already filtered above — unify from here
+        if "timestamp" not in raw.columns or not pd.api.types.is_datetime64_any_dtype(raw["timestamp"]):
+            raw["timestamp"] = pd.to_datetime(raw.get("timestamp", pd.Series(dtype=str)), errors="coerce")
+            raw = raw.dropna(subset=["timestamp"])
+        if raw.empty or (raw["timestamp"].dt.month != month).any():
+            raw = raw[raw["timestamp"].dt.month == month].copy() if not raw.empty else raw
         if raw.empty:
             warnings.warn(f"[CWB] [REMOVED_ZH:2] {month} [REMOVED_ZH:3]")
             return pd.DataFrame()

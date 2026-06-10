@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UrbanGraph-v3 — GNN Architecture</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #F0F4F8;
+      padding: 24px;
+      color: #1A202C;
+    }
+    header {
+      background: #1A365D;
+      color: #fff;
+      border-radius: 8px;
+      padding: 18px 28px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 11.5px;
+      color: #90CDF4;
+      font-style: italic;
+    }
+    .diagram-wrap {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow-x: auto;
+    }
+    .mermaid { min-width: 900px; }
+    footer {
+      margin-top: 16px;
+      font-size: 10.5px;
+      color: #718096;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Architecture of Physics-Informed Spatio-Temporal Graph Neural Network for Urban Thermal Comfort (UTCI) Prediction</h1>
+  <p>UrbanGraph-v3 &nbsp;·&nbsp; Heterogeneous R-GCN &nbsp;·&nbsp; Warmup-LSTM &nbsp;·&nbsp; 3-Term Physics Penalty
+     &nbsp;·&nbsp; d<sub>p</sub>=10, h=128, h<sub>lstm</sub>=256, T=11 &nbsp;·&nbsp; Best val R²=0.9965</p>
+</header>
+
+<div class="diagram-wrap">
+<div class="mermaid">
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor":       "#EBF8FF",
+    "primaryBorderColor": "#2B6CB0",
+    "primaryTextColor":   "#1A202C",
+    "secondaryColor":     "#FAF5FF",
+    "tertiaryColor":      "#F0FFF4",
+    "lineColor":          "#4A5568",
+    "fontSize":           "13px"
+  },
+  "flowchart": { "curve": "monotoneX", "padding": 16 }
+}}%%
+
+flowchart LR
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ①  URBAN HETEROGENEOUS GRAPH
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S1["① Urban Heterogeneous Graph  G = (V, ℰ, ℛ)"]
+    direction TB
+    VOBJ["**V_obj** — Object Nodes\n─────────────────\nx_obj ∈ ℝ⁷\n[h_bldg, floors, A_fp,\nwall_α, roof_α, GSI, FAR]\nSource: OSM footprints"]
+    VAIR["**V_air** — Air Nodes\n─────────────────\nx_air ∈ ℝ^{T×10}\n[Ta, MRT, Va, RH, SVF,\nshadow, h_bldg, h_tree,\nTs, H/W_canyon]\nSource: LBT sim + IoT/CWB calib."]
+    REL["**Relation types  ℛ**\n─────────────────\nshadow  (dynamic, obj→air)\nveg_et  (dynamic, obj→air)\nconvective (dynamic, air→air)\nsemantic (static, obj→air)\ncontiguity (static, air→air)"]
+    VOBJ ~~~ REL
+    VAIR ~~~ REL
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ②  NODE ENCODERS
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S2["② Node Encoders  φ"]
+    direction TB
+    PHI_OBJ["**φ_obj — InputMLP**\n────────────────────────\nFC(7 → 128) → LN → ReLU\n→ Dropout(0.1)\n→ FC(128 → 128) → ReLU\nh_obj ∈ ℝ^{N_obj × 128}"]
+    PHI_AIR["**φ_air — InputMLP**\n────────────────────────\nFC(10 → 128) → LN → ReLU\n→ Dropout(0.1)\n→ FC(128 → 128) → ReLU\nh_air_t ∈ ℝ^{N_air × 128}  ∀t"]
+    PHI_CTX["**φ_ctx — GlobalContextMLP**\n────────────────────────\nenv_enc:  FC(7→64→128) → ReLU\ntime_enc: FC(2→64→64)  → ReLU\nconcat → Drop → g_t ∈ ℝ^192\n[Ta,RH,WS,WD,GHI,SolAlt] + [sinH,cosH]"]
+    SENS["**Sensor Supervision**\nλ_s = 0.5\nL_sense = MSE(ŷ_IoT, y_IoT)\nIoT stations: 231 devices\nHsinchu ta_bias ≈ +2.1–3.0°C"]
+    PHI_OBJ ~~~ PHI_CTX
+    PHI_AIR ~~~ PHI_CTX
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ③  RELATIONAL GCN
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S3["③ Relational GCN  (ℓ = 1, 2, 3)"]
+    direction TB
+    RGCN1["**RGCN Block  ℓ=1**\n──────────────────────────────\nm_{i,r} = (1/|N_i^r|) Σ_{j∈N_i^r} W_r h_j^(ℓ)\nh_i^(ℓ+1) = PReLU(LN(\n  Σ_r m_{i,r} + W_self h_i^(ℓ) + h_i^(ℓ) ))\nResidual + LayerNorm + PReLU\n5 relation-specific W_r ∈ ℝ^{128×128}"]
+    RGCN2["**RGCN Block  ℓ=2**\n──────────────────────────────\n(same architecture)\nDropout(0.1) after PReLU"]
+    RGCN3["**RGCN Block  ℓ=3**\n──────────────────────────────\n(same architecture)\n→ h_air^(3) ∈ ℝ^{N_air × 128}\n→ h_obj^(3) ∈ ℝ^{N_obj × 128}"]
+    RGCN1 --> RGCN2 --> RGCN3
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ④  FUSION & WARMUP
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S4["④ Context Fusion  &  LSTM Warmup"]
+    direction TB
+    FUSE["**Context Fusion**\n──────────────────────────\n[h_air^(3) ⊕ g_t] ∈ ℝ^320\n→ FC(320 → 256) → ReLU → Drop\nx̂_t ∈ ℝ^{N_air × 256}  ∀t"]
+    WARMUP["**LSTM Warmup  (Eq. 9)**\n──────────────────────────\nh₀ = tanh( W_wh · h_air^(3) )  ∈ ℝ^256\nc₀ = tanh( W_wc · h_air^(3) )  ∈ ℝ^256\nBridges spatial → temporal encoding"]
+    FUSE ~~~ WARMUP
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ⑤  TEMPORAL LSTM
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S5["⑤ Temporal LSTM  (T = 11 steps,  08:00–18:00)"]
+    direction TB
+    LCELL["**LSTM Cell  (256 → 256)**\n────────────────────────────────\nf_t = σ( W_f [h_{t-1}, x̂_t] + b_f )\ni_t = σ( W_i [h_{t-1}, x̂_t] + b_i )\nc̃_t = tanh( W_c [h_{t-1}, x̂_t] + b_c )\nc_t = f_t ⊙ c_{t-1} + i_t ⊙ c̃_t\no_t = σ( W_o [h_{t-1}, x̂_t] + b_o )\nh_t = o_t ⊙ tanh( c_t )\nInit: (h₀, c₀) from Warmup"]
+    HLAST["**h_T ∈ ℝ^{N_air × 256}**\nlast hidden state\n(captures full T=11 context)"]
+    LCELL --> HLAST
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  ⑥  OUTPUT DECODER
+  %% ─────────────────────────────────────────────────────────────
+  subgraph S6["⑥ Output Decoder"]
+    direction TB
+    OUTMLP["**OutputMLP**\n──────────────────────\nFC(256→256)→ReLU→Drop\nFC(256→256)→ReLU→Drop\nFC(256 → 11)\nŷ ∈ ℝ^{N_air × 11}  [°C UTCI]"]
+    UTCI_BANDS["**UTCI Thermal Stress Bands**  (ISO 15743)\n─────────────────────────────────────\n< 9°C  No thermal stress\n9–26°C  Slight stress\n26–32°C  Moderate stress\n32–38°C  Strong stress\n> 38°C  Very strong stress"]
+    OUTMLP --> UTCI_BANDS
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  PHYSICS LOSS
+  %% ─────────────────────────────────────────────────────────────
+  subgraph SLOSS["Physics-Informed Loss  L_total"]
+    direction LR
+    LDATA["**L_data**\nMSE( ŷ, y_LBT )\nquality-weighted\nw_q ∈ {0.5, 1.0}"]
+    LRAD["**λ₁ L_rad = 0.1**\nE[ max(0, ŷ_shd − ŷ_sun + 0.5)² ]\nSVF constraint\nsol_alt > 10°"]
+    LSMOOTH["**λ₂ L_smooth = 0.05**\nE[ max(0, |Δŷ| − 0.625)² ]\nΔ_max = 5°C/hr\n(step = 0.625°C/step)"]
+    LWIND["**λ₃ L_wind = 0.05**\nE[ max(0, ŷ − (μ̂ + 1.5σ̂)) ]\nnear tall buildings\nh_bldg > 20 m"]
+    LSENSE["**λ_s L_sense = 0.5**\nMSE( ŷ_IoT, y_IoT )\n231 IoT stations\nHsinchu UHI bias corrected"]
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  TRAINING CONFIG
+  %% ─────────────────────────────────────────────────────────────
+  subgraph STRAIN["Training Configuration"]
+    direction LR
+    OPT["**Optimizer**\nAdamW\nlr=3×10⁻⁴\nwd=1×10⁻⁴\ngrad_clip=1.0"]
+    SCHED["**Scheduler**\nReduceLROnPlateau\nfactor=0.5\npatience=10\n3e-4 → 7.5e-5 → 3.75e-5"]
+    STOP["**Early Stopping**\npatience=20\nbest epoch=98\nstopped at epoch=118"]
+    RESULT["**Results**\nval R²=0.9965\nval loss=0.0076\ncheckpoint: 4.8 MB"]
+  end
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  FLOW CONNECTIONS
+  %% ─────────────────────────────────────────────────────────────
+  S1 -->|"x_obj ∈ ℝ⁷\nx_air ∈ ℝ^{T×10}"| S2
+  S2 -->|"h_obj ∈ ℝ^{N×128}\nh_air_t ∈ ℝ^{N×128}\n+ edge_indices"| S3
+  S3 -->|"h_air^(3) ∈ ℝ^{N×128}"| S4
+  S2 -->|"g_t ∈ ℝ^192"| S4
+  S4 -->|"x̂_t ∈ ℝ^{N×256}\n(h₀,c₀) ∈ ℝ^{N×256}"| S5
+  S5 -->|"h_T ∈ ℝ^{N×256}"| S6
+  S6 -->|"ŷ ∈ ℝ^{N×11}"| SLOSS
+  SLOSS -->|"L_total = L_data\n+ λ₁L_rad + λ₂L_smooth\n+ λ₃L_wind + λ_sL_sense"| STRAIN
+
+  %% ─────────────────────────────────────────────────────────────
+  %%  STYLES
+  %% ─────────────────────────────────────────────────────────────
+  style S1    fill:#EBF8FF,stroke:#2B6CB0,stroke-width:2px
+  style S2    fill:#FAF5FF,stroke:#6B46C1,stroke-width:2px
+  style S3    fill:#FFFAF0,stroke:#C05621,stroke-width:2px
+  style S4    fill:#F0FFF4,stroke:#276749,stroke-width:2px
+  style S5    fill:#FFF5F5,stroke:#C53030,stroke-width:2px
+  style S6    fill:#FFFFF0,stroke:#975A16,stroke-width:2px
+  style SLOSS fill:#F7FAFC,stroke:#4A5568,stroke-width:2px,stroke-dasharray:5 3
+  style STRAIN fill:#EDF2F7,stroke:#4A5568,stroke-width:1.5px
+
+  style VOBJ    fill:#BEE3F8,stroke:#2B6CB0
+  style VAIR    fill:#C6F6D5,stroke:#276749
+  style REL     fill:#E9D8FD,stroke:#6B46C1
+
+  style PHI_OBJ fill:#E9D8FD,stroke:#6B46C1
+  style PHI_AIR fill:#D6BCFA,stroke:#6B46C1
+  style PHI_CTX fill:#B794F4,stroke:#553C9A,color:#1A202C
+  style SENS    fill:#FED7D7,stroke:#C53030
+
+  style RGCN1   fill:#FEEBC8,stroke:#C05621
+  style RGCN2   fill:#FBD38D,stroke:#C05621
+  style RGCN3   fill:#F6AD55,stroke:#C05621,color:#1A202C
+
+  style FUSE    fill:#C6F6D5,stroke:#276749
+  style WARMUP  fill:#9AE6B4,stroke:#276749
+
+  style LCELL   fill:#FED7D7,stroke:#C53030
+  style HLAST   fill:#FC8181,stroke:#C53030,color:#1A202C
+
+  style OUTMLP      fill:#FEFCBF,stroke:#975A16
+  style UTCI_BANDS  fill:#FAF089,stroke:#975A16
+
+  style LDATA   fill:#EDF2F7,stroke:#4A5568
+  style LRAD    fill:#FEEBC8,stroke:#C05621
+  style LSMOOTH fill:#C6F6D5,stroke:#276749
+  style LWIND   fill:#BEE3F8,stroke:#2B6CB0
+  style LSENSE  fill:#E9D8FD,stroke:#6B46C1
+
+  style OPT     fill:#EDF2F7,stroke:#4A5568
+  style SCHED   fill:#EDF2F7,stroke:#4A5568
+  style STOP    fill:#EDF2F7,stroke:#4A5568
+  style RESULT  fill:#C6F6D5,stroke:#276749
+</div>
+</div>
+
+<footer>
+  UrbanGraph-v3 &nbsp;|&nbsp;
+  Physics-Informed ST-GNN for UTCI Prediction &nbsp;|&nbsp;
+  R-GCN (5 relations) + Warmup-LSTM + 3-Term Physics Penalty &nbsp;|&nbsp;
+  Calibrated via Hsinchu IoT (231 devices) + CWB stations &nbsp;|&nbsp;
+  Training: AdamW, ReduceLROnPlateau, Early Stopping (patience=20), Best R²=0.9965 @ epoch 98
+</footer>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor:       '#EBF8FF',
+      primaryBorderColor: '#2B6CB0',
+      primaryTextColor:   '#1A202C',
+      lineColor:          '#4A5568',
+      fontSize:           '13px'
+    },
+    flowchart: {
+      curve: 'monotoneX',
+      padding: 16,
+      htmlLabels: true
+    }
+  });
+</script>
+</body>
+</html>

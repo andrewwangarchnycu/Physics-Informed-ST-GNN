@@ -47,6 +47,21 @@ from shapely.ops import unary_union
 from shapely.affinity import rotate
 from shapely.validation import make_valid
 
+# ── Optional v3 data-source integrations ───────────────────────
+try:
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    from sensing_integration.canopy_loader import CanopyHeightLoader
+    _CANOPY = True
+except ImportError:
+    _CANOPY = False
+
+try:
+    from sensing_integration.osm_loader import OSMLoader
+    _OSM = True
+except ImportError:
+    _OSM = False
+
 
 # ════════════════════════════════════════════════════════════════
 # 1. [REMOVED_ZH:4]
@@ -127,7 +142,9 @@ class GeometrySampler:
                  floor_height:       float = 3.6,
                  setback_min:        float = 3.0,
                  allow_lshape:       bool  = True,
-                 seed:               int   = 42):
+                 seed:               int   = 42,
+                 osm_loader:         Optional[Any] = None,
+                 canopy_loader:      Optional[Any] = None):
 
         self.site        = make_valid(site_polygon)
         self.site_area   = self.site.area
@@ -141,6 +158,9 @@ class GeometrySampler:
         self.allow_l     = allow_lshape
         self.rng         = random.Random(seed)
         np.random.seed(seed)
+        # v3: optional real-data sources
+        self.osm_loader    = osm_loader     # OSMLoader instance (or None)
+        self.canopy_loader = canopy_loader  # CanopyHeightLoader instance (or None)
 
         self.bz = self.site.buffer(-setback_min)
         if self.bz.is_empty:
@@ -148,6 +168,14 @@ class GeometrySampler:
 
         self.target_coverage = bcr_target * self.site_area
         self.target_gfa      = far_target * self.site_area
+
+        # Pre-fetch OSM buildings once so every scenario can reuse them
+        self._osm_buildings: List[Dict] = []
+        if self.osm_loader is not None:
+            self._osm_buildings = self.osm_loader.get_buildings_local()
+            if self._osm_buildings:
+                print(f"  [Sampler] Using {len(self._osm_buildings)} OSM buildings "
+                      "(procedural fallback per scenario if not enough).")
 
     # ── [REMOVED_ZH:6] ─────────────────────────────
     def _try_place(self,
@@ -212,6 +240,73 @@ class GeometrySampler:
 
     # ── [REMOVED_ZH:6] ─────────────────────────────
     def sample_scenario(self, scenario_id: int) -> Optional[Dict[str, Any]]:
+        # ── v3: try OSM buildings first ───────────────────────
+        if self._osm_buildings:
+            buildings, placed = self._load_osm_buildings()
+        else:
+            buildings, placed = self._sample_procedural_buildings()
+
+        if not buildings:
+            return None
+
+        total_gfa  = sum(b["gfa"]      for b in buildings)
+        total_cov  = sum(b["coverage"] for b in buildings)
+        far_actual = total_gfa  / self.site_area
+        bcr_actual = total_cov  / self.site_area
+        open_space = self.site.difference(unary_union(placed))
+
+        # ── Tree placement ────────────────────────────────────
+        trees = self._place_trees(scenario_id, open_space)
+
+        return {
+            "scenario_id":  scenario_id,
+            "site_polygon": self.site,
+            "buildings":    buildings,
+            "open_space":   open_space,
+            "trees":        trees,
+            "land_cover_map": None,
+            "far_actual":   far_actual,
+            "bcr_actual":   bcr_actual,
+            "total_gfa":    total_gfa,
+        }
+
+    # ── OSM building loader ────────────────────────────────────
+    def _load_osm_buildings(self) -> Tuple[List[Dict], List[Polygon]]:
+        """Convert pre-fetched OSM footprints to sampler format."""
+        buildings: List[Dict] = []
+        placed:    List[Polygon] = []
+        for osm_b in self._osm_buildings:
+            try:
+                fp = Polygon(osm_b["footprint"])
+                if not fp.is_valid:
+                    fp = make_valid(fp)
+                if fp.area < self.min_fp:
+                    continue
+                # Clip to site with setback zone
+                fp = fp.intersection(self.bz)
+                if fp.is_empty or fp.area < self.min_fp:
+                    continue
+                if any(fp.intersects(p) for p in placed):
+                    continue
+                h      = float(osm_b.get("height", 10.0))
+                floors = int(osm_b.get("floor_count", round(h / self.fh)))
+                buildings.append({
+                    "footprint":  fp,
+                    "floors":     floors,
+                    "height":     h,
+                    "centroid":   (fp.centroid.x, fp.centroid.y),
+                    "gfa":        fp.area * floors,
+                    "coverage":   fp.area,
+                    "shape_type": "osm",
+                    "osm_id":     osm_b.get("osm_id"),
+                })
+                placed.append(fp)
+            except Exception:
+                continue
+        return buildings, placed
+
+    # ── Procedural building placement (original logic) ─────────
+    def _sample_procedural_buildings(self) -> Tuple[List[Dict], List[Polygon]]:
         n_bldg = self.rng.randint(*self.n_bldg_rng)
         placed: List[Polygon] = []
         buildings: List[Dict] = []
@@ -228,54 +323,31 @@ class GeometrySampler:
             rem_gfa -= b["gfa"]
             if rem_cov < self.min_fp:
                 break
+        return buildings, placed
 
-        if not buildings:
-            return None
+    # ── Tree placement with optional canopy enrichment ─────────
+    def _place_trees(self, scenario_id: int,
+                     open_space) -> List[Dict]:
+        _rng_tree = random.Random(scenario_id + 9999)
+        trees: List[Dict] = []
+        n_trees   = _rng_tree.randint(2, 5)
+        os_bounds = open_space.bounds   # (minx, miny, maxx, maxy)
 
-        total_gfa  = sum(b["gfa"]      for b in buildings)
-        total_cov  = sum(b["coverage"] for b in buildings)
-        far_actual = total_gfa  / self.site_area
-        bcr_actual = total_cov  / self.site_area
-        open_space = self.site.difference(unary_union(placed))
-        # [REMOVED_ZH:1] sample_scenario() return [REMOVED_ZH:1]，open_space [REMOVED_ZH:5]
-        import random as _rnd
-        _rng_tree = _rnd.Random(scenario_id + 9999)
-        trees = []
-        # [REMOVED_ZH:8] 2–5 [REMOVED_ZH:2]
-        n_trees = _rng_tree.randint(2, 5)
-        os_bounds = open_space.bounds  # (minx, miny, maxx, maxy)
-        for _ in range(n_trees * 5):   # [REMOVED_ZH:4]
+        for _ in range(n_trees * 5):
             if len(trees) >= n_trees:
                 break
             tx = _rng_tree.uniform(os_bounds[0], os_bounds[2])
             ty = _rng_tree.uniform(os_bounds[1], os_bounds[3])
-            tp = Point(tx, ty)
-            if open_space.contains(tp):
-                h  = _rng_tree.uniform(4.0, 12.0)
+            if open_space.contains(Point(tx, ty)):
+                h = _rng_tree.uniform(4.0, 12.0)
                 trees.append({"pos": (tx, ty), "height": h,
-                            "radius": h * 0.4})
+                              "radius": h * 0.4})
 
-        return {
-            "scenario_id":  scenario_id,
-            "site_polygon": self.site,
-            "buildings":    buildings,
-            "open_space":   open_space,
-            "trees":        trees,          # ← [REMOVED_ZH:2]
-            "land_cover_map": None,         # ← [REMOVED_ZH:2] None，[REMOVED_ZH:3] GIS
-            "far_actual":   far_actual,
-            "bcr_actual":   bcr_actual,
-            "total_gfa":    total_gfa,
-        }
+        # v3: replace random heights with real canopy-map values
+        if self.canopy_loader is not None and trees:
+            trees = self.canopy_loader.enrich_trees(trees)
 
-        return {
-            "scenario_id":  scenario_id,
-            "site_polygon": self.site,
-            "buildings":    buildings,
-            "open_space":   open_space,
-            "far_actual":   far_actual,
-            "bcr_actual":   bcr_actual,
-            "total_gfa":    total_gfa,
-        }
+        return trees
 
     # ── [REMOVED_ZH:4] ─────────────────────────────────
     def generate_batch(self,
@@ -344,7 +416,10 @@ def print_summary(scenarios: List[Dict]) -> None:
 # ════════════════════════════════════════════════════════════════
 def main(config_path: str = "../config/site_constraints.yaml",
          n_override:  int  = 0,
-         out_dir_override: str = ""):
+         out_dir_override: str = "",
+         use_osm:     bool = False,
+         use_canopy:  bool = False,
+         canopy_tif:  str  = ""):
 
     print("\n[02_geometry_sampler] ── [REMOVED_ZH:8] ──")
     cfg = load_config(config_path)
@@ -355,6 +430,39 @@ def main(config_path: str = "../config/site_constraints.yaml",
 
     n_scenarios = n_override or samp["n_scenarios"]
     out_dir = Path(out_dir_override or "../outputs/raw_simulations")
+
+    # ── v3: optional real-data loaders ──────────────────────────
+    osm_loader    = None
+    canopy_loader = None
+
+    if use_osm and _OSM:
+        site_cfg = cfg["site"]
+        lat = float(site_cfg.get("latitude",  24.80))
+        lon = float(site_cfg.get("longitude", 120.97))
+        # Search radius = half-diagonal of site + 50m margin so buildings
+        # touching any edge of the site are captured
+        site_half_diag = 0.5 * math.hypot(float(site_cfg["width"]),
+                                           float(site_cfg["depth"]))
+        osm_loader = OSMLoader(site_lat=lat, site_lon=lon,
+                               radius_m=site_half_diag + 50.0)
+        ok = osm_loader.fetch()
+        if not ok:
+            print("  [Sampler] OSM fetch failed → using procedural generation")
+            osm_loader = None
+    elif use_osm:
+        warnings.warn("[Sampler] use_osm=True but overpy not installed.")
+
+    if use_canopy and _CANOPY:
+        site_cfg = cfg["site"]
+        lat = float(site_cfg.get("latitude",  24.80))
+        lon = float(site_cfg.get("longitude", 120.97))
+        canopy_loader = CanopyHeightLoader(
+            tif_path  = canopy_tif or None,
+            site_lat  = lat,
+            site_lon  = lon,
+        )
+    elif use_canopy:
+        warnings.warn("[Sampler] use_canopy=True but rasterio not installed.")
 
     sampler = GeometrySampler(
         site_polygon      = site,
@@ -369,6 +477,8 @@ def main(config_path: str = "../config/site_constraints.yaml",
         setback_min       = float(reg.get("setback_min", 3.0)),
         allow_lshape      = bool(samp.get("allow_lshape", True)),
         seed              = int(samp.get("random_seed", 42)),
+        osm_loader        = osm_loader,
+        canopy_loader     = canopy_loader,
     )
 
     scenarios = sampler.generate_batch(n=n_scenarios, verbose=True)
@@ -382,10 +492,19 @@ def main(config_path: str = "../config/site_constraints.yaml",
 # ════════════════════════════════════════════════════════════════
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default="../config/site_constraints.yaml")
-    ap.add_argument("--n",     type=int, default=0,
-                    help="[REMOVED_ZH:2] config [REMOVED_ZH:2] n_scenarios")
-    ap.add_argument("--out",   default="",
-                    help="[REMOVED_ZH:6]")
+    ap.add_argument("--config",      default="../config/site_constraints.yaml")
+    ap.add_argument("--n",           type=int, default=0,
+                    help="Override n_scenarios from config")
+    ap.add_argument("--out",         default="",
+                    help="Output directory")
+    ap.add_argument("--use_osm",     action="store_true",
+                    help="Use OSM building footprints (requires overpy)")
+    ap.add_argument("--use_canopy",  action="store_true",
+                    help="Use Meta canopy height map (requires rasterio)")
+    ap.add_argument("--canopy_tif",  default="",
+                    help="Path to canopy height GeoTIFF tile")
     args = ap.parse_args()
-    main(args.config, args.n, args.out)
+    main(args.config, args.n, args.out,
+         use_osm=args.use_osm,
+         use_canopy=args.use_canopy,
+         canopy_tif=args.canopy_tif)

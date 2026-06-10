@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(PYTHONUTF8=1 C:/Users/user/anaconda3/envs/PytorchGPU/python.exe -u -X utf8 04_sensing_calibration.py --iot_dir \"../inputs/iot_data\" --cwb_dir \"../inputs/cwb_data\" --months 6,7,8 --lat 24.80 --lon 120.97)",
+      "Bash(PYTHONUTF8=1 C:/Users/user/anaconda3/envs/PytorchGPU/python.exe -u -X utf8 03_lbt_batch_runner_v2_fast.py)",
+      "Bash(PYTHONUTF8=1 C:/Users/user/anaconda3/envs/PytorchGPU/python.exe -u -X utf8 train_v3.py --device cuda --epochs 300 --no-live-plot)",
+      "Bash(tasklist /FI \"IMAGENAME eq python.exe\" /FO CSV)",
+      "Read(//c/Users/user/Desktop/UTIC GNN/Physics-Informed ST-GNN/urban-thermal-gnn/**)",
+      "Bash(ps -W)",
+      "Bash(kill 12168)",
+      "Bash(python3 -c \":*)"
+    ]
+  }
+}

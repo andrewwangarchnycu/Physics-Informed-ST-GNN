@@ -438,11 +438,22 @@ Est. Completion:
 
 def main():
     """Run monitoring in foreground"""
+    import argparse
+    ap = argparse.ArgumentParser(description="Training progress monitor")
+    ap.add_argument("--history",  default="checkpoints_v2/training_history.json",
+                    help="Path to training_history.json")
+    ap.add_argument("--out_dir",  default="checkpoints_v2/monitoring",
+                    help="Directory for output plots")
+    ap.add_argument("--max_epochs", type=int, default=250)
+    ap.add_argument("--interval",   type=int, default=30,
+                    help="Seconds between checks")
+    args = ap.parse_args()
+
     monitor = TrainingMonitor(
-        history_path="checkpoints_v2/training_history.json",
-        output_dir="checkpoints_v2/monitoring",
-        max_epochs=250,
-        check_interval=30  # Check every 30 seconds
+        history_path=args.history,
+        output_dir=args.out_dir,
+        max_epochs=args.max_epochs,
+        check_interval=args.interval,
     )
     monitor.monitor_loop()
 

@@ -22,6 +22,8 @@ import warnings
 from pathlib import Path
 from typing import Optional, List, Dict
 
+import re
+
 import numpy as np
 import pandas as pd
 
@@ -97,7 +99,107 @@ class IotSensorLoader:
         self.encoding = encoding
         self._raw: Optional[pd.DataFrame] = None
 
-    def _read_raw(self) -> pd.DataFrame:
+    # ── Folder-based loader (moenviot_temperature/ + moenviot_humidity/) ──
+
+    @staticmethod
+    def _month_from_filename(stem: str) -> Optional[int]:
+        """Extract month (int) from filename like moenviot_temperature_20250605."""
+        m = re.search(r"(\d{8})$", stem)
+        if m:
+            try:
+                return int(m.group(1)[4:6])   # YYYYMMDD → MM
+            except (ValueError, IndexError):
+                pass
+        return None
+
+    def _read_folder(self, month: int,
+                      radius_km: float = 10.0) -> pd.DataFrame:
+        """
+        Load daily IoT CSVs from folder structure:
+          <csv_path>/moenviot_temperature/moenviot_temperature_YYYYMMDD.csv
+          <csv_path>/moenviot_humidity/moenviot_humidity_YYYYMMDD.csv
+
+        Spatial pre-filtering is applied per-file to avoid loading all-Taiwan
+        data into memory (hundreds of millions of rows).
+
+        Returns merged DataFrame with columns:
+          station_id, timestamp, lat, lon, ta, rh
+        """
+        iot_dir  = self.csv_path
+        temp_dir = iot_dir / "moenviot_temperature"
+        humi_dir = iot_dir / "moenviot_humidity"
+
+        def _within_radius(df: pd.DataFrame) -> pd.DataFrame:
+            """Keep only rows within radius_km of the site."""
+            if "lat" not in df.columns or "lon" not in df.columns:
+                return df
+            lat = pd.to_numeric(df["lat"], errors="coerce").fillna(999)
+            lon = pd.to_numeric(df["lon"], errors="coerce").fillna(999)
+            dist = haversine_km(self.site_lat, self.site_lon,
+                                lat.values, lon.values)
+            return df[dist <= radius_km].copy()
+
+        def _load_daily(folder: Path, value_col: str) -> pd.DataFrame:
+            frames = []
+            for fp in sorted(folder.glob("*.csv")):
+                if self._month_from_filename(fp.stem) != month:
+                    continue
+                try:
+                    df = pd.read_csv(fp, encoding="utf-8-sig",
+                                     low_memory=False)
+                    df = _within_radius(df)       # filter BEFORE concat
+                    if not df.empty:
+                        frames.append(df)
+                except Exception as exc:
+                    warnings.warn(f"[IoT] Cannot read {fp.name}: {exc}")
+            if not frames:
+                return pd.DataFrame()
+            combined = pd.concat(frames, ignore_index=True)
+            combined = combined.rename(columns={
+                "deviceId": "station_id",
+                value_col:  "ta" if value_col == "temperature" else "rh",
+                "time":     "timestamp",
+            })
+            combined["lat"] = pd.to_numeric(combined["lat"], errors="coerce")
+            combined["lon"] = pd.to_numeric(combined["lon"], errors="coerce")
+            return combined
+
+        temp_df = _load_daily(temp_dir, "temperature") if temp_dir.is_dir() else pd.DataFrame()
+        humi_df = _load_daily(humi_dir, "humidity")    if humi_dir.is_dir() else pd.DataFrame()
+
+        if temp_df.empty and humi_df.empty:
+            warnings.warn(f"[IoT] No daily CSV files found for month {month} "
+                          f"within {radius_km} km of site in {iot_dir}")
+            return pd.DataFrame()
+
+        if temp_df.empty:
+            temp_df = humi_df.copy()
+            temp_df["ta"] = np.nan
+
+        # Merge humidity onto temperature by (station_id, timestamp)
+        if not humi_df.empty and "rh" in humi_df.columns:
+            merged = temp_df.merge(
+                humi_df[["station_id", "timestamp", "rh"]].drop_duplicates(),
+                on=["station_id", "timestamp"],
+                how="left",
+            )
+        else:
+            merged = temp_df.copy()
+            if "rh" not in merged.columns:
+                merged["rh"] = np.nan
+
+        print(f"  [IoT Folder] month={month}: "
+              f"{len(merged)} rows, "
+              f"{merged['station_id'].nunique()} unique devices "
+              f"(within {radius_km} km)")
+        return merged
+
+    def _read_raw(self, month: Optional[int] = None,
+                  radius_km: float = 10.0) -> pd.DataFrame:
+        # Folder mode: csv_path points to a directory containing daily CSVs
+        if self.csv_path.is_dir():
+            return self._read_folder(month or 7, radius_km=radius_km)
+
         if self._raw is not None:
             return self._raw
         if not self.csv_path.exists():
@@ -169,7 +271,7 @@ class IotSensorLoader:
             [REMOVED_ZH:4]，index=DatetimeIndex，[REMOVED_ZH:2]: ta, rh,
             valid_ratio, data_quality, n_stations
         """
-        raw = self._read_raw()
+        raw = self._read_raw(month=month, radius_km=radius_km)
         raw = self._normalise_columns(raw)
 
         if verbose:

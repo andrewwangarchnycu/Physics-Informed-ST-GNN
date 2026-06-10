@@ -1,0 +1,32 @@
+{
+  "month": 8,
+  "n_obs_hours": 11,
+  "final_rmse": 7.738699192161084,
+  "params": {
+    "roughness_length": 2.4539285995857067,
+    "albedo_road": 0.05000010078504591,
+    "ta_bias_offset": 2.9990540278996045
+  },
+  "bias_ta_mean": 3.5593575217507096,
+  "bias_rh_mean": 22.212954545454544,
+  "param_bounds": {
+    "roughness_length": {
+      "min": 0.01,
+      "max": 2.5,
+      "default": 0.5,
+      "unit": "[REMOVED_ZH:6] z₀ [m]"
+    },
+    "albedo_road": {
+      "min": 0.05,
+      "max": 0.45,
+      "default": 0.15,
+      "unit": "[REMOVED_ZH:5]"
+    },
+    "ta_bias_offset": {
+      "min": -3.0,
+      "max": 3.0,
+      "default": 0.0,
+      "unit": "[REMOVED_ZH:6] [°C]"
+    }
+  }
+}

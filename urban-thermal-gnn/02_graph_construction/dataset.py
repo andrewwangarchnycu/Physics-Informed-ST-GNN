@@ -314,6 +314,21 @@ class UTCIGraphDataset:
                 ts_n = ((ts_nt - mu) / (std + 1e-8)).astype(np.float32)
             feat_list.append(ts_n)
 
+        # ── V3: canyon H/W ratio as 10th feature ──────────────────
+        # Use scenario's precomputed canyon_hw if available; else zero-pad.
+        # Normalised as hw / 3.0 (Oke 1988: skimming flow at H/W > 0.7).
+        if self._dim_air >= 10:
+            scenario = self._scenario_map.get(sid)
+            hw_arr = None
+            if scenario is not None:
+                hw_arr = scenario.get("canyon_hw_per_sensor")  # (N,) if present
+            if hw_arr is not None and len(hw_arr) == N:
+                hw_norm = (np.asarray(hw_arr, dtype=np.float32) / 3.0)
+                hw_nt   = np.repeat(hw_norm[:, None], actual_T, axis=1)  # (N, T)
+            else:
+                hw_nt = np.zeros((N, actual_T), dtype=np.float32)
+            feat_list.append(hw_nt)
+
         # Stack along feature axis -> (N, T, dim_air)
         air_feat = np.stack(feat_list, axis=2).astype(np.float32)
 

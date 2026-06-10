@@ -324,11 +324,11 @@ def resample_iot_to_hourly(df: pd.DataFrame) -> pd.DataFrame:
     quality_col  = "data_quality" if "data_quality" in df.columns else None
 
     agg_dict = {c: "median" for c in numeric_cols}
-    hourly   = df[numeric_cols].resample("H").agg(agg_dict)
+    hourly   = df[numeric_cols].resample("h").agg(agg_dict)
 
     if quality_col:
-        valid_counts = (df["data_quality"] == "good").resample("H").sum()
-        total_counts = df["data_quality"].resample("H").count()
+        valid_counts = (df["data_quality"] == "good").resample("h").sum()
+        total_counts = df["data_quality"].resample("h").count()
         hourly["valid_ratio"] = (valid_counts / total_counts.clip(lower=1)
                                   ).reindex(hourly.index).fillna(0.0)
         hourly["data_quality"] = hourly["valid_ratio"].apply(

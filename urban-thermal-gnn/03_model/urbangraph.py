@@ -28,7 +28,10 @@ from loss.physics_penalty import total_physics_loss
 DIM_OBJECT = 7
 DIM_AIR_V1 = 8   # V1: [Ta, MRT, Va, RH, SVF, shadow, Bh, Th]
 DIM_AIR_V2 = 9   # V2: [Ta, MRT, Va, RH, SVF, shadow, Bh, Th, Ts]
-DIM_AIR    = DIM_AIR_V2   # Default for new models
+DIM_AIR_V3 = 10  # V3: [Ta, MRT, Va, RH, SVF, shadow, Bh, Th, Ts, canyon_HW]
+                 #      Canopy map → real Th | OSM → Ts materials
+                 #      Street canyon → Va correction | Multi-month calibration
+DIM_AIR    = DIM_AIR_V3   # Default for new models
 ENV_DIM    = 7   # [Ta, RH, WS, WDsin, WDcos, GHI, SolAlt]
 TIME_DIM   = 2   # [sin_hour, cos_hour]
 

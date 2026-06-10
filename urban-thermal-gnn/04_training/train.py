@@ -267,6 +267,11 @@ class Trainer:
             else:
                 self.no_improve += 1
 
+            # Incremental history save for live monitor
+            hist_path = self.out_dir / "training_history.json"
+            with open(hist_path, "w") as _hf:
+                json.dump(self.history, _hf, indent=2)
+
             if self.no_improve >= self.patience:
                 print(f"  [EarlyStopping] No improvement for {self.patience} epochs, stopping training.")
                 break
@@ -299,7 +304,11 @@ def main(cfg_path:      str  = "../../00_config/urbangraph_params.yaml",
           epw_pkl:      str  = "../../01_data_generation/outputs/raw_simulations/epw_data.pkl",
           out_dir:      str  = "checkpoints",
           device_str:   str  = "auto",
-          live_plot:    bool = True):
+          live_plot:    bool = True,
+          dim_air:      int   = None,
+          finetune_ckpt: str  = None,
+          lr:           float = None,
+          max_epochs:   int   = None):
 
     cfg = load_cfg(cfg_path) if Path(cfg_path).exists() else {}
 
@@ -314,6 +323,14 @@ def main(cfg_path:      str  = "../../00_config/urbangraph_params.yaml",
     cfg["training"].setdefault("weight_decay", 1e-4)
     cfg["training"].setdefault("max_epochs",   200)
     cfg["training"].setdefault("early_stopping_patience", 20)
+
+    # Override dim_air / lr / max_epochs if explicitly provided
+    if dim_air is not None:
+        cfg["model"]["dim_air"] = dim_air
+    if lr is not None:
+        cfg["training"]["lr"] = lr
+    if max_epochs is not None:
+        cfg["training"]["max_epochs"] = max_epochs
 
     # Device
     if device_str == "auto":
@@ -330,13 +347,25 @@ def main(cfg_path:      str  = "../../00_config/urbangraph_params.yaml",
     with open(epw_pkl, "rb") as f:
         epw = pickle.load(f)
 
-    train_ds = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split="train")
-    val_ds   = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split="val")
+    _ds_dim_air = cfg["model"].get("dim_air", 8)
+    train_ds = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl,
+                                split="train", dim_air=_ds_dim_air)
+    val_ds   = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl,
+                                split="val",   dim_air=_ds_dim_air)
 
     cfg["model"]["out_timesteps"] = len(train_ds.sim_hours)
 
     # Model
     model = build_model(cfg)
+    if finetune_ckpt and Path(finetune_ckpt).exists():
+        import warnings
+        ckpt = torch.load(finetune_ckpt, map_location="cpu")
+        state = ckpt.get("model_state_dict", ckpt)
+        missing, unexpected = model.load_state_dict(state, strict=False)
+        if missing or unexpected:
+            warnings.warn(f"[Train] finetune_ckpt partial load — "
+                          f"missing={len(missing)}, unexpected={len(unexpected)}")
+        print(f"[Train] Fine-tuning from: {finetune_ckpt}")
     n_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"[Train] Model Parameters: {n_params:,}")
 
