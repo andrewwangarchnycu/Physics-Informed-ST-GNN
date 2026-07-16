@@ -1,0 +1,15 @@
+{
+  "mean_ms": 61.536874997545965,
+  "std_ms": 24.40390985223252,
+  "min_ms": 37.08130004815757,
+  "max_ms": 185.6491999933496,
+  "n_reps": 200,
+  "n_air_nodes": 6241,
+  "n_timesteps": 11,
+  "hardware": {
+    "cpu": "AMD64 Family 26 Model 36 Stepping 0, AuthenticAMD",
+    "os": "Windows",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "vram_gb": 12.8
+  }
+}

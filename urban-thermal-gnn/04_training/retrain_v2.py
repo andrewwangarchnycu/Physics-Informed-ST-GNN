@@ -186,20 +186,20 @@ def main(cfg_path:      str  = "../../00_config/urbangraph_params.yaml",
 
     metrics = evaluate(model, test_ds, epw, device)
 
-    print(f"\n{'─' * 50}")
-    print(f"  R²   = {metrics['R2']:.4f}")
-    print(f"  RMSE = {metrics['RMSE']:.3f} °C")
-    print(f"  MAE  = {metrics['MAE']:.3f} °C")
+    print(f"\n{'-' * 50}")
+    print(f"  R2   = {metrics['R2']:.4f}")
+    print(f"  RMSE = {metrics['RMSE']:.3f} degC")
+    print(f"  MAE  = {metrics['MAE']:.3f} degC")
     print(f"  Category Accuracy = {metrics['category_accuracy']*100:.1f}%")
     print(f"\n  Per-category accuracy:")
     for label, acc in metrics["per_category_accuracy"].items():
         print(f"    {label}: {acc*100:.1f}%")
-    print(f"{'─' * 50}")
+    print(f"{'-' * 50}")
 
     if metrics["R2"] >= 0.90:
-        print("\n  ✓ R² ≥ 0.90 — PASSES deployment threshold!")
+        print("\n  [PASS] R2 >= 0.90 -- PASSES deployment threshold!")
     else:
-        print(f"\n  ✗ R² = {metrics['R2']:.4f} < 0.90 — consider more training or tuning.")
+        print(f"\n  [FAIL] R2 = {metrics['R2']:.4f} < 0.90 -- consider more training.")
 
     # Save metrics
     metrics_path = Path(out_dir) / "eval_results_v2.json"

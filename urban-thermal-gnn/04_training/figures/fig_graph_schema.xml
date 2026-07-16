@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1"
+              connect="1" arrows="1" fold="1" page="1" pageScale="1"
+              pageWidth="1400" pageHeight="900" math="1" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TITLE
+    ═══════════════════════════════════════════════════════════ -->
+    <mxCell id="2"
+      value="&lt;b&gt;PIN-ST-GNN — Heterogeneous Graph Schema&lt;/b&gt;"
+      style="text;html=1;strokeColor=none;fillColor=none;align=center;
+             verticalAlign=middle;whiteSpace=wrap;fontSize=15;fontStyle=1;"
+      vertex="1" parent="1">
+      <mxGeometry x="100" y="20" width="1200" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         LEFT PANEL — Spatial Graph Visualization
+    ═══════════════════════════════════════════════════════════ -->
+    <mxCell id="panelL"
+      value="Graph Structure (one scenario)"
+      style="swimlane;startSize=28;fillColor=#F8FAFC;strokeColor=#CBD5E1;
+             fontStyle=1;fontSize=11;fontColor=#374151;"
+      vertex="1" parent="1">
+      <mxGeometry x="40" y="70" width="560" height="790" as="geometry" />
+    </mxCell>
+
+    <!-- ── Section label: Buildings ── -->
+    <mxCell id="lbl_obj"
+      value="Object Nodes — Buildings  (N&lt;sub&gt;obj&lt;/sub&gt;, 7)"
+      style="text;html=1;strokeColor=none;fillColor=none;align=center;
+             fontSize=10;fontStyle=1;fontColor=#2563EB;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="60" y="40" width="440" height="24" as="geometry" />
+    </mxCell>
+
+    <!-- ── Building Nodes (circles) ── -->
+    <!-- B1 -->
+    <mxCell id="b1"
+      value="&lt;b&gt;B1&lt;/b&gt;&lt;br/&gt;&lt;font size='1' color='#1E40AF'&gt;h=24m&lt;br/&gt;rect&lt;/font&gt;"
+      style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
+             fontStyle=1;fontSize=10;strokeWidth=2;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="90" y="75" width="90" height="90" as="geometry" />
+    </mxCell>
+    <!-- B2 -->
+    <mxCell id="b2"
+      value="&lt;b&gt;B2&lt;/b&gt;&lt;br/&gt;&lt;font size='1' color='#1E40AF'&gt;h=36m&lt;br/&gt;L-shape&lt;/font&gt;"
+      style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
+             fontStyle=1;fontSize=10;strokeWidth=2;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="235" y="75" width="90" height="90" as="geometry" />
+    </mxCell>
+    <!-- B3 -->
+    <mxCell id="b3"
+      value="&lt;b&gt;B3&lt;/b&gt;&lt;br/&gt;&lt;font size='1' color='#1E40AF'&gt;h=18m&lt;br/&gt;rect&lt;/font&gt;"
+      style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
+             fontStyle=1;fontSize=10;strokeWidth=2;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="380" y="75" width="90" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- ── Semantic edges (fully-connected, bidirectional) ── -->
+    <mxCell id="sem12"
+      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
+      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
+             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
+             edgeStyle=orthogonalEdgeStyle;curved=1;"
+      edge="1" source="b1" target="b2" parent="panelL">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="135" y="65" />
+          <mxPoint x="280" y="65" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sem23"
+      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
+      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
+             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
+             edgeStyle=orthogonalEdgeStyle;curved=1;"
+      edge="1" source="b2" target="b3" parent="panelL">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="280" y="65" />
+          <mxPoint x="425" y="65" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sem13"
+      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
+      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
+             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
+             edgeStyle=orthogonalEdgeStyle;curved=1;"
+      edge="1" source="b1" target="b3" parent="panelL">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="135" y="48" />
+          <mxPoint x="425" y="48" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ── Air Nodes (5×3 grid) ── -->
+    <!-- Row 1 -->
+    <mxCell id="a00" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="65" y="220" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a01" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="155" y="220" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a02" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="245" y="220" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a03" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="335" y="220" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a04" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="425" y="220" width="50" height="50" as="geometry" />
+    </mxCell>
+    <!-- Row 2 -->
+    <mxCell id="a10" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="65" y="320" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a11" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="155" y="320" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a12" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="245" y="320" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a13" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="335" y="320" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a14" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="425" y="320" width="50" height="50" as="geometry" />
+    </mxCell>
+    <!-- Row 3 -->
+    <mxCell id="a20" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="65" y="420" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a21" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="155" y="420" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a22" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="245" y="420" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a23" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="335" y="420" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="a24" value="a" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;strokeWidth=1.5;" vertex="1" parent="panelL">
+      <mxGeometry x="425" y="420" width="50" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ── Air node section label ── -->
+    <mxCell id="lbl_air"
+      value="Air Nodes — Sensor Points  (N&lt;sub&gt;air&lt;/sub&gt;=79×79, T=11, d=9)"
+      style="text;html=1;strokeColor=none;fillColor=none;align=center;
+             fontSize=10;fontStyle=1;fontColor=#16A34A;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="40" y="192" width="480" height="22" as="geometry" />
+    </mxCell>
+
+    <!-- ── KNN contiguity edges (horizontal + vertical, orange) ── -->
+    <!-- Row 1 horizontal -->
+    <mxCell id="c_r1_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a00" target="a01" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r1_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a01" target="a02" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r1_23" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a02" target="a03" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r1_34" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a03" target="a04" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Row 2 horizontal -->
+    <mxCell id="c_r2_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a10" target="a11" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r2_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a11" target="a12" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r2_23" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a12" target="a13" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r2_34" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a13" target="a14" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Row 3 horizontal -->
+    <mxCell id="c_r3_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a20" target="a21" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r3_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a21" target="a22" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r3_23" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a22" target="a23" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_r3_34" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a23" target="a24" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Vertical col 0 -->
+    <mxCell id="c_v0_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a00" target="a10" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_v0_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a10" target="a20" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Vertical col 1 -->
+    <mxCell id="c_v1_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a01" target="a11" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_v1_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a11" target="a21" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Vertical col 2 -->
+    <mxCell id="c_v2_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a02" target="a12" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_v2_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a12" target="a22" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Vertical col 3 -->
+    <mxCell id="c_v3_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a03" target="a13" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_v3_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a13" target="a23" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <!-- Vertical col 4 -->
+    <mxCell id="c_v4_01" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a04" target="a14" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="c_v4_12" style="endArrow=none;startArrow=none;strokeColor=#EA580C;strokeWidth=1.5;opacity=70;" edge="1" source="a14" target="a24" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- ── Dynamic edges (building → air, dashed red) ── -->
+    <mxCell id="d_b1_a00" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b1" target="a00" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b1_a01" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b1" target="a01" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b2_a02" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b2" target="a02" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b2_a11" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b2" target="a11" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b3_a03" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b3" target="a03" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b3_a04" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b3" target="a04" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- ── Dynamic edge label ── -->
+    <mxCell id="lbl_dyn"
+      value="&lt;font color='#DC2626'&gt;dynamic edges&lt;br/&gt;(shadow, veg_et,&lt;br/&gt;convective)&lt;br/&gt;per time step&lt;/font&gt;"
+      style="text;html=1;strokeColor=#FCA5A5;fillColor=#FEF2F2;align=center;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=8;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="80" y="530" width="120" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- ── Contiguity offset note ── -->
+    <mxCell id="lbl_knn"
+      value="&lt;b&gt;&lt;font color='#EA580C'&gt;Contiguity edges:&lt;/font&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#EA580C'&gt;KNN K=8 in air space&lt;br/&gt;edge_index += N&lt;sub&gt;obj&lt;/sub&gt; offset&lt;br/&gt;(for concat h_all tensor)&lt;/font&gt;"
+      style="text;html=1;strokeColor=#FDBA74;fillColor=#FFF7ED;align=center;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=8;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="280" y="530" width="200" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         LEGEND
+    ═══════════════════════════════════════════════════════════ -->
+    <mxCell id="legend"
+      value="&lt;b&gt;Legend&lt;/b&gt;"
+      style="swimlane;startSize=24;fillColor=#F8FAFC;strokeColor=#CBD5E1;
+             fontStyle=1;fontSize=10;"
+      vertex="1" parent="panelL">
+      <mxGeometry x="40" y="640" width="480" height="120" as="geometry" />
+    </mxCell>
+    <mxCell id="lg1" value="Object Node (Building)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="15" y="35" width="80" height="30" as="geometry"/></mxCell>
+    <mxCell id="lg2" value="Air Node (Sensor)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="115" y="35" width="80" height="30" as="geometry"/></mxCell>
+    <mxCell id="lg3" value="semantic" style="endArrow=block;endFill=1;startArrow=block;startFill=1;strokeColor=#9333EA;strokeWidth=2;fontColor=#9333EA;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="220" y="50" as="sourcePoint"/><mxPoint x="290" y="50" as="targetPoint"/></mxGeometry></mxCell>
+    <mxCell id="lg4" value="contiguity (KNN)" style="endArrow=none;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="315" y="50" as="sourcePoint"/><mxPoint x="395" y="50" as="targetPoint"/></mxGeometry></mxCell>
+    <mxCell id="lg5" value="dynamic (per step)" style="endArrow=block;endFill=1;dashed=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#DC2626;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="80" y="90" as="sourcePoint"/><mxPoint x="180" y="90" as="targetPoint"/></mxGeometry></mxCell>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         RIGHT PANEL — Feature Dimension Table
+    ═══════════════════════════════════════════════════════════ -->
+    <mxCell id="panelR"
+      value="Feature Dimensions &amp; Node / Edge Specification"
+      style="swimlane;startSize=28;fillColor=#F8FAFC;strokeColor=#CBD5E1;
+             fontStyle=1;fontSize=11;fontColor=#374151;"
+      vertex="1" parent="1">
+      <mxGeometry x="630" y="70" width="730" height="790" as="geometry" />
+    </mxCell>
+
+    <!-- ── Object node feature table ── -->
+    <mxCell id="tbl_obj_hdr"
+      value="Object Node Features  —  shape: (N&lt;sub&gt;obj&lt;/sub&gt;, 7)  |  fully static"
+      style="text;html=1;strokeColor=none;fillColor=#DBEAFE;align=left;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontStyle=1;
+             fontColor=#1E40AF;spacingLeft=8;"
+      vertex="1" parent="panelR">
+      <mxGeometry x="20" y="40" width="690" height="28" as="geometry" />
+    </mxCell>
+
+    <!-- Header row -->
+    <mxCell id="oh0" value="Idx" style="text;html=1;fillColor=#E0E7FF;strokeColor=#6366F1;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="20" y="75" width="40" height="26" as="geometry"/></mxCell>
+    <mxCell id="oh1" value="Feature" style="text;html=1;fillColor=#E0E7FF;strokeColor=#6366F1;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="62" y="75" width="130" height="26" as="geometry"/></mxCell>
+    <mxCell id="oh2" value="Normalisation" style="text;html=1;fillColor=#E0E7FF;strokeColor=#6366F1;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="194" y="75" width="180" height="26" as="geometry"/></mxCell>
+    <mxCell id="oh3" value="Type" style="text;html=1;fillColor=#E0E7FF;strokeColor=#6366F1;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="376" y="75" width="120" height="26" as="geometry"/></mxCell>
+    <mxCell id="oh4" value="Source" style="text;html=1;fillColor=#E0E7FF;strokeColor=#6366F1;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="498" y="75" width="210" height="26" as="geometry"/></mxCell>
+
+    <!-- Object rows -->
+    <mxCell id="or0" value="0  height  /  height / 50.0  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#EFF6FF;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="101" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or1" value="1  floors  /  floors / 12.0  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="123" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or2" value="2  footprint_area  /  area / 2000.0 (Shapely .area)  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#EFF6FF;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="145" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or3" value="3  centroid_x  /  cx / 80.0  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="167" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or4" value="4  centroid_y  /  cy / 80.0  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#EFF6FF;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="189" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or5" value="5  GFA  /  gfa / 20000.0  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="211" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="or6" value="6  shape_type  /  0=rect, 1=L-shape  /  static  /  scenarios.pkl" style="text;html=0;strokeColor=#CBD5E1;fillColor=#EFF6FF;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="233" width="688" height="22" as="geometry"/></mxCell>
+
+    <!-- ── Air node feature table ── -->
+    <mxCell id="tbl_air_hdr"
+      value="Air Node Features  —  shape: (N&lt;sub&gt;air&lt;/sub&gt;, T=11, d=9)  |  V2 with surface temperature"
+      style="text;html=1;strokeColor=none;fillColor=#DCFCE7;align=left;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontStyle=1;
+             fontColor=#166534;spacingLeft=8;"
+      vertex="1" parent="panelR">
+      <mxGeometry x="20" y="275" width="690" height="28" as="geometry" />
+    </mxCell>
+
+    <!-- Header row (reuse style) -->
+    <mxCell id="ah0" value="Idx" style="text;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="20" y="310" width="40" height="26" as="geometry"/></mxCell>
+    <mxCell id="ah1" value="Feature" style="text;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="62" y="310" width="120" height="26" as="geometry"/></mxCell>
+    <mxCell id="ah2" value="Normalisation" style="text;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="184" y="310" width="150" height="26" as="geometry"/></mxCell>
+    <mxCell id="ah3" value="Temporal" style="text;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="336" y="310" width="100" height="26" as="geometry"/></mxCell>
+    <mxCell id="ah4" value="Source" style="text;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="438" y="310" width="270" height="26" as="geometry"/></mxCell>
+
+    <!-- Air rows -->
+    <mxCell id="ar0" value="0  Ta  (air temperature)  /  z-score  /  dynamic  /  LBT simulation Ta" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F0FDF4;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="336" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar1" value="1  MRT  (mean radiant temperature)  /  z-score  /  dynamic  /  LBT simulation MRT" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="358" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar2" value="2  Va  (wind velocity)  /  z-score  /  dynamic  /  LBT simulation Va" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F0FDF4;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="380" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar3" value="3  RH  (relative humidity)  /  z-score  /  dynamic  /  LBT simulation RH" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="402" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar4" value="4  SVF  (sky view factor)  /  [0, 1]  /  STATIC  /  LBT simulation SVF" style="text;html=0;strokeColor=#BBF7D0;fillColor=#ECFDF5;align=left;fontSize=8;fontStyle=1;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="424" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar5" value="5  in_shadow  (shadow flag)  /  0 / 1  /  dynamic  /  LBT simulation shadow" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="446" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar6" value="6  Bh  (nearest building height)  /  height / 50.0  /  STATIC  /  scenarios.pkl" style="text;html=0;strokeColor=#BBF7D0;fillColor=#ECFDF5;align=left;fontSize=8;fontStyle=1;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="468" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar7" value="7  Th  (nearest tree height)  /  height / 12.0  /  STATIC  /  scenarios.pkl" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F8FAFC;align=left;fontSize=8;fontStyle=1;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="490" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="ar8" value="8  Ts  (surface temperature, V2)  /  z-score  /  dynamic  /  EPW × SVF energy balance" style="text;html=0;strokeColor=#BBF7D0;fillColor=#F0FDF4;align=left;fontSize=8;fontStyle=2;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="512" width="688" height="22" as="geometry"/></mxCell>
+
+    <!-- ── Edge types table ── -->
+    <mxCell id="tbl_edge_hdr"
+      value="Edge Types"
+      style="text;html=1;strokeColor=none;fillColor=#EDE9FE;align=left;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontStyle=1;
+             fontColor=#7C3AED;spacingLeft=8;"
+      vertex="1" parent="panelR">
+      <mxGeometry x="20" y="555" width="690" height="28" as="geometry" />
+    </mxCell>
+
+    <mxCell id="eh0" value="Relation" style="text;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="20" y="590" width="110" height="26" as="geometry"/></mxCell>
+    <mxCell id="eh1" value="Node pair" style="text;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="132" y="590" width="110" height="26" as="geometry"/></mxCell>
+    <mxCell id="eh2" value="Construction" style="text;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="244" y="590" width="240" height="26" as="geometry"/></mxCell>
+    <mxCell id="eh3" value="Timing" style="text;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;align=center;fontSize=8.5;fontStyle=1;" vertex="1" parent="panelR"><mxGeometry x="486" y="590" width="222" height="26" as="geometry"/></mxCell>
+
+    <mxCell id="er0" value="semantic / object → object / Fully-connected N_obj×(N_obj-1) / Static — loaded once" style="text;html=0;strokeColor=#DDD6FE;fillColor=#F5F3FF;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="616" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="er1" value="contiguity / air → air / KNN K=8 via cKDTree + N_obj offset / Static — cached per scenario" style="text;html=0;strokeColor=#FDBA74;fillColor=#FFF7ED;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="638" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="er2" value="shadow / object → air / Shadow-casting links / Dynamic — per time step t" style="text;html=0;strokeColor=#FCA5A5;fillColor=#FEF2F2;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="660" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="er3" value="veg_et / object → air / Tree evapotranspiration links / Dynamic — per time step t" style="text;html=0;strokeColor=#FCA5A5;fillColor=#F8FAFC;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="682" width="688" height="22" as="geometry"/></mxCell>
+    <mxCell id="er4" value="convective / object → air / Convective heat transfer links / Dynamic — per time step t" style="text;html=0;strokeColor=#FCA5A5;fillColor=#FEF2F2;align=left;fontSize=8;spacingLeft=5;" vertex="1" parent="panelR"><mxGeometry x="20" y="704" width="688" height="22" as="geometry"/></mxCell>
+
+    <!-- Dataset stats -->
+    <mxCell id="stats"
+      value="&lt;b&gt;Dataset&lt;/b&gt;: 300 scenarios (205 train / 41 val / 54 test) &nbsp;|&nbsp; 79×79 = 6241 air nodes per scenario &nbsp;|&nbsp; T=11 timesteps (08:00–18:00) &nbsp;|&nbsp; ground_truth_v2.h5"
+      style="text;html=1;strokeColor=#CBD5E1;fillColor=#F1F5F9;align=center;
+             verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=8.5;"
+      vertex="1" parent="panelR">
+      <mxGeometry x="20" y="748" width="690" height="30" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

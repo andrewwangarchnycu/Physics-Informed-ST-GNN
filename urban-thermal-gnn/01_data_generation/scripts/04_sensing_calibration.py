@@ -32,6 +32,9 @@ import json
 import pickle
 import sys
 import warnings
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -42,12 +45,14 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 import numpy as np
+import pandas as pd
 
 from shared import EPWData, HourlyClimate, solar_position
 from sensing_integration.loader_iot import IotSensorLoader
 from sensing_integration.loader_cwb import CWBStationLoader
 from sensing_integration.sensor_to_graph_features import (
-    SensorToGraphProjector, save_bias_correction
+    SensorToGraphProjector, save_bias_correction,
+    IDWSpatialBiasProjector, save_spatial_bias_correction,
 )
 
 try:
@@ -466,7 +471,7 @@ def main(iot_csv:   str = "",
         json.dump(result, f, indent=2, ensure_ascii=False)
     print(f"\n  [04] ✓ [REMOVED_ZH:6]: {out_json}")
 
-    # ── Step 8: [REMOVED_ZH:6]（[REMOVED_ZH:11]）────
+    # ── Step 8: Hourly bias summary (temporal, global mean) ──────────────
     bias_out = out / "hourly_bias.json"
     bias_payload = {
         "sim_hours":       sim_hours,
@@ -477,8 +482,128 @@ def main(iot_csv:   str = "",
     }
     with open(bias_out, "w", encoding="utf-8") as f:
         json.dump(bias_payload, f, indent=2)
-    print(f"  [04] ✓ [REMOVED_ZH:6]: {bias_out}")
-    print("[04_sensing_calibration] [REMOVED_ZH:2]。\n")
+    print(f"  [04] ✓ Hourly bias saved: {bias_out}")
+
+    # ── Step 9: IDW Spatial Bias Field (GIS Graph ML calibration) ────────
+    #
+    # Requires:
+    #   • outputs/iot_data/station_metadata.json  (from 00_fetch_colife_iot.py)
+    #   • iot_csv / iot_dir pointing to real Colife daily CSVs
+    #   • sim_ta / sim_rh fields from sim_XXXX.npz to compute per-node bias
+    #
+    # If prerequisites are absent, this step is silently skipped and the
+    # global hourly_bias.json produced in Step 8 is used instead.
+    print(f"\n  Step 9: IDW Spatial Bias Field...")
+
+    # Locate station metadata saved by 00_fetch_colife_iot.py
+    # iot_csv holds the --iot_dir path when folder mode is used
+    if iot_csv and Path(iot_csv).is_dir():
+        iot_data_dir = Path(iot_csv)
+    else:
+        iot_data_dir = _SCRIPT_DIR.parent / "outputs" / "iot_data"
+    meta_json       = iot_data_dir / "station_metadata.json"
+    spatial_out     = out / "spatial_bias.json"
+
+    station_meta: List = []
+    if meta_json.exists():
+        with open(meta_json, encoding="utf-8") as f:
+            station_meta = json.load(f)
+        print(f"    Station metadata: {len(station_meta)} stations from {meta_json}")
+    else:
+        print(f"    [SKIP] No station_metadata.json at {meta_json}")
+        print(f"           Run 00_fetch_colife_iot.py first to enable spatial IDW.")
+
+    # Load per-station IoT DataFrame (folder mode preserves station_id column)
+    iot_folder = Path(iot_csv) if (iot_csv and Path(iot_csv).is_dir()) else iot_data_dir
+    iot_loader_spatial = IotSensorLoader(
+        csv_path=str(iot_folder),
+        site_lat=site_lat, site_lon=site_lon
+    )
+
+    if station_meta and iot_folder.is_dir():
+        # Load full per-station hourly data (not aggregated across stations)
+        try:
+            iot_folder_raw = iot_loader_spatial._read_folder(
+                month=month, radius_km=15.0
+            )
+            if not iot_folder_raw.empty and "station_id" in iot_folder_raw.columns:
+                # Parse timestamps and set index for per-station projection
+                iot_folder_raw["timestamp"] = pd.to_datetime(
+                    iot_folder_raw["timestamp"], errors="coerce"
+                )
+                iot_with_stations = iot_folder_raw.dropna(subset=["timestamp"])
+                iot_with_stations = iot_with_stations.set_index("timestamp")
+            else:
+                iot_with_stations = None
+        except Exception as exc:
+            warnings.warn(f"[04] Could not load IoT folder data: {exc}")
+            iot_with_stations = None
+
+        if iot_with_stations is not None and len(iot_with_stations):
+            # Build air node coordinate grid from sim_fields
+            # Reconstruct a representative (N_nodes, 2) grid from sim_XXXX.npz
+            sim_path   = Path(sim_dir)
+            npz_files  = sorted(sim_path.glob("sim_????.npz"))
+            air_coords = None
+            sim_ta_field = None
+            sim_rh_field = None
+
+            for fp in npz_files[:5]:
+                try:
+                    d = np.load(fp, allow_pickle=False)
+                    if "air_xy" in d:
+                        air_coords   = d["air_xy"]          # (N_nodes, 2) metres
+                        sim_ta_field = d["ta"][:, :len(air_coords)]   # (T, N)
+                        sim_rh_field = d["rh"][:, :len(air_coords)]
+                        break
+                    elif "ta" in d:
+                        _,   N_f = d["ta"].shape
+                        # Synthesise a flat grid (placeholder when xy not stored)
+                        side = int(N_f ** 0.5)
+                        xs   = np.tile(np.arange(side) * 1.0, side)[:N_f]
+                        ys   = np.repeat(np.arange(side) * 1.0, side)[:N_f]
+                        air_coords   = np.column_stack([xs, ys]).astype(np.float32)
+                        sim_ta_field = d["ta"]              # (T, N)
+                        sim_rh_field = d["rh"]
+                        break
+                except Exception:
+                    continue
+
+            if air_coords is not None and sim_ta_field is not None:
+                idw = IDWSpatialBiasProjector(
+                    air_node_coords = air_coords,
+                    sim_hours       = sim_hours,
+                    origin_lat      = site_lat,
+                    origin_lon      = site_lon,
+                    idw_power       = 2.0,
+                    max_search_km   = 10.0,
+                    min_stations    = 1,
+                )
+                spatial_bias = idw.compute_spatial_bias(
+                    iot_df       = iot_with_stations,
+                    station_meta = station_meta,
+                    sim_ta       = sim_ta_field,
+                    sim_rh       = sim_rh_field,
+                )
+                save_spatial_bias_correction(spatial_bias, str(spatial_out))
+                result["spatial_bias_method"]   = spatial_bias["method"]
+                result["spatial_bias_stations"] = spatial_bias["n_stations_used"]
+                print(f"  [04] ✓ Spatial bias ({spatial_bias['method']}): "
+                      f"{spatial_bias['n_stations_used']} stations, "
+                      f"shape {spatial_bias['bias_ta_spatial'].shape}")
+            else:
+                print("    [SKIP] Could not extract air_xy coordinates from npz files.")
+        else:
+            print("    [SKIP] IoT folder data empty or missing station_id column.")
+    else:
+        print("    [SKIP] Prerequisites missing — using global hourly bias only.")
+        result["spatial_bias_method"] = "global_mean_fallback"
+
+    # Persist updated result with spatial bias info
+    with open(out / "calibrated_params.json", "w", encoding="utf-8") as f:
+        json.dump(result, f, indent=2, ensure_ascii=False)
+
+    print("[04_sensing_calibration] Complete.\n")
     return result
 
 

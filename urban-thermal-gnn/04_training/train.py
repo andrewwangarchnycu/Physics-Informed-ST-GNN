@@ -166,14 +166,20 @@ class Trainer:
         )
 
         # SVF / shadow / bldg_height (read from npz fields)
-        svf       = air_feat[:, :, 4][:, 0]   # (N_air,) static
+        svf       = air_feat[:, 0, 4]          # (N_air,) — SVF is static, take t=0
         in_shadow = air_feat[:, :, 5]          # (N_air, T)
-        bh        = (air_feat[:, :, 0].mean(dim=1) * 0.0
-                      + 0.3)                   # simplified: fixed 0.3
+        bh        = air_feat[:, 0, 6]          # (N_air,) — index 6 = Bh (normalized building height)
 
         # Solar altitude angle sequence (T,)
         T      = air_feat.shape[1]
         sol_alt = self.env_seq[:T, 6] * 90.0  # denormalize
+
+        # Pull sensor supervision tensors if present in the graph
+        sensor_utci = getattr(data["air"], "sensor_utci", None)
+        sensor_mask = getattr(data["air"], "sensor_mask", None)
+        if sensor_utci is not None:
+            sensor_utci = sensor_utci.to(self.device)
+            sensor_mask = sensor_mask.to(self.device)
 
         losses = self.model.compute_loss(
             pred         = pred,
@@ -183,6 +189,8 @@ class Trainer:
             sol_alt_seq  = sol_alt,
             bldg_height  = bh,
             quality_w    = None,
+            sensor_utci  = sensor_utci,
+            sensor_mask  = sensor_mask,
             lambda_sense = self.lambda_sense,
         )
         return losses, pred, target

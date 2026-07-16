@@ -79,6 +79,37 @@ def compute_metrics(pred_norm: np.ndarray,
     }
 
 
+def compute_metrics_shaped(pred_all: list,
+                            tgt_all:  list,
+                            norm_stats: dict) -> dict:
+    """
+    Compute metrics including per-hour R² from shaped (N_air, T) arrays.
+
+    pred_all / tgt_all : list of normalised (N_air, T) numpy arrays, one per scenario.
+    Returns the same keys as compute_metrics plus 'per_hour_r2' (list[float]).
+    """
+    mean = norm_stats["utci"]["mean"]
+    std  = norm_stats["utci"]["std"]
+
+    pred_dn = [p * std + mean for p in pred_all]
+    tgt_dn  = [t * std + mean for t in tgt_all]
+
+    T = pred_all[0].shape[1]
+    per_hour_r2: list[float] = []
+    for t in range(T):
+        p_t = np.concatenate([p[:, t] for p in pred_dn])
+        g_t = np.concatenate([g[:, t] for g in tgt_dn])
+        ss_res = np.sum((p_t - g_t)**2)
+        ss_tot = np.sum((g_t - g_t.mean())**2) + 1e-9
+        per_hour_r2.append(float(1 - ss_res / ss_tot))
+
+    pred_norm_flat = np.concatenate([p.ravel() for p in pred_all])
+    tgt_norm_flat  = np.concatenate([t.ravel() for t in tgt_all])
+    base = compute_metrics(pred_norm_flat, tgt_norm_flat, norm_stats)
+    base["per_hour_r2"] = per_hour_r2
+    return base
+
+
 # ════════════════════════════════════════════════════════════════
 # [REMOVED_ZH:5]
 # ════════════════════════════════════════════════════════════════
@@ -138,11 +169,15 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
         epw = pickle.load(f)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    ckpt   = torch.load(ckpt_path, map_location=device)
+    ckpt   = torch.load(ckpt_path, map_location=device, weights_only=False)
 
-    # [REMOVED_ZH:4]
-    ds  = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split=split)
-    cfg = {"model": {"out_timesteps": len(ds.sim_hours)}}
+    # Auto-detect dim_air from checkpoint's encoder weight shape
+    enc_w   = ckpt["model_state"].get("air_encoder.net.0.weight")
+    dim_air = int(enc_w.shape[1]) if enc_w is not None else 9
+    print(f"  Auto-detected dim_air={dim_air} from checkpoint")
+
+    ds  = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split=split, dim_air=dim_air)
+    cfg = {"model": {"out_timesteps": len(ds.sim_hours), "dim_air": dim_air}}
     model = build_model(cfg).to(device)
     model.load_state_dict(ckpt["model_state"])
 
@@ -151,7 +186,7 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
 
     metrics = evaluate(model, ds, epw, device)
 
-    print(f"\n{'─'*50}")
+    print(f"\n{'-'*50}")
     print(f"  R²   = {metrics['R2']:.4f}")
     print(f"  RMSE = {metrics['RMSE']:.3f} °C")
     print(f"  MAE  = {metrics['MAE']:.3f} °C")
@@ -159,12 +194,12 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     print(f"\n  [REMOVED_ZH:6]:")
     for label, acc in metrics["per_category_accuracy"].items():
         print(f"    {label}: {acc*100:.1f}%")
-    print(f"{'─'*50}\n")
+    print(f"{'-'*50}\n")
 
     if metrics["R2"] >= 0.90:
-        print("  ✓ R² ≥ 0.90，[REMOVED_ZH:3]Deployment Threshold。")
+        print(f"  [PASS] R2 >= 0.90 -- Deployment Threshold met.")
     else:
-        print(f"  ✗ R² = {metrics['R2']:.4f} < 0.90，[REMOVED_ZH:11]。")
+        print(f"  [FAIL] R2 = {metrics['R2']:.4f} < 0.90 -- needs more training.")
 
     with open(out_json, "w") as f:
         json.dump(metrics, f, indent=2, ensure_ascii=False)
