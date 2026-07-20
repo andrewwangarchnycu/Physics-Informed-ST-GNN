@@ -26,12 +26,15 @@ DATA_DIR = _SCRIPT_DIR.parent / "01_data_generation" / "outputs" / "iot_data"
 FIG_DIR   = _SCRIPT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
-META_JSON = DATA_DIR / "station_metadata.json"
-TEMP_CSV  = DATA_DIR / "moenviot_temperature" / "moenviot_temperature_20260708.csv"
-HUMI_CSV  = DATA_DIR / "moenviot_humidity"    / "moenviot_humidity_20260708.csv"
+# V4 update: regional roster (2,018 stations) + real 2025 summer snapshot,
+# spanning the expanded study region instead of the 15 km Hsinchu catchment.
+ROSTER_PKL = DATA_DIR / "all_devices_region.pkl"
+_IN = _SCRIPT_DIR.parent / "01_data_generation" / "inputs" / "iot_data"
+TEMP_CSV  = _IN / "moenviot_temperature" / "moenviot_temperature_20250715.csv"
+HUMI_CSV  = _IN / "moenviot_humidity"    / "moenviot_humidity_20250715.csv"
 
-CTR_LAT, CTR_LON = 24.800, 120.970
-RADIUS_KM = 15.0
+CTR_LAT, CTR_LON = 24.78805, 120.99754
+REGION = dict(lat_min=23.95, lat_max=25.10, lon_min=120.55, lon_max=121.30)
 
 mpl.rcParams.update({
     "font.family":      "DejaVu Sans",
@@ -48,15 +51,22 @@ mpl.rcParams.update({
 })
 
 print("[1] Loading data ...")
-with open(META_JSON, encoding="utf-8") as f:
-    meta_list = json.load(f)
-meta_df = pd.DataFrame(meta_list)[["id","lat","lon","dist_km"]]
-meta_df["id"] = meta_df["id"].astype(str)
+import pickle
+with open(ROSTER_PKL, "rb") as f:
+    roster = pickle.load(f)
+meta_df = pd.DataFrame([(str(did), la, lo) for did, (la, lo) in roster.items()
+                        if REGION["lat_min"] <= la <= REGION["lat_max"]
+                        and REGION["lon_min"] <= lo <= REGION["lon_max"]],
+                       columns=["id", "lat", "lon"])
+print(f"    {len(meta_df)} regional stations")
 
 def read_csv(path, val_col):
-    df = pd.read_csv(path, encoding="utf-8-sig")
+    # noon snapshot for a clean spatial field
+    df = pd.read_csv(path, encoding="utf-8-sig", usecols=["deviceId", val_col, "time"])
     df.columns = [c.lstrip("﻿") for c in df.columns]
     df["deviceId"] = df["deviceId"].astype(str)
+    t = pd.to_datetime(df["time"], errors="coerce")
+    df = df[t.dt.hour == 12]
     df[val_col] = pd.to_numeric(df[val_col], errors="coerce")
     return (df.groupby("deviceId")[val_col].mean().reset_index()
               .rename(columns={"deviceId":"id", val_col:val_col}))
@@ -76,10 +86,8 @@ tr     = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
 tr_inv = Transformer.from_crs("EPSG:3857", "EPSG:4326", always_xy=True)
 df["mx"], df["my"] = tr.transform(df["lon"].values, df["lat"].values)
 ctr_x, ctr_y = tr.transform(CTR_LON, CTR_LAT)
-r_m = RADIUS_KM * 1000
-pad = r_m * 0.07
-x_min, x_max = ctr_x - r_m - pad, ctr_x + r_m + pad
-y_min, y_max = ctr_y - r_m - pad, ctr_y + r_m + pad
+x_min, y_min = tr.transform(REGION["lon_min"], REGION["lat_min"])
+x_max, y_max = tr.transform(REGION["lon_max"], REGION["lat_max"])
 
 T_lo  = float(max(28.0, df["temperature"].quantile(0.02)))
 T_hi  = float(min(42.0, df["temperature"].quantile(0.98)))
@@ -111,18 +119,15 @@ def draw_panel(ax, col, cmap, norm, label, unit, cax, letter):
         print(f"    [WARN] basemap: {e}")
         ax.set_facecolor("#e0e0e0")
 
-    theta = np.linspace(0, 2*np.pi, 720)
-    ax.plot(ctr_x + r_m*np.cos(theta), ctr_y + r_m*np.sin(theta),
-            lw=1.0, ls="--", color="#222222", alpha=0.50, zorder=3)
-
     ax.scatter(df["mx"], df["my"], c=df[col], cmap=cmap, norm=norm,
-               s=17, alpha=0.85, linewidths=0.25, edgecolors="white", zorder=4)
+               s=13, alpha=0.85, linewidths=0.2, edgecolors="white", zorder=4)
 
-    ax.plot(ctr_x, ctr_y, "k+", ms=9, mew=1.8, zorder=5)
-    ax.annotate("Hsinchu City Centre",
+    ax.plot(ctr_x, ctr_y, marker="*", ms=13, mew=0.8, color="red",
+            mec="white", zorder=6)
+    ax.annotate("NYCU anchor",
                 xy=(ctr_x, ctr_y),
-                xytext=(ctr_x + r_m*0.16, ctr_y + r_m*0.12),
-                fontsize=6.8, color="#111111",
+                xytext=(ctr_x + 0.10*(x_max-x_min), ctr_y + 0.05*(y_max-y_min)),
+                fontsize=7.0, color="#111111",
                 arrowprops=dict(arrowstyle="-", lw=0.6, color="#555555"),
                 zorder=6)
 
@@ -134,20 +139,20 @@ def draw_panel(ax, col, cmap, norm, label, unit, cax, letter):
     ax.text(na_x, na_top + 0.013*(y_max-y_min), "N",
             ha="center", va="bottom", fontsize=9.5, fontweight="bold", zorder=7)
 
-    sb_x0 = x_min + 0.60*(x_max - x_min)
-    sb_x1 = sb_x0 + 5000
+    sb_x0 = x_min + 0.58*(x_max - x_min)
+    sb_x1 = sb_x0 + 20000
     sb_y  = y_min + 0.040*(y_max - y_min)
     tk    = 0.004*(y_max - y_min)
     ax.plot([sb_x0, sb_x1], [sb_y, sb_y], lw=3.5, color="black",
             solid_capstyle="butt", zorder=7)
     for xp in [sb_x0, (sb_x0+sb_x1)/2, sb_x1]:
         ax.plot([xp, xp], [sb_y-tk, sb_y+tk], lw=1.3, color="black", zorder=7)
-    ax.text(sb_x0,              sb_y+2.4*tk, "0",    ha="center", fontsize=6.8, zorder=7)
-    ax.text((sb_x0+sb_x1)/2,   sb_y+2.4*tk, "2.5",  ha="center", fontsize=6.8, zorder=7)
-    ax.text(sb_x1,              sb_y+2.4*tk, "5 km", ha="center", fontsize=6.8, zorder=7)
+    ax.text(sb_x0,              sb_y+2.4*tk, "0",     ha="center", fontsize=6.8, zorder=7)
+    ax.text((sb_x0+sb_x1)/2,   sb_y+2.4*tk, "10",    ha="center", fontsize=6.8, zorder=7)
+    ax.text(sb_x1,              sb_y+2.4*tk, "20 km", ha="center", fontsize=6.8, zorder=7)
 
-    lon_ticks = np.arange(120.82, 121.13, 0.06)
-    lat_ticks = np.arange(24.68,  24.94,  0.06)
+    lon_ticks = np.arange(120.6, 121.31, 0.2)
+    lat_ticks = np.arange(24.0,  25.11,  0.2)
     xt = [tr.transform(lo, CTR_LAT)[0] for lo in lon_ticks]
     yt = [tr.transform(CTR_LON, la)[1] for la in lat_ticks]
     ax.set_xticks([x for x in xt if x_min <= x <= x_max])
@@ -176,14 +181,14 @@ def draw_panel(ax, col, cmap, norm, label, unit, cax, letter):
     cb.ax.yaxis.set_minor_locator(mpl.ticker.AutoMinorLocator(2))
 
     ax.set_title(
-        f"({letter}) {label}  |  {len(df):,} Microstations  |  2026-07-08  12–14 h CST",
+        f"({letter}) {label}  |  {len(df):,} Microstations  |  2025-07-15  12 h CST (V4 region)",
         fontsize=9.5, pad=6)
 
 draw_panel(ax_T,  "temperature", cmap_T,  norm_T,  "Air Temperature",  "C",  cax_T,  "a")
 draw_panel(ax_RH, "humidity",    cmap_RH, norm_RH, "Relative Humidity", "%", cax_RH, "b")
 
 fig.text(0.5, 0.997,
-    "Spatial Distribution of EPA IoT Microstation Measurements — Hsinchu Metropolitan Area",
+    "Spatial Distribution of MOENV IoT Microstation Measurements — V4 Expanded Study Region",
     ha="center", va="top", fontsize=12.5, fontweight="bold")
 fig.text(0.5, 0.002,
     "Data: EPA IoT SensorThings API (sta.colife.org.tw)  |  Basemap: CartoDB Positron / OpenStreetMap contributors",

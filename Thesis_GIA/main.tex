@@ -91,6 +91,11 @@
 \renewcommand{\cfttabaftersnum}{\hspace{1em}} % 在數字和標題之間增加間距
 \setlength{\cfttabnumwidth}{3em} % 設置圖目錄中數字部分的寬度
 
+% 經典文獻圖之預留插入位置框：待補入正式授權之文獻圖後，以 \includegraphics 取代 \litfigbox 即可。
+\newcommand{\litfigbox}[1]{%
+  \fbox{\parbox[c][4.2cm][c]{0.82\textwidth}{\centering\small\itshape%
+  【經典文獻圖—預留插入位置，待補入正式授權圖檔】\\[4pt] #1}}}
+
 
 %-------------------------------------------------------------------------------
 

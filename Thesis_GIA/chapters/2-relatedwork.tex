@@ -17,7 +17,14 @@
 
 都市微氣候（Urban Microclimate）是指都市地表物理特徵、幾何形態和人類活動干擾後，在近地面大氣邊界層內所形成的局部氣候型態 \citep{oke1987boundary}。在數位建築學與都市形態學（Urban Morphology）的交叉學域中，實體空間的幾何三維配置已被認識為主導局部微氣候變異的核心驅動力 \citep{aman2023ai}。都市建築群的增長與形態，直接改變了地表與大氣之間的輻射、熱量與水分交換機制，進而驅動了微氣候環境的空間演變 \citep{xin2025urbangraph}。
 
-在現有幾何形態分析數之中，天空視角因子（Sky View Factor, SVF）是評估都市開放空間熱輻射行為最具代表性的指標。SVF 定義為某一觀測點上方暴露之立體角佔整個球面角的比例；當都市開發密度越高、建築體越高或越深際時，空間的 SVF 數值便愈低 \citep{coccolo2018thermal}。低 SVF 空間在日間雖可部分遮擋太陽直達短波輻射，但在夜間卻引發嚴重的「輻射長留效應」（Radiation Trapping Effect），即建築多棟與地面相互釋放的長波輻射（Longwave Radiation）在特窄的行道峽谷（Urban Canyons）內發生多重反射，難以向高空散逸，這是導致都市熱島效應（UHI）夜間持繼高溫的主要物理機制 \citep{erell2011urban}。此外，街道峽谷的高寬比（Aspect Ratio, $H/W$）亦與局部風場的空氣動力學特徵密切相關。當 $H/W$ 比例失衡時，近地面風速（$v_{\text{a}}$）極易在迎風面產生強烈的分流與下沖流，或在背風面形成流體分滯的渦流帶（Wake Recirculation Zone），阻礙都市大氣的熱量對流擴散 \citep{xin2025urbangraph}。
+在現有幾何形態分析數之中，天空視角因子（Sky View Factor, SVF）是評估都市開放空間熱輻射行為最具代表性的指標。SVF 定義為某一觀測點上方暴露之立體角佔整個球面角的比例；當都市開發密度越高、建築體越高或越深際時，空間的 SVF 數值便愈低 \citep{coccolo2018thermal}。低 SVF 空間在日間雖可部分遮擋太陽直達短波輻射，但在夜間卻引發嚴重的「輻射長留效應」（Radiation Trapping Effect），即建築多棟與地面相互釋放的長波輻射（Longwave Radiation）在特窄的行道峽谷（Urban Canyons）內發生多重反射，難以向高空散逸，這是導致都市熱島效應（UHI）夜間持繼高溫的主要物理機制 \citep{erell2011urban}。此外，街道峽谷的高寬比（Aspect Ratio, $H/W$）亦與局部風場的空氣動力學特徵密切相關。當 $H/W$ 比例失衡時，近地面風速（$v_{\text{a}}$）極易在迎風面產生強烈的分流與下沖流，或在背風面形成流體分滯的渦流帶（Wake Recirculation Zone），阻礙都市大氣的熱量對流擴散 \citep{xin2025urbangraph}。上述都市型態、夜間熱島之熱遲滯與街谷空氣動力學三者之交互機制，可整合為圖~\ref{fig:lit_urbanform} 之經典理論示意。
+
+\begin{figure}[htbp]
+    \centering
+    \litfigbox{建議置入：都市街谷（Urban Canyon）之幾何與熱力／空氣動力學機制示意——涵蓋天空可見率（SVF）之短波遮擋、夜間長波輻射於窄峽谷內多重反射所致之熱遲滯與都市熱島效應（UHI），以及街谷高寬比 $H/W$ 所主導之下沖流與背風渦流帶之風場結構。可參考 \citet{oke1988street} 之街谷能量平衡與 \citet{erell2011urban} 之都市邊界層剖面示意。}
+    \caption{都市街谷幾何、熱島熱遲滯與空氣動力學機制之經典理論示意（預留文獻圖位）}
+    \label{fig:lit_urbanform}
+\end{figure}
 
 除幾何特徵外，都市表層材料的熱物理屬性亦扮演著關鍵角色。表面反射率（Albedo）決定了反射太陽短波輻射的反射係數，而發射率（Emissivity）則決定了其在吸熱後向外輻射釋放熱能的能力 \citep{liu2022impacts}。為了抵消人工鋪面帶來的熱效應，引入永續綠底設施（Green Infrastructure）已被廣泛認定為調適都市微氣候最有效的手段。樹木等植被覆蓋對都市微氣候的調節作用主要透過兩大機制實現：第一為直接的「幾何遮蔭（Solar Shading）」，透過樹葉層衰減太陽短波輻射的穿透率（Transmittance），降低地面與行人的輻射獲熱量 \citep{coccolo2018thermal}；第二為植物生理層面的「蒸散發作用（Evapotranspiration）」，透過將液態水轉化為氣態水蒸氣，將環境中的顯熱（Sensible Heat）轉化為潛熱（Latent Heat），進而實質降低周圍空氣溫度（$T_{\text{a}}$）並調節相對濕度（$\text{RH}$） \citep{coccolo2018thermal}。實證研究指出，在夏季極端熱壓力天氣條件下，具備高密度公共遮蔭的開放空間與毫無遮蔭的曝曬空間相比，其通用熱氣候指數（Universal Thermal Climate Index, UTCI）之差距可達 $8~^\circ\text{C}$ 至 $10~^\circ\text{C}$ 以上 \citep{coccolo2018thermal,lopezcabeza2025open}。
 
@@ -33,7 +40,14 @@
 
 為了解決室內指標的局限性，生理等效溫度（Physiological Equivalent Temperature, PET）應運而生 \citep{hoppe1999physiological}。PET 基於慕尼黑能量平衡模型（MEMI），將複雜的戶外氣象條件轉譯為一個等效的室內標準環境溫度，使評估結果具有直覺的溫度感知度，因而被廣泛應用於都市比較與建築戶外環境的實證研究中。然而，PET 在生理學層面仍存在著參數簡化過度。對於高濕度氣候（如台灣的高溫夏濕環境）中人體表面蒸散汗液的自適應調節機制模擬不足等缺陷 \citep{blazejczyk2012comparison}。
 
-基於上述指標的局限，本研究明確選用通用熱氣候指數（UTCI）作為全域微氣候性能評估的核心指標。UTCI 是由國際生物氣候學學會（ISB）與歐洲科技合作委員會（COST Action 730）聯合研發的新興熱舒適體系 \citep{jendritzky2012utci}。其底層核心建構於改進的「Fiala 多節點人體熱傳遞與高溫調節模型」（Fiala et al., 2011） \citep{fiala2011utci}，該模型將人體細分為 12 個軀幹部位、共計 187 個組織節點，能夠高度動態地模擬人體在中樞神經系統調控下，面對多元氣象突變時發生的血管擴張/收縮、排汗（Sweating）以及顫抖等主動生理調適的過程 \citep{fiala2011utci,romaszko2022universal}。UTCI 透過全面整合空氣溫度（$T_{\text{a}}$）、平均輻射溫度（$T_{\text{mrt}}$）、風速（$v_{\text{a}}$）和相對濕度（$\text{RH}$）四大微氣候核心變數，輸出一個具有高度生理學解釋力的離散熱壓力分級（Discrete Thermal-Stress Classifications）\citep{lopezcabeza2025open}。近年來的都市數位孿生（Urban Digital Twins, UDT）與環境健康研究已充分證實，UTCI 在不同氣候帶與複雜都市幾何背景下，具有極高的通用性（Universal Capability）與跨地域的預測可靠性，是執行氣候調適型生成設計（Climate-Responsive Generative Design）最具科學信度的環境績效度量框架 \citep{lopezcabeza2025open,romaszko2022universal}。
+基於上述指標的局限，本研究明確選用通用熱氣候指數（UTCI）作為全域微氣候性能評估的核心指標。UTCI 是由國際生物氣候學學會（ISB）與歐洲科技合作委員會（COST Action 730）聯合研發的新興熱舒適體系 \citep{jendritzky2012utci}。其底層核心建構於改進的「Fiala 多節點人體熱傳遞與高溫調節模型」（Fiala et al., 2011） \citep{fiala2011utci}，該模型將人體細分為 12 個軀幹部位、共計 187 個組織節點，能夠高度動態地模擬人體在中樞神經系統調控下，面對多元氣象突變時發生的血管擴張/收縮、排汗（Sweating）以及顫抖等主動生理調適的過程 \citep{fiala2011utci,romaszko2022universal}。UTCI 透過全面整合空氣溫度（$T_{\text{a}}$）、平均輻射溫度（$T_{\text{mrt}}$）、風速（$v_{\text{a}}$）和相對濕度（$\text{RH}$）四大微氣候核心變數，輸出一個具有高度生理學解釋力的離散熱壓力分級（Discrete Thermal-Stress Classifications）\citep{lopezcabeza2025open}。近年來的都市數位孿生（Urban Digital Twins, UDT）與環境健康研究已充分證實，UTCI 在不同氣候帶與複雜都市幾何背景下，具有極高的通用性（Universal Capability）與跨地域的預測可靠性，是執行氣候調適型生成設計（Climate-Responsive Generative Design）最具科學信度的環境績效度量框架 \citep{lopezcabeza2025open,romaszko2022universal}。UTCI 所整合之四項微氣候變數與人體熱生理反應之關係，以及其於台灣高溫濕氣候之在地適用性，可分別以圖~\ref{fig:lit_utci_factors} 綜整。
+
+\begin{figure}[htbp]
+    \centering
+    \litfigbox{建議置入兩子圖：(a) 戶外熱舒適之四項微氣候因素——空氣溫度 $T_a$、平均輻射溫度 $T_{\text{mrt}}$、風速 $v_a$、相對濕度 RH——經 Fiala 多節點人體熱生理模型合成 UTCI 之關係示意（可參考 \citet{fiala2011utci}）；(b) 台灣高溫濕氣候下都市戶外熱舒適之在地實證研究圖。\textbf{建議補充台灣本地文獻}：如林憲德、Lin \& Matzarakis 於台中／台南之戶外 PET 現地量測、黃瑞隆（Hwang）於校園與街谷之熱舒適現場研究等，作為 UTCI 於本地氣候適用性之佐證。}
+    \caption{UTCI 四項微氣候因素與台灣在地戶外熱舒適實證研究之對照（預留文獻圖位）}
+    \label{fig:lit_utci_factors}
+\end{figure}
 
 
 \section{建築形態之生成與多目標最佳化 (MOO)}
@@ -42,9 +56,9 @@
 \subsection{基因演算法於參數化都市設計之應用}
 \label{subsec:ga_design}
 
-在都市與建築設計的早期階段（Early Design Stages），空間形態決策在本質上是一個多學科交叉點的複雜決策過程。設計師不僅需要滿足空間機能、美學與法規限制（如容積率、建蔽率與縮退距離），更必須積極優化節能減碳能源與戶外環境和優化等永續性能指標 \citep{aman2023ai,wu2023data}。由於這些設計目標之間往往存在著強烈的「非線性衝突」——例如，為了增加地面行人路徑的陰影遮蔽而增高建築物高度，可能同時導致鄰近建築的室內採光與空間日光自主性（Spatial Daylight Autonomy, sDA）大幅下降——因此，傳統仰賴人工試誤（Trial-and-Error）的設計範式已無法在龐大的設計解空間（Design Space）中找到最優的平衡點 \citep{daglier2025developing}。
+在都市與建築設計的早期階段（Early Design Stages），空間形態決策在本質上是一個多學科交叉點的複雜決策過程。設計師不僅需要滿足空間機能、美學與法規限制（如容積率、建蔽率與縮退距離），更必須積極最佳化節能減碳能源與戶外環境和最佳化等永續性能指標 \citep{aman2023ai,wu2023data}。由於這些設計目標之間往往存在著強烈的「非線性衝突」——例如，為了增加地面行人路徑的陰影遮蔽而增高建築物高度，可能同時導致鄰近建築的室內採光與空間日光自主性（Spatial Daylight Autonomy, sDA）大幅下降——因此，傳統仰賴人工試誤（Trial-and-Error）的設計範式已無法在龐大的設計解空間（Design Space）中找到最優的平衡點 \citep{daglier2025developing}。
 
-為了破解此一困境，多目標最佳化（Multi-Objective Optimization, MOO）技術逐步被引入數位建築學領域 \citep{westermann2019surrogate}。其中，基於群體進化論適應機制的遺傳演算法（Genetic Algorithms, GA），因其具備強大的全局搜索能力與對複雜連續、非線性決策空間的適應性，成為建築性能優化（Building Performance Optimization, BPO）的核心演算法 \citep{wang2005object}。在現有學術文獻中，非支配排序遺傳演算法 II（Non-dominated Sorting Genetic Algorithm II, NSGA-II）是最具代表性與應用最廣泛的當代工作流 \citep{deb2002fast}。NSGA-II 透過快速的非支配排序機制，對種群中的個體依照性能優勢進行分層，並引入「擁擠距離（Crowding Distance）」指標來確保最優解在帕累托前沿（Pareto Front）上的分布均勻性與多樣性，有效避免了演算法過早落入局部最優解（Local Optima）的缺陷 \citep{deb2002fast,daglier2025developing}。透過參數化建模平台將建築物 envelope（外殼幾何）、容積率配置以及永續材質設定為搜索基因，NSGA-II 能夠自動進行數十代乃至數百代的個體代迭，最終輸出一個「帕累托最優解集（Pareto-optimal Solutions）」，讓建築師得以在科學資料的佐識下，彈性平衡各相互衝突的設計性能 \citep{cheng2023urbangenogan,daglier2025developing}。
+為了破解此一困境，多目標最佳化（Multi-Objective Optimization, MOO）技術逐步被引入數位建築學領域 \citep{westermann2019surrogate}。其中，基於群體進化論適應機制的遺傳演算法（Genetic Algorithms, GA），因其具備強大的全局搜索能力與對複雜連續、非線性決策空間的適應性，成為建築性能最佳化（Building Performance Optimization, BPO）的核心演算法 \citep{wang2005object}。在現有學術文獻中，非支配排序遺傳演算法 II（Non-dominated Sorting Genetic Algorithm II, NSGA-II）是最具代表性與應用最廣泛的當代工作流 \citep{deb2002fast}。NSGA-II 透過快速的非支配排序機制，對種群中的個體依照性能優勢進行分層，並引入「擁擠距離（Crowding Distance）」指標來確保最優解在帕累托前沿（Pareto Front）上的分布均勻性與多樣性，有效避免了演算法過早落入局部最優解（Local Optima）的缺陷 \citep{deb2002fast,daglier2025developing}。透過參數化建模平台將建築物 envelope（外殼幾何）、容積率配置以及永續材質設定為搜索基因，NSGA-II 能夠自動進行數十代乃至數百代的個體代迭，最終輸出一個「帕累托最優解集（Pareto-optimal Solutions）」，讓建築師得以在科學資料的佐識下，彈性平衡各相互衝突的設計性能 \citep{cheng2023urbangenogan,daglier2025developing}。
 
 值得注意的是，NSGA-II 演算法本身作為一種與問題無關（problem-agnostic）的通用搜索策略，其收斂品質與計算成本，完全取決於「適應度函數求值（Fitness Evaluation）」的效率——這是既有 GA/NSGA-II 建築應用文獻中鮮少被明確量化討論的隱性前提。當適應度函數涉及環境物理模擬（如日照分析、CFD 流場求解）時，演算法每代的種群評估時間即被模擬引擎的運算延遲所主導，使得 NSGA-II 理論上的全域搜索優勢，實務上受制於模擬求值次數的預算上限，被迫縮小種群規模或世代數以換取可行的運算時程，此一「演算法-模擬引擎」耦合瓶頸將於下節具體展開。此一限制正是本研究以 GNN 代理模型取代直接模擬引擎、將單次適應度求值時間由分鐘級大幅壓縮至低延遲尺度的核心動機，使 NSGA-II 得以在相同運算預算下執行遠多於既有文獻之世代數與種群規模，詳見第~\ref{sec:nsga2}節。
 
@@ -54,9 +68,9 @@
 
 隨著運算建築學（Computational Architecture）的普及，McNeel 公司開發的 Rhinoceros/Grasshopper3D 視覺化參數環境已經成為當代參數化設計與性能模擬的行業標準平台。Grasshopper 的核心優勢在於其極為豐富且高度模組化的第三方元件生態系，使建築師能夠在統一的幾何立書框架內無縫串聯幾何生成與環境運算。
 
-在優化工具層面，Grasshopper 內建的 Galapagos 模組是應用最廣的單目標遺傳演算法工具，適用於結構性地形成單一性能目標的極值求解。然而，面對複雜的都市微氣候設計，單一目標往往流於片面。為了實現真正的多目標演化，Wallacei 模組應運而生，該工具深度包裹了進階的 NSGA-II 模擬，不但能夠執行進階的 NSGA-II 模擬，更提供了極為強大的進化資料可視化面板（如平行坐標軸、帕累托前沿三維散點圖），幫助設計師更可視設計變數與性能指標之間的隱性視覺關係。進一步地，針對機器學習工作流，Wortmann 推出的 Opossum 套件引入了徑向基函數最佳化（Radial Basis Function Optimization, RBFOpt）等進階代理模型演算法，適用於處理計算成本高昂的黑盒目標函數優化，顯著縮短了演算法找尋帕累托最優解的時間 \citep{wortmann2017opossum,daglier2025developing}。
+在最佳化工具層面，Grasshopper 內建的 Galapagos 模組是應用最廣的單目標遺傳演算法工具，適用於結構性地形成單一性能目標的極值求解。然而，面對複雜的都市微氣候設計，單一目標往往流於片面。為了實現真正的多目標演化，Wallacei 模組應運而生，該工具深度包裹了進階的 NSGA-II 模擬，不但能夠執行進階的 NSGA-II 模擬，更提供了極為強大的進化資料可視化面板（如平行坐標軸、帕累托前沿三維散點圖），幫助設計師更可視設計變數與性能指標之間的隱性視覺關係。進一步地，針對機器學習工作流，Wortmann 推出的 Opossum 套件引入了徑向基函數最佳化（Radial Basis Function Optimization, RBFOpt）等進階代理模型演算法，適用於處理計算成本高昂的黑盒目標函數最佳化，顯著縮短了演算法找尋帕累托最優解的時間 \citep{wortmann2017opossum,daglier2025developing}。
 
-然而，儘管上述參數化工具的功能已相當成熟，但在實務上面臨的致命限制依然是「高效能數值模型時間成本」。在現行的優化架構中，每當遺傳演算法生成一組新的幾何個體，便必須調用後端的環境物理模擬引擎進行適應度（Fitness）評估。例如，調用基於 EnergyPlus 的 Ladybug Tools 進行全氣候熱力學計算，或是調用 OpenFOAM 運行計算流體力學（CFD）流場求解 \citep{sadeghipour2013ladybug}。CFD 為了求解偏微分方程，需要進行嚴格的網格剖分與耗費大量迭代，完成一次模擬往往需要數小時 \citep{xin2025urbangraph}。當 NSGA-II 演算法需要運行數百代、每代包含數百個個體時，總計算時間將達數週乃至數月之多。這種高延遲的計算瓶頸，直接導致現有的最佳化工具僅能在方案設計完成後進行 Retroactive Verification（事後認識），而難以在設計初期的選案迭代階段提供即時的 Performance-driven（性能驅動）決策引導 \citep{aman2023ai,daglier2025developing}。這正是驅使學術界轉向「低延遲、深度學習代理模型」的關鍵技術契機，亦即第~\ref{chapter:intro}章第~\ref{sec:problem}節所述本研究第一個研究缺口之文獻根源。
+然而，儘管上述參數化工具的功能已相當成熟，但在實務上面臨的致命限制依然是「高效能數值模型時間成本」。在現行的最佳化架構中，每當遺傳演算法生成一組新的幾何個體，便必須調用後端的環境物理模擬引擎進行適應度（Fitness）評估。例如，調用基於 EnergyPlus 的 Ladybug Tools 進行全氣候熱力學計算，或是調用 OpenFOAM 運行計算流體力學（CFD）流場求解 \citep{sadeghipour2013ladybug}。CFD 為了求解偏微分方程，需要進行嚴格的網格剖分與耗費大量迭代，完成一次模擬往往需要數小時 \citep{xin2025urbangraph}。當 NSGA-II 演算法需要運行數百代、每代包含數百個個體時，總計算時間將達數週乃至數月之多。這種高延遲的計算瓶頸，直接導致現有的最佳化工具僅能在方案設計完成後進行 Retroactive Verification（事後認識），而難以在設計初期的選案迭代階段提供即時的 Performance-driven（性能驅動）決策引導 \citep{aman2023ai,daglier2025developing}。這正是驅使學術界轉向「低延遲、深度學習代理模型」的關鍵技術契機，亦即第~\ref{chapter:intro}章第~\ref{sec:problem}節所述本研究第一個研究缺口之文獻根源。
 
 
 \section{深度學習應用於微氣候預測之代理模型}
@@ -74,7 +88,14 @@
     \item 都市實體（建築物、喬木、街道）在非歐幾里得幾何中分佈稀疏，規則化網格將包含大量無意義的空節點，造成極大的計算資源浪費。
 \end{enumerate}
 
-為了突破歐幾里得資料表徵的瓶頸，圖神經網路（Graph Neural Network, GNN）與圖卷積網路（Graph Convolutional Network, GCN）的引入引發了都市空間預測的範式轉換 \citep{hu2022times,oskarsson2023modeling}。GCN 之奠基性架構由 Kipf 與 Welling 提出，其核心思想是將卷積運算之局部感受野概念由規則網格推廣至任意圖結構，透過鄰接矩陣之正規化聚合，使每個節點能以其一階鄰域之特徵加權平均更新自身表示 \citep{kipf2017semi}。GNN 能夠自然而無損地將都市實體抽象化為「非歐幾里得空間」中的圖結構 $\mathcal{G} = (\mathcal{V}, \mathcal{E})$。在此框架下，都市組件（如建築體量、不同高程的空氣節點、喬木樹冠）被編碼為圖中的異質節點（Nodes, $\mathcal{V}$），而實體間的幾何毗鄰、流體聯通性、熱輻射覆蓋等複雜拓撲交互關係，則被精確編碼為圖中的邊（Edges, $\mathcal{E}$）\citep{wu2023data,shan2025physics}。然而，標準 GCN 假設所有邊共享單一種類之聚合權重，無法區分不同物理因果機制（如陰影遮蔽與對流傳導）之訊號貢獻；為此，Schlichtkrull 等人提出關係圖卷積網路（Relational GCN, R-GCN），為每種關係類型維護獨立的可學習投影矩陣，使模型得以在單次訊息傳遞中同時處理多種異質關係語義 \citep{schlichtkrull2018modeling}，此一機制正是本研究第~\ref{subsec:rgcn}節 RGCN 模組之理論基礎。透過圖神經網路的「訊息傳遞機制（Message Passing）」，每個空間節點能夠匯聚周遭鄰近節點的幾何與物理特徵 \citep{shan2025physics}。多項最新研究指出，GNN 在處理具有不規則幾何與高度空間變異的都市街道熱舒適度與建築群能耗預測任務時，其預測精度、泛化能力與對幾何形變的魯棒性，都呈現出顯著優於傳統 CNN 與隨機森林等歐幾里得幾何模型的技術優勢 \citep{hu2022times,wu2023data,shan2025physics}。
+為了突破歐幾里得資料表徵的瓶頸，圖神經網路（Graph Neural Network, GNN）與圖卷積網路（Graph Convolutional Network, GCN）的引入引發了都市空間預測的範式轉換 \citep{hu2022times,oskarsson2023modeling}。GCN 之奠基性架構由 Kipf 與 Welling 提出，其核心思想是將卷積運算之局部感受野概念由規則網格推廣至任意圖結構，透過鄰接矩陣之正規化聚合，使每個節點能以其一階鄰域之特徵加權平均更新自身表示 \citep{kipf2017semi}。GNN 能夠自然而無損地將都市實體抽象化為「非歐幾里得空間」中的圖結構 $\mathcal{G} = (\mathcal{V}, \mathcal{E})$。在此框架下，都市組件（如建築體量、不同高程的空氣節點、喬木樹冠）被編碼為圖中的異質節點（Nodes, $\mathcal{V}$），而實體間的幾何毗鄰、流體聯通性、熱輻射覆蓋等複雜拓撲交互關係，則被精確編碼為圖中的邊（Edges, $\mathcal{E}$）\citep{wu2023data,shan2025physics}。然而，標準 GCN 假設所有邊共享單一種類之聚合權重，無法區分不同物理因果機制（如陰影遮蔽與對流傳導）之訊號貢獻；為此，Schlichtkrull 等人提出關係圖卷積網路（Relational GCN, R-GCN），為每種關係類型維護獨立的可學習投影矩陣，使模型得以在單次訊息傳遞中同時處理多種異質關係語義 \citep{schlichtkrull2018modeling}，此一機制正是本研究第~\ref{subsec:rgcn}節 RGCN 模組之理論基礎。透過圖神經網路的「訊息傳遞機制（Message Passing）」，每個空間節點能夠匯聚周遭鄰近節點的幾何與物理特徵 \citep{shan2025physics}。多項最新研究指出，GNN 在處理具有不規則幾何與高度空間變異的都市街道熱舒適性與建築群能耗預測任務時，其預測精度、一般化能力與對幾何形變的穩健性，都呈現出顯著優於傳統 CNN 與隨機森林等歐幾里得幾何模型的技術優勢 \citep{hu2022times,wu2023data,shan2025physics}。異質圖神經網路與傳統機器學習於都市微氣候建模上之表徵差異，可整合為圖~\ref{fig:lit_gnn_vs_ml} 之對比示意。
+
+\begin{figure}[htbp]
+    \centering
+    \litfigbox{建議置入：傳統歐幾里得機器學習（規則體素／像素網格上之 CNN、或以扁平特徵向量輸入之隨機森林）與異質圖神經網路（將建物、空氣節點、喬木編碼為相異節點類型，並以幾何毗鄰、對流、遮蔽、蒸散等異質邊編碼物理因果）於都市微氣候建模上之資料表徵對比示意。可參考 \citet{kipf2017semi} 之圖卷積訊息傳遞、\citet{schlichtkrull2018modeling} 之關係圖卷積，以及 \citet{xin2025urbangraph} 之異質因果拓撲。}
+    \caption{異質圖神經網路與傳統歐幾里得機器學習於都市微氣候建模之表徵對比（預留文獻圖位）}
+    \label{fig:lit_gnn_vs_ml}
+\end{figure}
 
 
 \subsection{物理資訊機器學習：損失函數軟約束與結構歸納偏置之對比}
@@ -82,7 +103,7 @@
 
 儘管純資料驅動的深度學習模型在推理速度上表現優異，但其本質上屬於統計性黑盒模型，極易在未見過的測試資料上輸出違反物理守恆定律的預測結果（例如，局部空氣溫度無故自發升溫、能量不守恆）。為了解決這一致命缺陷，物理資訊機器學習（Physics-Informed Machine Learning, PIML）成為近年來人工智慧與工程科學結合的研究熱點。
 
-物理資訊神經網路（Physics-Informed Neural Networks, PINN）是此領域的代表性架構。傳統 PINN 的實作邏輯是透過對控制物理規律的偏微分方程（Partial Differential Equations, PDEs）——如流體力學中的納維-斯托克斯方程、熱力學中的熱傳導方程——轉化為數學殘差，並作為正則化項（Regularization Terms）直接嵌入到神經網路的損失函數（Loss Function）中。這使得網路在訓練過程中，不僅要最小化資料點的預測誤差，同時也要最小化物理方程的殘差。然而，這種透過損失函數施壓的約束本質上屬於「軟約束（Soft Constraints）」。在多目標多任務優化訓練時，軟約束損失項與資料損失項之間往往存在著潛在的梯度衝突（Gradient Conflict），導致模型難以收斂，或在資料稀疏的隅角上依然可能發生違漏 \citep{xin2025urbangraph}。
+物理資訊神經網路（Physics-Informed Neural Networks, PINN）是此領域的代表性架構。傳統 PINN 的實作邏輯是透過對控制物理規律的偏微分方程（Partial Differential Equations, PDEs）——如流體力學中的納維-斯托克斯方程、熱力學中的熱傳導方程——轉化為數學殘差，並作為正則化項（Regularization Terms）直接嵌入到神經網路的損失函數（Loss Function）中。這使得網路在訓練過程中，不僅要最小化資料點的預測誤差，同時也要最小化物理方程的殘差。然而，這種透過損失函數施壓的約束本質上屬於「軟約束（Soft Constraints）」。在多目標多任務最佳化訓練時，軟約束損失項與資料損失項之間往往存在著潛在的梯度衝突（Gradient Conflict），導致模型難以收斂，或在資料稀疏的隅角上依然可能發生違漏 \citep{xin2025urbangraph}。
 
 為了同時兼顧軟約束 PINN 的收斂困境，\cite{xin2025urbangraph} 提出的 UrbanGraph 架構代表了物理資訊深度學習的最新演進方向 \citep{xin2025urbangraph}。UrbanGraph 放棄了傳統依賴損失函數控制物理殘差的作法，改為將物理第一性原理（First Principles）直接轉化為神經網路圖結構中的「結構歸納偏置（Hard Constraints / Structural Inductive Bias）」：
 
