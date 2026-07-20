@@ -31,10 +31,15 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 # ── Paths ─────────────────────────────────────────────────────────────────────
 _ROOT     = Path(__file__).resolve().parent.parent
 MODEL_DIR = _ROOT / "03_model"
-CKPT_PATH = _ROOT / "checkpoints_v2_fixed" / "best_model.pt"
+DATA_DIR  = _ROOT / "02_graph_construction"
+CKPT_PATH = _ROOT / "checkpoints_v2_dynedges" / "best_model.pt"
 H5_PATH   = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "ground_truth_v2.h5"
+SCENARIO_PKL = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "scenarios.pkl"
+EPW_PKL   = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "epw_data.pkl"
 FIG_DIR   = Path(__file__).resolve().parent / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
+
+sys.path.insert(0, str(DATA_DIR))
 
 # ── Load model ────────────────────────────────────────────────────────────────
 print("[1] Loading model …")
@@ -64,107 +69,72 @@ model.load_state_dict(ckpt["model_state"])
 model.eval()
 print(f"    Loaded  epoch={ckpt['epoch']}  val_R²={ckpt['val_r2']:.4f}")
 
-# ── Load H5 scenario ─────────────────────────────────────────────────────────
-print("[2] Building graph from H5 …")
-with h5py.File(H5_PATH, "r") as hf:
-    test_ids   = hf["splits/test_ids"][()]
-    sid        = int(test_ids[0])
-    grp        = hf[f"scenarios/{sid}"]
-    sensor_pts = grp["sensor_pts"][()]
-    ta         = grp["ta"][()]
-    mrt        = grp["mrt"][()]
-    va         = grp["va"][()]
-    rh         = grp["rh"][()]
-    utci_gt    = grp["utci"][()]
-    svf        = grp["svf"][()]
-    in_shadow  = grp["in_shadow"][()].astype(np.float32)
-    bldg_height= grp["building_height"][()]
-    tree_height= grp["tree_height"][()]
-    norm_stats = {}
-    for field in hf["normalization"].keys():
-        g = hf[f"normalization/{field}"]
-        norm_stats[field] = {"mean": float(g.attrs["mean"]), "std": float(g.attrs["std"])}
-    sim_hours  = hf["metadata/sim_hours"][()].tolist()
+# ── Load REAL scenario graph via UTCIGraphDataset ─────────────────────────────
+# Uses the actual scenario geometry + the real shadow/veg_et/convective edges
+# built by 11_build_dynamic_edge_cache.py, instead of the previous synthetic
+# "tallest-air-node" object-node hack and empty dynamic_edges = [{}] * T.
+print("[2] Building graph from real scenario geometry ...")
+from dataset import UTCIGraphDataset
 
-N_full, T = sensor_pts.shape[0], ta.shape[0]
-print(f"    Scenario {sid}: {N_full} nodes  T={T}  hours {sim_hours[0]}-{sim_hours[-1]}")
+ds = UTCIGraphDataset(
+    h5_path=str(H5_PATH), scenario_pkl=str(SCENARIO_PKL), epw_pkl=str(EPW_PKL),
+    split="test", dim_air=9,
+)
 
-# ── Normalise ─────────────────────────────────────────────────────────────────
-def norm(arr, field):
-    mu, std = norm_stats[field]["mean"], norm_stats[field]["std"]
-    return ((arr - mu) / std).astype(np.float32)
+# Pick a test scenario with both buildings and trees so all 5 relation types
+# actually have live edges in this example.
+sid = None
+for candidate_sid in ds._ids:
+    sc = ds._scenario_map.get(int(candidate_sid))
+    if sc and len(sc.get("buildings", [])) >= 2 and len(sc.get("trees", [])) >= 1:
+        sid = int(candidate_sid)
+        break
+if sid is None:
+    sid = int(ds._ids[0])
 
-ta_n  = norm(ta,  "ta").T
-mrt_n = norm(mrt, "mrt").T
-va_n  = norm(va,  "va").T
-rh_n  = norm(rh,  "rh").T
-mu_ta, std_ta = norm_stats["ta"]["mean"], norm_stats["ta"]["std"]
-ts_raw = ta.T + svf[:, None] * 6.0 + 3.0
-ts_n   = ((ts_raw - (mu_ta + 5.0)) / (std_ta * 1.2)).astype(np.float32)
+idx = ds._ids.index(sid)
+data = ds.get(idx)
 
-svf_nt = np.repeat(svf[:, None], T, axis=1)
-shd_nt = in_shadow.T
-bh_nt  = np.repeat((bldg_height / 50.0)[:, None], T, axis=1)
-th_nt  = np.repeat((tree_height  / 12.0)[:, None], T, axis=1)
-air_feat_np = np.stack([ta_n, mrt_n, va_n, rh_n, svf_nt, shd_nt, bh_nt, th_nt, ts_n], axis=2)
+sim_hours = ds.sim_hours
+T = len(sim_hours)
+N_obj = data["object"].x.shape[0]
+n_bldg = len(ds._scenario_map[sid]["buildings"])
 
-# ── Subsample to 27x27 = 729 nodes (every 3 m on 1-79 grid) ─────────────────
-xs = np.arange(1, 80, 3)
-ys = np.arange(1, 80, 3)
-tree_full = cKDTree(sensor_pts)
-sub_idx = []
-for y in ys:
-    for x in xs:
-        dist, idx = tree_full.query([x, y])
-        if dist < 2.0:
-            sub_idx.append(idx)
-sub_idx = sorted(set(sub_idx))
-N = len(sub_idx)
-pts_sub    = sensor_pts[sub_idx]
-air_feat_s = air_feat_np[sub_idx]
-utci_gt_s  = utci_gt[:, sub_idx]
-print(f"    Subsampled → {N} air nodes")
+pts_sub    = data["air"].pos.numpy()                          # (N, 2)
+air_feat_s = data["air"].x.numpy()                             # (N, T, 9)
+N = pts_sub.shape[0]
+mu_u, std_u = ds.norm_stats["utci"]["mean"], ds.norm_stats["utci"]["std"]
+utci_gt_s  = (data["air"].y.numpy() * std_u + mu_u).T          # (T, N), denormalised
+obj_feat_np = data["object"].x.numpy()
+print(f"    Scenario {sid}: {N} air nodes, {N_obj} object nodes "
+      f"({n_bldg} buildings + {N_obj - n_bldg} trees), T={T}")
 
-# ── KNN-8 contiguity edges ────────────────────────────────────────────────────
-tree_sub = cKDTree(pts_sub)
-_, neigh  = tree_sub.query(pts_sub, k=9)
-src_list, dst_list = [], []
-for i, nbrs in enumerate(neigh):
-    for j in nbrs[1:]:
-        src_list.append(i); dst_list.append(j)
-cont_ei = torch.tensor([src_list, dst_list], dtype=torch.long)
+# Local (air-space, 0-indexed) contiguity edges -- used by the panel (d) 2-hop
+# neighbourhood / edge-importance visualisation, which indexes into pts_sub.
+cont_ei = data[("air", "contiguity", "air")].edge_index - N_obj
 
-# ── Synthetic object nodes ────────────────────────────────────────────────────
-N_OBJ = 20
-bh_sub   = bldg_height[sub_idx]
-obj_idxs = np.argsort(bh_sub)[-N_OBJ:]
-obj_pts  = pts_sub[obj_idxs]
-obj_h    = bh_sub[obj_idxs]
-obj_feat_np = np.zeros((N_OBJ, 7), dtype=np.float32)
-obj_feat_np[:, 0] = obj_h / 50.0
-obj_feat_np[:, 1] = np.clip(obj_h / 50.0 * 3, 0, 1)
-obj_feat_np[:, 2] = np.clip(obj_h * 20 / 2000.0, 0, 1)
-obj_feat_np[:, 3] = obj_pts[:, 0] / 80.0
-obj_feat_np[:, 4] = obj_pts[:, 1] / 80.0
-obj_feat_np[:, 5] = np.clip(obj_h * 60 / 20000.0, 0, 1)
+static_edges  = {
+    "semantic":   data[("object", "semantic", "object")].edge_index,
+    "contiguity": data[("air", "contiguity", "air")].edge_index,
+}
+dynamic_edges = data.dynamic_edges
 
-oi, oj  = np.meshgrid(np.arange(N_OBJ), np.arange(N_OBJ))
-mask_sem = oi != oj
-sem_ei  = torch.tensor([oi[mask_sem].astype(np.int64), oj[mask_sem].astype(np.int64)], dtype=torch.long)
-cont_ei_off = cont_ei + N_OBJ
-
-static_edges  = {"semantic": sem_ei, "contiguity": cont_ei_off}
-dynamic_edges = [{}] * T
-
-# ── Tensors ───────────────────────────────────────────────────────────────────
 obj_feat_t = torch.tensor(obj_feat_np, dtype=torch.float32)
 air_feat_t = torch.tensor(air_feat_s, dtype=torch.float32)
 
-hours     = np.array(sim_hours)
-ta_mean_t = ta.mean(axis=1)
-rh_mean_t = rh.mean(axis=1)
+mu_ta, std_ta = ds.norm_stats["ta"]["mean"], ds.norm_stats["ta"]["std"]
+mu_rh, std_rh = ds.norm_stats["rh"]["mean"], ds.norm_stats["rh"]["std"]
+
+hours = np.array(sim_hours)
+# air_feat_s[:, :, 0] / [:, :, 3] are z-score-normalised ta / rh; mean over air
+# nodes of a z-score is an affine function of the raw mean, so this recovers
+# the same per-timestep scene-mean without a separate raw H5 re-read.
+ta_mean_norm_t = air_feat_s[:, :, 0].mean(axis=0)   # (T,)
+rh_mean_norm_t = air_feat_s[:, :, 3].mean(axis=0)   # (T,)
+ta_mean_t = ta_mean_norm_t * std_ta + mu_ta
+rh_mean_t = rh_mean_norm_t * std_rh + mu_rh
 env_seq_np = np.zeros((T, 7), dtype=np.float32)
-env_seq_np[:, 0] = (ta_mean_t - mu_ta) / std_ta
+env_seq_np[:, 0] = ta_mean_norm_t
 env_seq_np[:, 1] = (rh_mean_t - 60.0) / 15.0
 env_seq_np[:, 2] = 0.3
 env_seq_np[:, 4] = 1.0
@@ -209,7 +179,10 @@ print(f"    Top feature: {FEAT_NAMES[int(np.argmax(feat_imp))]}")
 # ── STEP B: R-GCN weight norms ────────────────────────────────────────────────
 print("[4] R-GCN weight analysis …")
 RELATIONS    = ["shadow", "veg_et", "convective", "semantic", "contiguity"]
-ACTIVE_REL   = {"semantic", "contiguity"}   # only these have live edges
+# Determined from the actual edges present at the peak-hour timestep, rather
+# than hardcoded -- all 5 relations should now be active since dynamic_edges
+# is populated by the real geometric reconstruction (see dataset.py).
+ACTIVE_REL   = {"semantic", "contiguity"} | set(dynamic_edges[peak_t].keys())
 N_LAYERS     = 3
 sd           = model.state_dict()
 weight_norms = np.zeros((N_LAYERS, len(RELATIONS)))

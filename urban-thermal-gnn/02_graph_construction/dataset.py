@@ -11,12 +11,25 @@ Builds heterogeneous graph data from:
 No torch_geometric dependency - uses lightweight custom containers.
 
 Node types:
-  "object" : building nodes  (N_obj, 7)
+  "object" : building AND tree nodes, buildings first then trees  (N_obj, 7)
   "air"    : sensor point nodes  (N_air, T, dim_air)
 
 Edge types:
-  ("object", "semantic",    "object") : fully-connected between buildings
+  ("object", "semantic",    "object") : fully-connected among all object nodes
   ("air",    "contiguity",  "air")    : KNN (K=8) among air nodes
+  ("object", "shadow",      "air")    : building -> shadowed air node, per timestep
+                                         (source restricted to building-type object
+                                          nodes via dynamic_edge_cache.h5 shadow_src)
+  ("object", "veg_et",      "air")    : tree -> air node within canopy radius, per
+                                         timestep (source restricted to tree-type
+                                         object nodes via dynamic_edge_cache.h5 veg_src)
+  ("air",    "convective",  "air")    : directional KNN filtered by wind direction
+                                         at that timestep (upwind -> downwind)
+
+shadow/veg_et/convective source data is precomputed by
+01_data_generation/scripts/11_build_dynamic_edge_cache.py (pure geometry
+post-processing over existing scenario geometry + solar position, no
+re-simulation needed) and loaded lazily from dynamic_edge_cache.h5.
 
 Air node feature order (DIM_AIR=8, V1):
   0: ta_norm      - normalized air temperature
@@ -48,6 +61,7 @@ IMPORTANT - edge index offset:
 """
 from __future__ import annotations
 
+import math
 import pickle
 import warnings
 from pathlib import Path
@@ -224,6 +238,24 @@ class UTCIGraphDataset:
         # ── KNN edge cache (0-indexed in air-node space) ──────────
         self._knn_cache: Dict[int, torch.Tensor] = {}
 
+        # ── Dynamic-edge source cache (shadow_src, veg_src, wind_dir) ──
+        # See 01_data_generation/scripts/11_build_dynamic_edge_cache.py.
+        # Missing cache file => dynamic_edges falls back to [{}] * T
+        # (previous behaviour) with a one-time warning, so old datasets
+        # without this file still load.
+        dyn_edge_h5 = Path(self._h5_path).with_name("dynamic_edge_cache.h5")
+        self._dyn_edge_h5 = str(dyn_edge_h5) if dyn_edge_h5.exists() else None
+        self._wind_dir: Optional[np.ndarray] = None
+        if self._dyn_edge_h5 is not None:
+            with h5py.File(self._dyn_edge_h5, "r") as hf:
+                self._wind_dir = hf["wind_dir"][()]  # (T,)
+        else:
+            warnings.warn(
+                f"No dynamic_edge_cache.h5 found next to {self._h5_path}; "
+                "shadow/veg_et/convective relations will have no edges "
+                "(run 11_build_dynamic_edge_cache.py to generate it)."
+            )
+
     # ── Properties ───────────────────────────────────────────────
 
     @property
@@ -363,10 +395,12 @@ class UTCIGraphDataset:
 
         data["air"] = NodeStorage(**air_kwargs)
 
-        # ── object NodeStorage (building features) ────────────────
+        # ── object NodeStorage (building + tree features) ─────────
         scenario = self._scenario_map.get(sid)
+        n_bldg = 0
         if scenario is not None and scenario.get("buildings"):
             obj_feat = self._extract_object_features(scenario)  # (N_obj, 7)
+            n_bldg = len(scenario["buildings"])
         else:
             warnings.warn(
                 f"Scenario {sid} not found in scenarios.pkl; "
@@ -401,9 +435,81 @@ class UTCIGraphDataset:
             )
         # else: hasattr check in train.py will skip missing edge_index
 
+        # ── Dynamic edges: shadow, veg_et, convective (per timestep) ──
+        # See module docstring + 11_build_dynamic_edge_cache.py. Falls back
+        # to [{}] * T (edges omitted, matching pre-fix behaviour) when the
+        # cache file is unavailable for this dataset.
+        if self._dyn_edge_h5 is not None and n_bldg > 0:
+            data.dynamic_edges = self._build_dynamic_edges(
+                sid, N_obj, n_bldg, sensor_pts, T
+            )
+
         return data
 
     # ── Internal helpers ──────────────────────────────────────────
+
+    def _build_dynamic_edges(self, sid: int, N_obj: int, n_bldg: int,
+                              sensor_pts: np.ndarray, T: int) -> List[dict]:
+        """
+        Build real per-timestep shadow / veg_et / convective edges from the
+        precomputed source-index cache (dynamic_edge_cache.h5).
+
+        shadow    : building object node -> shadowed air node
+        veg_et    : tree object node     -> air node within canopy radius
+        convective: air node (upwind)    -> air node (downwind), filtered
+                    from the existing KNN contiguity neighbour set by wind
+                    direction at timestep t
+
+        Returns list[T] of {rel: (src, dst, None)} matching the format
+        expected by UrbanGraph._merge_edges in 03_model/urbangraph.py.
+        """
+        with h5py.File(self._dyn_edge_h5, "r") as hf:
+            g = hf.get(f"scenarios/{sid}")
+            if g is None:
+                return [{}] * T
+            shadow_src = g["shadow_src"][()]  # (T, N) int16, -1 = none
+            veg_src    = g["veg_src"][()]     # (T, N) int16, -1 = none
+
+        knn_raw = self._get_knn_edges(sid, sensor_pts).numpy()  # (2, E) local air idx
+        p = sensor_pts.astype(np.float64)
+
+        dynamic_edges: List[dict] = []
+        for t in range(T):
+            edges_t = {}
+
+            # ── shadow: building object -> air node ──────────────────
+            mask = shadow_src[t] >= 0
+            if mask.any():
+                air_idx = np.where(mask)[0]
+                bldg_idx = shadow_src[t][mask].astype(np.int64)  # buildings are object[0:n_bldg]
+                src = torch.from_numpy(bldg_idx)
+                dst = torch.from_numpy(air_idx + N_obj)
+                edges_t["shadow"] = (src, dst, None)
+
+            # ── veg_et: tree object -> air node ───────────────────────
+            mask = veg_src[t] >= 0
+            if mask.any():
+                air_idx = np.where(mask)[0]
+                tree_idx = veg_src[t][mask].astype(np.int64) + n_bldg  # trees are object[n_bldg:N_obj]
+                src = torch.from_numpy(tree_idx)
+                dst = torch.from_numpy(air_idx + N_obj)
+                edges_t["veg_et"] = (src, dst, None)
+
+            # ── convective: KNN neighbours filtered by wind direction ─
+            if self._wind_dir is not None and knn_raw.shape[1] > 0:
+                wd = math.radians(float(self._wind_dir[t]))
+                downwind = np.array([math.sin(wd), math.cos(wd)])
+                src_local, dst_local = knn_raw[0], knn_raw[1]
+                vec = p[dst_local] - p[src_local]
+                keep = (vec @ downwind) > 0  # dst is downwind of src
+                if keep.any():
+                    src = torch.from_numpy(src_local[keep].astype(np.int64) + N_obj)
+                    dst = torch.from_numpy(dst_local[keep].astype(np.int64) + N_obj)
+                    edges_t["convective"] = (src, dst, None)
+
+            dynamic_edges.append(edges_t)
+
+        return dynamic_edges
 
     def _compute_surface_temp(self, ta_nt: np.ndarray, va_nt: np.ndarray,
                                rh_nt: np.ndarray, svf: np.ndarray,
@@ -481,20 +587,27 @@ class UTCIGraphDataset:
     @staticmethod
     def _extract_object_features(scenario: dict) -> torch.Tensor:
         """
-        Extract (N_obj, 7) float32 tensor from scenario["buildings"].
+        Extract (N_obj, 7) float32 tensor from scenario["buildings"] followed
+        by scenario["trees"] -- buildings occupy indices [0, N_bldg), trees
+        occupy [N_bldg, N_obj). This ordering is relied on by get() when
+        building shadow (source = building index) and veg_et (source = tree
+        index) dynamic edges from the precomputed source-index cache.
 
-        Feature layout:
-          0: height / 50.0
-          1: floors / 12.0
-          2: footprint_area / 2000.0  (Shapely .area; fallback to coverage)
+        Feature layout (shared schema; tree rows use the natural "not
+        applicable" encoding for building-only fields -- floors=0, gfa=0):
+          0: height / 50.0            (building height, or tree height for trees)
+          1: floors / 12.0            (0 for trees)
+          2: footprint_area / 2000.0  (Shapely .area for buildings; pi*r^2 for trees)
           3: centroid_x / 80.0
           4: centroid_y / 80.0
-          5: gfa / 20000.0
-          6: is_L_shape (0.0 or 1.0)
+          5: gfa / 20000.0            (0 for trees)
+          6: is_L_shape (0.0 or 1.0)  (0 for trees)
         """
         buildings = scenario["buildings"]
-        N = len(buildings)
-        feats = np.zeros((N, 7), dtype=np.float32)
+        trees     = scenario.get("trees", [])
+        N_bldg = len(buildings)
+        N_tree = len(trees)
+        feats = np.zeros((N_bldg + N_tree, 7), dtype=np.float32)
 
         for i, b in enumerate(buildings):
             feats[i, 0] = float(b.get("height", 0.0)) / 50.0
@@ -515,5 +628,17 @@ class UTCIGraphDataset:
             feats[i, 4] = float(cy) / 80.0
             feats[i, 5] = float(b.get("gfa", 0.0)) / 20000.0
             feats[i, 6] = 1.0 if b.get("shape_type", "rect") == "L" else 0.0
+
+        for j, t in enumerate(trees):
+            i = N_bldg + j
+            radius = float(t.get("radius", t.get("height", 5.0) * 0.4))
+            feats[i, 0] = float(t.get("height", 0.0)) / 50.0
+            feats[i, 1] = 0.0
+            feats[i, 2] = (math.pi * radius ** 2) / 2000.0
+            cx, cy = t.get("pos", (0.0, 0.0))
+            feats[i, 3] = float(cx) / 80.0
+            feats[i, 4] = float(cy) / 80.0
+            feats[i, 5] = 0.0
+            feats[i, 6] = 0.0
 
         return torch.from_numpy(feats)

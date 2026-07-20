@@ -265,16 +265,18 @@ class NSGA2Optimizer:
 
             # ── [REMOVED_ZH:4] ──────────────────────────────────────
             if progress_callback is not None:
+                n_obj_run     = F.shape[1]
                 feasible_mask = CV.sum(axis=1) < 1e-6
                 n_feasible    = int(feasible_mask.sum())
                 best_utci     = float(F[feasible_mask, 0].min()) \
                                 if n_feasible > 0 else float("nan")
-                best_green    = float(-F[feasible_mask, 1].max()) \
+                # green ratio is always the last objective (-green_ratio)
+                best_green    = float(-F[feasible_mask, -1].max()) \
                                 if n_feasible > 0 else float("nan")
 
                 elapsed = time.perf_counter() - t0
                 pareto  = self._extract_pareto(pop, F, CV)
-                progress_callback({
+                info = {
                     "generation":   gen,
                     "n_gen":        self.n_gen,
                     "n_feasible":   n_feasible,
@@ -282,7 +284,13 @@ class NSGA2Optimizer:
                     "best_green":   round(best_green, 4),
                     "elapsed_s":    round(elapsed, 2),
                     "pareto_count": len(pareto),
-                })
+                }
+                if n_obj_run == 3:
+                    # middle objective = walkway_exposure (minimize, not negated)
+                    best_walk = float(F[feasible_mask, 1].min()) \
+                                if n_feasible > 0 else float("nan")
+                    info["best_walkway_exposure"] = round(best_walk, 4)
+                progress_callback(info)
 
         # ── [REMOVED_ZH:4] ──────────────────────────────────────────
         pareto_designs = self._extract_pareto(pop, F, CV)
@@ -338,15 +346,19 @@ class NSGA2Optimizer:
             from constraints import ConstraintChecker
             check = self.evaluator.checker.check_all(design)
 
-            results.append({
+            row = {
                 "genes":        pop[gi].tolist(),
                 "design":       design.to_dict(),
                 "mean_utci":    round(float(F[gi, 0]), 2),
-                "green_ratio":  round(float(-F[gi, 1]), 4),
+                # green ratio is always the last objective (-green_ratio)
+                "green_ratio":  round(float(-F[gi, -1]), 4),
                 "far":          round(check["far_actual"],  3),
                 "bcr":          round(check["bcr_actual"],  3),
                 "violation":    round(cv_sum, 4),
-            })
+            }
+            if F.shape[1] == 3:
+                row["walkway_exposure"] = round(float(F[gi, 1]), 4)
+            results.append(row)
 
         # [REMOVED_ZH:1] UTCI [REMOVED_ZH:4] Pareto [REMOVED_ZH:2]
         results.sort(key=lambda x: x["mean_utci"])

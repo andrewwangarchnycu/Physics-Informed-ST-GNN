@@ -312,3 +312,64 @@
     \item \textbf{場地邊界輸入被判定錯誤}：通常是因為封閉曲線的節點數過少（少於 3 個點無法構成一個範圍），確認邊界曲線確實封閉、且形狀合理即可。
     \item \textbf{最佳化畫面卡住不動}：最常見原因是忘記接計時器元件（見附錄~\ref{appx:user_manual_optimize}第 2 步），導致元件沒有被重複觸發去讀取最新進度，而非搜尋真的卡住。
 \end{itemize}
+
+
+\section{異質圖動態邊缺陷修正紀錄}
+\label{appx:dynamic_edges_fix}
+
+第~\ref{subsec:edges}節表~\ref{tab:edge_types}所描述之五類關係型邊緣，於本論文寫作過程中發現其中三類（\texttt{shadow}、\texttt{veg\_et}、\texttt{convective}）在原始訓練管線中實際上從未被真正建立過。本附錄如實記錄此一缺陷之發現過程、根本原因、修正方法，以及修正後重新訓練之結果，供讀者核實表~\ref{tab:main_results}、圖~\ref{fig:gnnexplainer}等處數值之來源。
+
+\subsection{問題發現}
+
+檢視 \texttt{02\_graph\_construction/dataset.py} 之 \texttt{UTCIGraphDataset.get()} 方法（訓練腳本 \texttt{04\_training/train.py} 實際載入資料所使用之類別）時，發現其開頭無條件執行：
+
+\begin{quote}
+\texttt{data.dynamic\_edges = [\{\}] * T}
+\end{quote}
+
+且此後在整個方法中未再對此變數重新賦值。\texttt{git log} 追溯顯示，此行為自本專案第一次提交以來即是如此，並非後續某次修改造成的退化。這意味著 \texttt{shadow}、\texttt{veg\_et}、\texttt{convective} 三類「應隨太陽方位角、風向逐時步重新計算」之動態邊，於本論文第四、五章所報告之全部量化結果訓練過程中，實際上皆為空集合——RGCN 從未透過這三類邊進行過任何真實的訊息傳遞。這三類邊所對應之物理效應（陰影、最近樹木高度）改以靜態的空氣節點特徵（\texttt{shadow\_nt}、\texttt{bh\_nt}、\texttt{th\_nt}）呈現，而非圖邊。此一發現同時解釋了第~\ref{subsec:trustworthiness}節原先報告之 GNNExplainer 分析中，\texttt{contiguity} 關係權重范數「明顯高於其餘四類」之現象——並非模型學習到毗鄰關係確實較重要，而是其餘四類關係之權重矩陣於訓練過程中幾乎未收到真實梯度訊號，其范數僅反映初始化後的殘留值。
+
+另需一併說明：\texttt{\_extract\_object\_features()} 方法原僅自 \texttt{scenario["buildings"]} 擷取物件節點特徵，喬木從未被納入物件節點——與第~\ref{subsec:nodes}節「物件節點包含建物與喬木」之設計描述不符，亦一併於本次修正中補上。
+
+\subsection{修正方法}
+
+\begin{enumerate}
+    \item \textbf{幾何後處理重建來源索引}：新增 \texttt{01\_data\_generation/scripts/11\_build\_dynamic\_edge\_cache.py}，對既有場景幾何（\texttt{scenarios.pkl} 之建物、喬木輪廓）與逐時步太陽方位角，重現與 \texttt{03\_lbt\_batch\_runner.py} 原始 \texttt{\_in\_shadow()} 完全相同之陰影判定幾何邏輯，但額外記錄「是哪一棟建物造成該空氣節點陰影」「是哪一棵喬木覆蓋該空氣節點」之來源物件索引，而非僅記錄布林旗標。此步驟為純幾何後處理，不需重新執行 EnergyPlus／Ladybug 模擬，300 個場景、11 個時步、6,241 個空氣節點之完整重建耗時約 48 分鐘。風向資料則取自 \texttt{epw.get\_typical\_day(month=7, stat="hottest")}（與原始模擬管線一致之月份設定，非正文先前所述之 6 月），作為全體場景共用之逐時風向序列。
+    \item \textbf{擴充物件節點以涵蓋喬木}：\texttt{\_extract\_object\_features()} 修改為依序擷取建物（索引 $[0, N_{\text{bldg}})$）後接喬木（索引 $[N_{\text{bldg}}, N_{\text{obj}})$），共用原有 7 維特徵格式，喬木列之樓層數／總樓地板面積等建物專屬欄位以 0 表示。
+    \item \textbf{\texttt{get()} 方法建立真實動態邊}：新增 \texttt{\_build\_dynamic\_edges()} 方法，讀取上述來源索引快取，為每個時步建立：\texttt{shadow}（建築物件 $\to$ 陰影空氣節點）、\texttt{veg\_et}（喬木物件 $\to$ 覆蓋範圍內空氣節點）、\texttt{convective}（沿既有 KNN 毗鄰邊、依當時風向篩選出「上風處 $\to$ 下風處」方向之子集）三類邊索引張量，格式符合 \texttt{03\_model/urbangraph.py} 之 \texttt{\_merge\_edges()} 所預期之 \texttt{\{rel: (src, dst, None)\}} 結構。
+\end{enumerate}
+
+修正後之管線已以真實案例驗證：場景 0 之 \texttt{shadow} 邊數量隨時步在 30\%--46\% 空氣節點區間變化（與正午太陽高度角較高時陰影範圍縮小之物理直覺相符）、\texttt{veg\_et} 邊數量因喬木冠層幾何不隨太陽角度變化而全時步恆定、\texttt{convective} 邊數量約為 KNN 毗鄰邊總數之一半（符合「僅保留下風向子集」之設計）。
+
+\subsection{重新訓練結果}
+
+以修正後管線於 \texttt{ground\_truth\_v2.h5}（300 場景，同第四章所用資料集）重新執行 \texttt{04\_training/retrain\_v2.py}，未使用暖啟動（warm-start），訓練於 GPU（NVIDIA RTX 5070 Ti）上進行，第 113 個 Epoch 因連續 20 個 Epoch 驗證損失無改善觸發早停，最佳權重取自第 93 個 Epoch（驗證 $R^2=0.9963$），儲存於 \texttt{checkpoints\_v2\_dynedges/}。測試集評估結果（3,707,154 預測點次）為 $R^2=0.9956$、RMSE$=0.197\,^\circ\text{C}$、MAE$=0.105\,^\circ\text{C}$、熱壓力等級分類準確率 98.3\%——與修正前 \texttt{checkpoints\_v2\_fixed} 之 $R^2=0.9957$、RMSE$=0.194\,^\circ\text{C}$ 幾乎無法區分。
+
+此一「聚合指標幾乎不變」之結果本身即具資訊量：空氣節點特徵中原已包含之 \texttt{shadow\_nt}、\texttt{bh\_nt}、\texttt{th\_nt} 等靜態特徵，顯然已能讓 MLP／LSTM 部分捕捉到陰影與植被效應之主要變異量，使得「透過圖邊額外傳遞這些資訊」對整體預測誤差之邊際貢獻有限。然而，修正之核心價值不在於數值精度，而在於模型內部機制之真實性：修正後，圖~\ref{fig:gnnexplainer}(c) 之 GNNExplainer 分析顯示五類關係之 RGCN 權重范數（第 1--3 層分別約 6.5--12）皆落於相近量級，不再是修正前那種「僅兩類關係有意義、其餘三類為訓練殘留初始值」之退化狀態，第~\ref{subsec:trustworthiness}節之可解釋性論述方能成立於真實運作之模型機制上，而非建立在未被使用的圖結構之上。
+
+\subsection{已知限制}
+
+第四章消融實驗（表~\ref{tab:ablation}）之 A0、A3--A6 五個變體，其訓練皆早於本次修正，圖結構部分同樣僅具 \texttt{semantic}／\texttt{contiguity} 兩類靜態邊；圖~\ref{fig:scatter_test}、圖~\ref{fig:hourly_r2}、圖~\ref{fig:confusion} 三張視覺化亦沿用修正前之推論輸出繪製（見第~\ref{subsec:overall_metrics}節註腳）。上述限制皆已於對應章節內文誠實標註，完整重新執行消融實驗與視覺化列為後續工作。
+
+
+\section{FastAPI／WebSocket 端到端延遲拆解}
+\label{appx:latency_breakdown}
+
+第~\ref{subsec:api_latency}節指出整合系統之端到端延遲落在數十至數百毫秒等級、足以支撐近即時互動設計。本附錄記錄該延遲數字之具體拆解方法與各環節細項，供讀者核實。
+
+整合系統的端到端延遲由以下三個環節組成：
+
+\begin{enumerate}
+    \item \textbf{幾何序列化（Grasshopper → Python）：}Rhino 幾何物件轉換為異質圖張量需約 50--150ms，視建築數量而定；此步驟目前為效能瓶頸之一。
+    \item \textbf{GNN 推理（Python 後端）：}如第四章所測，平均約 61.5ms；為整個流程中最穩定的環節。
+    \item \textbf{結果回傳與視覺化（Python → Grasshopper）：}UTCI 結果網格經 WebSocket 回傳後，Grasshopper 進行色彩映射渲染約需 20--80ms。
+\end{enumerate}
+
+綜合而言，整個端到端循環延遲約為 \textbf{150--350ms}，雖略高於純 GNN 推理延遲，但仍遠低於人眼察覺延遲（$\sim$1 秒）的門檻，能提供令設計師滿意的「近即時」互動體驗。
+
+未來可透過下列最佳化降低端到端延遲：
+\begin{itemize}
+    \item 採用增量式幾何更新（僅傳輸移動後改變的節點/邊緣差異，而非全量重建）；
+    \item 實作 GPU 本地化渲染，省去結果回傳 Grasshopper 的網路傳輸開銷；
+    \item 採用 ONNX 模型量化（INT8），在維持精度的前提下進一步壓縮推理延遲至 $\approx$20ms。
+\end{itemize}

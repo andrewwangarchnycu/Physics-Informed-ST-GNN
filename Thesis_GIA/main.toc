@@ -5,111 +5,124 @@
 \contentsline {chapter}{\numberline {1}緒論}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}研究背景與動機}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}研究問題}{3}{section.1.2}%
-\contentsline {section}{\numberline {1.3}研究目的}{4}{section.1.3}%
-\contentsline {section}{\numberline {1.4}研究方法概述}{6}{section.1.4}%
-\contentsline {section}{\numberline {1.5}研究範圍與限制}{7}{section.1.5}%
-\contentsline {chapter}{\numberline {2}文獻回顧}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}都市空間品質與微氣候之理論脈絡}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}都市微氣候與行人熱舒適度 (UTCI)}{10}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}都市形態對微氣候之影響因素與熱力機制}{10}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}戶外熱舒適指標之演進與選用比對}{12}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}建築形態之生成與多目標最佳化 (MOO)}{13}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}基因演算法於參數化都市設計之應用}{13}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Grasshopper 參數化生成與代理模型最佳化之工具權衡}{15}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}深度學習應用於微氣候預測之代理模型}{16}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}歐幾里得與非歐幾里得空間資料表徵之範式轉換}{16}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}物理資訊機器學習：損失函數軟約束與結構歸納偏置之對比}{17}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}都市路徑規劃文獻之侷限與本研究之範式轉移}{19}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}傳統尋路演算法於都市步行環境之抽象化}{19}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}熱舒適導向尋路研究之發展與其結構性限制}{20}{subsection.2.5.2}%
-\contentsline {chapter}{\numberline {3}系統分析與設計}{21}{chapter.3}%
-\contentsline {section}{\numberline {3.1}整合運算框架}{21}{section.3.1}%
-\contentsline {section}{\numberline {3.2}基本 GIS 資訊建構}{23}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}建物圖資取用流程與場景篩選演算法}{24}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}IoT 微氣象感測器空間資料}{25}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}全球樹冠高度資料}{26}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}真實場景訓練資料集（V4）}{28}{subsection.3.2.4}%
-\contentsline {section}{\numberline {3.3}物理式都市微氣候逐時模擬}{29}{section.3.3}%
-\contentsline {section}{\numberline {3.4}運算框架：開放街圖（OSM）真實建物與地表鋪面圖資擷取}{33}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}既有隨機生成方法之侷限}{33}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}OSM 離線區域建物足跡與樓高擷取}{33}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}OSM 地表鋪面與材質圖資擷取}{34}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}三服務融合建物向量化方法（單一場地案例驗證用途）}{36}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}三類幾何來源之分工關係}{38}{subsection.3.4.5}%
-\contentsline {section}{\numberline {3.5}異質圖建構流程}{38}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}節點類型與特徵設計}{38}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}邊緣類型與因果拓樸}{40}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}圖索引對齊機制（$+N_{\text {obj}}$ 偏移量）}{42}{subsection.3.5.3}%
-\contentsline {section}{\numberline {3.6}物理資訊時空圖神經網路 (PI-ST-GNN) 模型架構}{43}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}整體架構概述}{43}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}關係圖卷積網路（RGCN）}{44}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}全域情境融合與 LSTM 時序建模}{46}{subsection.3.6.3}%
-\contentsline {section}{\numberline {3.7}物理引導損失函數}{46}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}輻射空間一致性約束（$\mathcal {L}_{\text {rad}}$）}{47}{subsection.3.7.1}%
-\contentsline {subsection}{\numberline {3.7.2}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）}{48}{subsection.3.7.2}%
-\contentsline {subsection}{\numberline {3.7.3}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）}{48}{subsection.3.7.3}%
-\contentsline {section}{\numberline {3.8}Grasshopper 介面整合與多目標最佳化：熱舒適人行動線設計}{49}{section.3.8}%
-\contentsline {subsection}{\numberline {3.8.1}從最短路徑到熱舒適動線評估}{49}{subsection.3.8.1}%
-\contentsline {subsection}{\numberline {3.8.2}Grasshopper 介面與非同步通訊架構}{50}{subsection.3.8.2}%
-\contentsline {subsection}{\numberline {3.8.3}染色體編碼機制與多目標函數}{50}{subsection.3.8.3}%
-\contentsline {subsection}{\numberline {3.8.4}與 Wallacei 都市型態最佳化案例之比較}{52}{subsection.3.8.4}%
-\contentsline {chapter}{\numberline {4}實驗成果分析與驗證}{53}{chapter.4}%
-\contentsline {section}{\numberline {4.1}訓練流程與超參數配置}{53}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}訓練環境與硬體配置}{53}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}訓練超參數與學習率排程}{53}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}訓練曲線與收斂特性}{54}{subsection.4.1.3}%
-\contentsline {section}{\numberline {4.2}測試集量化評估結果}{55}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}整體預測精確度指標}{55}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}逐時段預測精確度分析}{56}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}熱壓力等級分類混淆矩陣}{56}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}空間熱壓力場視覺化比較}{57}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}設計選擇之消融實驗}{58}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}消融實驗設計}{59}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}消融實驗量化結果}{59}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}消融結果討論：數值精度與物理可信賴性的取捨}{60}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}推理效能對互動式設計工作流之意義}{61}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}推理延遲基準測試}{61}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}訓練資料集覆蓋範圍驗證}{61}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}真實場景資料集之一般化驗證（V4）}{62}{section.4.5}%
-\contentsline {section}{\numberline {4.6}小結}{65}{section.4.6}%
-\contentsline {chapter}{\numberline {5}結果分析與設計應用討論}{66}{chapter.5}%
-\contentsline {section}{\numberline {5.1}整合系統設計流程回顧}{66}{section.5.1}%
-\contentsline {section}{\numberline {5.2}多目標最佳化設計方案分析}{66}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}NSGA-II 收斂過程與帕累托前緣形成}{66}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}帕累托前緣之真實形態與現行目標函數之侷限}{67}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}真實建物擷取流程之案例驗證}{68}{section.5.3}%
-\contentsline {section}{\numberline {5.4}系統整合架構效能討論}{69}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}FastAPI/WebSocket 通訊延遲}{69}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}使用者操作流程概覽}{70}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}物理一致性與建築師信任建立}{71}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}系統局限性與誤差來源}{72}{subsection.5.4.4}%
-\contentsline {chapter}{\numberline {6}結論與未來研究}{74}{chapter.6}%
-\contentsline {section}{\numberline {6.1}研究結論}{74}{section.6.1}%
-\contentsline {section}{\numberline {6.2}研究貢獻與創新點}{76}{section.6.2}%
-\contentsline {section}{\numberline {6.3}研究局限性}{77}{section.6.3}%
-\contentsline {section}{\numberline {6.4}未來研究建議}{79}{section.6.4}%
-\contentsline {chapter}{\textbf {參考文獻}}{82}{section*.49}%
+\contentsline {section}{\numberline {1.3}研究目的}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}研究方法概述}{7}{section.1.4}%
+\contentsline {section}{\numberline {1.5}研究範圍與限制}{8}{section.1.5}%
+\contentsline {chapter}{\numberline {2}文獻回顧}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}都市空間品質與微氣候之理論脈絡}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}都市微氣候與行人熱舒適度 (UTCI)}{11}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}都市形態對微氣候之影響因素與熱力機制}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}戶外熱舒適指標之演進與選用比對}{13}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}建築形態之生成與多目標最佳化 (MOO)}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}基因演算法於參數化都市設計之應用}{14}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Grasshopper 參數化生成與代理模型最佳化之工具權衡}{16}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}深度學習應用於微氣候預測之代理模型}{17}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}歐幾里得與非歐幾里得空間資料表徵之範式轉換}{17}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}物理資訊機器學習：損失函數軟約束與結構歸納偏置之對比}{19}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}都市路徑規劃文獻之侷限與本研究之範式轉移}{21}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}傳統尋路演算法於都市步行環境之抽象化}{21}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}熱舒適導向尋路研究之發展與其結構性限制}{21}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {3}系統分析與設計}{23}{chapter.3}%
+\contentsline {section}{\numberline {3.1}整合運算框架}{23}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}設計動機與限制條件}{26}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}模組化之必要性論證}{26}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}PI-ST-GNN 全名與可解釋性定位}{27}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}與 UrbanGraph 之關係}{28}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}設計原則小結}{28}{subsection.3.1.5}%
+\contentsline {section}{\numberline {3.2}模組一：基本 GIS 資訊建構}{29}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}建物圖資取用流程與場景篩選演算法}{29}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}IoT 微氣象感測器空間資料}{30}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}全球樹冠高度資料}{32}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}真實場景訓練資料集（V4）}{33}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}模組二：都市形態模擬——物理式微氣候逐時模擬}{35}{section.3.3}%
+\contentsline {section}{\numberline {3.4}模組三：真實都市建物足跡與樓高擷取——開放街圖（OSM）真實建物與地表鋪面圖資擷取}{38}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}既有隨機生成方法之侷限}{38}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}OSM 離線區域建物足跡與樓高擷取}{38}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}OSM 地表鋪面與材質圖資擷取}{39}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}三服務融合建物向量化方法（單一場地案例驗證用途）}{41}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}三類幾何來源之分工關係}{43}{subsection.3.4.5}%
+\contentsline {section}{\numberline {3.5}模組四：異質圖建構與 PI-ST-GNN 推理——異質圖建構流程}{43}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}節點類型與特徵設計}{43}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}邊緣類型與因果拓樸}{45}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}圖索引對齊機制（$+N_{\text {obj}}$ 偏移量）}{48}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}物理資訊時空圖神經網路 (PI-ST-GNN) 模型架構}{49}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}整體架構概述}{49}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}關係圖卷積網路（RGCN）}{51}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}全域情境融合與 LSTM 時序建模}{52}{subsection.3.6.3}%
+\contentsline {section}{\numberline {3.7}物理引導損失函數}{53}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}輻射空間一致性約束（$\mathcal {L}_{\text {rad}}$）}{54}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）}{54}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）}{55}{subsection.3.7.3}%
+\contentsline {section}{\numberline {3.8}模組五：Grasshopper 介面整合與多目標最佳化——熱舒適人行動線設計}{55}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}從最短路徑到熱舒適動線評估}{55}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Grasshopper 介面與非同步通訊架構}{56}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}染色體編碼機制與多目標函數}{57}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}與 Wallacei 都市型態最佳化案例之比較}{58}{subsection.3.8.4}%
+\contentsline {chapter}{\numberline {4}實驗成果分析與驗證}{60}{chapter.4}%
+\contentsline {section}{\numberline {4.1}訓練流程與超參數配置}{60}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}訓練環境與硬體配置}{60}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}訓練超參數與學習率排程}{60}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}訓練曲線與收斂特性}{61}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}測試集量化評估結果}{61}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}整體預測精確度指標}{61}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}逐時段預測精確度分析}{63}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}熱壓力等級分類混淆矩陣}{64}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}空間熱壓力場視覺化比較}{64}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}設計選擇之消融實驗}{66}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}消融實驗設計}{67}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}消融實驗量化結果}{67}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}消融結果討論：數值精度與物理可信賴性的取捨}{68}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}推理效能對互動式設計工作流之意義}{69}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}推理延遲基準測試}{69}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}訓練資料集覆蓋範圍驗證}{70}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}真實場景資料集之一般化驗證（V4）}{70}{section.4.5}%
+\contentsline {section}{\numberline {4.6}小結}{73}{section.4.6}%
+\contentsline {chapter}{\numberline {5}結果分析與設計應用討論}{74}{chapter.5}%
+\contentsline {section}{\numberline {5.1}整合系統設計流程回顧}{74}{section.5.1}%
+\contentsline {section}{\numberline {5.2}多目標最佳化設計方案分析}{74}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}NSGA-II 收斂過程與帕累托前緣形成}{74}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}帕累托前緣之真實形態與現行目標函數之侷限}{75}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}三目標實驗：路徑配置之三方案比較}{76}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}設計疊代示範：從帕累托前緣到方案選擇}{79}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}真實建物擷取流程之案例驗證}{79}{section.5.3}%
+\contentsline {section}{\numberline {5.4}系統整合架構效能討論}{81}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}FastAPI/WebSocket 通訊延遲}{81}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}使用者操作流程概覽}{81}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}物理一致性與建築設計輔助決策模型的可解釋性}{83}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}系統局限性與誤差來源}{85}{subsection.5.4.4}%
+\contentsline {chapter}{\numberline {6}結論與未來研究}{86}{chapter.6}%
+\contentsline {section}{\numberline {6.1}研究結論}{86}{section.6.1}%
+\contentsline {section}{\numberline {6.2}研究貢獻與創新點}{88}{section.6.2}%
+\contentsline {section}{\numberline {6.3}研究局限性}{90}{section.6.3}%
+\contentsline {section}{\numberline {6.4}未來研究建議}{92}{section.6.4}%
+\contentsline {chapter}{\textbf {參考文獻}}{95}{section*.54}%
 \setcounter {tocdepth}{0}
 \ttl@change@i {\@ne }{chapter}{0pt}{}{\bfseries 附錄\xCJKalphatozhnum {\thecontentslabel }\quad }{}{\cftdotfill {\cftdotsep }\contentspage }\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
-\contentsline {chapter}{\numberline {A}附錄}{87}{chapter.A}%
-\contentsline {section}{\numberline {A.1}圖索引對齊機制完整計算流程}{87}{section.A.1}%
-\contentsline {section}{\numberline {A.2}RGCN 各關係矩陣維度設定}{88}{section.A.2}%
-\contentsline {section}{\numberline {A.3}模型完整超參數表}{88}{section.A.3}%
-\contentsline {section}{\numberline {A.4}物理引導損失函數完整推導}{88}{section.A.4}%
-\contentsline {subsection}{\numberline {A.4.1}外點懲罰法的一般形式}{88}{subsection.A.4.1}%
-\contentsline {subsection}{\numberline {A.4.2}輻射空間一致性約束（$\mathcal {L}_{\text {rad}}$）完整推導}{89}{subsection.A.4.2}%
-\contentsline {subsection}{\numberline {A.4.3}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）完整推導}{90}{subsection.A.4.3}%
-\contentsline {subsection}{\numberline {A.4.4}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）完整推導}{92}{subsection.A.4.4}%
-\contentsline {section}{\numberline {A.5}熱舒適人行動線熱暴露指標完整推導}{92}{section.A.5}%
-\contentsline {subsection}{\numberline {A.5.1}無量綱熱壓力懲罰函數 $\Phi (\cdot )$ 之推導}{92}{subsection.A.5.1}%
-\contentsline {subsection}{\numberline {A.5.2}時空平均人行動線熱暴露指標之推導}{93}{subsection.A.5.2}%
-\contentsline {section}{\numberline {A.6}NSGA-II 適應度求值器輸入維度修正紀錄}{94}{section.A.6}%
-\contentsline {section}{\numberline {A.7}Grasshopper 元件使用者操作手冊}{94}{section.A.7}%
-\contentsline {subsection}{\numberline {A.7.1}使用前的準備工作}{94}{subsection.A.7.1}%
-\contentsline {subsection}{\numberline {A.7.2}準備場地幾何——這是使用者最主要的工作}{95}{subsection.A.7.2}%
-\contentsline {subsection}{\numberline {A.7.3}操作流程 A：單次即時評估（UTCIPredictor）}{96}{subsection.A.7.3}%
-\contentsline {subsection}{\numberline {A.7.4}操作流程 B：多目標最佳化搜尋（UTCIOptimizer）}{96}{subsection.A.7.4}%
-\contentsline {subsection}{\numberline {A.7.5}看得懂拿到的結果——輸出如何解讀}{97}{subsection.A.7.5}%
-\contentsline {subsection}{\numberline {A.7.6}常見狀況排除}{98}{subsection.A.7.6}%
+\contentsline {chapter}{\numberline {A}附錄}{100}{chapter.A}%
+\contentsline {section}{\numberline {A.1}圖索引對齊機制完整計算流程}{100}{section.A.1}%
+\contentsline {section}{\numberline {A.2}RGCN 各關係矩陣維度設定}{101}{section.A.2}%
+\contentsline {section}{\numberline {A.3}模型完整超參數表}{101}{section.A.3}%
+\contentsline {section}{\numberline {A.4}物理引導損失函數完整推導}{101}{section.A.4}%
+\contentsline {subsection}{\numberline {A.4.1}外點懲罰法的一般形式}{101}{subsection.A.4.1}%
+\contentsline {subsection}{\numberline {A.4.2}輻射空間一致性約束（$\mathcal {L}_{\text {rad}}$）完整推導}{102}{subsection.A.4.2}%
+\contentsline {subsection}{\numberline {A.4.3}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）完整推導}{103}{subsection.A.4.3}%
+\contentsline {subsection}{\numberline {A.4.4}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）完整推導}{105}{subsection.A.4.4}%
+\contentsline {section}{\numberline {A.5}熱舒適人行動線熱暴露指標完整推導}{105}{section.A.5}%
+\contentsline {subsection}{\numberline {A.5.1}無量綱熱壓力懲罰函數 $\Phi (\cdot )$ 之推導}{105}{subsection.A.5.1}%
+\contentsline {subsection}{\numberline {A.5.2}時空平均人行動線熱暴露指標之推導}{106}{subsection.A.5.2}%
+\contentsline {section}{\numberline {A.6}NSGA-II 適應度求值器輸入維度修正紀錄}{107}{section.A.6}%
+\contentsline {section}{\numberline {A.7}Grasshopper 元件使用者操作手冊}{107}{section.A.7}%
+\contentsline {subsection}{\numberline {A.7.1}使用前的準備工作}{107}{subsection.A.7.1}%
+\contentsline {subsection}{\numberline {A.7.2}準備場地幾何——這是使用者最主要的工作}{108}{subsection.A.7.2}%
+\contentsline {subsection}{\numberline {A.7.3}操作流程 A：單次即時評估（UTCIPredictor）}{109}{subsection.A.7.3}%
+\contentsline {subsection}{\numberline {A.7.4}操作流程 B：多目標最佳化搜尋（UTCIOptimizer）}{109}{subsection.A.7.4}%
+\contentsline {subsection}{\numberline {A.7.5}看得懂拿到的結果——輸出如何解讀}{110}{subsection.A.7.5}%
+\contentsline {subsection}{\numberline {A.7.6}常見狀況排除}{111}{subsection.A.7.6}%
+\contentsline {section}{\numberline {A.8}異質圖動態邊缺陷修正紀錄}{111}{section.A.8}%
+\contentsline {subsection}{\numberline {A.8.1}問題發現}{112}{subsection.A.8.1}%
+\contentsline {subsection}{\numberline {A.8.2}修正方法}{112}{subsection.A.8.2}%
+\contentsline {subsection}{\numberline {A.8.3}重新訓練結果}{113}{subsection.A.8.3}%
+\contentsline {subsection}{\numberline {A.8.4}已知限制}{114}{subsection.A.8.4}%
+\contentsline {section}{\numberline {A.9}FastAPI／WebSocket 端到端延遲拆解}{114}{section.A.9}%
 \contentsfinish 

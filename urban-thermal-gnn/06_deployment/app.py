@@ -50,11 +50,15 @@ logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s  %(levelname)s  %(message)s")
 log = logging.getLogger("uvicorn")
 
-# ── model paths (prefer V2 checkpoint if available) ─────────────────────────
+# ── model paths (prefer V4 real-data checkpoint; fall back V2 -> V1) ────────
+_CKPT_V4     = _ROOT / "04_training" / "checkpoints_v4" / "best_model.pt"
 _CKPT_V2     = _ROOT / "checkpoints_v2" / "best_model.pt"
 _CKPT_V1     = _ROOT / "04_training" / "checkpoints" / "best_model.pt"
-CKPT_PATH    = _CKPT_V2 if _CKPT_V2.exists() else _CKPT_V1
-H5_PATH      = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
+CKPT_PATH    = (_CKPT_V4 if _CKPT_V4.exists()
+                else _CKPT_V2 if _CKPT_V2.exists() else _CKPT_V1)
+_H5_V4       = _ROOT / "01_data_generation/outputs/real_simulations_v4/ground_truth_v4.h5"
+_H5_LEGACY   = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
+H5_PATH      = _H5_V4 if _H5_V4.exists() else _H5_LEGACY
 EPW_PKL_PATH = _ROOT / "01_data_generation/outputs/raw_simulations/epw_data.pkl"
 DEVICE       = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -64,7 +68,7 @@ DEVICE       = "cuda" if torch.cuda.is_available() else "cpu"
 _model:      object = None
 _norm_stats: dict   = {}
 _epw_data:   object = None
-_dim_air:    int    = 8         # auto-detected from checkpoint at startup
+_dim_air:    int    = 9         # auto-detected from checkpoint at startup
 _executor            = ThreadPoolExecutor(max_workers=4)
 _active_jobs: Dict[str, "NSGA2Optimizer"] = {}
 
@@ -111,7 +115,8 @@ async def startup():
     # ── load GNN model ────────────────────────────────────────────────
     global _dim_air
     from urbangraph import build_model
-    ckpt_label = "V2" if CKPT_PATH == _CKPT_V2 else "V1"
+    ckpt_label = ("V4" if CKPT_PATH == _CKPT_V4
+                  else "V2" if CKPT_PATH == _CKPT_V2 else "V1")
     log.info(f"[startup] loading {ckpt_label} checkpoint: {CKPT_PATH}")
     ckpt = torch.load(CKPT_PATH, map_location=DEVICE, weights_only=False)
 
@@ -122,7 +127,7 @@ async def startup():
     if air_enc_key in state:
         _dim_air = state[air_enc_key].shape[1]
     else:
-        _dim_air = 8  # safe default for V1 checkpoints
+        _dim_air = 9  # safe default for V2+ checkpoints (V1 was 8, no longer the primary target)
     log.info(f"[startup] auto-detected dim_air={_dim_air}")
 
     cfg  = {"model": {"out_timesteps": 11, "dim_air": _dim_air}}
