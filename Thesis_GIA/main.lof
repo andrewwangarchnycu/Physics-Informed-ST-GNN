@@ -1,44 +1,49 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1}{\ignorespaces 經典都市理論與都市型態學之對照示意（預留文獻圖位）}}{2}{figure.caption.6}%
-\contentsline {figure}{\numberline {2}{\ignorespaces 研究藍圖}}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {1}{\ignorespaces 都市意象理論與異質圖表徵之對照}}{2}{figure.caption.6}%
+\contentsline {figure}{\numberline {2}{\ignorespaces 研究藍圖}}{7}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3}{\ignorespaces 都市街谷幾何、熱島熱遲滯與空氣動力學機制之經典理論示意（預留文獻圖位）}}{11}{figure.caption.8}%
-\contentsline {figure}{\numberline {4}{\ignorespaces UTCI 四項微氣候因素與台灣在地戶外熱舒適實證研究之對照（預留文獻圖位）}}{13}{figure.caption.9}%
-\contentsline {figure}{\numberline {5}{\ignorespaces 異質圖神經網路與傳統歐幾里得機器學習於都市微氣候建模之表徵對比（預留文獻圖位）}}{18}{figure.caption.10}%
+\contentsline {figure}{\numberline {3}{\ignorespaces 都市街谷幾何、熱島熱遲滯與空氣動力學機制示意}}{12}{figure.caption.8}%
+\contentsline {figure}{\numberline {4}{\ignorespaces UTCI 生理學合成基礎與台灣在地熱壓力分級對照}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {5}{\ignorespaces 異質圖神經網路與傳統歐幾里得機器學習之表徵對比}}{19}{figure.caption.10}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6}{\ignorespaces PI-ST-GNN 整合運算框架示意圖}}{22}{figure.caption.11}%
-\contentsline {figure}{\numberline {7}{\ignorespaces 整合運算框架資料架構圖}}{23}{figure.caption.12}%
-\contentsline {figure}{\numberline {8}{\ignorespaces 研究場域地理脈絡：由國家尺度逐層放大至場域尺度}}{24}{figure.caption.13}%
-\contentsline {figure}{\numberline {9}{\ignorespaces V4 擴大研究區域之環境部 IoT 微型感測器空間分布實測圖（區域內逐時觀測，2025 年夏季正午時段）}}{25}{figure.caption.14}%
-\contentsline {figure}{\numberline {10}{\ignorespaces V4 研究範圍選定：擴大區域之 IoT 感測器密度曲面與 300 個選定真實場景對照}}{26}{figure.caption.15}%
-\contentsline {figure}{\numberline {11}{\ignorespaces ETH GlobalCanopyHeight 樹冠高度資料與研究場域對照}}{27}{figure.caption.16}%
-\contentsline {figure}{\numberline {12}{\ignorespaces V4 真實訓練場景選取結果：(a) 300 個場景於擴大搜尋範圍（新竹／桃園／苗栗／臺中，錨定陽明交大光復校區）之區域分布，點色對應綜合選址評分；(b) 錨點核心區之場景，$80\times 80$ 公尺場域邊界按真實比例繪製於 OpenStreetMap 底圖之上。每一場景同時滿足真實建物、地表異質性、真實 IoT 站點與真實樹冠四項條件。}}{29}{figure.caption.17}%
-\contentsline {figure}{\numberline {13}{\ignorespaces 300 個真實訓練場景中之 25 個代表性場景（$5\times 5$ 陣列）：真實 OSM 建物足跡（色階＝簷高）與 ETH 樹冠。各子圖標題示場景編號、建物棟數與所屬月份。}}{30}{figure.caption.18}%
-\contentsline {figure}{\numberline {14}{\ignorespaces 熱舒適訓練資料之逐時生成：四個真實場景（列）於 08:00--18:00 各代表時步（行）之模擬 UTCI 場，灰色為建物量體。展現熱壓力之日間動態與真實幾何遮蔽所致之空間梯度。}}{32}{figure.caption.19}%
-\contentsline {figure}{\numberline {15}{\ignorespaces 六個典型隨機生成場景之建築量體與喬木配置示意}}{34}{figure.caption.20}%
-\contentsline {figure}{\numberline {16}{\ignorespaces OSM 地表鋪面與材質圖資擷取：(a) 原始材質多邊形與建物足跡；(b) 柵格化 land\_cover\_map。}}{35}{figure.caption.21}%
-\contentsline {figure}{\numberline {17}{\ignorespaces 三服務融合建物向量化系統流程圖}}{37}{figure.caption.22}%
-\contentsline {figure}{\numberline {18}{\ignorespaces 異質圖建構實例（取自真實訓練資料場景 0）}}{40}{figure.caption.26}%
-\contentsline {figure}{\numberline {19}{\ignorespaces 異質圖拓樸全域視角（真實訓練資料場景 10）}}{41}{figure.caption.27}%
-\contentsline {figure}{\numberline {20}{\ignorespaces 以真實 GIS 圖資建構之異質圖範例（V4 真實場景）：(a) 真實 OSM 建物與 ETH 樹冠幾何；(b) 空氣節點感測網格與 k-NN 鄰接邊，節點色為真實 IoT 氣溫驅動之模擬尖峰 UTCI。}}{42}{figure.caption.28}%
-\contentsline {figure}{\numberline {21}{\ignorespaces PI-ST-GNN 模型架構總覽}}{44}{figure.caption.29}%
-\contentsline {figure}{\numberline {22}{\ignorespaces RGCN 模組訊息聚合機制示意圖}}{45}{figure.caption.30}%
-\contentsline {figure}{\numberline {23}{\ignorespaces 物理引導損失函數示意圖}}{47}{figure.caption.31}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Grasshopper--FastAPI／WebSocket 非同步通訊架構時序圖}}{51}{figure.caption.32}%
+\contentsline {figure}{\numberline {6}{\ignorespaces 整合運算框架五模組架構與資訊流}}{25}{figure.caption.11}%
+\contentsline {figure}{\numberline {7}{\ignorespaces 整合運算框架資料架構圖}}{25}{figure.caption.12}%
+\contentsline {figure}{\numberline {8}{\ignorespaces 研究場域地理脈絡}}{29}{figure.caption.13}%
+\contentsline {figure}{\numberline {9}{\ignorespaces IoT 微型感測器空間分布實測圖}}{31}{figure.caption.14}%
+\contentsline {figure}{\numberline {10}{\ignorespaces V4 研究範圍選定}}{31}{figure.caption.15}%
+\contentsline {figure}{\numberline {11}{\ignorespaces 樹冠高度資料與研究場域對照}}{32}{figure.caption.16}%
+\contentsline {figure}{\numberline {12}{\ignorespaces V4 真實訓練場景選取結果}}{34}{figure.caption.17}%
+\contentsline {figure}{\numberline {13}{\ignorespaces 真實訓練場景代表性樣本}}{35}{figure.caption.18}%
+\contentsline {figure}{\numberline {14}{\ignorespaces 熱舒適訓練資料之逐時生成}}{37}{figure.caption.19}%
+\contentsline {figure}{\numberline {15}{\ignorespaces 隨機生成場景示意}}{39}{figure.caption.20}%
+\contentsline {figure}{\numberline {16}{\ignorespaces OSM 地表鋪面與材質圖資擷取}}{40}{figure.caption.21}%
+\contentsline {figure}{\numberline {17}{\ignorespaces 三服務融合建物向量化流程}}{42}{figure.caption.22}%
+\contentsline {figure}{\numberline {18}{\ignorespaces 都市街道剖面示意：太陽角度、建築陰影、喬木樹蔭與行人熱壓力}}{45}{figure.caption.25}%
+\contentsline {figure}{\numberline {19}{\ignorespaces 異質圖建構實例}}{46}{figure.caption.27}%
+\contentsline {figure}{\numberline {20}{\ignorespaces 異質圖拓樸全域視角}}{47}{figure.caption.28}%
+\contentsline {figure}{\numberline {21}{\ignorespaces 真實 GIS 圖資建構之異質圖範例}}{48}{figure.caption.29}%
+\contentsline {figure}{\numberline {22}{\ignorespaces 整合運算框架示意圖}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {23}{\ignorespaces PI-ST-GNN 模型架構總覽}}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {24}{\ignorespaces RGCN 訊息聚合機制示意圖}}{52}{figure.caption.32}%
+\contentsline {figure}{\numberline {25}{\ignorespaces 物理引導損失函數示意圖}}{53}{figure.caption.33}%
+\contentsline {figure}{\numberline {26}{\ignorespaces 非同步通訊架構時序圖}}{57}{figure.caption.34}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {25}{\ignorespaces 模型訓練收斂曲線（共 150 Epoch）}}{54}{figure.caption.34}%
-\contentsline {figure}{\numberline {26}{\ignorespaces 測試集預測值與模擬標籤之散點圖（共 3,707,154 個樣本）}}{55}{figure.caption.36}%
-\contentsline {figure}{\numberline {27}{\ignorespaces 11 個時步（08:00--18:00）之逐時段驗證 $R^2$ 分佈}}{56}{figure.caption.37}%
-\contentsline {figure}{\numberline {28}{\ignorespaces 測試集 UTCI 熱壓力六等級分類混淆矩陣（正規化百分比）}}{57}{figure.caption.38}%
-\contentsline {figure}{\numberline {29}{\ignorespaces 測試場景空間 UTCI 熱壓力場比較（正午 12:00 時步）}}{57}{figure.caption.39}%
-\contentsline {figure}{\numberline {30}{\ignorespaces 典型場景輸入特徵場與 UTCI 輸出場空間分佈（正午時步）}}{58}{figure.caption.40}%
-\contentsline {figure}{\numberline {31}{\ignorespaces 消融實驗各變體 $R^2$（左）與 RMSE（右）比較圖。}}{60}{figure.caption.42}%
-\contentsline {figure}{\numberline {32}{\ignorespaces V4 真實場景資料集之訓練收斂曲線（損失、驗證 $R^2$、學習率排程）}}{63}{figure.caption.44}%
-\contentsline {figure}{\numberline {33}{\ignorespaces V4 真實場景測試集之預測值對真值散點圖與殘差分佈}}{63}{figure.caption.45}%
-\contentsline {figure}{\numberline {34}{\ignorespaces 以真實地理環境訓練之 PI-ST-GNN 於未見過真實測試場景之預測比較（14:00）：由左至右為真實 OSM 幾何、真值 UTCI（物理模擬）、模型預測、逐點誤差。}}{64}{figure.caption.46}%
+\contentsline {figure}{\numberline {27}{\ignorespaces 模型訓練收斂曲線}}{62}{figure.caption.36}%
+\contentsline {figure}{\numberline {28}{\ignorespaces 測試集預測值散點圖}}{63}{figure.caption.38}%
+\contentsline {figure}{\numberline {29}{\ignorespaces 逐時段驗證 $R^2$ 分佈}}{64}{figure.caption.39}%
+\contentsline {figure}{\numberline {30}{\ignorespaces 熱壓力等級分類混淆矩陣}}{65}{figure.caption.40}%
+\contentsline {figure}{\numberline {31}{\ignorespaces 空間 UTCI 熱壓力場比較}}{65}{figure.caption.41}%
+\contentsline {figure}{\numberline {32}{\ignorespaces 輸入特徵場與輸出場空間分佈}}{66}{figure.caption.42}%
+\contentsline {figure}{\numberline {33}{\ignorespaces 消融實驗各變體比較圖}}{68}{figure.caption.44}%
+\contentsline {figure}{\numberline {34}{\ignorespaces V4 訓練收斂曲線}}{71}{figure.caption.46}%
+\contentsline {figure}{\numberline {35}{\ignorespaces V4 測試集散點圖與殘差分佈}}{71}{figure.caption.47}%
+\contentsline {figure}{\numberline {36}{\ignorespaces 真實測試場景之預測比較}}{72}{figure.caption.48}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {35}{\ignorespaces NSGA-II 真實收斂結果（PI-ST-GNN V2 checkpoint 作為適應度求值器，族群 40、演化 50 代）}}{67}{figure.caption.47}%
-\contentsline {figure}{\numberline {36}{\ignorespaces PI-ST-GNN 之 GNNExplainer 事後可解釋性分析（場景 70，驗證 $R^2=0.9965$）}}{72}{figure.caption.48}%
+\contentsline {figure}{\numberline {37}{\ignorespaces 基準二目標 NSGA-II 收斂結果}}{75}{figure.caption.49}%
+\contentsline {figure}{\numberline {38}{\ignorespaces A/B/C 三種人行路線配置之三目標 NSGA-II 比較實驗}}{78}{figure.caption.50}%
+\contentsline {figure}{\numberline {39}{\ignorespaces 設計疊代示範：從建築輪廓輸入到計算輸出、再到設計回饋調整之閉環}}{80}{figure.caption.51}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Grasshopper 元件操作流程（1--8 步驟）}}{82}{figure.caption.52}%
+\contentsline {figure}{\numberline {41}{\ignorespaces GNNExplainer 可解釋性分析}}{84}{figure.caption.53}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsfinish 

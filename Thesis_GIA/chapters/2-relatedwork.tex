@@ -21,8 +21,8 @@
 
 \begin{figure}[htbp]
     \centering
-    \litfigbox{建議置入：都市街谷（Urban Canyon）之幾何與熱力／空氣動力學機制示意——涵蓋天空可見率（SVF）之短波遮擋、夜間長波輻射於窄峽谷內多重反射所致之熱遲滯與都市熱島效應（UHI），以及街谷高寬比 $H/W$ 所主導之下沖流與背風渦流帶之風場結構。可參考 \citet{oke1988street} 之街谷能量平衡與 \citet{erell2011urban} 之都市邊界層剖面示意。}
-    \caption{都市街谷幾何、熱島熱遲滯與空氣動力學機制之經典理論示意（預留文獻圖位）}
+    \includegraphics[width=0.92\textwidth]{../urban-thermal-gnn/04_training/figures/fig_lit_urbanform.png}
+    \caption[都市街谷幾何、熱島熱遲滯與空氣動力學機制示意]{都市街谷幾何、熱島熱遲滯與空氣動力學機制之經典理論示意：(a) 天空視角因子（SVF）之短波遮擋與夜間長波輻射多重反射所致之熱遲滯效應；(b) 街谷高寬比 $H/W$ 所主導之迎風下沖流與背風渦流帶風場結構。原創繪製，理論基礎參考 \citet{oke1987boundary} 與 \citet{erell2011urban}。}
     \label{fig:lit_urbanform}
 \end{figure}
 
@@ -44,8 +44,8 @@
 
 \begin{figure}[htbp]
     \centering
-    \litfigbox{建議置入兩子圖：(a) 戶外熱舒適之四項微氣候因素——空氣溫度 $T_a$、平均輻射溫度 $T_{\text{mrt}}$、風速 $v_a$、相對濕度 RH——經 Fiala 多節點人體熱生理模型合成 UTCI 之關係示意（可參考 \citet{fiala2011utci}）；(b) 台灣高溫濕氣候下都市戶外熱舒適之在地實證研究圖。\textbf{建議補充台灣本地文獻}：如林憲德、Lin \& Matzarakis 於台中／台南之戶外 PET 現地量測、黃瑞隆（Hwang）於校園與街谷之熱舒適現場研究等，作為 UTCI 於本地氣候適用性之佐證。}
-    \caption{UTCI 四項微氣候因素與台灣在地戶外熱舒適實證研究之對照（預留文獻圖位）}
+    \includegraphics[width=0.92\textwidth]{../urban-thermal-gnn/04_training/figures/fig_lit_utci_factors.png}
+    \caption[UTCI 生理學合成基礎與台灣在地熱壓力分級對照]{UTCI 之生理學合成基礎與台灣在地熱壓力分級對照：(a) 戶外熱舒適之四項微氣候因素——空氣溫度 $T_a$、平均輻射溫度 $T_{\text{mrt}}$、風速 $v_a$、相對濕度 RH——經 Fiala 多節點人體熱生理模型合成 UTCI 之關係示意 \citep{fiala2011utci}；(b) UTCI 六等熱壓力分級，並標註台灣夏至正午街谷之實測熱壓力常態範圍 \citep{su2023outdoor}。原創繪製。}
     \label{fig:lit_utci_factors}
 \end{figure}
 
@@ -92,8 +92,8 @@
 
 \begin{figure}[htbp]
     \centering
-    \litfigbox{建議置入：傳統歐幾里得機器學習（規則體素／像素網格上之 CNN、或以扁平特徵向量輸入之隨機森林）與異質圖神經網路（將建物、空氣節點、喬木編碼為相異節點類型，並以幾何毗鄰、對流、遮蔽、蒸散等異質邊編碼物理因果）於都市微氣候建模上之資料表徵對比示意。可參考 \citet{kipf2017semi} 之圖卷積訊息傳遞、\citet{schlichtkrull2018modeling} 之關係圖卷積，以及 \citet{xin2025urbangraph} 之異質因果拓撲。}
-    \caption{異質圖神經網路與傳統歐幾里得機器學習於都市微氣候建模之表徵對比（預留文獻圖位）}
+    \includegraphics[width=0.92\textwidth]{../urban-thermal-gnn/04_training/figures/fig_lit_gnn_vs_ml.png}
+    \caption[異質圖神經網路與傳統歐幾里得機器學習之表徵對比]{異質圖神經網路與傳統歐幾里得機器學習於都市微氣候建模之資料表徵對比：(a) 傳統歐幾里得表徵（規則體素／像素網格 CNN、或扁平特徵向量輸入之隨機森林），多數網格為無意義之空節點；(b) 異質圖表徵，將建物、空氣、喬木編碼為相異節點類型，並以遮蔽、對流、蒸散、語義等異質邊編碼物理因果關係。原創繪製，理論基礎參考 \citet{kipf2017semi}、\citet{schlichtkrull2018modeling} 與 \citet{xin2025urbangraph}。}
     \label{fig:lit_gnn_vs_ml}
 \end{figure}
 

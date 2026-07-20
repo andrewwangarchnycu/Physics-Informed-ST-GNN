@@ -21,7 +21,7 @@
 {
   "sensor_pts":   (N, 2) float32         # [REMOVED_ZH:5]
   "obj_feat":     (N_obj, 7) float32     # [REMOVED_ZH:6]
-  "air_feat":     (N_air, T, 8) float32  # [REMOVED_ZH:6]
+  "air_feat":     (N_air, T, 9) float32  # [REMOVED_ZH:6] (V2+/V4 dim_air=9; includes surface-temp feature)
   "static_edges": {"contiguity": (2,E),  # KNN air-air [REMOVED_ZH:1]（[REMOVED_ZH:1] N_obj offset）
                    "semantic":  (2,E2)}  # fully-connected obj-obj [REMOVED_ZH:1]
 }
@@ -391,7 +391,7 @@ class GNNInputBuilder:
 
     SIM_HOURS = list(range(8, 19))   # 8:00 – 18:00, T=11
 
-    def __init__(self, norm_stats: dict, epw_data, dim_air: int = 8,
+    def __init__(self, norm_stats: dict, epw_data, dim_air: int = 9,
                  canopy_loader=None, osm_loader=None):
         self.norm_stats     = norm_stats
         self.epw_data       = epw_data

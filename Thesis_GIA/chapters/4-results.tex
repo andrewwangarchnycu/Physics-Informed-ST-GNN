@@ -46,22 +46,21 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
     \end{tabular}
 \end{table}
 
-學習率排程採用 ReduceLROnPlateau 策略：當驗證損失在連續 10 個 Epoch 未見改善時，學習率縮減為原來的 0.5 倍。實際訓練中，學習率於第 43 Epoch 前後首次觸發衰減（從 $10^{-3}$ 降至 $5 \times 10^{-4}$），並在整個訓練過程中逐步衰減至約 $7.8 \times 10^{-6}$，模型共訓練 150 個 Epoch 後收斂，最終驗證 $R^2$ 達到約 \textbf{0.9965}，驗證損失（MSE 正規化空間）降至約 \textbf{0.0082}。
-
+學習率排程採用 ReduceLROnPlateau 策略：當驗證損失在連續 10 個 Epoch 未見改善時，學習率縮減為原來的 0.5 倍。實際訓練中，學習率於第 51、65、81、104 Epoch 觸發四次衰減（自 $10^{-3}$ 逐步降至 $6.25 \times 10^{-5}$），模型於第 113 Epoch 因連續 20 個 Epoch 無改善觸發早停（Early Stopping）而結束訓練，最佳權重取自第 \textbf{93} Epoch，驗證 $R^2$ 達到 \textbf{0.9963}，驗證損失（MSE 正規化空間）降至 \textbf{0.0083}。
 
 \subsection{訓練曲線與收斂特性}
 \label{subsec:convergence}
 
-圖~\ref{fig:training_curves} 展示訓練損失、驗證損失與驗證 $R^2$ 之逐 Epoch 演化曲線，其分段特性揭示模型學習都市微氣候映射關係的三個階段：初期（前 20 個 Epoch）驗證 $R^2$ 由 0.90 急速上升至 0.99 以上，顯示模型迅速掌握場景幾何與熱壓力間的基本映射；中期（Epoch 20--80）$R^2$ 在 0.993--0.997 區間內緩步精調，對應學習率階梯式衰減後的細緻收斂；後期（Epoch 80 後）訓練與驗證損失同步趨於平穩，未見發散，確認物理資訊損失函數對解空間提供了有效的正則化，模型未發生過擬合。
+圖~\ref{fig:training_curves} 展示訓練損失、驗證損失與驗證 $R^2$ 之逐 Epoch 演化曲線，其分段特性揭示模型學習都市微氣候映射關係的三個階段：初期（前 10 個 Epoch）驗證 $R^2$ 由 0.89 急速上升至 0.98 以上，顯示模型迅速掌握異質圖節點特徵與熱壓力間的基本映射；中期（Epoch 10--50）$R^2$ 於 0.98--0.996 區間內波動精調，對應四種物理管道（陰影、植被蒸散、對流、空間毗鄰）之關係權重逐步分化學習；後期（Epoch 50 後）訓練與驗證損失同步趨於平穩收斂，驗證 $R^2$ 穩定於 0.996 附近，未見發散，確認物理資訊損失函數對解空間提供了有效的正則化，模型未發生過擬合。
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figA_training_curves.png}
-    \caption{模型訓練收斂曲線（共 150 Epoch）}
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figA_training_curves_dynedges.png}
+    \caption[模型訓練收斂曲線]{模型訓練收斂曲線（共 113 Epoch，早停於最佳 Epoch 93）}
     \label{fig:training_curves}
 \end{figure}
 
-上圖上半部為訓練損失（藍）與驗證損失（橘）之逐 Epoch MSE 演化，灰色垂直線標示學習率衰減時間點；下半部為驗證 $R^2$ 逐 Epoch 提升曲線，最終收斂至 $R^2 \approx 0.9965$。
+上圖上半部為訓練損失（藍）與驗證損失（橘）之逐 Epoch MSE 演化，灰色垂直線標示學習率衰減時間點；下半部為驗證 $R^2$ 逐 Epoch 提升曲線，最終收斂至最佳 $R^2 = 0.9963$（Epoch 93，紅點標示）。
 
 
 \section{測試集量化評估結果}
@@ -74,28 +73,28 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 
 \begin{table}[htbp]
     \centering
-    \caption{PI-ST-GNN 測試集評估結果（共 3,707,154 預測點次）}
+    \caption[測試集評估結果]{PI-ST-GNN 測試集評估結果（共 3,707,154 預測點次）}
     \label{tab:main_results}
     \small
     \begin{tabular}{lcccc}
         \toprule
         \textbf{指標} & \textbf{$R^2$} & \textbf{RMSE（°C）} & \textbf{MAE（°C）} & \textbf{等級準確率} \\
         \midrule
-        PI-ST-GNN（本研究） & \textbf{0.9957} & \textbf{0.194} & \textbf{0.104} & \textbf{98.3\%} \\
+        PI-ST-GNN（本研究） & \textbf{0.9956} & \textbf{0.197} & \textbf{0.105} & \textbf{98.3\%} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-四項指標對應四個不同的設計輔助情境，缺一不可：決定係數 $R^2 = 0.9957$ 代表模型能解釋 UTCI 變異量的 99.57\%，超過一般代理模型部署所需之 $R^2 > 0.99$ 門檻 \citep{westermann2019surrogate}；均方根誤差 RMSE $= 0.194\,^\circ\text{C}$（去正規化後之實際溫度單位）遠小於 UTCI 熱壓力等級間距（最小間距 $6\,^\circ\text{C}$），確保等級判斷之邊界不因模型誤差而錯置 \citep{fiala2011utci}；平均絕對誤差 MAE $= 0.104\,^\circ\text{C}$ 低於 RMSE，反映多數評估點具有極高逐點精確度、少數離群值未顯著拉高整體偏差；熱壓力等級分類準確率 98.3\% 則是實際設計輔助情境下最直接相關的指標——建築師關心的通常不是溫度小數點後第二位，而是某一開放空間是否落在「強烈」或「極端」熱壓力等級。
+四項指標對應四個不同的設計輔助情境，缺一不可：決定係數 $R^2 = 0.9956$ 代表模型能解釋 UTCI 變異量的 99.56\%，超過一般代理模型部署所需之 $R^2 > 0.99$ 門檻 \citep{westermann2019surrogate}；均方根誤差 RMSE $= 0.197\,^\circ\text{C}$（去正規化後之實際溫度單位）遠小於 UTCI 熱壓力等級間距（最小間距 $6\,^\circ\text{C}$），確保等級判斷之邊界不因模型誤差而錯置 \citep{fiala2011utci}；平均絕對誤差 MAE $= 0.105\,^\circ\text{C}$ 低於 RMSE，反映多數評估點具有極高逐點精確度、少數離群值未顯著拉高整體偏差；熱壓力等級分類準確率 98.3\% 則是實際設計輔助情境下最直接相關的指標——建築師關心的通常不是溫度小數點後第二位，而是某一開放空間是否落在「強烈」或「極端」熱壓力等級。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figB_scatter_test.png}
-    \caption{測試集預測值與模擬標籤之散點圖（共 3,707,154 個樣本）}
+    \caption[測試集預測值散點圖]{測試集預測值與模擬標籤之散點圖（共 3,707,154 個樣本）}
     \label{fig:scatter_test}
 \end{figure}
 
-上圖點雲緊密分佈於對角線 $y=x$ 附近，色彩代表密度（黃色為高密度區域）；$R^2=0.9957$ 之線性擬合結果顯示模型在全 UTCI 值域（9--60°C）內均具優秀的預測一致性。
+上圖點雲緊密分佈於對角線 $y=x$ 附近，色彩代表密度（黃色為高密度區域），圖中所示分布形態與表~\ref{tab:main_results}修正後管線之 $R^2=0.9956$ 一致，顯示模型在全 UTCI 值域（9--60°C）內均具優秀的預測一致性\footnote{本圖、圖~\ref{fig:hourly_r2}、圖~\ref{fig:confusion}三張散點/混淆矩陣視覺化沿用修正前 checkpoints\_v2\_fixed 之推論輸出繪製（$R^2=0.9957$），與修正後 checkpoints\_v2\_dynedges 之 $R^2=0.9956$ 差異僅在小數點後第四位，分布形態實質上難以區分，故未重新繪製；表格與正文引用之數值已全部更新為修正後管線之結果，見附錄~\ref{appx:dynamic_edges_fix}。}。
 
 
 \subsection{逐時段預測精確度分析}
@@ -106,7 +105,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figC_hourly_r2.png}
-    \caption{11 個時步（08:00--18:00）之逐時段驗證 $R^2$ 分佈}
+    \caption[逐時段驗證 $R^2$ 分佈]{11 個時步（08:00--18:00）之逐時段驗證 $R^2$ 分佈}
     \label{fig:hourly_r2}
 \end{figure}
 
@@ -119,7 +118,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.65\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figD_confusion_matrix.png}
-    \caption{測試集 UTCI 熱壓力六等級分類混淆矩陣（正規化百分比）}
+    \caption[熱壓力等級分類混淆矩陣]{測試集 UTCI 熱壓力六等級分類混淆矩陣（正規化百分比）}
     \label{fig:confusion}
 \end{figure}
 
@@ -134,7 +133,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/viz_output/training/figE_spatial_comparison.png}
-    \caption{測試場景空間 UTCI 熱壓力場比較（正午 12:00 時步）}
+    \caption[空間 UTCI 熱壓力場比較]{測試場景空間 UTCI 熱壓力場比較（正午 12:00 時步）}
     \label{fig:spatial_comparison}
 \end{figure}
 
@@ -145,7 +144,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_geo6_feature_fields.png}
-    \caption{典型場景輸入特徵場與 UTCI 輸出場空間分佈（正午時步）}
+    \caption[輸入特徵場與輸出場空間分佈]{典型場景輸入特徵場與 UTCI 輸出場空間分佈（正午時步）}
     \label{fig:feature_fields}
 \end{figure}
 
@@ -178,7 +177,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 
 \begin{table}[htbp]
     \centering
-    \caption{消融實驗量化結果比較（測試集，3,707,154 預測點次）}
+    \caption[消融實驗量化結果比較]{消融實驗量化結果比較（測試集，3,707,154 預測點次）}
     \label{tab:ablation}
     \footnotesize
     \begin{tabular}{lccccp{2.8cm}}
@@ -191,7 +190,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
         A5（$+\mathcal{L}_{\text{temp}}$）& 0.9956 & 0.197 & 0.108 & 98.1\% & A4 + 時序約束 \\
         A6（完整模型）      & 0.9956 & 0.196 & 0.105 & 98.2\% & A5 + 風場約束 \\
         \midrule
-        \textbf{最終（再訓練）} & \textbf{0.9957} & \textbf{0.194} & \textbf{0.104} & \textbf{98.3\%} & 完整 PI-ST-GNN \\
+        \textbf{最終（再訓練）} & \textbf{0.9956} & \textbf{0.197} & \textbf{0.105} & \textbf{98.3\%} & 完整 PI-ST-GNN \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -199,7 +198,7 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{../urban-thermal-gnn/04_training/figures/fig8_ablation.png}
-    \caption{消融實驗各變體 $R^2$（左）與 RMSE（右）比較圖。}
+    \caption[消融實驗各變體比較圖]{消融實驗各變體 $R^2$（左）與 RMSE（右）比較圖。}
     \label{fig:ablation}
 \end{figure}
 
@@ -207,9 +206,11 @@ PI-ST-GNN 之訓練遵循下列配置，詳見表~\ref{tab:training_config}：
 \subsection{消融結果討論：數值精度與物理可信賴性的取捨}
 \label{subsec:ablation_discussion}
 
-A0 在 $R^2$ 與 RMSE 上取得各變體中最佳的數值表現（$R^2=0.9991$, RMSE$=0.091$°C），此現象初看似乎反直覺——不具空間圖結構的純 MLP，為何優於本研究之完整提案架構？三個因素共同解釋此結果：其一，本資料集之 300 個場景均在相同氣候日（夏至）、相同場地尺度（$80\times80$m）下生成，UTCI 之主要變異量由太陽高度角（時間）與節點座標（位置）共同決定，此一高度規律性的映射任務本身即適合純 MLP 之全局統計擬合；其二，A0 缺乏物理約束，其預測可能違反輻射陰影之空間一致性（即輸出「陰影區比日照區更熱」的物理悖論），此類違反對整體 RMSE 的拉抬有限，卻對建築設計決策構成誤導風險，而此風險無法被 $R^2$ 或 RMSE 這類彙總指標捕捉；其三，RGCN 的訊息聚合機制引入鄰域平均效應，相當於一種空間正則化，使模型局部預測更為平滑，但也略微提高了全局 RMSE。
+圖~\ref{fig:ablation} 以長條圖並列呈現各變體之 $R^2$（左）與 RMSE（右），A0 在兩項數值指標上均取得各變體中最佳的表現（$R^2=0.9991$, RMSE$=0.091$°C），此現象初看似乎反直覺——不具空間圖結構的純 MLP，為何優於本研究之完整提案架構？三個因素共同解釋此結果：其一，本資料集之 300 個場景均在相同氣候日（夏至）、相同場地尺度（$80\times80$m）下生成，UTCI 之主要變異量由太陽高度角（時間）與節點座標（位置）共同決定，此一高度規律性的映射任務本身即適合純 MLP 之全局統計擬合；其二，A0 缺乏物理約束，其預測可能違反輻射陰影之空間一致性（即輸出「陰影區比日照區更熱」的物理悖論），此類違反對整體 RMSE 的拉抬有限，卻對建築設計決策構成誤導風險，而此風險無法被 $R^2$ 或 RMSE 這類彙總指標捕捉；其三，RGCN 的訊息聚合機制引入鄰域平均效應，相當於一種空間正則化，使模型局部預測更為平滑，但也略微提高了全局 RMSE。
 
 從 A3 至 A6 逐步加入物理損失，整體 RMSE 並未呈現單調改善（A4 之 RMSE 反優於 A5、A6），但每項約束各自針對特定的熱力學一致性問題發揮作用：$\mathcal{L}_{\text{rad}}$ 之加入（A3$\to$A4）強制模型學習陰影梯度之方向性，改善局部輻射一致性；$\mathcal{L}_{\text{temp}}$ 之加入（A4$\to$A5）防止逐時預測出現非物理跳躍，改善時序軌跡的熱慣性自洽性；$\mathcal{L}_{\text{wind}}$ 之加入（A5$\to$A6）約束高層建築背風側之熱累積極端值，改善風場阻滯情境的物理合理性。這些一致性提升難以被純數值指標捕捉，卻是建築師採信模型輸出、將其用於實際設計決策之前提。換言之，完整 PI-ST-GNN 以輕微的數值精度犧牲，換取設計輔助工具最不可或缺的特質：預測結果在物理上站得住腳。
+
+須誠實說明者：A0、A3--A6 五個消融變體之訓練，早於附錄~\ref{appx:dynamic_edges_fix}所記錄之 \texttt{shadow}／\texttt{veg\_et}／\texttt{convective} 動態邊修正，故其異質圖訊息傳遞實際上僅透過 \texttt{semantic} 與 \texttt{contiguity} 兩類靜態邊進行（即表~\ref{tab:main_results}修正前之管線狀態）。此一限制不影響本節之消融結論本身——五個變體彼此僅在物理損失項組合上有差異，圖結構部分完全一致，故變體間之相對比較仍屬內部一致；但其絕對數值不應直接與表~\ref{tab:main_results}、表~\ref{tab:ablation}末列已重新訓練之最終模型（修正後管線）逐位比較。完整重新執行五組消融訓練列為後續工作。
 
 
 \section{推理效能對互動式設計工作流之意義}
@@ -222,7 +223,7 @@ A0 在 $R^2$ 與 RMSE 上取得各變體中最佳的數值表現（$R^2=0.9991$,
 
 \begin{table}[htbp]
     \centering
-    \caption{GNN 推理延遲基準測試（RTX 5070 Ti, 200 次重複）}
+    \caption[推理延遲基準測試]{GNN 推理延遲基準測試（RTX 5070 Ti, 200 次重複）}
     \label{tab:timing}
     \small
     \begin{tabular}{lccc}
@@ -257,7 +258,7 @@ A0 在 $R^2$ 與 RMSE 上取得各變體中最佳的數值表現（$R^2=0.9991$,
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/viz_output/training_v4/figA_training_curves.png}
-    \caption{V4 真實場景資料集之訓練收斂曲線（損失、驗證 $R^2$、學習率排程）}
+    \caption[V4 訓練收斂曲線]{V4 真實場景資料集之訓練收斂曲線（損失、驗證 $R^2$、學習率排程）}
     \label{fig:v4_curves}
 \end{figure}
 
@@ -266,7 +267,7 @@ A0 在 $R^2$ 與 RMSE 上取得各變體中最佳的數值表現（$R^2=0.9991$,
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{../urban-thermal-gnn/04_training/viz_output/training_v4/figB_scatter_test.png}
-    \caption{V4 真實場景測試集之預測值對真值散點圖與殘差分佈}
+    \caption[V4 測試集散點圖與殘差分佈]{V4 真實場景測試集之預測值對真值散點圖與殘差分佈}
     \label{fig:v4_scatter}
 \end{figure}
 
@@ -275,14 +276,14 @@ A0 在 $R^2$ 與 RMSE 上取得各變體中最佳的數值表現（$R^2=0.9991$,
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_real_scene_comparison.png}
-    \caption{以真實地理環境訓練之 PI-ST-GNN 於未見過真實測試場景之預測比較（14:00）：由左至右為真實 OSM 幾何、真值 UTCI（物理模擬）、模型預測、逐點誤差。}
+    \caption[真實測試場景之預測比較]{以真實地理環境訓練之 PI-ST-GNN 於未見過真實測試場景之預測比較（14:00）：由左至右為真實 OSM 幾何、真值 UTCI（物理模擬）、模型預測、逐點誤差。}
     \label{fig:v4_comparison}
 \end{figure}
 
-須誠實對照者：V4 之 $R^2 = 0.9875$ 略低於前述程序化資料集之 $0.9957$，此差異為合理且可預期——真實 OSM 幾何、真實 IoT 觀測本身即含更高之雜訊與異質性（如感測器故障、樓高標籤稀疏、單一氣象站空間代表性等，詳見資料集限制說明）。然而模型於\textbf{未見過之真實場景}上仍維持 RMSE 僅 $0.51\,^\circ\text{C}$、遠小於 UTCI 熱壓力等級間距，此為模型真實世界一般化可信度之直接證據，補足了純程序化資料集無法回答之外部效度問題。兩套資料集之結果為獨立之驗證，不應混為單一數值。
+須誠實對照者：V4 之 $R^2 = 0.9875$ 略低於前述程序化資料集之 $0.9956$，此差異為合理且可預期——真實 OSM 幾何、真實 IoT 觀測本身即含更高之雜訊與異質性（如感測器故障、樓高標籤稀疏、單一氣象站空間代表性等，詳見資料集限制說明）。然而模型於\textbf{未見過之真實場景}上仍維持 RMSE 僅 $0.51\,^\circ\text{C}$、遠小於 UTCI 熱壓力等級間距，此為模型真實世界一般化可信度之直接證據，補足了純程序化資料集無法回答之外部效度問題。兩套資料集之結果為獨立之驗證，不應混為單一數值。
 
 
 \section{小結}
 \label{sec:chapter4_summary}
 
-本章以測試集量化評估、消融實驗與推理效能基準測試，驗證了 PI-ST-GNN 作為都市微氣候代理模型之有效性與可信賴性。完整模型在 3,707,154 個測試樣本上達到 $R^2=0.9957$、RMSE$=0.194$°C、熱壓力等級分類準確率 98.3\%；消融實驗進一步揭示，純數值指標上表現最佳的 MLP 基準線，缺乏圖結構與物理約束所提供的空間因果建模能力與預測物理一致性，而完整 PI-ST-GNN 以輕微數值犧牲換取了設計輔助工具不可或缺的熱力學可信賴性；代理模型將單次適應度求值壓縮至可即時互動之時間量級，則為第~\ref{chapter:results}章之多目標最佳化與熱舒適人行動線評估，提供了得以整合入設計操作流程之核心運算引擎。此外，第~\ref{sec:v4_validation}節以完全真實地理資訊與實測 IoT 氣象驅動之 300 場景資料集重新訓練與驗證，於未見過之真實場景上達 $R^2=0.9875$、RMSE$=0.51\,^\circ\text{C}$，補足了模型真實世界一般化可信度之外部效度證據。
+本章以測試集量化評估、消融實驗與推理效能基準測試，驗證了 PI-ST-GNN 作為都市微氣候代理模型之有效性與可信賴性。完整模型（修正後管線，附錄~\ref{appx:dynamic_edges_fix}）在 3,707,154 個測試樣本上達到 $R^2=0.9956$、RMSE$=0.197$°C、熱壓力等級分類準確率 98.3\%；消融實驗進一步揭示，純數值指標上表現最佳的 MLP 基準線，缺乏圖結構與物理約束所提供的空間因果建模能力與預測物理一致性，而完整 PI-ST-GNN 以輕微數值犧牲換取了設計輔助工具不可或缺的熱力學可信賴性；代理模型將單次適應度求值壓縮至可即時互動之時間量級，則為第~\ref{chapter:results}章之多目標最佳化與熱舒適人行動線評估，提供了得以整合入設計操作流程之核心運算引擎。此外，第~\ref{sec:v4_validation}節以完全真實地理資訊與實測 IoT 氣象驅動之 300 場景資料集重新訓練與驗證，於未見過之真實場景上達 $R^2=0.9875$、RMSE$=0.51\,^\circ\text{C}$，補足了模型真實世界一般化可信度之外部效度證據。

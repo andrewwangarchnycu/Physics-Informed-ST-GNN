@@ -37,8 +37,15 @@ sys.path.insert(0, str(_ROOT / "02_graph_construction"))
 OUT_DIR = _HERE / "outputs"
 OUT_DIR.mkdir(exist_ok=True)
 
-CKPT_PATH   = _ROOT / "checkpoints_v2_fixed" / "best_model.pt"
-H5_PATH     = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
+_CKPT_V4    = _ROOT / "04_training" / "checkpoints_v4" / "best_model.pt"
+_CKPT_V2    = _ROOT / "checkpoints_v2_fixed" / "best_model.pt"
+CKPT_PATH   = _CKPT_V4 if _CKPT_V4.exists() else _CKPT_V2
+_H5_V4      = _ROOT / "01_data_generation/outputs/real_simulations_v4/ground_truth_v4.h5"
+_H5_LEGACY  = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
+H5_PATH     = _H5_V4 if _H5_V4.exists() else _H5_LEGACY
+# Real CWB weather-forcing sequence for the LSTM's env/time embedding -- this
+# is version-independent (same physical 2025 weather data used across
+# V1-V4), so it is NOT swapped when the checkpoint/H5 version changes.
 EPW_PKL_PATH= _ROOT / "01_data_generation/outputs/raw_simulations/epw_data.pkl"
 DEVICE      = "cuda" if torch.cuda.is_available() else "cpu"
 
