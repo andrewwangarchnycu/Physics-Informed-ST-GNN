@@ -1,0 +1,7252 @@
+{
+  "anchor": {
+    "lat": 24.78805,
+    "lon": 120.99754
+  },
+  "region_bbox": {
+    "lat_min": 23.95,
+    "lat_max": 25.1,
+    "lon_min": 120.55,
+    "lon_max": 121.3
+  },
+  "criteria": {
+    "min_buildings": 3,
+    "min_height_tag_frac": 0.5,
+    "min_landuse_classes": 2,
+    "min_canopy_pixels": 1,
+    "iot_max_dist_m": 150.0
+  },
+  "n_zones_tried": 1568,
+  "n_total_qualified": 304,
+  "n_selected": 300,
+  "sites": [
+    {
+      "lat": 24.2753,
+      "lon": 120.77706,
+      "n_buildings": 595,
+      "n_buildings_ctx120": 208,
+      "height_tag_frac": 0.602,
+      "ctx_height_tag_frac": 0.76,
+      "n_real_height_buildings_ctx": 158,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 484.5
+    },
+    {
+      "lat": 24.922771,
+      "lon": 121.1777,
+      "n_buildings": 280,
+      "n_buildings_ctx120": 76,
+      "height_tag_frac": 0.55,
+      "ctx_height_tag_frac": 0.974,
+      "n_real_height_buildings_ctx": 74,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 19,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 235.9
+    },
+    {
+      "lat": 24.265402,
+      "lon": 120.80815,
+      "n_buildings": 106,
+      "n_buildings_ctx120": 41,
+      "height_tag_frac": 0.792,
+      "ctx_height_tag_frac": 0.78,
+      "n_real_height_buildings_ctx": 32,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 107.4
+    },
+    {
+      "lat": 24.165442,
+      "lon": 120.68084,
+      "n_buildings": 446,
+      "n_buildings_ctx120": 44,
+      "height_tag_frac": 0.93,
+      "ctx_height_tag_frac": 0.705,
+      "n_real_height_buildings_ctx": 31,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 104.5
+    },
+    {
+      "lat": 24.92526,
+      "lon": 121.17425,
+      "n_buildings": 91,
+      "n_buildings_ctx120": 21,
+      "height_tag_frac": 0.637,
+      "ctx_height_tag_frac": 0.714,
+      "n_real_height_buildings_ctx": 15,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 44,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 65.6
+    },
+    {
+      "lat": 24.922852,
+      "lon": 121.173004,
+      "n_buildings": 138,
+      "n_buildings_ctx120": 23,
+      "height_tag_frac": 0.478,
+      "ctx_height_tag_frac": 0.652,
+      "n_real_height_buildings_ctx": 15,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 62.5
+    },
+    {
+      "lat": 24.172478,
+      "lon": 120.72203,
+      "n_buildings": 93,
+      "n_buildings_ctx120": 31,
+      "height_tag_frac": 0.634,
+      "ctx_height_tag_frac": 0.516,
+      "n_real_height_buildings_ctx": 16,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 56.800000000000004
+    },
+    {
+      "lat": 24.813787,
+      "lon": 121.031136,
+      "n_buildings": 55,
+      "n_buildings_ctx120": 18,
+      "height_tag_frac": 0.327,
+      "ctx_height_tag_frac": 0.778,
+      "n_real_height_buildings_ctx": 14,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 75,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 55.1
+    },
+    {
+      "lat": 24.270391,
+      "lon": 120.796814,
+      "n_buildings": 50,
+      "n_buildings_ctx120": 18,
+      "height_tag_frac": 0.82,
+      "ctx_height_tag_frac": 0.833,
+      "n_real_height_buildings_ctx": 15,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 51.300000000000004
+    },
+    {
+      "lat": 24.925766,
+      "lon": 121.170334,
+      "n_buildings": 88,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.727,
+      "ctx_height_tag_frac": 0.8,
+      "n_real_height_buildings_ctx": 12,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 49.3
+    },
+    {
+      "lat": 24.099712,
+      "lon": 120.67848,
+      "n_buildings": 198,
+      "n_buildings_ctx120": 20,
+      "height_tag_frac": 0.056,
+      "ctx_height_tag_frac": 0.3,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 13,
+      "nearest_iot_dist_m": 0.0,
+      "score": 48.7
+    },
+    {
+      "lat": 24.17622,
+      "lon": 120.64077,
+      "n_buildings": 176,
+      "n_buildings_ctx120": 17,
+      "height_tag_frac": 0.841,
+      "ctx_height_tag_frac": 0.824,
+      "n_real_height_buildings_ctx": 14,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 48.5
+    },
+    {
+      "lat": 24.8033,
+      "lon": 120.9665,
+      "n_buildings": 66,
+      "n_buildings_ctx120": 24,
+      "height_tag_frac": 0.258,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 12,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 45.7
+    },
+    {
+      "lat": 24.805618,
+      "lon": 120.971725,
+      "n_buildings": 182,
+      "n_buildings_ctx120": 26,
+      "height_tag_frac": 0.352,
+      "ctx_height_tag_frac": 0.269,
+      "n_real_height_buildings_ctx": 7,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 9,
+      "nearest_iot_dist_m": 0.0,
+      "score": 44.400000000000006
+    },
+    {
+      "lat": 24.16819,
+      "lon": 120.69558,
+      "n_buildings": 390,
+      "n_buildings_ctx120": 40,
+      "height_tag_frac": 0.267,
+      "ctx_height_tag_frac": 0.25,
+      "n_real_height_buildings_ctx": 10,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 44.1
+    },
+    {
+      "lat": 24.7853,
+      "lon": 121.0192,
+      "n_buildings": 62,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.952,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 12,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 43.9
+    },
+    {
+      "lat": 24.979776,
+      "lon": 121.24898,
+      "n_buildings": 52,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.308,
+      "ctx_height_tag_frac": 0.636,
+      "n_real_height_buildings_ctx": 7,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 10,
+      "nearest_iot_dist_m": 0.0,
+      "score": 43.800000000000004
+    },
+    {
+      "lat": 24.93119,
+      "lon": 121.1721,
+      "n_buildings": 57,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.702,
+      "ctx_height_tag_frac": 0.818,
+      "n_real_height_buildings_ctx": 9,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 37.300000000000004
+    },
+    {
+      "lat": 24.133469,
+      "lon": 120.60876,
+      "n_buildings": 44,
+      "n_buildings_ctx120": 14,
+      "height_tag_frac": 0.75,
+      "ctx_height_tag_frac": 0.643,
+      "n_real_height_buildings_ctx": 9,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 41,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 35.9
+    },
+    {
+      "lat": 24.168043,
+      "lon": 120.71187,
+      "n_buildings": 203,
+      "n_buildings_ctx120": 42,
+      "height_tag_frac": 0.089,
+      "ctx_height_tag_frac": 0.19,
+      "n_real_height_buildings_ctx": 8,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 35.3
+    },
+    {
+      "lat": 24.170557,
+      "lon": 120.66281,
+      "n_buildings": 213,
+      "n_buildings_ctx120": 45,
+      "height_tag_frac": 0.192,
+      "ctx_height_tag_frac": 0.178,
+      "n_real_height_buildings_ctx": 8,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 34.6
+    },
+    {
+      "lat": 24.274677,
+      "lon": 120.783165,
+      "n_buildings": 163,
+      "n_buildings_ctx120": 36,
+      "height_tag_frac": 0.202,
+      "ctx_height_tag_frac": 0.194,
+      "n_real_height_buildings_ctx": 7,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 32.0
+    },
+    {
+      "lat": 24.17482,
+      "lon": 120.69328,
+      "n_buildings": 341,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.302,
+      "ctx_height_tag_frac": 0.818,
+      "n_real_height_buildings_ctx": 9,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 31.4
+    },
+    {
+      "lat": 24.167788,
+      "lon": 120.693924,
+      "n_buildings": 504,
+      "n_buildings_ctx120": 101,
+      "height_tag_frac": 0.347,
+      "ctx_height_tag_frac": 0.059,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 31.2
+    },
+    {
+      "lat": 24.140171,
+      "lon": 120.68888,
+      "n_buildings": 32,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.75,
+      "ctx_height_tag_frac": 0.889,
+      "n_real_height_buildings_ctx": 8,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 22,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 30.0
+    },
+    {
+      "lat": 24.92105,
+      "lon": 121.172516,
+      "n_buildings": 135,
+      "n_buildings_ctx120": 25,
+      "height_tag_frac": 0.23,
+      "ctx_height_tag_frac": 0.16,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 29.5
+    },
+    {
+      "lat": 24.82897,
+      "lon": 121.02425,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.118,
+      "ctx_height_tag_frac": 0.444,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 90,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 28.8
+    },
+    {
+      "lat": 24.924925,
+      "lon": 121.176254,
+      "n_buildings": 71,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.676,
+      "ctx_height_tag_frac": 0.417,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 28.5
+    },
+    {
+      "lat": 24.830832,
+      "lon": 121.23378,
+      "n_buildings": 44,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.795,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 38,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 27.0
+    },
+    {
+      "lat": 24.984488,
+      "lon": 121.24417,
+      "n_buildings": 71,
+      "n_buildings_ctx120": 13,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 11,
+      "nearest_iot_dist_m": 0.0,
+      "score": 26.0
+    },
+    {
+      "lat": 24.807,
+      "lon": 120.9404,
+      "n_buildings": 24,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.583,
+      "ctx_height_tag_frac": 0.75,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 24,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 26.0
+    },
+    {
+      "lat": 24.141905,
+      "lon": 120.69173,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.5,
+      "ctx_height_tag_frac": 0.8,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 69,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 25.9
+    },
+    {
+      "lat": 24.161688,
+      "lon": 120.67926,
+      "n_buildings": 259,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.958,
+      "ctx_height_tag_frac": 0.778,
+      "n_real_height_buildings_ctx": 7,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 25.1
+    },
+    {
+      "lat": 24.984251,
+      "lon": 121.24775,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 11,
+      "nearest_iot_dist_m": 0.0,
+      "score": 24.5
+    },
+    {
+      "lat": 25.046625,
+      "lon": 121.134995,
+      "n_buildings": 51,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.039,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 59,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 24.099999999999998
+    },
+    {
+      "lat": 24.864866,
+      "lon": 120.96494,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.636,
+      "ctx_height_tag_frac": 0.857,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 26,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 24.0
+    },
+    {
+      "lat": 24.79648,
+      "lon": 120.96669,
+      "n_buildings": 29,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.241,
+      "ctx_height_tag_frac": 0.833,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.8
+    },
+    {
+      "lat": 24.17429,
+      "lon": 120.62181,
+      "n_buildings": 61,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.197,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 46,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.6
+    },
+    {
+      "lat": 24.16784,
+      "lon": 120.72264,
+      "n_buildings": 56,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.232,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 32,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.2
+    },
+    {
+      "lat": 25.047983,
+      "lon": 121.136604,
+      "n_buildings": 47,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 53,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.1
+    },
+    {
+      "lat": 24.173115,
+      "lon": 120.64497,
+      "n_buildings": 45,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.4,
+      "ctx_height_tag_frac": 0.545,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.099999999999998
+    },
+    {
+      "lat": 24.88786,
+      "lon": 121.18785,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.105,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 34,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 23.0
+    },
+    {
+      "lat": 24.172264,
+      "lon": 120.67598,
+      "n_buildings": 133,
+      "n_buildings_ctx120": 17,
+      "height_tag_frac": 0.383,
+      "ctx_height_tag_frac": 0.294,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 22.6
+    },
+    {
+      "lat": 24.883959,
+      "lon": 121.209854,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.5,
+      "ctx_height_tag_frac": 0.444,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 22.3
+    },
+    {
+      "lat": 24.99324,
+      "lon": 121.24971,
+      "n_buildings": 20,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 9,
+      "nearest_iot_dist_m": 0.0,
+      "score": 22.200000000000003
+    },
+    {
+      "lat": 24.140493,
+      "lon": 120.67677,
+      "n_buildings": 62,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.371,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 6,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 22.1
+    },
+    {
+      "lat": 24.7833,
+      "lon": 120.9965,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.684,
+      "ctx_height_tag_frac": 0.571,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 47,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 22.099999999999998
+    },
+    {
+      "lat": 24.89852,
+      "lon": 121.19912,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.875,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 21.700000000000003
+    },
+    {
+      "lat": 24.83914,
+      "lon": 120.93821,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.429,
+      "ctx_height_tag_frac": 0.833,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 21.5
+    },
+    {
+      "lat": 24.812313,
+      "lon": 121.00318,
+      "n_buildings": 107,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.047,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 51,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 21.5
+    },
+    {
+      "lat": 24.977959,
+      "lon": 121.2444,
+      "n_buildings": 84,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 36,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 21.400000000000002
+    },
+    {
+      "lat": 25.051176,
+      "lon": 121.1173,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 35,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 20.9
+    },
+    {
+      "lat": 25.05836,
+      "lon": 121.114815,
+      "n_buildings": 45,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 30,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 20.6
+    },
+    {
+      "lat": 24.979103,
+      "lon": 121.245804,
+      "n_buildings": 54,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.111,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 9,
+      "nearest_iot_dist_m": 0.0,
+      "score": 20.2
+    },
+    {
+      "lat": 24.247267,
+      "lon": 120.72071,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.622,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 20.2
+    },
+    {
+      "lat": 24.84399,
+      "lon": 121.1835,
+      "n_buildings": 158,
+      "n_buildings_ctx120": 46,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 80,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 20.0
+    },
+    {
+      "lat": 25.054394,
+      "lon": 121.11749,
+      "n_buildings": 24,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 32,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 19.8
+    },
+    {
+      "lat": 24.973137,
+      "lon": 121.23971,
+      "n_buildings": 32,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.031,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 23,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 19.5
+    },
+    {
+      "lat": 24.866179,
+      "lon": 121.01773,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 9,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.900000000000002
+    },
+    {
+      "lat": 24.967527,
+      "lon": 121.24104,
+      "n_buildings": 48,
+      "n_buildings_ctx120": 13,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.8
+    },
+    {
+      "lat": 24.119526,
+      "lon": 120.65219,
+      "n_buildings": 30,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.233,
+      "ctx_height_tag_frac": 0.625,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.8
+    },
+    {
+      "lat": 24.968245,
+      "lon": 121.24263,
+      "n_buildings": 38,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 17,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.7
+    },
+    {
+      "lat": 24.971668,
+      "lon": 121.23858,
+      "n_buildings": 41,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.024,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.6
+    },
+    {
+      "lat": 24.982521,
+      "lon": 121.24646,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.027,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 19,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.5
+    },
+    {
+      "lat": 24.190187,
+      "lon": 120.66146,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.559,
+      "ctx_height_tag_frac": 0.714,
+      "n_real_height_buildings_ctx": 5,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.5
+    },
+    {
+      "lat": 24.86741,
+      "lon": 121.01902,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.3
+    },
+    {
+      "lat": 24.981976,
+      "lon": 121.24337,
+      "n_buildings": 49,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.1
+    },
+    {
+      "lat": 24.78028,
+      "lon": 121.02202,
+      "n_buildings": 41,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.39,
+      "ctx_height_tag_frac": 0.571,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 18.099999999999998
+    },
+    {
+      "lat": 24.984598,
+      "lon": 121.24172,
+      "n_buildings": 78,
+      "n_buildings_ctx120": 18,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.8
+    },
+    {
+      "lat": 25.056683,
+      "lon": 121.11598,
+      "n_buildings": 56,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 8,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.7
+    },
+    {
+      "lat": 24.7395,
+      "lon": 120.9898,
+      "n_buildings": 150,
+      "n_buildings_ctx120": 38,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 56,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.200000000000003
+    },
+    {
+      "lat": 25.062393,
+      "lon": 121.124306,
+      "n_buildings": 27,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.2
+    },
+    {
+      "lat": 24.79899,
+      "lon": 120.99376,
+      "n_buildings": 75,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.16,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 29,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.1
+    },
+    {
+      "lat": 24.8077,
+      "lon": 120.9703,
+      "n_buildings": 90,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.2,
+      "ctx_height_tag_frac": 0.364,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 17.1
+    },
+    {
+      "lat": 24.934198,
+      "lon": 121.1703,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.643,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 33,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.900000000000002
+    },
+    {
+      "lat": 24.9799,
+      "lon": 121.244545,
+      "n_buildings": 47,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.9
+    },
+    {
+      "lat": 24.896574,
+      "lon": 121.198746,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.417,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 32,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.8
+    },
+    {
+      "lat": 24.888737,
+      "lon": 121.189575,
+      "n_buildings": 29,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 67,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.7
+    },
+    {
+      "lat": 24.774893,
+      "lon": 121.0481,
+      "n_buildings": 18,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.7
+    },
+    {
+      "lat": 24.8062,
+      "lon": 120.9747,
+      "n_buildings": 199,
+      "n_buildings_ctx120": 64,
+      "height_tag_frac": 0.166,
+      "ctx_height_tag_frac": 0.031,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.5
+    },
+    {
+      "lat": 25.052805,
+      "lon": 121.11783,
+      "n_buildings": 32,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.3
+    },
+    {
+      "lat": 24.844076,
+      "lon": 121.178246,
+      "n_buildings": 301,
+      "n_buildings_ctx120": 34,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 75,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.3
+    },
+    {
+      "lat": 24.972597,
+      "lon": 121.24286,
+      "n_buildings": 47,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.2
+    },
+    {
+      "lat": 24.84302,
+      "lon": 121.18559,
+      "n_buildings": 109,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 62,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.2
+    },
+    {
+      "lat": 24.180264,
+      "lon": 120.62166,
+      "n_buildings": 50,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.14,
+      "ctx_height_tag_frac": 0.4,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.2
+    },
+    {
+      "lat": 24.886948,
+      "lon": 121.18986,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.04,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 43,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.1
+    },
+    {
+      "lat": 24.815805,
+      "lon": 121.01431,
+      "n_buildings": 27,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.185,
+      "ctx_height_tag_frac": 0.6,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 41,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.1
+    },
+    {
+      "lat": 24.77765,
+      "lon": 121.00834,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.027,
+      "ctx_height_tag_frac": 0.2,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 60,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.0
+    },
+    {
+      "lat": 24.839651,
+      "lon": 121.00423,
+      "n_buildings": 40,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.275,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 16.0
+    },
+    {
+      "lat": 24.195602,
+      "lon": 120.65662,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.381,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.899999999999999
+    },
+    {
+      "lat": 24.981085,
+      "lon": 121.24221,
+      "n_buildings": 63,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.7
+    },
+    {
+      "lat": 24.15414,
+      "lon": 120.63838,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.647,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.7
+    },
+    {
+      "lat": 24.104578,
+      "lon": 120.71316,
+      "n_buildings": 192,
+      "n_buildings_ctx120": 30,
+      "height_tag_frac": 0.021,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.6
+    },
+    {
+      "lat": 24.79615,
+      "lon": 120.97463,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.238,
+      "ctx_height_tag_frac": 0.8,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.6
+    },
+    {
+      "lat": 25.056452,
+      "lon": 121.12305,
+      "n_buildings": 22,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.5
+    },
+    {
+      "lat": 24.103022,
+      "lon": 120.7178,
+      "n_buildings": 77,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.5
+    },
+    {
+      "lat": 24.184093,
+      "lon": 120.65909,
+      "n_buildings": 9,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.6,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.4
+    },
+    {
+      "lat": 24.813225,
+      "lon": 120.96495,
+      "n_buildings": 43,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.256,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 4,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.399999999999999
+    },
+    {
+      "lat": 24.18505,
+      "lon": 120.7079,
+      "n_buildings": 75,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.693,
+      "ctx_height_tag_frac": 0.375,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 26,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 15.2
+    },
+    {
+      "lat": 24.900043,
+      "lon": 121.203384,
+      "n_buildings": 3,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.9
+    },
+    {
+      "lat": 24.803,
+      "lon": 120.9731,
+      "n_buildings": 139,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.547,
+      "ctx_height_tag_frac": 0.167,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.9
+    },
+    {
+      "lat": 24.78249,
+      "lon": 120.99891,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.25,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 50,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.8
+    },
+    {
+      "lat": 24.784206,
+      "lon": 120.93131,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.615,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 40,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.8
+    },
+    {
+      "lat": 24.968204,
+      "lon": 121.24435,
+      "n_buildings": 20,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.05,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 7,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.7
+    },
+    {
+      "lat": 24.980543,
+      "lon": 121.252144,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.229,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.7
+    },
+    {
+      "lat": 24.974743,
+      "lon": 121.24206,
+      "n_buildings": 57,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.4
+    },
+    {
+      "lat": 24.77983,
+      "lon": 121.00735,
+      "n_buildings": 36,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.028,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 64,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.4
+    },
+    {
+      "lat": 24.151796,
+      "lon": 120.71386,
+      "n_buildings": 136,
+      "n_buildings_ctx120": 19,
+      "height_tag_frac": 0.125,
+      "ctx_height_tag_frac": 0.105,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.3
+    },
+    {
+      "lat": 24.883228,
+      "lon": 121.207794,
+      "n_buildings": 15,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 36,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.2
+    },
+    {
+      "lat": 24.09831,
+      "lon": 120.67457,
+      "n_buildings": 200,
+      "n_buildings_ctx120": 46,
+      "height_tag_frac": 0.01,
+      "ctx_height_tag_frac": 0.022,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.1
+    },
+    {
+      "lat": 25.096357,
+      "lon": 121.26668,
+      "n_buildings": 20,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 54,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.0
+    },
+    {
+      "lat": 24.172497,
+      "lon": 120.63486,
+      "n_buildings": 33,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.636,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 14.0
+    },
+    {
+      "lat": 24.968452,
+      "lon": 121.23465,
+      "n_buildings": 106,
+      "n_buildings_ctx120": 25,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.9
+    },
+    {
+      "lat": 24.922812,
+      "lon": 121.16883,
+      "n_buildings": 43,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.279,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.8
+    },
+    {
+      "lat": 24.797764,
+      "lon": 120.99548,
+      "n_buildings": 67,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.269,
+      "ctx_height_tag_frac": 0.2,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.8
+    },
+    {
+      "lat": 24.773954,
+      "lon": 121.01565,
+      "n_buildings": 27,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 41,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.500000000000002
+    },
+    {
+      "lat": 24.84015,
+      "lon": 121.18315,
+      "n_buildings": 184,
+      "n_buildings_ctx120": 27,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 61,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.500000000000002
+    },
+    {
+      "lat": 25.094435,
+      "lon": 121.27168,
+      "n_buildings": 50,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.5
+    },
+    {
+      "lat": 25.093124,
+      "lon": 121.268005,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.086,
+      "ctx_height_tag_frac": 0.111,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.5
+    },
+    {
+      "lat": 24.80223,
+      "lon": 120.99806,
+      "n_buildings": 64,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.266,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.5
+    },
+    {
+      "lat": 24.803513,
+      "lon": 121.0039,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.036,
+      "ctx_height_tag_frac": 0.25,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 75,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.3
+    },
+    {
+      "lat": 25.064157,
+      "lon": 121.12793,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.200000000000001
+    },
+    {
+      "lat": 24.776783,
+      "lon": 121.017136,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.029,
+      "ctx_height_tag_frac": 0.25,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 33,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.100000000000001
+    },
+    {
+      "lat": 24.704859,
+      "lon": 121.183495,
+      "n_buildings": 140,
+      "n_buildings_ctx120": 33,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 45,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.100000000000001
+    },
+    {
+      "lat": 24.17651,
+      "lon": 120.65525,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.625,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 13.1
+    },
+    {
+      "lat": 24.808702,
+      "lon": 121.04146,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.382,
+      "ctx_height_tag_frac": 0.6,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.9
+    },
+    {
+      "lat": 24.797329,
+      "lon": 120.9398,
+      "n_buildings": 10,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.1,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 6,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.799999999999999
+    },
+    {
+      "lat": 24.12438,
+      "lon": 120.66008,
+      "n_buildings": 31,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.742,
+      "ctx_height_tag_frac": 1.0,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.799999999999999
+    },
+    {
+      "lat": 24.98066,
+      "lon": 121.2396,
+      "n_buildings": 68,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.700000000000001
+    },
+    {
+      "lat": 24.816326,
+      "lon": 120.965096,
+      "n_buildings": 63,
+      "n_buildings_ctx120": 13,
+      "height_tag_frac": 0.127,
+      "ctx_height_tag_frac": 0.154,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.7
+    },
+    {
+      "lat": 24.818794,
+      "lon": 120.96426,
+      "n_buildings": 67,
+      "n_buildings_ctx120": 20,
+      "height_tag_frac": 0.09,
+      "ctx_height_tag_frac": 0.1,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.7
+    },
+    {
+      "lat": 24.7383,
+      "lon": 120.9855,
+      "n_buildings": 80,
+      "n_buildings_ctx120": 25,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 57,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.7
+    },
+    {
+      "lat": 24.135477,
+      "lon": 120.695,
+      "n_buildings": 91,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.121,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 3,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.600000000000001
+    },
+    {
+      "lat": 24.005669,
+      "lon": 120.73308,
+      "n_buildings": 9,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.167,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 64,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.600000000000001
+    },
+    {
+      "lat": 24.8768,
+      "lon": 121.18613,
+      "n_buildings": 7,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 40,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.6
+    },
+    {
+      "lat": 24.98044,
+      "lon": 121.2346,
+      "n_buildings": 55,
+      "n_buildings_ctx120": 17,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.6
+    },
+    {
+      "lat": 24.84304,
+      "lon": 121.18972,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.095,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 50,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.6
+    },
+    {
+      "lat": 25.050783,
+      "lon": 121.11909,
+      "n_buildings": 66,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.399999999999999
+    },
+    {
+      "lat": 24.976187,
+      "lon": 121.25096,
+      "n_buildings": 92,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.022,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 52,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.399999999999999
+    },
+    {
+      "lat": 24.1928,
+      "lon": 120.6921,
+      "n_buildings": 44,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.818,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 67,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.299999999999999
+    },
+    {
+      "lat": 24.803045,
+      "lon": 120.96039,
+      "n_buildings": 38,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.105,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.200000000000001
+    },
+    {
+      "lat": 25.092909,
+      "lon": 121.27728,
+      "n_buildings": 57,
+      "n_buildings_ctx120": 21,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 20,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.2
+    },
+    {
+      "lat": 24.840498,
+      "lon": 121.179756,
+      "n_buildings": 276,
+      "n_buildings_ctx120": 26,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 49,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.100000000000001
+    },
+    {
+      "lat": 25.098076,
+      "lon": 121.2704,
+      "n_buildings": 33,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 31,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.1
+    },
+    {
+      "lat": 24.16604,
+      "lon": 120.639046,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.676,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 34,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 12.0
+    },
+    {
+      "lat": 25.091686,
+      "lon": 121.2721,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 5,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.700000000000001
+    },
+    {
+      "lat": 25.064863,
+      "lon": 121.12947,
+      "n_buildings": 17,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 31,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.7
+    },
+    {
+      "lat": 24.779,
+      "lon": 121.0185,
+      "n_buildings": 46,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.022,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 74,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.600000000000001
+    },
+    {
+      "lat": 24.84209,
+      "lon": 121.17648,
+      "n_buildings": 212,
+      "n_buildings_ctx120": 54,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.5
+    },
+    {
+      "lat": 24.77611,
+      "lon": 121.00529,
+      "n_buildings": 23,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.043,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.3
+    },
+    {
+      "lat": 24.810146,
+      "lon": 121.00518,
+      "n_buildings": 100,
+      "n_buildings_ctx120": 19,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 55,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.3
+    },
+    {
+      "lat": 24.209274,
+      "lon": 121.01619,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 81,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.3
+    },
+    {
+      "lat": 24.7768,
+      "lon": 120.9859,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.053,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 24,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.200000000000001
+    },
+    {
+      "lat": 24.76812,
+      "lon": 120.99961,
+      "n_buildings": 15,
+      "n_buildings_ctx120": 14,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 64,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.200000000000001
+    },
+    {
+      "lat": 24.830667,
+      "lon": 121.0229,
+      "n_buildings": 32,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.156,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 55,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.1
+    },
+    {
+      "lat": 24.7834,
+      "lon": 121.0001,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.4,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 40,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 11.0
+    },
+    {
+      "lat": 25.045681,
+      "lon": 121.10971,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 42,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.799999999999999
+    },
+    {
+      "lat": 24.82198,
+      "lon": 120.96402,
+      "n_buildings": 140,
+      "n_buildings_ctx120": 30,
+      "height_tag_frac": 0.079,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 27,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.7
+    },
+    {
+      "lat": 24.844898,
+      "lon": 121.01615,
+      "n_buildings": 38,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.026,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.6
+    },
+    {
+      "lat": 24.10547,
+      "lon": 120.7111,
+      "n_buildings": 106,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.009,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 52,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.6
+    },
+    {
+      "lat": 24.79823,
+      "lon": 120.97815,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.143,
+      "ctx_height_tag_frac": 0.4,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.5
+    },
+    {
+      "lat": 24.30399,
+      "lon": 120.73263,
+      "n_buildings": 7,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 76,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.400000000000002
+    },
+    {
+      "lat": 24.9776,
+      "lon": 121.2359,
+      "n_buildings": 33,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.061,
+      "ctx_height_tag_frac": 0.2,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.4
+    },
+    {
+      "lat": 24.17404,
+      "lon": 120.71069,
+      "n_buildings": 326,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.193,
+      "ctx_height_tag_frac": 0.667,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.4
+    },
+    {
+      "lat": 24.00587,
+      "lon": 120.6775,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 74,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.4
+    },
+    {
+      "lat": 24.77869,
+      "lon": 121.00537,
+      "n_buildings": 29,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.069,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 32,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.399999999999999
+    },
+    {
+      "lat": 24.116999,
+      "lon": 120.662865,
+      "n_buildings": 53,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.038,
+      "ctx_height_tag_frac": 0.2,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.3
+    },
+    {
+      "lat": 24.858694,
+      "lon": 121.0127,
+      "n_buildings": 46,
+      "n_buildings_ctx120": 14,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.200000000000001
+    },
+    {
+      "lat": 24.88234,
+      "lon": 121.19441,
+      "n_buildings": 3,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 76,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.200000000000001
+    },
+    {
+      "lat": 24.776945,
+      "lon": 120.99068,
+      "n_buildings": 16,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.062,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.2
+    },
+    {
+      "lat": 25.063255,
+      "lon": 121.12954,
+      "n_buildings": 9,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.2
+    },
+    {
+      "lat": 24.908339,
+      "lon": 121.19484,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 71,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.100000000000001
+    },
+    {
+      "lat": 24.984146,
+      "lon": 121.235725,
+      "n_buildings": 33,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.1
+    },
+    {
+      "lat": 24.90714,
+      "lon": 121.20286,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 35,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.1
+    },
+    {
+      "lat": 24.97899,
+      "lon": 121.239624,
+      "n_buildings": 66,
+      "n_buildings_ctx120": 14,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.1
+    },
+    {
+      "lat": 24.847578,
+      "lon": 121.02804,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 75,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.1
+    },
+    {
+      "lat": 24.84268,
+      "lon": 121.18793,
+      "n_buildings": 27,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.074,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 34,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.0
+    },
+    {
+      "lat": 25.09574,
+      "lon": 121.277504,
+      "n_buildings": 46,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.0
+    },
+    {
+      "lat": 24.782717,
+      "lon": 121.00202,
+      "n_buildings": 18,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.167,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 54,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 10.0
+    },
+    {
+      "lat": 24.899979,
+      "lon": 121.03905,
+      "n_buildings": 23,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 37,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.9
+    },
+    {
+      "lat": 24.258196,
+      "lon": 120.83122,
+      "n_buildings": 116,
+      "n_buildings_ctx120": 37,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.9
+    },
+    {
+      "lat": 25.075375,
+      "lon": 121.18753,
+      "n_buildings": 4,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.8
+    },
+    {
+      "lat": 24.834145,
+      "lon": 121.02632,
+      "n_buildings": 39,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.7
+    },
+    {
+      "lat": 24.966347,
+      "lon": 121.23392,
+      "n_buildings": 183,
+      "n_buildings_ctx120": 27,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.600000000000001
+    },
+    {
+      "lat": 25.06374,
+      "lon": 121.11888,
+      "n_buildings": 22,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.5
+    },
+    {
+      "lat": 24.77578,
+      "lon": 120.998245,
+      "n_buildings": 22,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 29,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.5
+    },
+    {
+      "lat": 24.779177,
+      "lon": 121.01011,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.3
+    },
+    {
+      "lat": 24.814112,
+      "lon": 120.9954,
+      "n_buildings": 117,
+      "n_buildings_ctx120": 25,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 23,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.3
+    },
+    {
+      "lat": 24.895006,
+      "lon": 121.19991,
+      "n_buildings": 10,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.1,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.200000000000001
+    },
+    {
+      "lat": 24.1405,
+      "lon": 120.65706,
+      "n_buildings": 16,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.312,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.200000000000001
+    },
+    {
+      "lat": 24.119778,
+      "lon": 120.6565,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.486,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.200000000000001
+    },
+    {
+      "lat": 24.778727,
+      "lon": 120.98861,
+      "n_buildings": 18,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.111,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.2
+    },
+    {
+      "lat": 24.40413,
+      "lon": 120.64909,
+      "n_buildings": 26,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 26,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.2
+    },
+    {
+      "lat": 24.847054,
+      "lon": 120.99926,
+      "n_buildings": 67,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 42,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.2
+    },
+    {
+      "lat": 24.170013,
+      "lon": 120.57446,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.214,
+      "ctx_height_tag_frac": 0.4,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 9.1
+    },
+    {
+      "lat": 24.7807,
+      "lon": 120.9904,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.25,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 4,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.9
+    },
+    {
+      "lat": 24.139309,
+      "lon": 120.64663,
+      "n_buildings": 29,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.241,
+      "ctx_height_tag_frac": 0.5,
+      "n_real_height_buildings_ctx": 2,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.9
+    },
+    {
+      "lat": 24.800606,
+      "lon": 121.035706,
+      "n_buildings": 37,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.027,
+      "ctx_height_tag_frac": 0.143,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 23,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.700000000000001
+    },
+    {
+      "lat": 24.813925,
+      "lon": 120.97521,
+      "n_buildings": 40,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.7
+    },
+    {
+      "lat": 24.82907,
+      "lon": 121.166016,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 56,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.600000000000001
+    },
+    {
+      "lat": 24.974127,
+      "lon": 121.23597,
+      "n_buildings": 23,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.087,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.6
+    },
+    {
+      "lat": 24.80059,
+      "lon": 120.99136,
+      "n_buildings": 77,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.13,
+      "ctx_height_tag_frac": 0.067,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.6
+    },
+    {
+      "lat": 24.18058,
+      "lon": 120.59348,
+      "n_buildings": 161,
+      "n_buildings_ctx120": 21,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.3
+    },
+    {
+      "lat": 24.82828,
+      "lon": 121.014694,
+      "n_buildings": 40,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 43,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.3
+    },
+    {
+      "lat": 25.060513,
+      "lon": 121.12007,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.0
+    },
+    {
+      "lat": 24.25593,
+      "lon": 120.65974,
+      "n_buildings": 57,
+      "n_buildings_ctx120": 28,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 8.0
+    },
+    {
+      "lat": 24.830297,
+      "lon": 121.025635,
+      "n_buildings": 51,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.098,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.9
+    },
+    {
+      "lat": 24.793344,
+      "lon": 121.0012,
+      "n_buildings": 57,
+      "n_buildings_ctx120": 17,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.9
+    },
+    {
+      "lat": 24.825241,
+      "lon": 121.01311,
+      "n_buildings": 55,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.255,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 43,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.9
+    },
+    {
+      "lat": 24.841196,
+      "lon": 121.020325,
+      "n_buildings": 26,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.231,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 23,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.9
+    },
+    {
+      "lat": 24.260988,
+      "lon": 120.59521,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 23,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.800000000000001
+    },
+    {
+      "lat": 24.33401,
+      "lon": 120.69063,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 40,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.8
+    },
+    {
+      "lat": 24.985998,
+      "lon": 121.23807,
+      "n_buildings": 30,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.067,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.7
+    },
+    {
+      "lat": 24.17908,
+      "lon": 120.59174,
+      "n_buildings": 107,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.699999999999999
+    },
+    {
+      "lat": 24.40577,
+      "lon": 120.65037,
+      "n_buildings": 32,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.6000000000000005
+    },
+    {
+      "lat": 24.896364,
+      "lon": 121.20822,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.5
+    },
+    {
+      "lat": 24.783125,
+      "lon": 121.00538,
+      "n_buildings": 24,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.083,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 41,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.300000000000001
+    },
+    {
+      "lat": 24.771452,
+      "lon": 121.01698,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.3
+    },
+    {
+      "lat": 24.740973,
+      "lon": 121.088974,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.091,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 3,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.1
+    },
+    {
+      "lat": 24.84867,
+      "lon": 120.92563,
+      "n_buildings": 9,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.111,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.1
+    },
+    {
+      "lat": 24.631817,
+      "lon": 121.11957,
+      "n_buildings": 27,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.1
+    },
+    {
+      "lat": 24.774662,
+      "lon": 120.99977,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.0
+    },
+    {
+      "lat": 25.0426,
+      "lon": 121.10764,
+      "n_buildings": 17,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 7.0
+    },
+    {
+      "lat": 24.935638,
+      "lon": 121.169014,
+      "n_buildings": 29,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.241,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.9
+    },
+    {
+      "lat": 24.871872,
+      "lon": 121.1956,
+      "n_buildings": 73,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 35,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.9
+    },
+    {
+      "lat": 24.098974,
+      "lon": 120.71603,
+      "n_buildings": 114,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.800000000000001
+    },
+    {
+      "lat": 24.836815,
+      "lon": 121.05121,
+      "n_buildings": 15,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.067,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 38,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.800000000000001
+    },
+    {
+      "lat": 24.18491,
+      "lon": 120.61517,
+      "n_buildings": 85,
+      "n_buildings_ctx120": 16,
+      "height_tag_frac": 0.2,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.800000000000001
+    },
+    {
+      "lat": 24.178268,
+      "lon": 120.66465,
+      "n_buildings": 23,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.8
+    },
+    {
+      "lat": 25.048187,
+      "lon": 121.120155,
+      "n_buildings": 36,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 23,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.700000000000001
+    },
+    {
+      "lat": 24.8387,
+      "lon": 120.929,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 37,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.5
+    },
+    {
+      "lat": 24.713934,
+      "lon": 121.11383,
+      "n_buildings": 6,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 32,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.4
+    },
+    {
+      "lat": 24.79761,
+      "lon": 120.985596,
+      "n_buildings": 63,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.206,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.3
+    },
+    {
+      "lat": 24.782595,
+      "lon": 121.00914,
+      "n_buildings": 15,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 12,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.2
+    },
+    {
+      "lat": 24.937273,
+      "lon": 121.165535,
+      "n_buildings": 22,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.2
+    },
+    {
+      "lat": 24.7811,
+      "lon": 121.0128,
+      "n_buildings": 24,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 30,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.2
+    },
+    {
+      "lat": 24.851406,
+      "lon": 121.00251,
+      "n_buildings": 33,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 30,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.2
+    },
+    {
+      "lat": 24.845377,
+      "lon": 121.0077,
+      "n_buildings": 65,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 11,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.1
+    },
+    {
+      "lat": 24.142733,
+      "lon": 120.70559,
+      "n_buildings": 142,
+      "n_buildings_ctx120": 20,
+      "height_tag_frac": 0.007,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.1
+    },
+    {
+      "lat": 24.832499,
+      "lon": 121.02456,
+      "n_buildings": 52,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.0
+    },
+    {
+      "lat": 24.794024,
+      "lon": 120.97092,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.029,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.0
+    },
+    {
+      "lat": 24.255737,
+      "lon": 120.73571,
+      "n_buildings": 12,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.083,
+      "ctx_height_tag_frac": 0.333,
+      "n_real_height_buildings_ctx": 1,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.0
+    },
+    {
+      "lat": 24.28663,
+      "lon": 120.64154,
+      "n_buildings": 43,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 24,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 6.0
+    },
+    {
+      "lat": 24.855268,
+      "lon": 121.0013,
+      "n_buildings": 16,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.800000000000001
+    },
+    {
+      "lat": 24.73539,
+      "lon": 121.12056,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 30,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.8
+    },
+    {
+      "lat": 24.8048,
+      "lon": 120.961,
+      "n_buildings": 31,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.29,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.7
+    },
+    {
+      "lat": 24.806845,
+      "lon": 121.01386,
+      "n_buildings": 6,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.6
+    },
+    {
+      "lat": 24.98055,
+      "lon": 121.2374,
+      "n_buildings": 56,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.6
+    },
+    {
+      "lat": 24.913397,
+      "lon": 121.20644,
+      "n_buildings": 47,
+      "n_buildings_ctx120": 15,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.6
+    },
+    {
+      "lat": 24.252356,
+      "lon": 120.7296,
+      "n_buildings": 30,
+      "n_buildings_ctx120": 13,
+      "height_tag_frac": 0.033,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.6
+    },
+    {
+      "lat": 24.40281,
+      "lon": 120.65092,
+      "n_buildings": 26,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "concrete"
+      ],
+      "ground_materials": [
+        "concrete"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.5
+    },
+    {
+      "lat": 24.769354,
+      "lon": 121.05742,
+      "n_buildings": 38,
+      "n_buildings_ctx120": 10,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.5
+    },
+    {
+      "lat": 24.7048,
+      "lon": 121.17768,
+      "n_buildings": 13,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 28,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.4
+    },
+    {
+      "lat": 24.175253,
+      "lon": 120.66635,
+      "n_buildings": 40,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.25,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 24,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.4
+    },
+    {
+      "lat": 24.315254,
+      "lon": 120.72985,
+      "n_buildings": 17,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.118,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 25,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.3
+    },
+    {
+      "lat": 24.822289,
+      "lon": 121.03508,
+      "n_buildings": 47,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.043,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.2
+    },
+    {
+      "lat": 25.033009,
+      "lon": 121.07169,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 24,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.2
+    },
+    {
+      "lat": 24.767658,
+      "lon": 121.0164,
+      "n_buildings": 10,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 2,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.0
+    },
+    {
+      "lat": 24.804869,
+      "lon": 121.00666,
+      "n_buildings": 30,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.033,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 22,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 5.0
+    },
+    {
+      "lat": 25.030897,
+      "lon": 121.05212,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 19,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.9
+    },
+    {
+      "lat": 24.234915,
+      "lon": 120.566154,
+      "n_buildings": 17,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 21,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.8999999999999995
+    },
+    {
+      "lat": 24.857342,
+      "lon": 120.96225,
+      "n_buildings": 18,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.800000000000001
+    },
+    {
+      "lat": 24.864853,
+      "lon": 120.99131,
+      "n_buildings": 51,
+      "n_buildings_ctx120": 13,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.800000000000001
+    },
+    {
+      "lat": 24.999334,
+      "lon": 121.23026,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 20,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.8
+    },
+    {
+      "lat": 24.2619,
+      "lon": 120.744,
+      "n_buildings": 73,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "bare_soil",
+        "built"
+      ],
+      "ground_materials": [
+        "bare_soil"
+      ],
+      "n_canopy_pixels_80x80": 18,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.8
+    },
+    {
+      "lat": 24.976658,
+      "lon": 121.25783,
+      "n_buildings": 40,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.05,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 17,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.7
+    },
+    {
+      "lat": 24.774027,
+      "lon": 121.00749,
+      "n_buildings": 36,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 15,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.5
+    },
+    {
+      "lat": 24.736807,
+      "lon": 121.09166,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 12,
+      "height_tag_frac": 0.029,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.5
+    },
+    {
+      "lat": 24.736036,
+      "lon": 121.123055,
+      "n_buildings": 11,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 17,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.5
+    },
+    {
+      "lat": 24.053848,
+      "lon": 120.69623,
+      "n_buildings": 41,
+      "n_buildings_ctx120": 9,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.5
+    },
+    {
+      "lat": 24.33886,
+      "lon": 120.73162,
+      "n_buildings": 9,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 16,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.4
+    },
+    {
+      "lat": 24.784939,
+      "lon": 121.010765,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 11,
+      "height_tag_frac": 0.12,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.300000000000001
+    },
+    {
+      "lat": 24.80562,
+      "lon": 120.96469,
+      "n_buildings": 56,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.161,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.2
+    },
+    {
+      "lat": 24.75072,
+      "lon": 120.90495,
+      "n_buildings": 5,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 14,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.2
+    },
+    {
+      "lat": 24.7881,
+      "lon": 121.0137,
+      "n_buildings": 39,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.333,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.1000000000000005
+    },
+    {
+      "lat": 24.773731,
+      "lon": 121.08216,
+      "n_buildings": 17,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.1
+    },
+    {
+      "lat": 24.201704,
+      "lon": 120.62231,
+      "n_buildings": 8,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 13,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 4.1
+    },
+    {
+      "lat": 24.716606,
+      "lon": 121.14158,
+      "n_buildings": 15,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.9
+    },
+    {
+      "lat": 24.825764,
+      "lon": 121.07479,
+      "n_buildings": 34,
+      "n_buildings_ctx120": 8,
+      "height_tag_frac": 0.029,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8000000000000003
+    },
+    {
+      "lat": 24.77758,
+      "lon": 121.00197,
+      "n_buildings": 23,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.13,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8
+    },
+    {
+      "lat": 24.796715,
+      "lon": 120.96113,
+      "n_buildings": 26,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.231,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8
+    },
+    {
+      "lat": 24.7927,
+      "lon": 120.9571,
+      "n_buildings": 19,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8
+    },
+    {
+      "lat": 24.8051,
+      "lon": 120.9181,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8
+    },
+    {
+      "lat": 24.36505,
+      "lon": 120.60252,
+      "n_buildings": 6,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 10,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.8
+    },
+    {
+      "lat": 24.133472,
+      "lon": 120.68748,
+      "n_buildings": 117,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.222,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 3,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.7
+    },
+    {
+      "lat": 24.140278,
+      "lon": 120.66164,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.143,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 7,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.7
+    },
+    {
+      "lat": 24.078526,
+      "lon": 120.71868,
+      "n_buildings": 25,
+      "n_buildings_ctx120": 7,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.6000000000000005
+    },
+    {
+      "lat": 24.171473,
+      "lon": 120.66679,
+      "n_buildings": 53,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.396,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.6
+    },
+    {
+      "lat": 24.76771,
+      "lon": 120.97893,
+      "n_buildings": 43,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.07,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 8,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.5999999999999996
+    },
+    {
+      "lat": 24.772404,
+      "lon": 121.04948,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.214,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 5,
+      "surface_classes": [
+        "asphalt",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 9,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.5
+    },
+    {
+      "lat": 24.701967,
+      "lon": 121.056145,
+      "n_buildings": 21,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.048,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.5
+    },
+    {
+      "lat": 24.860249,
+      "lon": 120.963135,
+      "n_buildings": 22,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.227,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.4000000000000004
+    },
+    {
+      "lat": 24.733412,
+      "lon": 121.08856,
+      "n_buildings": 35,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.257,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.4000000000000004
+    },
+    {
+      "lat": 24.042978,
+      "lon": 120.6907,
+      "n_buildings": 20,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.05,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.4
+    },
+    {
+      "lat": 24.980616,
+      "lon": 121.25649,
+      "n_buildings": 54,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.3000000000000003
+    },
+    {
+      "lat": 24.18196,
+      "lon": 120.64973,
+      "n_buildings": 18,
+      "n_buildings_ctx120": 6,
+      "height_tag_frac": 0.444,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.3000000000000003
+    },
+    {
+      "lat": 24.806162,
+      "lon": 120.958786,
+      "n_buildings": 30,
+      "n_buildings_ctx120": 5,
+      "height_tag_frac": 0.267,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 4,
+      "surface_classes": [
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "bare_soil",
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 2,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.2
+    },
+    {
+      "lat": 24.842209,
+      "lon": 121.01287,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 4,
+      "height_tag_frac": 0.143,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 6,
+      "surface_classes": [
+        "asphalt",
+        "bare_soil",
+        "built",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "ground_materials": [
+        "asphalt",
+        "bare_soil",
+        "concrete",
+        "grass",
+        "water"
+      ],
+      "n_canopy_pixels_80x80": 4,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.2
+    },
+    {
+      "lat": 24.837713,
+      "lon": 120.933815,
+      "n_buildings": 28,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.0,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 3,
+      "surface_classes": [
+        "built",
+        "concrete",
+        "grass"
+      ],
+      "ground_materials": [
+        "concrete",
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 6,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.2
+    },
+    {
+      "lat": 24.332748,
+      "lon": 120.652306,
+      "n_buildings": 14,
+      "n_buildings_ctx120": 3,
+      "height_tag_frac": 0.143,
+      "ctx_height_tag_frac": 0.0,
+      "n_real_height_buildings_ctx": 0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "built",
+        "grass"
+      ],
+      "ground_materials": [
+        "grass"
+      ],
+      "n_canopy_pixels_80x80": 5,
+      "n_iot_devices_zone": 1,
+      "nearest_iot_dist_m": 0.0,
+      "score": 3.1
+    }
+  ]
+}

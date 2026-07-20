@@ -1,0 +1,169 @@
+% Project: NYCU GIA 碩士論文模板
+% Acknowledgement: 此模板參考交大前輩 https://github.com/indigo40123/NYCU-Thesis-Template 提供的 overleaf 版本 https://www.overleaf.com/latex/templates/national-yang-ming-chiao-tung-university-nycu-thesis-template/zgjfrxhcdcmj
+% Author: Yun-Chen Lee yclee@arch.nycu.edu.tw
+% Date: 2024/07/03
+% Description: 修改為建築所適用的格式，使用 APA 參考文獻格式
+%-------------------------------------------------------------------------------
+
+% yclee 文件設定：有浮水印/最終可印刷版本(保留左側裝訂留白距離)/中文/不限制章節從奇數頁開始 (無須修改)
+% \documentclass[watermark,final,zh,openany,man]{thesis}  % final mode (version for library)
+\documentclass[watermark,final,zh,openany,american]{thesis}  % final mode (version for library)
+
+
+%-------------------------------------------------------------------------------
+% Package Loading (無須修改)
+%-------------------------------------------------------------------------------
+
+\usepackage{multirow}     % for multi-row table
+\usepackage{booktabs}     % table style used in books
+\usepackage{parskip}      % yclee 取消段落縮排
+% \usepackage[]{apacite}
+% \usepackage[natbibapa]{apacite}
+% \usepackage[american]{babel}
+% \usepackage{csquotes}
+% \usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+% \DeclareLanguageMapping{american}{american-apa}
+% \addbibresource{bib/bibliography.bib}
+% \usepackage{hyperref} % Required for inserting clickable links.
+% \usepackage{natbib} % Required for APA-style citations.
+% \usepackage[style=apa, backend=biber]{biblatex}
+
+
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage{babel}
+% \usepackage{csquotes}
+% \usepackage[style=apa, sortcites=true, sorting=nyt, backend=biber]{biblatex}
+% \addbibresource{bib/bibliography.bib}
+
+\usepackage{natbib}
+\usepackage{amsmath,amssymb}
+
+% yclee 以 URL (網址連結) 的設定：皆顯示為黑色 (無須修改)
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=black, linkcolor=black, urlcolor=black}
+\renewcommand\UrlFont{\color{black}\rmfamily}
+
+% 修改圖片說明文字大小
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\captionsetup[table]{font=small}
+% scriptsize
+% footnotesize
+% small (建議大小)
+% normalsize
+% large
+% Large
+
+
+%-------------------------------------------------------------------------------
+% Configuration
+%-------------------------------------------------------------------------------
+
+% 填寫題目, 作者, 指導教授, 學校, 系所, 日期等資訊 (可到此文件修改這些資訊)
+\input{config/frontmatters}
+
+% 修改 thesis.cls 的預設字型 (無須修改)
+\input{config/fonts}
+
+% 修改目錄中「章」的編號格式，使其與內文標題（第X章）一致，避免僅顯示裸數字
+\renewcommand{\cftchappresnum}{第}
+\renewcommand{\cftchapaftersnum}{章}
+\setlength{\cftchapnumwidth}{4em}
+
+% yclee 修改圖目錄格式：不區分章節 (無須修改) ---------------------------------------
+\makeatletter
+\@removefromreset{figure}{chapter}
+\renewcommand{\thefigure}{\arabic{figure}}
+\makeatother
+
+\renewcommand{\cftfigpresnum}{圖}
+\renewcommand{\cftfigaftersnum}{\hspace{1em}} % 在數字和標題之間增加間距
+\setlength{\cftfignumwidth}{3em} % 設置圖目錄中數字部分的寬度
+
+% 修改表目錄格式
+\makeatletter
+\@removefromreset{table}{chapter}
+\renewcommand{\thetable}{\arabic{table}}
+\makeatother
+
+\renewcommand{\cfttabpresnum}{表}
+\renewcommand{\cfttabaftersnum}{\hspace{1em}} % 在數字和標題之間增加間距
+\setlength{\cfttabnumwidth}{3em} % 設置圖目錄中數字部分的寬度
+
+
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+% Generate cover, title, authorization, approval and copyright pages
+\maketitle
+
+%-------------------------------------------------------------------------------
+% Abstract
+%-------------------------------------------------------------------------------
+
+% 中文摘要
+\input{abs/abstract_zh}
+
+% 英文摘要
+\input{abs/abstract_en}
+
+% yclee 誌謝：加浮水印
+% \input{ack/ack}
+
+%-------------------------------------------------------------------------------
+% 目錄
+%-------------------------------------------------------------------------------
+
+% Generate 'Table of Contents', 'List of Figures', and 'List of Tables', and
+% Set page numbering to 'arabic'
+\maketocs
+
+%-------------------------------------------------------------------------------
+% Contents
+%-------------------------------------------------------------------------------
+
+% Set page numbering to 'arabic' (1, 2, 3, ...)
+\mainmatter
+
+% 內文, 請依照章節順序擺放
+\input{chapters/1-intro}
+\input{chapters/2-relatedwork}
+\input{chapters/3-methodology}
+\input{chapters/4-results}
+\input{chapters/5-conclusion}
+\input{chapters/6-conclusion}
+
+%-------------------------------------------------------------------------------
+% 參考文獻
+%-------------------------------------------------------------------------------
+
+% yclee 使用 APA 參考文獻格式
+\addBibToContents
+\bibliographystyle{apalike}
+% \bibliographystyle{apacite}
+% \bibliographystyle{apacite-no-initials}
+\bibliography{bib/bibliography} % (將參考文獻加到這個檔案)
+% \printbibliography
+%-------------------------------------------------------------------------------
+% 附錄
+%-------------------------------------------------------------------------------
+
+% Start appendix
+\appendix
+
+% 附錄之目錄編號不套用「第X章」格式（附錄本身以「附錄」起首，見 thesis.cls），
+% 避免目錄出現「第A章 附錄」的重複／不一致字樣
+\renewcommand{\cftchappresnum}{}
+\renewcommand{\cftchapaftersnum}{}
+
+% Add appendicies to "Table of Contents"
+\addAppxToContents
+
+% 請從此開始依序擺放附錄，不須附錄可以刪除或註解掉下一行
+\input{appx/1-appendix}
+
+
+%-------------------------------------------------------------------------------
+\end{document}

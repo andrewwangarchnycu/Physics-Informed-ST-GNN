@@ -1,0 +1,10 @@
+{
+  "run_time_utc": "2026-07-08T06:49:34.411318+00:00",
+  "site_lat": 24.8,
+  "site_lon": 120.97,
+  "radius_km": 15.0,
+  "n_stations": 961,
+  "csvs_written": 2,
+  "unique_stations_in_csvs": 907,
+  "data_note": "STA real-time rolling window (~2-3h). Run during Taiwan summer peak hours (10:00-18:00 CST) for best summer diurnal coverage. For historical archives (2022-2025), portal credentials are required."
+}

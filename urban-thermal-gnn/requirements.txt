@@ -1,0 +1,43 @@
+# urban-thermal-gnn — Python dependency manifest
+# =================================================
+# Generated from the actual imports used across 01_data_generation .. 07_optimization,
+# pinned to versions verified working in the primary development environment
+# (Python 3.11, Windows). See ../ENVIRONMENT_SETUP.md for install order and the
+# separate list of large data/checkpoint files that git does NOT track.
+#
+# torch is intentionally NOT pinned here with a version+cuda tag -- install it
+# separately first following ENVIRONMENT_SETUP.md, matched to the target
+# machine's GPU/CUDA driver. `pip install -r requirements.txt` after that will
+# skip it if already satisfied.
+
+# ---- core (required to run 04_training/train.py against pre-built .h5 data) ----
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.8.0
+h5py==3.16.0
+matplotlib==3.11.0
+PyYAML==6.0.3
+
+# ---- GIS / geospatial (only needed for 01_data_generation and GIS figure scripts) ----
+shapely==2.1.2
+pyproj==3.7.2
+rasterio==1.4.3
+contextily==1.7.0
+geopandas>=0.14
+overpy>=0.7
+
+# ---- outdoor thermal comfort (only needed for 01_data_generation stage) ----
+pythermalcomfort>=2.8
+
+# ---- deployment / optimization server (only needed for 06_deployment, 07_optimization live serving) ----
+fastapi==0.122.0
+uvicorn==0.38.0
+requests==2.34.2
+
+# ---- optional: hyperparameter search (04_training/optuna_search.py only) ----
+optuna>=3.6
+
+# ---- optional: alternate training loop backend (train.py falls back to a manual
+#      loop with a warning if this is absent -- safe to omit) ----
+# pytorch-lightning>=2.3

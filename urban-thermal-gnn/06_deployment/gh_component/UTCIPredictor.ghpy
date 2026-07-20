@@ -1,0 +1,391 @@
+#! python3
+# requirements: websocket-client
+# venv: PytorchGPU
+"""
+UTCIPredictor.ghpy
+Rhino 8 Grasshopper Script Component — UTCI real-time prediction
+Python 3 (CPython) via Rhino 8 Script component.
+
+Input Ports  (exact names must match GH component input ports):
+  site_boundary     : Curve           — closed polyline defining site boundary
+  context_buildings : List<Brep>      — fixed surrounding buildings
+  design_buildings  : List<Brep>      — design buildings to evaluate
+  tree_points       : List<Point3d>   — tree locations
+  tree_radii        : List<float>     — tree canopy radius (m)
+  tree_heights      : List<float>     — tree height (m)
+  server_url        : str             — WebSocket address
+                                        default "ws://localhost:8000/ws"
+  run               : bool            — trigger calculation
+
+Output Ports (exact names must match GH component output ports):
+  utci_mesh     : Mesh          — vertex-coloured UTCI heatmap
+  utci_values   : List<float>   — UTCI per sensor (°C)
+  sensor_points : List<Point3d> — sensor locations
+  mean_utci     : float         — average UTCI (°C)
+  max_utci      : float         — maximum UTCI (°C)
+  min_utci      : float         — minimum UTCI (°C)
+  status        : str           — status / error message
+"""
+
+import json
+import uuid
+import scriptcontext as sc
+
+try:
+    import Rhino.Geometry as rg
+    import System.Drawing as sd
+    _RHINO = True
+except ImportError:
+    _RHINO = False
+
+try:
+    import websocket as _ws_lib
+    _WS_OK = True
+except ImportError:
+    _WS_OK = False
+
+_DEFAULT_URL = "ws://localhost:8000/ws"
+_CELL_SIZE   = 1.8   # mesh tile side length (m)
+
+
+# ────────────────────────────────────────────────────────────────
+# WebSocket — persistent connection via sc.sticky
+# ────────────────────────────────────────────────────────────────
+
+def _get_ws(url):
+    key = "utci_pred_ws_" + url
+    ws  = sc.sticky.get(key)
+    if ws is not None:
+        # Test connection with a lightweight check
+        try:
+            ws.sock  # AttributeError if closed
+            if ws.connected:
+                return ws, None
+        except Exception:
+            pass
+        sc.sticky[key] = None
+
+    if not _WS_OK:
+        return None, "websocket-client not installed (pip install websocket-client)"
+    try:
+        ws = _ws_lib.WebSocket()
+        ws.settimeout(15.0)
+        ws.connect(url)
+        sc.sticky[key] = ws
+        return ws, None
+    except Exception as e:
+        return None, "Cannot connect to {}: {}".format(url, e)
+
+
+def _close_ws(url):
+    key = "utci_pred_ws_" + url
+    ws  = sc.sticky.get(key)
+    if ws:
+        try:
+            ws.close()
+        except Exception:
+            pass
+    sc.sticky[key] = None
+
+
+# ────────────────────────────────────────────────────────────────
+# Geometry helpers
+# ────────────────────────────────────────────────────────────────
+
+def _resolve_brep(obj):
+    """
+    Grasshopper can deliver building geometry as:
+      • rg.Brep              — direct geometry (normal GH param)
+      • Rhino.DocObjects.ObjRef — reference to a doc object
+      • System.Guid          — bare GUID pointing to a doc object
+    Unwrap all three cases and return an rg.Brep (or None).
+    """
+    if obj is None:
+        return None
+    # Already a Brep
+    if isinstance(obj, rg.Brep):
+        return obj
+    # ObjRef (e.g. from a Rhino object reference param)
+    try:
+        import Rhino.DocObjects as _rdo
+        if isinstance(obj, _rdo.ObjRef):
+            return obj.Brep()
+    except Exception:
+        pass
+    # Guid — look up in active doc
+    try:
+        import System
+        import Rhino
+        if isinstance(obj, System.Guid):
+            doc_obj = Rhino.RhinoDoc.ActiveDoc.Objects.FindId(obj)
+            if doc_obj is not None:
+                return doc_obj.Geometry
+    except Exception:
+        pass
+    # Last resort: try casting via RhinoCommon
+    try:
+        result = rg.Brep.TryConvertBrep(obj)
+        if result is not None:
+            return result
+    except Exception:
+        pass
+    return None
+
+
+def extract_brep_footprint(brep_raw):
+    """Return (footprint [[x,y],...], height) from a Brep or Brep-like object."""
+    brep = _resolve_brep(brep_raw)
+    if brep is None:
+        return None, 0.0
+
+    bbox   = brep.GetBoundingBox(True)
+    height = float(bbox.Max.Z - bbox.Min.Z)
+
+    best_face, best_z = None, float("inf")
+    for face in brep.Faces:
+        try:
+            cpt = face.PointAt(face.Domain(0).Mid, face.Domain(1).Mid)
+            if cpt.Z < best_z:
+                best_z, best_face = cpt.Z, face
+        except Exception:
+            continue
+
+    fp_pts = []
+    if best_face is not None:
+        try:
+            outer = best_face.OuterLoop
+            if outer:
+                for trim in outer.Trims:
+                    pt = trim.PointAtStart
+                    if abs(pt.Z - best_z) < 0.5:
+                        fp_pts.append([round(float(pt.X), 3),
+                                       round(float(pt.Y), 3)])
+        except Exception:
+            pass
+
+    if not fp_pts:
+        mn, mx = bbox.Min, bbox.Max
+        fp_pts = [[round(mn.X, 3), round(mn.Y, 3)],
+                  [round(mx.X, 3), round(mn.Y, 3)],
+                  [round(mx.X, 3), round(mx.Y, 3)],
+                  [round(mn.X, 3), round(mx.Y, 3)]]
+
+    seen, uniq = set(), []
+    for p in fp_pts:
+        k = (p[0], p[1])
+        if k not in seen:
+            seen.add(k); uniq.append(p)
+
+    return uniq, height
+
+
+def geometry_to_json_payload(site_crv, buildings, tree_pts, tree_r, tree_h):
+    """Convert Rhino geometry to backend JSON payload."""
+    # Site boundary
+    ok, pl = site_crv.TryGetPolyline()
+    if ok and pl and pl.Count >= 3:
+        site_pts = [[round(float(pl[i].X), 3), round(float(pl[i].Y), 3)]
+                    for i in range(pl.Count)]
+    else:
+        param_list = site_crv.DivideByCount(40, True)
+        if param_list:
+            site_pts = []
+            for t in param_list:
+                p = site_crv.PointAt(t)
+                site_pts.append([round(float(p.X), 3), round(float(p.Y), 3)])
+        else:
+            site_pts = []
+
+    # Buildings
+    bldgs_json = []
+    for b in (buildings or []):
+        fp, h = extract_brep_footprint(b)
+        if fp and len(fp) >= 3:
+            bldgs_json.append({
+                "footprint":   fp,
+                "height":      round(h, 3),
+                "floor_count": max(1, round(h / 3.6)),
+            })
+
+    # Trees
+    trees_json = []
+    for i, pt in enumerate(tree_pts or []):
+        trees_json.append({
+            "x":      round(float(pt.X), 3),
+            "y":      round(float(pt.Y), 3),
+            "radius": round(float(tree_r[i]) if tree_r and i < len(tree_r) else 3.0, 3),
+            "height": round(float(tree_h[i]) if tree_h and i < len(tree_h) else 5.0, 3),
+        })
+
+    return {
+        "site_boundary":     site_pts,
+        "buildings":         bldgs_json,
+        "trees":             trees_json,
+        "sensor_resolution": 2.0,
+    }
+
+
+# ────────────────────────────────────────────────────────────────
+# UTCI colour mapping (ISO 15743)
+# ────────────────────────────────────────────────────────────────
+
+def utci_to_color(v):
+    v = float(v)
+    if   v <  9: r, g, b = 70, 130, 180
+    elif v < 26:
+        t = (v - 9) / 17
+        r = int(70  + t * (144 -  70))
+        g = int(130 + t * (238 - 130))
+        b = int(180 + t * (144 - 180))
+    elif v < 32:
+        t = (v - 26) / 6
+        r = int(144 + t * (255 - 144))
+        g = int(238 + t * (255 - 238))
+        b = int(144 + t * (102 - 144))
+    elif v < 38:
+        t = (v - 32) / 6
+        r, g, b = 255, int(255 + t * (165 - 255)), int(102 - t * 102)
+    elif v < 46:
+        t = (v - 38) / 8
+        r = int(255 + t * (220 - 255))
+        g = int(165 + t * ( 60 - 165))
+        b = 0
+    else: r, g, b = 139, 0, 0
+    return sd.Color.FromArgb(255,
+                             max(0, min(255, r)),
+                             max(0, min(255, g)),
+                             max(0, min(255, b)))
+
+
+def create_colored_mesh(sensor_pts_2d, utci_vals, cell_size=_CELL_SIZE):
+    """Build a vertex-coloured rg.Mesh from sensor grid + UTCI values."""
+    mesh = rg.Mesh()
+    half = cell_size / 2.0
+    z    = 0.05
+    for pt_2d, val in zip(sensor_pts_2d, utci_vals):
+        x, y  = float(pt_2d[0]), float(pt_2d[1])
+        color = utci_to_color(val)
+        i0    = mesh.Vertices.Count
+        mesh.Vertices.Add(x - half, y - half, z)
+        mesh.Vertices.Add(x + half, y - half, z)
+        mesh.Vertices.Add(x + half, y + half, z)
+        mesh.Vertices.Add(x - half, y + half, z)
+        for _ in range(4):
+            mesh.VertexColors.Add(color)
+        mesh.Faces.AddFace(i0, i0+1, i0+2, i0+3)
+    mesh.Normals.ComputeNormals()
+    mesh.Compact()
+    return mesh
+
+
+# ────────────────────────────────────────────────────────────────
+# Main — GH Python Script component entry point
+#
+# GH injects input port values as local variables with the EXACT
+# same name as the port.  Do NOT prefix them with underscores.
+# Outputs are also read back by their exact variable names.
+# ────────────────────────────────────────────────────────────────
+
+# --- output defaults ---
+utci_mesh     = None
+utci_values   = []
+sensor_points = []
+mean_utci     = 0.0
+max_utci      = 0.0
+min_utci      = 0.0
+status        = "idle — set run=True to compute"
+
+# --- safe-read GH inputs (port names without any underscore prefix) ---
+_sb  = site_boundary     if "site_boundary"     in dir() else None   # noqa
+_cb  = context_buildings if "context_buildings" in dir() else None   # noqa
+_db  = design_buildings  if "design_buildings"  in dir() else None   # noqa
+_tp  = tree_points       if "tree_points"       in dir() else None   # noqa
+_tr  = tree_radii        if "tree_radii"        in dir() else None   # noqa
+_th  = tree_heights      if "tree_heights"      in dir() else None   # noqa
+_url = server_url        if "server_url"        in dir() else None   # noqa
+_run = run               if "run"               in dir() else False  # noqa
+
+_url = _url or _DEFAULT_URL
+
+if not _run:
+    status = "idle — set run=True to compute"
+elif not _WS_OK:
+    status = "ERROR: websocket-client not installed — pip install websocket-client"
+elif _sb is None:
+    status = "ERROR: site_boundary input missing"
+else:
+    try:
+        # Merge buildings
+        all_buildings = []
+        for src in (_cb, _db):
+            if src:
+                if hasattr(src, "__iter__"):
+                    all_buildings.extend(src)
+                else:
+                    all_buildings.append(src)
+
+        # Normalise lists
+        pts_list = list(_tp) if _tp else []
+        r_list   = list(_tr) if _tr else []
+        h_list   = list(_th) if _th else []
+
+        payload = geometry_to_json_payload(_sb, all_buildings, pts_list, r_list, h_list)
+
+        if len(payload["site_boundary"]) < 3:
+            status = "ERROR: site_boundary has too few points"
+        else:
+            ws, err = _get_ws(_url)
+            if err:
+                status = "ERROR: " + err
+            else:
+                msg = {"action": "predict",
+                       "id":     str(uuid.uuid4()),
+                       "data":   payload}
+                try:
+                    ws.send(json.dumps(msg))
+                    raw  = ws.recv()
+                except Exception as conn_err:
+                    # Connection dropped mid-request — reconnect once
+                    _close_ws(_url)
+                    ws, err = _get_ws(_url)
+                    if err:
+                        raise RuntimeError("Reconnect failed: " + err)
+                    ws.send(json.dumps(msg))
+                    raw = ws.recv()
+
+                resp = json.loads(raw)
+
+                if resp.get("action") == "predict_result":
+                    data    = resp["data"]
+                    pts_2d  = data["sensor_pts"]
+                    utci_2d = data.get("utci", data.get("utci_all", []))
+
+                    # Average over T=11 timesteps if 2-D
+                    if utci_2d and isinstance(utci_2d[0], list):
+                        utci_values = [sum(row) / len(row) for row in utci_2d]
+                    else:
+                        utci_values = [float(v) for v in utci_2d]
+
+                    sensor_points = [rg.Point3d(p[0], p[1], 0.05) for p in pts_2d]
+
+                    if utci_values:
+                        mean_utci = sum(utci_values) / len(utci_values)
+                        max_utci  = max(utci_values)
+                        min_utci  = min(utci_values)
+
+                    utci_mesh = create_colored_mesh(pts_2d, utci_values)
+                    status = ("OK | Mean: {:.1f}°C  Max: {:.1f}°C  "
+                              "Sensors: {}").format(mean_utci, max_utci, len(utci_values))
+
+                elif resp.get("action") == "error":
+                    status = "Server error: " + resp.get("message", "unknown")
+                    _close_ws(_url)
+                else:
+                    status = "Unexpected response action: " + str(resp.get("action", "?"))
+
+    except Exception as e:
+        status = "ERROR: " + str(e)
+        try:
+            _close_ws(_url)
+        except Exception:
+            pass

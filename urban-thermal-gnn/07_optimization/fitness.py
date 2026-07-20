@@ -53,7 +53,8 @@ class FitnessEvaluator:
                  cfg:         ChromosomeConfig,
                  checker:     ConstraintChecker,
                  device:      str = "cuda",
-                 sensor_res:  float = 2.0):
+                 sensor_res:  float = 2.0,
+                 dim_air:     int = 9):
         self.model       = model
         self.norm_stats  = norm_stats
         self.epw_data    = epw_data
@@ -62,12 +63,13 @@ class FitnessEvaluator:
         self.checker     = checker
         self.device      = device
         self.sensor_res  = sensor_res
+        self.dim_air     = dim_air
 
         # [REMOVED_ZH:4]（[REMOVED_ZH:4] import）
         from geometry_converter import GNNInputBuilder
         from train import build_env_time_seq
 
-        self._builder = GNNInputBuilder(norm_stats, epw_data)
+        self._builder = GNNInputBuilder(norm_stats, epw_data, dim_air=dim_air)
         env_seq, time_seq = build_env_time_seq(epw_data,
                                                list(range(8, 19)),  # 8:00–18:00
                                                month=7)

@@ -336,11 +336,32 @@ class UTCIGraphDataset:
         utci_n = norm(utci, "utci").T  # (N, T)
 
         # ── air NodeStorage ───────────────────────────────────────
-        data["air"] = NodeStorage(
+        air_kwargs = dict(
             x   = torch.from_numpy(air_feat),        # (N, T, dim_air)
             y   = torch.from_numpy(utci_n),          # (N, T)
             pos = torch.from_numpy(sensor_pts.astype(np.float32)),  # (N, 2)
         )
+
+        # ── Real IoT sensor supervision (only for scenes with matched
+        #    real stations; see sensor_to_graph_features.SensorToGraphProjector).
+        #    scenarios.pkl entries produced by the real-site pipeline carry a
+        #    "sensor_utci" (T, N) array (NaN where no real station matches
+        #    that air node) written by 04_sensing_calibration.py. Synthetic
+        #    Monte-Carlo scenarios never have this key, so sensor_utci/
+        #    sensor_mask remain unset for them exactly as before. ──
+        with h5py.File(self._h5_path, "r") as hf:
+            grp = hf[f"scenarios/{sid}"]
+            if "sensor_utci" in grp:
+                raw_sensor_utci = grp["sensor_utci"][()]              # (T, N), NaN = no station
+                valid = ~np.isnan(raw_sensor_utci)
+                if valid.any():
+                    filled = np.where(valid, raw_sensor_utci, 0.0).astype(np.float32)
+                    sensor_utci_n = norm(filled, "utci").T             # (N, T), same scale as y
+                    sensor_mask_n = valid.T                            # (N, T) bool — True=real obs
+                    air_kwargs["sensor_utci"] = torch.from_numpy(sensor_utci_n)
+                    air_kwargs["sensor_mask"] = torch.from_numpy(sensor_mask_n)
+
+        data["air"] = NodeStorage(**air_kwargs)
 
         # ── object NodeStorage (building features) ────────────────
         scenario = self._scenario_map.get(sid)

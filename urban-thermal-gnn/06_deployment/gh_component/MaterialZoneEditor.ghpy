@@ -1,0 +1,120 @@
+#! python3
+"""
+MaterialZoneEditor.ghpy
+Rhino 8 Grasshopper Script Component — surface material zone editor
+Python 3 (CPython) via Rhino 8 Script component.
+
+Input Ports:
+  zone_curves    : List<Curve> — closed boundary curves for each zone
+  material_names : List<str>   — material type per zone
+                                 valid: grass | concrete | asphalt |
+                                        permeable_pavement | water | bare_soil
+  site_boundary  : Curve       — site boundary (optional, for context)
+
+Output Ports:
+  material_zones : str  — JSON string → connect to UTCIPredictor.material_zones
+  preview_mesh   : Mesh — coloured zone preview
+  zone_info      : str  — summary of defined zones
+"""
+
+import json
+import Rhino.Geometry as rg
+import System.Drawing as sd
+
+# ── Material colour palette ──────────────────────────────────────
+MATERIAL_COLORS = {
+    "grass":              (144, 238, 144),
+    "permeable_pavement": (192, 192, 192),
+    "concrete":           (169, 169, 169),
+    "asphalt":            ( 50,  50,  50),
+    "water":              ( 70, 130, 180),
+    "bare_soil":          (139,  69,  19),
+}
+VALID_MATERIALS = set(MATERIAL_COLORS.keys())
+
+
+# ────────────────────────────────────────────────────────────────
+# Helpers
+# ────────────────────────────────────────────────────────────────
+
+def _curve_to_pts(crv) -> list:
+    """Extract [[x, y], ...] from a Curve (prefers polyline vertices)."""
+    if crv is None:
+        return []
+    ok, pl = crv.TryGetPolyline()
+    if ok and pl and pl.Count >= 3:
+        return [[round(float(pl[i].X), 3), round(float(pl[i].Y), 3)]
+                for i in range(pl.Count)]
+    pts = crv.DivideByCount(40, True)
+    return [[round(float(p.X), 3), round(float(p.Y), 3)]
+            for p in pts] if pts else []
+
+
+def _zone_mesh(crv, rgb: tuple):
+    """Create a semi-transparent coloured mesh from a closed curve."""
+    meshes = rg.Mesh.CreateFromPlanarBoundary(
+        crv, rg.MeshingParameters.Default, 0.01)
+    if not meshes:
+        return None
+    zm    = meshes[0]
+    color = sd.Color.FromArgb(180, rgb[0], rgb[1], rgb[2])
+    for _ in range(zm.Vertices.Count):
+        zm.VertexColors.Add(color)
+    return zm
+
+
+# ────────────────────────────────────────────────────────────────
+# Main
+# ────────────────────────────────────────────────────────────────
+
+# Output defaults
+material_zones = json.dumps({"zones": {}})
+preview_mesh   = None
+zone_info      = "No zones defined. Connect zone_curves and material_names."
+
+# Read GH inputs
+try: _zone_curves     # noqa
+except NameError: _zone_curves = None
+try: _material_names  # noqa
+except NameError: _material_names = None
+try: _site_boundary   # noqa
+except NameError: _site_boundary = None
+
+if _zone_curves and _material_names:
+    curves = list(_zone_curves) if hasattr(_zone_curves, "__iter__") else [_zone_curves]
+    names  = list(_material_names) if hasattr(_material_names, "__iter__") else [_material_names]
+
+    zones_dict: dict   = {}
+    info_lines: list   = []
+    combined    = rg.Mesh()
+    valid_count = 0
+
+    for i, crv in enumerate(curves):
+        mat = str(names[i]).strip().lower() if i < len(names) else "concrete"
+
+        if mat not in VALID_MATERIALS:
+            info_lines.append(f"[{i}] '{mat}' unrecognised → concrete")
+            mat = "concrete"
+
+        pts = _curve_to_pts(crv)
+        if len(pts) < 3:
+            info_lines.append(f"[{i}] {mat}: too few points, skipped")
+            continue
+
+        zones_dict.setdefault(mat, []).append(pts)
+        valid_count += 1
+
+        zm = _zone_mesh(crv, MATERIAL_COLORS[mat])
+        if zm:
+            combined.Append(zm)
+
+        info_lines.append(f"[{i}] {mat}: {len(pts)} vertices")
+
+    combined.Compact()
+    if combined.Vertices.Count > 0:
+        preview_mesh = combined
+
+    material_zones = json.dumps({"zones": zones_dict})
+    zone_info = (f"{valid_count} zone(s) defined  "
+                 f"({len(zones_dict)} material type(s))\n"
+                 + "\n".join(info_lines))

@@ -1,0 +1,41 @@
+{
+  "anchor": {
+    "lat": 24.78805,
+    "lon": 120.99754
+  },
+  "region_bbox": {
+    "lat_min": 23.95,
+    "lat_max": 25.1,
+    "lon_min": 120.55,
+    "lon_max": 121.3
+  },
+  "criteria": {
+    "min_buildings": 3,
+    "min_height_tag_frac": 0.5,
+    "min_landuse_classes": 2,
+    "min_canopy_pixels": 1,
+    "iot_max_dist_m": 150.0
+  },
+  "n_zones_tried": 8,
+  "n_qualified": 1,
+  "sites": [
+    {
+      "lat": 24.861426,
+      "lon": 121.01885703703702,
+      "n_buildings": 5,
+      "height_tag_frac": 0.0,
+      "n_surface_classes": 2,
+      "surface_classes": [
+        "asphalt",
+        "built"
+      ],
+      "ground_materials": [
+        "asphalt"
+      ],
+      "n_canopy_pixels_80x80": 1,
+      "n_iot_devices_zone": 27,
+      "nearest_iot_dist_m": 43.5,
+      "score": 58.66451940079196
+    }
+  ]
+}

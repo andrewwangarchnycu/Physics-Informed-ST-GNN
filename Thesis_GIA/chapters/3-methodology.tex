@@ -1,0 +1,536 @@
+\chapter{系統分析與設計}
+\label{chapter:methodology}
+
+\section{整合運算框架}
+\label{sec:framework}
+
+既有的都市微氣候生成設計工作流面臨一個結構性矛盾：高擬真度模擬引擎能提供物理可信的熱壓力場，卻難以在設計迭代所需的時間內提供立即性回饋；而純資料驅動的機器學習代理模型雖可即時推論，卻常缺乏可追溯的地理資訊基礎與物理一致性保證。本研究之整合運算框架回應此一矛盾，由五個依序銜接的核心模組組成，形成一個從地理資訊建構、都市形態模擬、異質圖轉譯、物理資訊深度學習預測，到多目標最佳化與熱舒適人行動線評估的完整閉環流程：
+
+\begin{enumerate}
+    \item \textbf{模組一：基本 GIS 資訊建構}（GIS Foundation Construction）\\
+    以國土測繪中心（NLSC）WMTS／WMS 圖資服務與環境部智慧城鄉 IoT 微氣象感測網路為基礎，建立研究場域之座標參考系統、建物量體資料與感測器空間分布，作為後續模擬與驗證之地理錨點。
+    \item \textbf{模組二：都市形態模擬}（Urban Morphology Simulation）\\
+    以 Ladybug Tools／EnergyPlus 於 Rhino Grasshopper 環境中執行全場域微氣候逐時模擬，模擬對象涵蓋隨機生成之訓練場景與真實擷取之都市量體兩類幾何輸入，取得作為機器學習訓練監督信號之熱壓力目標值。
+    \item \textbf{模組三：運算框架 —— 真實都市建物足跡與樓高擷取}（Real-World Building Footprint \& Height Extraction）\\
+    自 NLSC 多重圖資服務融合擷取真實建物輪廓與樓層資訊，取代傳統仰賴蒙地卡羅隨機採樣之單一隨機幾何生成方式，使模型驗證得以錨定於實際都市紋理。
+    \item \textbf{模組四：異質圖建構與 PI-ST-GNN 推理}（Heterogeneous Graph Construction \& Inference）\\
+    將場景幾何轉譯為包含建物節點與空氣評估節點之異質圖，並以物理資訊時空圖神經網路低延遲預測全場域 UTCI 熱壓力場。
+    \item \textbf{模組五：Grasshopper 介面整合與多目標最佳化}（Multi-Objective Optimization \& Thermal Comfort Walkway Design）\\
+    以訓練完成的 GNN 作為代理模型嵌入 NSGA-II 演算法，同步評估都市形態之熱舒適人行動線品質，透過 FastAPI／WebSocket 後端與 Rhino Grasshopper 介面進行即時通訊，支援互動式閉環設計決策。
+\end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{../urban-thermal-gnn/04_training/figures/fig_arch_clean.png}
+    \caption{PI-ST-GNN 整合運算框架示意圖}
+    \label{fig:arch_pipeline}
+\end{figure}
+
+上圖左側輸入包含建物幾何特徵（7 維）與多時步空氣節點氣象特徵（9 維 $\times$ 11 步），中部為 RGCN 空間建模與 LSTM 時序融合，右側輸出全場域 UTCI 熱壓力場（11 時段），並以物理資訊損失函數進行約束訓練。
+
+圖~\ref{fig:data_pipeline_overview} 進一步以資料架構圖展示上述五個模組間之完整資料流向，並標示各處理階段與本章對應小節之關係。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_data_pipeline_overview.png}
+    \caption{整合運算框架資料架構圖}
+    \label{fig:data_pipeline_overview}
+\end{figure}
+
+上圖由左上四項資料來源（GIS 建物擷取、IoT 感測器、CWA 氣象站、隨機生成幾何）出發，經都市形態模擬、異質圖建構，匯入 PI-ST-GNN 推理引擎，最終驅動下方三項設計決策輸出（NSGA-II 最佳化、熱舒適人行動線設計、Grasshopper 介面回饋），色塊對應本章各小節。
+
+
+\section{基本 GIS 資訊建構}
+\label{sec:gis_foundation}
+
+本研究以政府開放圖資作為建構研究場域地理資訊基礎之資料來源，在不依賴商用測繪資料授權的前提下，取得具備樓層屬性的建物量體資料，並建立一套可重現的 GIS 資訊擷取流程。圖~\ref{fig:site_context} 由國家尺度逐層放大至研究場域尺度，說明研究場域在真實地理脈絡中的定位。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_geo1_site_context.png}
+    \caption{研究場域地理脈絡：由國家尺度逐層放大至場域尺度}
+    \label{fig:site_context}
+\end{figure}
+
+上圖 (a) 為台灣全島輪廓與新竹市相對位置；(b) 為新竹市東區之 IoT 感測器（Moenv）與 CWA 氣象站實際分布，橘色框標示研究區域範圍；(c) 為 $80\times80$ 公尺研究場域之典型隨機生成場景配置，展示建築量體、退縮帶與 $79\times79$ 個空氣評估節點格點。
+
+\subsection{座標參考系統與圖資來源}
+\label{subsec:crs_sources}
+
+研究場域座標統一於 Web Mercator 投影（EPSG:3857）中運算，並於輸出階段轉換回研究區域慣用之 WGS84 地理座標（EPSG:4326）供跨系統交換。所有底圖圖資取自 NLSC 提供之三項服務：
+
+\begin{itemize}
+    \item \textbf{TOPO01K}（1/1000 都市計畫現況圖，WMTS）：以粉紅色封閉曲線標繪建物外框，內部以細斜線 hatch 填充樓地板範圍，並於各獨立樓高分區內標註樓層文字（如 \texttt{3R}、\texttt{T}、\texttt{1B}），為唯一同時攜帶幾何輪廓與樓層資訊之圖層。
+    \item \textbf{B5000}（1/5000 基本地形圖，WMS）：以黑色細線繪製建物封閉輪廓，道路與地籍界線則以紅色、行政界以洋紅、水體以藍／青繪製，各要素色彩互斥可分離，作為幾何輪廓之獨立驗證來源。
+    \item \textbf{EMAP}（臺灣通用電子地圖，WMS）：建物範圍以淡紫灰色（RGB 234, 227, 234）填色標示，經與 B5000 黑線封閉區域交叉比對後實測確認，作為建物面積之第二項獨立驗證來源。
+\end{itemize}
+
+三項服務並非各自獨立使用，而是以同一空間網格（相同 EPSG:3857 邊界框、相同像素尺寸）分別取得柵格圖磚，確保像素級對齊、無需重新取樣，方能在後續步驟中逐像素交叉比對。
+
+
+\subsection{IoT 微氣象感測器空間資料}
+\label{subsec:iot_spatial}
+
+除靜態建物圖資外，本研究整合環境部智慧城鄉空品微型感測器網路之即時觀測資料，作為模擬邊界條件校準與研究場域選定之依據。以研究場域錨點（北緯 24.80 度、東經 120.97 度）為圓心、15 公里為半徑之範圍內，共納入 806 站有效感測器（溫度、濕度量測值均通過合理性篩選），其空間分布與逐時量測特性如圖~\ref{fig:iot_sensor_map} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_iot_sensor_map.png}
+    \caption{新竹都會區 EPA IoT 微型感測器空間分布實測圖（806 站，2026-07-08 正午時段）}
+    \label{fig:iot_sensor_map}
+\end{figure}
+
+上圖 (a) 為空氣溫度分布，色階由綠（低溫）至紅（高溫），可見市區與丘陵地帶顯著溫差；(b) 為相對濕度分布，沿海與內陸呈現梯度差異；虛線圓圈為 15 公里資料擷取範圍，十字標示研究場域錨點（新竹市中心）。
+
+在感測器密度分析階段，本研究改以感測器站點之空間座標本身（而非其量測值是否通過合理性篩選）為對象，涵蓋範圍內共 961 站空間位置，並以核密度估計（Kernel Density Estimation, KDE）評估其空間分布密度，以各候選熱點半徑 400 公尺內之實際感測器計數排序，取代單純以 KDE 峰值強度排序 —— 後者對估計頻寬敏感，可能使一處感測器數量稀疏但局部尖峰的候選點排序高於感測器數量真正密集的區域。此一感測器密度分析用以界定後續建物足跡擷取與模型驗證之重點研究範圍，如圖~\ref{fig:studyarea} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{../urban-thermal-gnn/04_training/figures/fig_studyarea_sensor_density.png}
+    \caption{研究範圍選定：IoT 感測器密度與模擬場域對照}
+    \label{fig:studyarea}
+\end{figure}
+
+上圖 (a) 為 15 公里感測器涵蓋範圍內之核密度估計曲面，虛線圓圈標示以實際感測器計數排序之前五高密度候選區；(b) 為密度最高候選區（即研究場域錨點所在區域）之局部放大，虛線圓圈半徑 400 公尺內共 39 站感測器。
+
+
+\subsection{全球樹冠高度資料}
+\label{subsec:canopy_data}
+
+建物與感測器圖資之外，喬木樹冠高度是異質圖中 \texttt{veg\_et}（植被蒸散）邊緣與空氣節點 $T_h$（最近樹木高度影響）特徵的真實資料來源。本研究採用 ETH Zurich 發布之全球樹冠高度資料集 ETH GlobalCanopyHeight（10 公尺解析度、2020 年版本，WGS84 地理座標）\citep{lang2023high}，該資料集以 Sentinel-2 多光譜影像結合 GEDI 星載光達（Spaceborne LiDAR）訓練深度學習迴歸模型反演逐像元樹冠高度，覆蓋全球陸地表面。研究場域所在圖磚（N24E120）之空間範圍與研究場域錨點之對照如圖~\ref{fig:canopy_map} 所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_canopy_height_map.png}
+    \caption{ETH GlobalCanopyHeight 樹冠高度資料與研究場域對照}
+    \label{fig:canopy_map}
+\end{figure}
+
+上圖 (a) 為研究場域周邊 15 公里範圍內之樹冠高度分布，疊繪於真實衛星影像底圖之上，色階採與 ETH 官方線上展示工具一致之 inferno 色彩尺度（深紫至亮橙代表樹冠高度遞增），虛線圓圈與圖~\ref{fig:iot_sensor_map} 採相同之 15 公里範圍，供跨圖對照；灰階（無色階疊加）區域代表該處無樹冠訊號（NoData），對應道路、建物等不透水鋪面。可見新竹沿海丘陵地帶具有大面積連續天然林覆蓋（樹冠高度可達 30 公尺以上），與都市化核心區之低樹冠覆蓋形成鮮明對比。(b) 為場域局部放大，青框標示 $80\times80$ 公尺研究場域之實際地理位置與尺度；可見研究場域本身座落於高密度建成核心，該 $80\times80$ 公尺範圍內之像元均為無樹冠訊號，但周邊數十至數百公尺外仍可見明顯樹冠覆蓋。
+
+在資料整合流程上，本研究依循 sensing\_integration/canopy\_loader.py 之取樣邏輯：對每一棵樹木節點之場域局部座標 $(x, y)$，先轉換為 WGS84 經緯度，再以最近像元法（Nearest-neighbor Sampling）自 GeoTIFF 讀取對應樹冠高度值；若該位置存在有效觀測值（高度 $\ge 1$ 公尺），則以此真實觀測值覆蓋原先由隨機幾何採樣器生成之樹木高度與推算樹冠半徑，並標記資料來源為 \texttt{canopy\_map}；若該位置無有效觀測，則保留隨機生成之高度值，標記為 \texttt{random\_fallback}。此一「真實資料優先、程序化生成為輔」的分層取樣策略，使異質圖之樹木節點特徵在有真實觀測依據之處錨定於實測數據。
+
+
+\subsection{真實場景訓練資料集（V4）}
+\label{subsec:v4_real_dataset}
+
+為使模型訓練直接立基於真實都市地理資訊而非全然程序化生成之幾何，本研究於前述 GIS 圖資基礎上，建立一套完全以真實資料驅動之 300 場景訓練資料集（下稱 V4）。其選址以陽明交通大學光復校區為錨點，為達科學可信之取樣數而將搜尋範圍擴及新竹市、新竹縣、桃園市、苗栗縣與臺中市；候選場址直接取自環境部 IoT 測站之真實座標（去重至最小間距 150 公尺，避免 $80\times80$ 公尺場域重疊），並逐一檢核以下四項條件，僅保留同時滿足全部條件者：
+
+\begin{enumerate}
+    \item \textbf{真實建物幾何（陰影訊息）：}場域 120 公尺陰影脈絡範圍內至少含 3 棟真實 OSM 建物足跡，且至少 1 棟位於場域中心 70 公尺內，確保場景具真實建物量體與陰影結構；
+    \item \textbf{地表覆蓋異質性：}場域周邊具建成（built）以外之至少一類地面材質（草地、水體、裸土、鋪面等，取自 OSM \texttt{landuse}／\texttt{natural}／\texttt{leisure}），合計 $\ge 2$ 類物理表面，提供反照率與蓄熱異質性；
+    \item \textbf{高密度真實 IoT：}場域中心即為一真實環境部微型感測器站點（最近測站距離 0 公尺），可直接以該站真實觀測驅動與校準；
+    \item \textbf{真實植栽陰影：}場域 $80\times80$ 公尺範圍內具 ETH GlobalCanopyHeight 有效樹冠像元，確保含真實植栽遮蔽訊息。
+\end{enumerate}
+
+全區共 304 個候選場址通過全部條件，依綜合品質評分（真實樓高建物數、IoT 密度、樹冠像元、建物密度加權）取前 300 名，其於真實地圖上之分布如圖~\ref{fig:selected_sites} 所示。300 場景依序輪派至 6、7、8 三個月份（各 100 場景），使資料集涵蓋整個實測夏季。誠實說明各項真實度：建物\textbf{足跡}為 100\% 真實（每場景平均 11.3 棟，直接來自 OSM）；建物\textbf{樓高}則因臺灣 OSM 高度標籤稀疏，僅約 14\% 建物具真實 \texttt{height}／\texttt{building:levels} 標籤，其餘以三層（10.8 公尺）之樓層預設值回填，屬本資料集之已知限制；喬木高度取自 ETH 樹冠實測；空氣溫度與相對濕度則為\textbf{全部 300 場景}各自所在 IoT 測站之真實逐時觀測（溫、濕度覆蓋率均為 300/300）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_selected_real_sites.png}
+    \caption{V4 真實訓練場景選取結果：(a) 300 個場景於擴大搜尋範圍（新竹／桃園／苗栗／臺中，錨定陽明交大光復校區）之區域分布，點色對應綜合選址評分；(b) 錨點核心區之場景，$80\times80$ 公尺場域邊界按真實比例繪製於 OpenStreetMap 底圖之上。每一場景同時滿足真實建物、地表異質性、真實 IoT 站點與真實樹冠四項條件。}
+    \label{fig:selected_sites}
+\end{figure}
+
+
+\section{物理式都市微氣候逐時模擬}
+\label{sec:ladybug_workflow}
+
+微氣候逐時模擬以一套物理式（Physics-based）Python 運算引擎實作，逐一評估場景內每個空氣節點之逐時熱壓力目標值 $T_a, \text{MRT}, V_a, \text{RH}, \text{UTCI}$。其運算核心包含四個相互耦合之物理模組：（1）\textbf{天空可視因子（Sky View Factor, SVF）}以射線投射法（Ray-casting）自各節點向天空半球發射射線，依建物與喬木幾何計算被遮擋比例；（2）\textbf{陰影判定}依太陽位置（由場域經緯度、日期、時刻以天文公式解算）與建物、喬木幾何投影，逐時判定各節點是否位於遮蔽區；（3）\textbf{戶外平均輻射溫度（MRT）}以地表能量平衡近似式計算，區分遮蔽／曝曬狀態下之短波直達、漫射與地面反射及長波輻射交換（近似參數依 Oke 都市氣候學經驗值設定）；（4）\textbf{街谷風場遮蔽}依建物高寬比（$H/W$）與粗糙度修正參考風速。最終以 \texttt{pythermalcomfort} 套件之標準 UTCI 多項式，由 $T_a$、MRT、$V_a$、RH 合成通用熱氣候指標。無論幾何輸入來自第~\ref{sec:building_extraction}節之真實都市擷取或既有之隨機生成場景，均經由此同一模擬流程取得目標值。模擬時段涵蓋 08:00 至 18:00 共 11 個整點時步（$T = 11$），捕捉日間熱壓力最嚴峻之逐時變化軌跡。
+
+需誠實說明者：本引擎為可重現、可批次執行於數百場景之物理近似模型，並\textbf{未}呼叫 Ladybug Tools／EnergyPlus／Radiance 等外部模擬套件；其 SVF 與陰影為幾何射線近似而非完整輻射傳遞（Radiance）計算，地表能量平衡亦為經驗近似而非 EnergyPlus 之全熱力學求解。此一取捨係為在數百個真實場景之資料集規模下維持運算可行性；引擎所採之能量平衡與經驗係數均可追溯至既有都市氣候文獻，並以真實氣象邊界條件驅動（見下節），其輸出作為機器學習之監督信號在相對意義上具物理一致性。
+
+氣象邊界條件於第~\ref{subsec:v4_real_dataset}節之真實場景資料集中，直接採用各場景所在地之環境部 IoT 測站真實逐時氣溫與相對濕度（經合理性驗證，故障測站退回中央氣象署區域觀測）、中央氣象署測站真實風速，以及區域 TMY（Typical Meteorological Year）EPW 之實測日射剖面（因 CWA 該測站未提供日射觀測，故日射採區域典型氣象年之實測輻射，而非場景當日觀測）；此一設計使模擬之熱壓力目標值錨定於真實觀測氣候。
+
+此一模擬工作流之輸出，除作為機器學習訓練之監督信號外，亦是第~\ref{sec:nsga2}節熱舒適人行動線評估與多目標最佳化之基準比對依據。
+
+
+\section{運算框架：真實都市 Building Footprint \& Height 擷取}
+\label{sec:building_extraction}
+
+\subsection{既有隨機生成方法之侷限}
+\label{subsec:parametric_limitation}
+
+模型訓練所需的大規模場景資料集，傳統上由隨機幾何採樣器（Stochastic Geometry Sampler）以蒙地卡羅法在容積率（FAR）、建蔽率（BCR）與縮退規範之法規約束下生成：每個場景包含 2--5 棟建築（矩形或 L 形平面、面寬與進深各 5--25m、樓層數 2--12 層）與 2--5 棵喬木（高度 4--12m），共產生 300 個合法場景。此方法能有效覆蓋法規允許之形態解空間，但其產出之建物量體、棟數關係與街廓紋理均為程序化生成，與真實都市紋理之棟距、街廓尺度、樓高分布統計特性未必一致，使模型於真實場地應用時的泛化可信度難以驗證。因此，本研究另建立一條可與隨機生成互補的真實資料擷取路徑：直接自政府開放圖資擷取真實建物足跡與樓高，作為模型於實際場地驗證與案例研究之幾何輸入來源。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_geo4_scenarios.png}
+    \caption{六個典型隨機生成場景之建築量體與喬木配置示意}
+    \label{fig:scenarios}
+\end{figure}
+
+
+\subsection{三服務融合建物向量化方法}
+\label{subsec:vectorize_method}
+
+真實建物量體之擷取面臨一項核心限制：單一圖資來源難以同時提供精確幾何輪廓與樓層屬性。TOPO01K 圖層雖標註樓高文字，但其柵格化 hatch 填充在高縮放層級下受制圖線寬影響而破碎為大量細小連通元件，直接以連通元件分析取得的建物遮罩並不可靠；B5000 與 EMAP 雖幾何品質較佳，卻不含樓層資訊。本研究因此設計一套三服務交叉驗證方法，讓三個各有所長、各有所缺的圖資來源互補：
+
+\begin{enumerate}
+    \item \textbf{建物範圍重建：}將 TOPO01K 之粉紅色填色像素與黑色線繪像素（外框、內部 hatch、樓高文字）聯集為單一「建物範圍遮罩」，而非僅取粉紅色填色本身 —— 因為 hatch 線條與填色像素在製圖時緊密交疊，聯集遮罩可還原被 hatch 切割破碎的填色區域至建物尺度之完整連通元件，且無需透過形態學膨脹等會扭曲邊界的操作。
+    \item \textbf{粗細線分離：}以形態學開運算（Morphological Opening）對建物範圍內之黑色線像素進行處理，去除短而細之斜向 hatch 筆劃，保留較粗、較連續之樓高分區邊界線，藉此將單一建物範圍細分為對應各自獨立樓高之子區塊。
+    \item \textbf{子區塊輪廓萃取：}對每一子區塊以 OpenCV \citep{bradski2000opencv} 實作之邊界追蹤演算法（cv2.\allowbreak findContours，基於 Suzuki \& Abe 之拓樸邊界追蹤法 \citep{suzuki1985topological}）取得次像素封閉輪廓，再以 Douglas--Peucker 演算法 \citep{douglas1973algorithms} 化簡為平滑多邊形，作為該樓高分區之向量化幾何輸出。
+    \item \textbf{多字元群集樓高辨識：}掃描每一子區塊內部之黑色文字像素群集（依尺寸與長寬比篩除細長之殘留 hatch 筆劃），對每一候選群集個別以 Tesseract OCR 引擎 \citep{smith2007overview} 執行光學文字辨識，取代僅於整棟建物幾何中心點單次辨識之作法 —— 大型建物複合體內常包含多個並列之不同樓高分區（如 \texttt{6R}、\texttt{5R}、\texttt{4R} 並列），單次中心點辨識幾乎必然錯過實際文字位置。
+    \item \textbf{跨服務信心度評估：}將每一子區塊之向量化輪廓分別與 B5000 黑線封閉區域、EMAP 淡紫灰填色區域進行像素重疊率比對，依兩項驗證來源之通過情形標記高／中／低信心度，供後續篩選使用。
+\end{enumerate}
+
+圖~\ref{fig:gis_fusion_pipeline} 完整呈現上述三服務融合方法之系統流程，包含三項圖資之像素對齊機制、TOPO01K 主處理鏈之四道步驟，以及 B5000／EMAP 驗證分支如何匯聚為最終信心度分級輸出。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_gis_fusion_pipeline.png}
+    \caption{三服務融合建物向量化系統流程圖}
+    \label{fig:gis_fusion_pipeline}
+\end{figure}
+
+上圖橘色為 TOPO01K 主幾何與樓高擷取鏈（建物範圍重建→粗細線分離→子區塊輪廓萃取→多字元群集樓高辨識）；深灰、紫色分別為 B5000、EMAP 之獨立驗證分支；綠色為最終輸出，附帶信心度分級與完整屬性表。
+
+樓層文字之判讀依循新竹地區都市計畫現況圖之標示慣例：\texttt{NR} 表示地上第 N 層、\texttt{T} 表示地面層、\texttt{NB} 表示地下第 N 層、\texttt{NM} 表示夾層。當同一子區塊經多字元群集辨識比對後仍檢出一種以上互斥樓層標籤時，判定為分區尚未完全切割成功之案例，如實標記為待覆核而非任意保留其中一筆結果，以維持資料集之可追溯性。
+
+
+\subsection{與隨機生成之互補關係}
+\label{subsec:extraction_vs_parametric}
+
+真實建物擷取流程與既有隨機生成場景並非互斥替代關係：前者提供真實都市紋理下之案例驗證與 NSGA-II 最佳化之現況基準（Baseline），後者則因場景數量與形態組合可控，適於支撐模型訓練所需之大規模、高覆蓋度樣本集。第~\ref{chapter:results}章之案例研究即以本節擷取之真實建物足跡作為既有場地現況輸入，評估模型於未見過真實幾何配置下之泛化表現。
+
+
+\section{異質圖建構流程}
+\label{sec:graph_construction}
+
+\subsection{節點類型與特徵設計}
+\label{subsec:nodes}
+
+都市微氣候系統中，空間元素的物理特性差異顯著——建築物為不透氣剛體，主導陰影投射與風場阻滯；空氣評估點為連續流體場採樣，承載氣象時序資訊。本研究因此採用\textbf{異質圖}（Heterogeneous Graph）結構，將兩類節點分別賦予不同語義維度的特徵向量：
+
+\noindent\textbf{建物節點（Object Nodes，$\mathcal{V}_{\text{obj}}$）}
+
+建物節點共 $N_{\text{obj}}$ 個，包含場景內所有建築與喬木，每個節點攜帶 7 維靜態幾何特徵向量（見表~\ref{tab:obj_features}）：
+
+\begin{table}[htbp]
+    \centering
+    \caption{建物節點特徵定義（7維靜態特徵）}
+    \label{tab:obj_features}
+    \small
+    \begin{tabular}{lllc}
+        \toprule
+        \textbf{特徵名稱} & \textbf{物理意義} & \textbf{正規化方式} & \textbf{範圍} \\
+        \midrule
+        \texttt{height / 50}        & 建築簷高（m）                  & 除以 50m 上限     & $[0, 1]$ \\
+        \texttt{floors / 12}        & 樓層數                        & 除以 12 層上限    & $[0, 1]$ \\
+        \texttt{footprint / 2000}   & 底層投影面積（m$^2$）           & 除以 2000m$^2$    & $[0, 1]$ \\
+        \texttt{cx / 80}            & 質心 X 座標（m）               & 除以場地寬 80m    & $[0, 1]$ \\
+        \texttt{cy / 80}            & 質心 Y 座標（m）               & 除以場地高 80m    & $[0, 1]$ \\
+        \texttt{gfa / 20000}        & 總樓地板面積（m$^2$）           & 除以 20000m$^2$   & $[0, 1]$ \\
+        \texttt{is\_L\_shape}       & 平面形態旗標（L形=1，矩形=0）  & 二值              & $\{0, 1\}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent\textbf{空氣評估節點（Air Nodes，$\mathcal{V}_{\text{air}}$）}
+
+空氣評估節點共 $N_{\text{air}} = 6{,}241$ 個，佈設於場地 $79 \times 79$ 個 1.0m 間距格點上，每個節點在每個時步攜帶 9 維動態特徵向量（見表~\ref{tab:air_features}）：
+
+\begin{table}[htbp]
+    \centering
+    \caption{空氣評估節點特徵定義（每時步 9 維動態特徵）}
+    \label{tab:air_features}
+    \small
+    \begin{tabular}{lllc}
+        \toprule
+        \textbf{特徵名稱} & \textbf{物理意義} & \textbf{正規化方式} & \textbf{範圍} \\
+        \midrule
+        \texttt{Ta\_norm}   & 空氣溫度（°C）             & z-score 標準化  & $\sim\mathcal{N}(0,1)$ \\
+        \texttt{MRT\_norm}  & 平均輻射溫度（°C）         & z-score 標準化  & $\sim\mathcal{N}(0,1)$ \\
+        \texttt{Va\_norm}   & 水平風速（m/s）            & z-score 標準化  & $\sim\mathcal{N}(0,1)$ \\
+        \texttt{RH\_norm}   & 相對濕度（\%）             & z-score 標準化  & $\sim\mathcal{N}(0,1)$ \\
+        \texttt{SVF}        & 天空視角因子              & 原始值 $[0,1]$ & $[0, 1]$ \\
+        \texttt{shadow}     & 陰影遮蔽旗標              & 二值            & $\{0, 1\}$ \\
+        \texttt{Bh / 50}    & 最近建築高度影響（m）      & 除以 50m 上限   & $[0, 1]$ \\
+        \texttt{Th / 12}    & 最近樹木高度影響（m）      & 除以 12m 上限   & $[0, 1]$ \\
+        \texttt{Ts\_norm}   & 地表溫度估算值（°C）       & z-score 標準化  & $\sim\mathcal{N}(0,1)$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+其中地表溫度 $T_s$ 並非直接量測值，而由下式之對流熱平衡估算計算得出：
+
+\begin{equation}
+    T_s = T_a + \frac{\text{GHI}}{h_c}
+    \label{eq:surface_temp}
+\end{equation}
+
+式中 $\text{GHI}$（W/m$^2$）為太陽總輻照度（來自 EPW 逐時資料），$h_c$（W/m$^2$K）為對流換熱係數（本研究設定為 10 W/m$^2$K）。此估算方法在忽略長波輻射再輻射與儲熱效應的一階近似下，能有效代表城市鋪面之熱輻射貢獻 \citep{oke1988street}。
+
+
+\subsection{邊緣類型與因果拓樸}
+\label{subsec:edges}
+
+本研究定義五種關係型邊緣（Relational Edges），各自對應一種明確的物理因果機制（見表~\ref{tab:edge_types}）：
+
+\begin{table}[htbp]
+    \centering
+    \caption{異質圖五類關係型邊緣定義}
+    \label{tab:edge_types}
+    \small
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{邊緣類型} & \textbf{連接方向} & \textbf{建立方法} & \textbf{物理因果意義} \\
+        \midrule
+        \texttt{shadow}      & 建物 $\to$ 空氣 & 幾何陰影投射計算 & 建築遮擋導致輻射熱降低 \\
+        \texttt{veg\_et}     & 建物 $\to$ 空氣 & 樹冠覆蓋半徑判斷 & 植被蒸散作用形成冷卻效應 \\
+        \texttt{convective}  & 空氣 $\to$ 空氣 & 對流方向性權重   & 風場驅動的對流熱交換 \\
+        \texttt{semantic}    & 建物 $\leftrightarrow$ 建物 & 全連接（完整關係） & 建築語義形態相互關係 \\
+        \texttt{contiguity}  & 空氣 $\leftrightarrow$ 空氣 & KNN（$k = 8$）  & 空間毗鄰性熱梯度傳導 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+其中 \texttt{semantic} 與 \texttt{contiguity} 為靜態邊，於資料載入階段一次建立並全程共用；\texttt{shadow}、\texttt{veg\_et}、\texttt{convective} 三者則隨太陽方位角、風向逐時步變化，於每個時步重新計算，構成動態邊集合 \texttt{dynamic\_edges[t]}。圖~\ref{fig:graph_construction} 以真實資料集之場景 0（$N_{\text{obj}}=3$，$N_{\text{air}}=6{,}241$）具體呈現此一異質圖之節點分布、真實建立之 KNN 毗鄰邊局部結構，以及完整節點／邊型別綱要。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_graph_construction.png}
+    \caption{異質圖建構實例（取自真實訓練資料場景 0）}
+    \label{fig:graph_construction}
+\end{figure}
+
+上圖 (a) 為建物節點（紅色量體）與空氣評估節點（依時均 UTCI 著色）之空間分布；(b) 為局部 $18\times18$ 公尺窗口內 KNN($k$=8) 毗鄰邊之真實連接結構，以及該範圍內建物節點向場外其他建物延伸之全連接語義邊；(c) 為異質圖節點／邊型別綱要，對應 9 維空氣節點特徵（含地表溫度）與五類關係型邊緣定義。
+
+圖~\ref{fig:graph_topology} 進一步以另一真實場景（場景 10）之全域視角，呈現 \texttt{semantic} 邊如何在場域內所有建物節點間建立全連接拓樸——不同於圖~\ref{fig:graph_construction}(b) 僅呈現單一建物之局部窗口，此處可清楚看見四個建物節點（含一喬木冠層節點）兩兩相連之完整語義邊網絡，與其下方 $6{,}241$ 個空氣節點所構成之密集 KNN 毗鄰網格形成尺度對比。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_geo5_graph_topology.png}
+    \caption{異質圖拓樸全域視角（真實訓練資料場景 10）}
+    \label{fig:graph_topology}
+\end{figure}
+
+上圖 (a) 為完整 $80\times80$ 公尺場域，橘點為 6,241 個空氣節點（KNN 毗鄰邊為求可讀性僅隨機顯示 3,000／49,928 條），藍色量體為建物節點、綠色圓為喬木冠層節點，紫色虛線為建物節點間之全連接語義邊；(b) 為場域左下 $40\times40$ 公尺象限放大，標示 9 維空氣節點特徵之完整定義。
+
+作為對照，圖~\ref{fig:real_scene_graph} 以第~\ref{subsec:v4_real_dataset}節 V4 真實場景資料集中之一個實際場景，展示完全以真實 GIS 圖資建構之異質圖：(a) 之建物量體均為 OSM 真實足跡（色階為真實簷高，實線外框標示具真實樓高標籤者），綠點為 ETH 樹冠實測植栽；(b) 之每個空氣節點依 4 公尺格點佈設，節點顏色為以該場景所在真實 IoT 測站逐時氣溫驅動之模擬尖峰 UTCI，可見建物遮蔽與植栽降溫在空間上形成之熱舒適梯度，即為 PI-ST-GNN 所學習之真實空間結構。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_real_scene_graph.png}
+    \caption{以真實 GIS 圖資建構之異質圖範例（V4 真實場景）：(a) 真實 OSM 建物與 ETH 樹冠幾何；(b) 空氣節點感測網格與 k-NN 鄰接邊，節點色為真實 IoT 氣溫驅動之模擬尖峰 UTCI。}
+    \label{fig:real_scene_graph}
+\end{figure}
+
+
+\subsection{圖索引對齊機制（$+N_{\text{obj}}$ 偏移量）}
+\label{subsec:index_offset}
+
+異質圖在送入 RGCN 之前，本研究採用\textbf{節點串接}（Node Concatenation）策略，將建物節點特徵向量 $\mathbf{H}_{\text{obj}} \in \mathbb{R}^{N_{\text{obj}} \times d_{\text{obj}}}$ 與空氣節點特徵 $\mathbf{H}_{\text{air}} \in \mathbb{R}^{N_{\text{air}} \times d_{\text{air}}}$ 沿節點維度串接，形成單一混合節點張量：
+
+\begin{equation}
+    \mathbf{H} = \left[ \mathbf{H}_{\text{obj}} ; \mathbf{H}_{\text{air}} \right] \in \mathbb{R}^{(N_{\text{obj}} + N_{\text{air}}) \times d}
+    \label{eq:node_concat}
+\end{equation}
+
+此機制意味著空氣節點在串接後的全域索引空間中，其索引應整體偏移 $N_{\text{obj}}$。因此，KNN 毗鄰邊（\texttt{contiguity}）在建立時，所有空氣節點的 \texttt{edge\_index} 均需加上偏移量 $N_{\text{obj}}$：
+
+\begin{equation}
+    \texttt{edge\_index}_{\text{contiguity}} \mathrel{+}= N_{\text{obj}}
+    \label{eq:offset}
+\end{equation}
+
+此對齊機制確保跨節點類型之邊緣（如 \texttt{shadow}: 建物 $\to$ 空氣）在統一索引空間中仍能正確尋址目標節點，是整個異質圖能以單一 RGCN 前向傳播處理的關鍵實作細節，完整偏移量計算流程另見附錄~\ref{appx:index_offset_detail}。
+
+
+\section{物理資訊時空圖神經網路 (PI-ST-GNN) 模型架構}
+\label{sec:gnn_model}
+
+\subsection{整體架構概述}
+\label{subsec:model_overview}
+
+PI-ST-GNN 模型由以下五個主要子模組組成，依前向傳播順序排列（詳見圖~\ref{fig:arch_pipeline}）：
+
+\begin{enumerate}
+    \item \textbf{物件節點編碼器（Object Encoder）：}以兩層 MLP 將 7 維靜態幾何特徵投影至 128 維隱藏表示 $\mathbf{h}_{\text{obj}} \in \mathbb{R}^{N_{\text{obj}} \times 128}$。
+    \item \textbf{空氣節點編碼器（Air Encoder）：}以兩層 MLP 將每時步 9 維動態氣象特徵投影至 128 維隱藏表示 $\mathbf{h}_{\text{air},t} \in \mathbb{R}^{N_{\text{air}} \times 128}$，對 $T = 11$ 個時步分別計算。
+    \item \textbf{全域情境編碼器（Global Context Encoder）：}將場景整體氣象背景（8 維逐時統計特徵：全場域平均 $T_a, V_a, \text{RH}, \text{GHI}$ 及其差分）以 MLP 編碼為時序情境向量 $\mathbf{c} \in \mathbb{R}^{T \times 192}$，與每時步之空氣節點表示融合，注入全域氣候感知能力。
+    \item \textbf{關係圖卷積網路（RGCN）：}在每個時步 $t$，將建物與空氣節點之串接表示送入三層堆疊的 RGCN 塊（RGCNBlock），在五種關係型邊緣上進行異質訊息聚合，輸出包含空間因果資訊的混合節點表示。
+    \item \textbf{LSTM 時序建模與輸出頭：}以 Fusion MLP 融合 RGCN 輸出與全域情境向量後，送入單層 LSTM，其初始隱藏狀態 $\mathbf{h}_0$ 由 $t = 0$ 時刻的 RGCN 輸出投影得出，最終由輸出 MLP 預測 11 時步之 UTCI 值 $\hat{\mathbf{u}} \in \mathbb{R}^{N_{\text{air}} \times T}$。
+\end{enumerate}
+
+上述五個子模組彼此之銜接關係，以及第~\ref{sec:graph_construction}節之異質圖建構如何作為此模型之前置輸入，完整呈現於圖~\ref{fig:overview_pistgnn}。此圖並將第~\ref{subsec:lstm}節所述「LSTM 初始隱藏狀態由 RGCN 輸出投影得出、而非零向量初始化」之時序展開細節，以下方獨立面板逐時步具體標示——每個時步 $t$ 之異質圖先經 RGCN 完成當時步之空間訊息擴散，其輸出再與前一時步之 LSTM 隱藏狀態 $h_{t-1}$ 共同送入 LSTM 單元更新 $h_t$，如此逐時步展開直至 $t=10$（對應 18:00），最終輸出張量 $(N_{\text{air}}, T{=}11, 256)$ 送入輸出 MLP 完成多時步解碼。此一「空間擴散在前、時序遞迴在後」之逐時步交替結構，是 PI-ST-GNN 得以同時捕捉建物陰影瞬時空間效應與都市熱慣性累積效應兩種不同時間尺度物理機制的架構關鍵。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_overview_pistgnn_clean.png}
+    \caption{PI-ST-GNN 模型架構總覽}
+    \label{fig:overview_pistgnn}
+\end{figure}
+
+上圖呈現異質圖建構、編碼、解碼三階段，及 RGCN 擴散＋LSTM 遞迴之逐時步展開細節。
+
+
+\subsection{關係圖卷積網路（RGCN）}
+\label{subsec:rgcn}
+
+本研究的核心空間建模模組為\textbf{關係圖卷積網路}（Relational Graph Convolutional Network, RGCN） \citep{wu2023data, shan2025physics}。不同於同質圖卷積（GCN）以單一共享權重聚合所有鄰域，RGCN 為每種關係類型 $r \in \mathcal{R}$ 維護獨立的可學習投影矩陣 $\mathbf{W}_r$，得以在訊息傳遞過程中區分不同物理因果關係之訊號貢獻。本研究之關係型聚合公式與殘差＋LayerNorm 更新規則，採用並延伸 \citet{xin2025urbangraph} 於 UrbanGraph 架構中提出之關係圖卷積形式，於此基礎上進一步將節點集合區分為建物與空氣兩種異質節點類型（見第~\ref{subsec:nodes}節），並以獨立編碼器分別處理其靜態／動態特徵。
+
+對於節點 $i$，第 $l$ 層 RGCN 塊（RGCNBlock）的更新規則定義為：
+
+\begin{equation}
+    \mathbf{h}_i^{(l+1)} = \sigma\!\left( \mathbf{W}_{\text{self}} \mathbf{h}_i^{(l)}
+    + \sum_{r \in \mathcal{R}} \frac{1}{\left|\mathcal{N}_r(i)\right|}
+    \sum_{j \in \mathcal{N}_r(i)} \mathbf{W}_r \mathbf{h}_j^{(l)} \right) + \mathbf{h}_i^{(l)}
+    \label{eq:rgcn}
+\end{equation}
+
+其中 $\mathbf{W}_{\text{self}}$ 為自迴路權重矩陣、$\mathbf{W}_r$ 為關係 $r$ 專屬投影矩陣（本研究 $|\mathcal{R}| = 5$）、$\mathcal{N}_r(i)$ 為節點 $i$ 在關係 $r$ 下的鄰居集合、$\sigma(\cdot)$ 為 PReLU 激活函數，末項為殘差連接並於激活後接 LayerNorm 與 Dropout（$p=0.1$）。模型採用三層堆疊（$L=3$）的 RGCNBlock，允許訊息在三跳鄰域內擴散，有效涵蓋 $80\times80$ 公尺場地內建築陰影的最大投射距離；各關係矩陣之完整維度設定見附錄~\ref{appx:rgcn_detail}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{../urban-thermal-gnn/04_training/figures/fig_rgcn_detail.png}
+    \caption{RGCN 模組訊息聚合機制示意圖}
+    \label{fig:rgcn_detail}
+\end{figure}
+
+上圖中央目標節點 $i$ 接收來自五類關係型鄰居節點的加權訊息，每類關係使用獨立投影矩陣 $\mathbf{W}_r$ 轉換後進行均值聚合，最終與自迴路項疊加並通過殘差＋LayerNorm 輸出；三層堆疊使訊息傳遞最遠可達三跳距離之鄰域。
+
+
+\subsection{全域情境融合與 LSTM 時序建模}
+\label{subsec:lstm}
+
+場景整體氣候狀態（如晴天 GHI 強度、背景風速）是影響全場域 UTCI 分佈之關鍵驅動因素，但此資訊難以從局部節點特徵中推導，因此需要一個獨立於局部訊息傳遞之外的全域情境通道。全域情境編碼器對每個時步 $t$ 提取 8 維全場域統計特徵，以三層 MLP 映射至 192 維情境向量：
+
+\begin{equation}
+    \mathbf{c}_t = \text{MLP}_{\text{ctx}}\!\left( \left[\mu_{T_a}^t,\ \mu_{V_a}^t,\ \mu_{\text{RH}}^t,\ \text{GHI}^t,\ \Delta\mu_{T_a}^t,\ \Delta\mu_{V_a}^t,\ \Delta\text{GHI}^t,\ \text{sol\_alt}^t \right] \right)
+    \label{eq:ctx}
+\end{equation}
+
+對每個空氣節點，Fusion MLP 融合 RGCN 輸出之節點特徵（256維）與全域情境向量（192維），投影至 256 維融合表示 $\mathbf{f}_{i,t}$，再送入共享 LSTM 捕捉 UTCI 之日間熱積累動態：
+
+\begin{equation}
+    \mathbf{o}_{i,t},\ \mathbf{h}_{i,t}^{\text{LSTM}} = \text{LSTM}\!\left( \mathbf{f}_{i,t},\ \mathbf{h}_{i,t-1}^{\text{LSTM}} \right)
+    \label{eq:lstm}
+\end{equation}
+
+LSTM 之初始隱藏狀態由 $t=0$ 時刻的 RGCN 輸出投影得出而非零向量，使模型能以場景幾何資訊初始化時序動態的起始狀態，避免冷啟動問題；此一暖啟動機制沿用 \citet{xin2025urbangraph} 之設計。最終，輸出 MLP 將 LSTM 輸出映射至 UTCI 預測值 $\hat{u}_{i,t}$（z-score 正規化空間中預測，推理後去正規化還原至實際溫度單位 °C）。完整超參數設定見附錄~\ref{appx:model_hparams}。
+
+
+\section{物理引導損失函數}
+\label{sec:physics_loss}
+
+純資料驅動之損失函數僅要求預測值逼近模擬標籤，並不保證預測結果服從基本熱力學原則——模型仍可能在資料稀疏區域輸出陰影節點溫度高於日照節點的物理不可能結果。本研究因此於資料損失之外，引入三項\textbf{物理資訊損失函數}（Physics-Informed Loss）作為訓練過程中的軟約束監督機制 \citep{shan2025physics}，總損失函數定義為：
+
+\begin{equation}
+    \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{data}} + \alpha_1 \mathcal{L}_{\text{rad}} + \alpha_2 \mathcal{L}_{\text{temp}} + \alpha_3 \mathcal{L}_{\text{wind}}
+    \label{eq:total_loss}
+\end{equation}
+
+其中 $\mathcal{L}_{\text{data}}$ 為資料驅動項（與 EnergyPlus 模擬標籤之 MSE 損失），$\alpha_1, \alpha_2, \alpha_3$ 為物理損失權重係數。三項物理約束各自對應之空間、時間、風場作用機制與懲罰觸發條件，統整於圖~\ref{fig:physics_loss}；各懲罰項之完整符號定義與數值設定說明如下三小節，其嚴謹解析式推導則置於附錄~\ref{appx:physics_loss_derivation}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../urban-thermal-gnn/04_training/figures/fig_physics_loss.png}
+    \caption{物理引導損失函數示意圖}
+    \label{fig:physics_loss}
+\end{figure}
+
+上圖三項約束分別作用於不同物理維度：輻射空間一致性約束（左）比較日照／陰影節點群組之預測值相對關係；都市熱慣性時序平滑約束（中）限制相鄰時步 UTCI 之最大變化率；風場阻滯尾流約束（右）抑制高層建築背風側之異常熱累積。灰色區域代表各約束實際產生懲罰梯度之觸發範圍，其餘區域損失為零，僅在物理不可能之預測情形下介入訓練。
+
+
+\subsection{輻射空間一致性約束（$\mathcal{L}_{\text{rad}}$）}
+\label{subsec:radiation_penalty}
+
+建築陰影投射是影響行人 UTCI 最關鍵的幾何因子之一：日照節點之熱壓力應顯著高於陰影節點，而非兩者相近或反轉 \citep{coccolo2018thermal}。當太陽高度角 $\theta_{\text{sol}} > 10^\circ$ 時，依 SVF 與即時陰影旗標將節點分類為日照節點（$\text{SVF}_i > 0.5$ 且未受遮蔽）與陰影節點（$\text{SVF}_i < 0.5$ 且受遮蔽），懲罰項要求場域陰影節點均值與日照節點均值之間至少維持最小間隔 $m_{\text{rad}}$，對未達此間隔（含反轉）之部分施以平方懲罰：
+
+\begin{equation}
+    \mathcal{L}_{\text{rad}} =
+    \left[ \text{ReLU}\!\left( \bar{u}_{\text{shade}} - \bar{u}_{\text{sun}} + m_{\text{rad}} \right) \right]^2
+    \label{eq:lrad}
+\end{equation}
+
+其中 $\bar{u}_{\text{shade}}$、$\bar{u}_{\text{sun}}$ 分別為當前時步場域陰影節點與日照節點之預測均值，最小間隔 $m_{\text{rad}} = 0.5$（對應正規化 UTCI 空間中約半個標準差）；式~\eqref{eq:lrad}於每個滿足 $\theta_{\text{sol}}>10^\circ$ 之時步各計算一次，訓練時取其對有效時步之平均。此設計要求日照節點至少比陰影節點高出 $m_{\text{rad}}$，而非僅禁止陰影反超日照——理由是完全日照與完全遮蔭之間應存在物理上有意義的溫差，僅約束「不反轉」仍可能容許模型學習出兩者幾乎相等的退化解。
+
+
+\subsection{都市熱慣性時序平滑約束（$\mathcal{L}_{\text{temp}}$）}
+\label{subsec:temporal_penalty}
+
+城市物質（混凝土、瀝青鋪面）具有顯著的熱儲存效應，使 UTCI 在相鄰時步間的變化率受到自然物理限制——熱壓力不應在一小時內劇烈跳躍。本研究將允許之最大 UTCI 變化率設定為 $5^\circ\text{C/hr}$（正規化空間中 $\delta_{\text{temp}} = 0.625$，其換算依據見附錄~\ref{appx:physics_loss_derivation}）：
+
+\begin{equation}
+    \mathcal{L}_{\text{temp}} = \text{mean}_{i,t}\!\left[ \text{ReLU}\!\left( \left| \hat{u}_{i,t+1} - \hat{u}_{i,t} \right| - \delta_{\text{temp}} \right) \right]
+    \label{eq:ltemp}
+\end{equation}
+
+式中對超出容許變化率之部分採\textbf{線性}鉸鏈懲罰（而非平方），使梯度大小不隨違反程度二次放大，讓訓練初期時序尚不穩定時，此一約束不至於因梯度過大而主導總損失。此懲罰項能有效防止模型在學習日出／日落高輻射梯度時產生非物理的時間振盪，提升整體逐時預測軌跡的熱力學自洽性 \citep{oskarsson2023modeling}。
+
+
+\subsection{風場阻滯尾流約束（$\mathcal{L}_{\text{wind}}$）}
+\label{subsec:wind_penalty}
+
+高層建築（$B_h > 20\text{m}$，即正規化特徵 $B_h/50 > 0.4$）在背風側產生顯著的渦旋死角（Leeward Wake），使局部熱能累積形成「熱死角」現象 \citep{oke1987boundary}。對於位於高層建築鄰近範圍之空氣節點集合 $\mathcal{B}_{\text{tall}}$，風場阻滯懲罰定義為：
+
+\begin{equation}
+    \mathcal{L}_{\text{wind}} = \text{mean}_{i \in \mathcal{B}_{\text{tall}}}
+    \left[ \text{ReLU}\!\left( \hat{u}_i - \mu_{\hat{u}} - 1.5\,\sigma_{\hat{u}} \right) \right]
+    \label{eq:lwind}
+\end{equation}
+
+其中 $\mu_{\hat{u}}$、$\sigma_{\hat{u}}$ 分別為當前時步全場域預測 UTCI（所有節點，非僅 $\mathcal{B}_{\text{tall}}$）之均值與標準差，懲罰同樣採線性鉸鏈形式。閾值 $\mu_{\hat{u}} + 1.5\sigma_{\hat{u}}$ 之選定依循統計離群偵測之常見慣例——在常態分布假設下，超出均值 $1.5$ 個標準差約對應最熱的 6.7\% 尾端節點，將「熱死角」操作型定義為場域中溫度顯著偏離常態分布中心之高層建築鄰近節點。此約束強制模型學習高層建築背風側之熱累積模式，使設計師能可視化熱死角位置，進而優化建築間距與通風廊道配置。
+
+
+\section{Grasshopper 介面整合與多目標最佳化：熱舒適人行動線設計}
+\label{sec:nsga2}
+
+\subsection{從最短路徑到熱舒適動線評估}
+\label{subsec:from_astar_to_walkway}
+
+早期構想以 $A^*$ 最短路徑演算法將 UTCI 熱壓力場轉譯為單一起訖點間之熱迴避路徑：以節點間歐氏距離與熱壓力懲罰之加權組合作為邊成本，求解一條在行走效率與熱舒適間取捨之路徑。然而，都市開放空間設計決策的對象通常並非單一使用者的單次行程，而是整體人行動線網絡在一整日各時段的熱舒適表現；單點對單點的最短路徑求解無法回答「這個街廓的人行動線系統整體而言是否宜行」此一設計層級問題。本研究因此將原先的路徑搜尋機制，重新定位為\textbf{熱舒適人行動線設計}（Thermal Comfort-Based Walkway Design）評估指標，直接整合進 NSGA-II 多目標最佳化之適應度函數，而非作為獨立之單次路徑查詢工具。
+
+具體而言，設計者於 Grasshopper 中定義之人行動線網絡幾何（步行軸線、廣場動線、建物出入口連通路徑）作為固定拓樸輸入，GNN 代理模型即時預測之全場域 UTCI 熱壓力場則沿此網絡逐段取樣，計算全動線之\textbf{時空平均熱暴露指標}：
+
+\begin{equation}
+    \bar{\Phi}_{\text{walkway}} = \frac{1}{T}\sum_{t=1}^{T} \frac{1}{|E_{\text{walk}}|}
+    \sum_{(i,j) \in E_{\text{walk}}} D_{ij}\cdot \Phi\!\left(\text{UTCI}_{j,t}\right)
+    \label{eq:walkway_exposure}
+\end{equation}
+
+其中 $E_{\text{walk}}$ 為人行動線網絡之邊集合、$D_{ij}$ 為邊之實際步行距離、$\Phi(\cdot)$ 為無量綱熱壓力懲罰函數，其定義與完整推導見附錄~\ref{appx:walkway_derivation}。此一時空平均指標取代原先僅評估單一路徑之作法，使評估對象與 NSGA-II 之全域最佳化目標在尺度上一致。
+
+
+\subsection{Grasshopper 介面與非同步通訊架構}
+\label{subsec:gh_integration}
+
+系統採用\textbf{非同步用戶端-伺服器架構}，讓建築師能在熟悉的設計環境中獲得 AI 的即時反饋：在 Grasshopper 中開發之專用套件（\texttt{UTCIPredictor}、\texttt{UTCIOptimizer}）負責將 Rhino 3D 幾何物件序列化為異質圖相容張量；後端透過 IETF RFC 6455 \textbf{WebSocket} 通訊協定 \citep{rfc6455} 與 FastAPI 通訊，載入預先訓練完成的 PI-ST-GNN 模型權重，於數十毫秒內回傳預測結果與優化進度；設計師於 Rhino 中移動建築時，系統立即更新場地 1.0m 間距之高解析度熱舒適度網格，將傳統耗費大量計算的 CFD 模擬轉化為即時的設計適應回饋 \citep{sadeghipour2013ladybug}。
+
+圖~\ref{fig:gh_websocket} 以時序圖具體呈現此一通訊架構之兩種訊息流：(a) 單次幾何更新之同步請求-回應循環，直接對應每次推論之低延遲特性；(b) NSGA-II 最佳化工作之非阻塞式執行——最佳化迴圈於獨立執行緒（\texttt{ThreadPoolExecutor}）中運行，避免長時間運算阻塞 WebSocket 事件迴圈，並透過 \texttt{asyncio.Queue} 將逐代進度（世代數、當前最佳解、可行解數量）以非同步訊息即時串流回 Grasshopper 前端，使建築師無需等待完整最佳化流程結束即可觀察收斂趨勢。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_gh_websocket_sequence.png}
+    \caption{Grasshopper--FastAPI／WebSocket 非同步通訊架構時序圖}
+    \label{fig:gh_websocket}
+\end{figure}
+
+上圖實線為同步 WebSocket 訊息，虛線為經 \texttt{asyncio.Queue} 橋接執行緒之非同步進度回呼。
+
+
+\subsection{染色體編碼機制與多目標函數}
+\label{subsec:design_variables}
+
+優化引擎將都市配置參數化為連續染色體基因組，所有變數於運算前歸一至 $[0,1]$ 區間：每棟建築由質心座標 $(c_x, c_y)$、面寬 $w$、進深 $d$、平面旋轉角度與樓層數共六項參數定義；每棵喬木由座標 $(x,y)$、樹冠半徑與高度四項參數組成，直接決定遮蔭效果與綠化率貢獻。
+
+系統透過 NSGA-II \citep{deb2002fast} 同時處理三個相互競爭的適應度指標：
+
+\begin{enumerate}
+    \item \textbf{$f_1$（全域 UTCI 極小化）：}最小化全場地所有開放空間空氣節點在 11 時段內的時空平均熱壓力。
+    \item \textbf{$f_2$（人行動線熱暴露極小化）：}最小化式~\eqref{eq:walkway_exposure}定義之人行動線時空平均熱暴露指標 $\bar{\Phi}_{\text{walkway}}$。
+    \item \textbf{$f_3$（綠化率極大化）：}最大化場地綠化率，兼顧生態價值。
+\end{enumerate}
+
+法規合規性透過 5 維違規向量（FAR、BCR、法定縮退、場地容納性、建築碰撞）加以監控，採「可行性優先」選擇啟發式：符合規範之可行解絕對優先於違規解排序。最終輸出之帕累托前緣代表一組最優設計集，讓建築師在整體熱舒適性能、人行動線品質與綠化率之間進行數據驅動的決策。
+
+本研究之最佳化引擎（\texttt{07\_optimization/nsga2\_engine.py}）已完整實作 $f_1$（全域 UTCI）與 $f_3$（綠化率）兩項目標之適應度函數，並以此二維目標空間驗證第~\ref{sec:pareto_analysis}節之收斂表現；$f_2$（人行動線熱暴露）之數學定義與推導已於式~\eqref{eq:walkway_exposure}及附錄~\ref{appx:walkway_derivation}完整給出，其整合入適應度評估器（\texttt{FitnessEvaluator}）之工程實作——即將染色體所定義之人行動線網絡幾何與 GNN 預測場逐段取樣、回傳第三項目標值——列為第~\ref{sec:future_work}節之近期後續工作，目前尚未併入單次最佳化執行流程，特此如實說明，避免與第~\ref{sec:pareto_analysis}節實際呈現之收斂結果所涵蓋目標數產生混淆。
+
+
+\subsection{與 Wallacei 都市型態最佳化案例之比較}
+\label{subsec:wallacei_comparison}
+
+Grasshopper 生態系中，Wallacei 是目前應用最廣泛之進階 NSGA-II 視覺化最佳化外掛，已見於多項都市型態多目標最佳化實務研究 \citep{wortmann2017opossum, daglier2025developing}。既有以 Wallacei 為核心之都市形態最佳化案例，其適應度函數之環境績效評估多直接呼叫 Ladybug Tools／EnergyPlus 進行逐代個體之全氣候模擬，因此在演算法收斂所需的數百代、每代數百個體之規模下，單次最佳化任務之總運算時間常達數週甚至數月，實務上多僅能於方案設計完成後進行事後驗證，而非設計初期之即時決策引導 \citep{aman2023ai, daglier2025developing}。
+
+本研究之最佳化引擎與 Wallacei 案例共用相同的 NSGA-II 核心演算法與 Grasshopper 介面整合模式，惟以第~\ref{sec:gnn_model}節訓練完成之 PI-ST-GNN 取代 Wallacei 案例中直接呼叫之高擬真度模擬引擎作為適應度函數之環境績效來源。此一取代之目的並非單純追求運算速度提升，而在於使多目標最佳化之搜尋迴圈得以在設計對話的時間尺度內完成，讓建築師於方案概念階段即可即時比較不同人行動線配置與量體組合之熱舒適表現，而非僅能於方案定案後進行單次驗證。兩者於相同法規約束與設計變數空間下之收斂表現比較，見第~\ref{chapter:results}章。

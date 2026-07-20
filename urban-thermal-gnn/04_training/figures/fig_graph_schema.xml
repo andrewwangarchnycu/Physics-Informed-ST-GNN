@@ -34,7 +34,7 @@
       style="text;html=1;strokeColor=none;fillColor=none;align=center;
              fontSize=10;fontStyle=1;fontColor=#2563EB;"
       vertex="1" parent="panelL">
-      <mxGeometry x="60" y="40" width="440" height="24" as="geometry" />
+      <mxGeometry x="60" y="32" width="440" height="18" as="geometry" />
     </mxCell>
 
     <!-- ── Building Nodes (circles) ── -->
@@ -44,7 +44,7 @@
       style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
              fontStyle=1;fontSize=10;strokeWidth=2;"
       vertex="1" parent="panelL">
-      <mxGeometry x="90" y="75" width="90" height="90" as="geometry" />
+      <mxGeometry x="90" y="98" width="90" height="90" as="geometry" />
     </mxCell>
     <!-- B2 -->
     <mxCell id="b2"
@@ -52,7 +52,7 @@
       style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
              fontStyle=1;fontSize=10;strokeWidth=2;"
       vertex="1" parent="panelL">
-      <mxGeometry x="235" y="75" width="90" height="90" as="geometry" />
+      <mxGeometry x="235" y="98" width="90" height="90" as="geometry" />
     </mxCell>
     <!-- B3 -->
     <mxCell id="b3"
@@ -60,49 +60,32 @@
       style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;
              fontStyle=1;fontSize=10;strokeWidth=2;"
       vertex="1" parent="panelL">
-      <mxGeometry x="380" y="75" width="90" height="90" as="geometry" />
+      <mxGeometry x="380" y="98" width="90" height="90" as="geometry" />
     </mxCell>
 
-    <!-- ── Semantic edges (fully-connected, bidirectional) ── -->
+    <!-- ── Semantic edges (fully-connected, bidirectional) — arcs kept above the title, clear of it ── -->
     <mxCell id="sem12"
-      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
-      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
-             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
-             edgeStyle=orthogonalEdgeStyle;curved=1;"
+      value="semantic"
+      style="strokeColor=#9333EA;curved=1;rounded=0;fillColor=#9333EA;startArrow=classic;startFill=1;endArrow=classic;endFill=1;exitX=0.3;exitY=0;entryX=0.7;entryY=0;fontColor=#9333EA;fontSize=8;fontStyle=2;labelBackgroundColor=#FFFFFF;strokeWidth=1.8;"
       edge="1" source="b1" target="b2" parent="panelL">
       <mxGeometry relative="1" as="geometry">
         <Array as="points">
-          <mxPoint x="135" y="65" />
-          <mxPoint x="280" y="65" />
+          <mxPoint x="207" y="64" />
         </Array>
       </mxGeometry>
     </mxCell>
     <mxCell id="sem23"
-      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
-      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
-             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
-             edgeStyle=orthogonalEdgeStyle;curved=1;"
+      value="semantic"
+      style="strokeColor=#9333EA;curved=1;rounded=0;fillColor=#9333EA;startArrow=classic;startFill=1;endArrow=classic;endFill=1;exitX=0.3;exitY=0;entryX=0.7;entryY=0;fontColor=#9333EA;fontSize=8;fontStyle=2;labelBackgroundColor=#FFFFFF;strokeWidth=1.8;"
       edge="1" source="b2" target="b3" parent="panelL">
       <mxGeometry relative="1" as="geometry">
         <Array as="points">
-          <mxPoint x="280" y="65" />
-          <mxPoint x="425" y="65" />
+          <mxPoint x="352" y="64" />
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="sem13"
-      value="&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;"
-      style="startArrow=block;startFill=1;endArrow=block;endFill=1;
-             strokeColor=#9333EA;strokeWidth=1.8;fontColor=#9333EA;fontSize=8;
-             edgeStyle=orthogonalEdgeStyle;curved=1;"
-      edge="1" source="b1" target="b3" parent="panelL">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="135" y="48" />
-          <mxPoint x="425" y="48" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
+    <!-- B1↔B3 pair omitted from the drawing to avoid a long overlapping arc;
+         "fully-connected" is already stated in the legend and edge-type table. -->
 
     <!-- ── Air Nodes (5×3 grid) ── -->
     <!-- Row 1 -->
@@ -160,7 +143,7 @@
       style="text;html=1;strokeColor=none;fillColor=none;align=center;
              fontSize=10;fontStyle=1;fontColor=#16A34A;"
       vertex="1" parent="panelL">
-      <mxGeometry x="40" y="192" width="480" height="22" as="geometry" />
+      <mxGeometry x="40" y="196" width="480" height="20" as="geometry" />
     </mxCell>
 
     <!-- ── KNN contiguity edges (horizontal + vertical, orange) ── -->
@@ -199,7 +182,7 @@
     <mxCell id="d_b1_a00" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b1" target="a00" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
     <mxCell id="d_b1_a01" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b1" target="a01" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
     <mxCell id="d_b2_a02" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b2" target="a02" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
-    <mxCell id="d_b2_a11" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b2" target="a11" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="d_b2_a03" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b2" target="a03" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
     <mxCell id="d_b3_a03" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b3" target="a03" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
     <mxCell id="d_b3_a04" value="" style="endArrow=block;endFill=1;strokeColor=#DC2626;dashed=1;strokeWidth=1.5;opacity=80;" edge="1" source="b3" target="a04" parent="panelL"><mxGeometry relative="1" as="geometry"/></mxCell>
 
@@ -225,17 +208,17 @@
          LEGEND
     ═══════════════════════════════════════════════════════════ -->
     <mxCell id="legend"
-      value="&lt;b&gt;Legend&lt;/b&gt;"
+      value="Legend"
       style="swimlane;startSize=24;fillColor=#F8FAFC;strokeColor=#CBD5E1;
-             fontStyle=1;fontSize=10;"
+             html=1;fontStyle=1;fontSize=10;"
       vertex="1" parent="panelL">
       <mxGeometry x="40" y="640" width="480" height="120" as="geometry" />
     </mxCell>
-    <mxCell id="lg1" value="Object Node (Building)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="15" y="35" width="80" height="30" as="geometry"/></mxCell>
-    <mxCell id="lg2" value="Air Node (Sensor)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="115" y="35" width="80" height="30" as="geometry"/></mxCell>
-    <mxCell id="lg3" value="semantic" style="endArrow=block;endFill=1;startArrow=block;startFill=1;strokeColor=#9333EA;strokeWidth=2;fontColor=#9333EA;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="220" y="50" as="sourcePoint"/><mxPoint x="290" y="50" as="targetPoint"/></mxGeometry></mxCell>
-    <mxCell id="lg4" value="contiguity (KNN)" style="endArrow=none;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="315" y="50" as="sourcePoint"/><mxPoint x="395" y="50" as="targetPoint"/></mxGeometry></mxCell>
-    <mxCell id="lg5" value="dynamic (per step)" style="endArrow=block;endFill=1;dashed=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#DC2626;fontSize=8;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="80" y="90" as="sourcePoint"/><mxPoint x="180" y="90" as="targetPoint"/></mxGeometry></mxCell>
+    <mxCell id="lg1" value="Object Node (Building)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="15" y="35" width="90" height="30" as="geometry"/></mxCell>
+    <mxCell id="lg2" value="Air Node (Sensor)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="120" y="35" width="90" height="30" as="geometry"/></mxCell>
+    <mxCell id="lg3" value="semantic" style="endArrow=block;endFill=1;startArrow=block;startFill=1;strokeColor=#9333EA;strokeWidth=2;fontColor=#9333EA;fontSize=8;labelBackgroundColor=#F8FAFC;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="230" y="50" as="sourcePoint"/><mxPoint x="330" y="50" as="targetPoint"/></mxGeometry></mxCell>
+    <mxCell id="lg4" value="contiguity (KNN)" style="endArrow=none;strokeColor=#EA580C;strokeWidth=2;fontColor=#EA580C;fontSize=8;labelBackgroundColor=#F8FAFC;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="350" y="50" as="sourcePoint"/><mxPoint x="450" y="50" as="targetPoint"/></mxGeometry></mxCell>
+    <mxCell id="lg5" value="dynamic (per step)" style="endArrow=block;endFill=1;dashed=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#DC2626;fontSize=8;labelBackgroundColor=#F8FAFC;" edge="1" parent="legend"><mxGeometry relative="1" as="geometry"><mxPoint x="15" y="90" as="sourcePoint"/><mxPoint x="135" y="90" as="targetPoint"/></mxGeometry></mxCell>
 
     <!-- ═══════════════════════════════════════════════════════════
          RIGHT PANEL — Feature Dimension Table

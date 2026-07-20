@@ -1,0 +1,44 @@
+{
+  "pipeline_version": "v4_real_geometry_real_iot",
+  "n_scenarios": 300,
+  "split": {
+    "train": 210,
+    "val": 45,
+    "test": 45
+  },
+  "n_scenes_real_supervised": 281,
+  "data_sources": [
+    "OSM buildings (footprints+heights)",
+    "ETH GlobalCanopyHeight 10m",
+    "MOENV IoT temperature + humidity (real 2025-06..08)",
+    "CWB Hsinchu station C0D660 wind",
+    "clear-sky solar model (CWB has no irradiance)"
+  ],
+  "nodes_per_scenario": {
+    "min": 136,
+    "max": 400,
+    "mean": 341.45
+  },
+  "normalization": {
+    "ta": {
+      "mean": 32.836,
+      "std": 2.363
+    },
+    "mrt": {
+      "mean": 57.4134,
+      "std": 10.7998
+    },
+    "va": {
+      "mean": 1.405,
+      "std": 0.2894
+    },
+    "rh": {
+      "mean": 71.8276,
+      "std": 11.5599
+    },
+    "utci": {
+      "mean": 42.2911,
+      "std": 4.5511
+    }
+  }
+}

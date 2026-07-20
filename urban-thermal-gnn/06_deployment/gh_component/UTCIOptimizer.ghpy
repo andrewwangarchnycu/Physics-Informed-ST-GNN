@@ -1,0 +1,396 @@
+#! python3
+"""
+UTCIOptimizer.ghpy
+Rhino 8 Grasshopper Script Component — NSGA-II optimisation
+Python 3 (CPython) via Rhino 8 Script component.
+
+Dependency (install once in Rhino Script Editor):
+    pip install websocket-client
+
+Input Ports:
+  site_boundary     : Curve      — site boundary curve
+  context_buildings : List<Brep> — fixed surrounding buildings
+  constraints       : str/dict   — {"far_max":2.5,"bcr_max":0.6,"setback":3.0}
+  n_buildings       : int        — number of buildings to optimise
+  n_trees           : int        — number of trees to optimise
+  pop_size          : int        — GA population size (default 40)
+  n_gen             : int        — GA generations (default 50)
+  server_url        : str        — WebSocket address
+                                   default "ws://localhost:8000/ws"
+  run               : bool       — start optimisation
+  cancel            : bool       — cancel running optimisation
+
+Output Ports:
+  pareto_designs    : list        — Pareto-optimal solution dicts
+  pareto_geometries : list        — Brep geometry per Pareto solution
+  best_utci_design  : List<Brep>  — design with lowest mean UTCI
+  best_green_design : List<Brep>  — design with highest green ratio
+  progress_text     : str         — real-time GA progress
+  convergence_data  : list        — [(gen, best_utci, best_green), ...]
+  status            : str         — current status
+
+Note: GA runs in a background thread.  Add a GH Timer (1 s interval) to
+      re-trigger this component and poll for updates.
+"""
+
+import sys
+import json
+import uuid
+import math
+import threading
+import traceback
+import scriptcontext as sc
+
+try:
+    import Rhino.Geometry as rg
+    _RHINO = True
+except ImportError:
+    _RHINO = False
+
+try:
+    import websocket as _ws_lib
+    _WS_OK = True
+except ImportError:
+    _WS_OK = False
+
+_DEFAULT_URL = "ws://localhost:8000/ws"
+_STICKY_KEY  = "utci_optimizer_state"
+
+
+# ────────────────────────────────────────────────────────────────
+# Persistent state (sc.sticky survives across GH solves)
+# ────────────────────────────────────────────────────────────────
+
+def _get_state() -> dict:
+    if _STICKY_KEY not in sc.sticky:
+        sc.sticky[_STICKY_KEY] = {
+            "job_id":      None,
+            "status":      "idle",   # idle | running | complete | error
+            "progress":    "",
+            "pareto":      [],
+            "convergence": [],
+        }
+    return sc.sticky[_STICKY_KEY]
+
+
+class OptimizationProgress:
+    def __init__(self, state: dict):
+        self._s = state
+
+    @property
+    def is_running(self):  return self._s["status"] == "running"
+    @property
+    def is_done(self):     return self._s["status"] in ("complete", "error")
+
+    def start(self, job_id: str):
+        self._s.update(job_id=job_id, status="running",
+                       progress="Starting GA…", pareto=[], convergence=[])
+
+    def update(self, msg: str, pareto=None, conv_pt=None):
+        self._s["progress"] = msg
+        if pareto is not None:   self._s["pareto"] = pareto
+        if conv_pt is not None:  self._s["convergence"].append(conv_pt)
+
+    def finish(self, msg: str, pareto: list):
+        self._s.update(status="complete", progress=msg, pareto=pareto)
+
+    def error(self, msg: str):
+        self._s.update(status="error", progress=msg)
+
+    def reset(self):
+        self._s.update(status="idle", progress="", pareto=[], convergence=[])
+
+
+# ────────────────────────────────────────────────────────────────
+# Geometry helpers
+# ────────────────────────────────────────────────────────────────
+
+def _curve_to_pts(crv) -> list:
+    if crv is None:
+        return []
+    ok, pl = crv.TryGetPolyline()
+    if ok and pl and pl.Count >= 3:
+        return [[round(float(pl[i].X), 3), round(float(pl[i].Y), 3)]
+                for i in range(pl.Count)]
+    pts = crv.DivideByCount(40, True)
+    return [[round(float(p.X), 3), round(float(p.Y), 3)]
+            for p in pts] if pts else []
+
+
+def build_ga_config(site_crv, cons, n_bldg: int, n_tree: int,
+                    pop: int, gen: int) -> tuple:
+    """
+    Build GA configuration payload.
+    Returns (payload_dict, site_pts) or (None, []) on error.
+    """
+    site_pts = _curve_to_pts(site_crv)
+    if len(site_pts) < 3:
+        return None, site_pts
+
+    xs = [p[0] for p in site_pts]; ys = [p[1] for p in site_pts]
+    x0, y0, x1, y1 = min(xs), min(ys), max(xs), max(ys)
+
+    # Parse constraints
+    if isinstance(cons, str):
+        try: cons = json.loads(cons)
+        except Exception: cons = {}
+    cons = cons or {}
+    far_max  = float(cons.get("far_max",  2.5))
+    bcr_max  = float(cons.get("bcr_max",  0.6))
+    setback  = float(cons.get("setback",  3.0))
+    floor_h  = float(cons.get("floor_height", 3.6))
+    fl_range = list(cons.get("floor_range", [3, 12]))
+
+    job_id = str(uuid.uuid4())[:8]
+    payload = {
+        "action": "optimize",
+        "id":     job_id,
+        "data": {
+            "site_boundary": site_pts,
+            "setback":       setback,
+            "far_max":       far_max,
+            "bcr_max":       bcr_max,
+            "pop_size":      int(pop),
+            "n_gen":         int(gen),
+            "floor_height":  floor_h,
+            "chromosome_config": {
+                "site_bbox":    [x0, y0, x1, y1],
+                "n_buildings":  int(n_bldg),
+                "n_trees":      int(n_tree),
+                "floor_range":  fl_range,
+                "bldg_w_range": [8.0, min(30.0, (x1 - x0) * 0.5)],
+                "bldg_d_range": [8.0, min(30.0, (y1 - y0) * 0.5)],
+                "tree_r_range": [1.5, 5.0],
+                "tree_h_range": [3.0, 10.0],
+                "floor_height": floor_h,
+            },
+        },
+    }
+    return payload, site_pts
+
+
+def decode_gene_to_brep(gene_design: dict, floor_height: float = 3.6) -> tuple:
+    """
+    Convert design dict → (building_breps, tree_sphere_breps).
+    Buildings: rotated rectangular extrusions.
+    Trees: spheres at canopy centre.
+    """
+    if not _RHINO:
+        return [], []
+
+    breps = []
+    for b in gene_design.get("buildings", []):
+        try:
+            cx, cy  = float(b["cx"]),  float(b["cy"])
+            w,  d   = float(b["w"]),   float(b["d"])
+            rot     = float(b.get("rot", 0.0))
+            floors  = int(b.get("floors", 1))
+            fh      = float(b.get("floor_height", floor_height))
+            h       = floors * fh
+            hw, hd  = w / 2, d / 2
+            cosR, sinR = math.cos(math.radians(rot)), math.sin(math.radians(rot))
+
+            corners = [(-hw,-hd), (hw,-hd), (hw,hd), (-hw,hd)]
+            pts3d   = [rg.Point3d(cosR*dx - sinR*dy + cx,
+                                  sinR*dx + cosR*dy + cy, 0.0)
+                       for dx, dy in corners]
+            poly = rg.PolylineCurve(pts3d + [pts3d[0]])
+            srf  = rg.Surface.CreateExtrusion(poly, rg.Vector3d(0, 0, h))
+            if srf:
+                bp = rg.Brep.CreateFromSurface(srf)
+                if bp:
+                    bp.Faces.SplitKinkyFaces(0.001, True)
+                    breps.append(bp)
+        except Exception:
+            pass
+
+    tree_breps = []
+    for t in gene_design.get("trees", []):
+        try:
+            ctr = rg.Point3d(float(t["x"]), float(t["y"]),
+                             float(t["height"]) / 2)
+            bp  = rg.Sphere(ctr, float(t["radius"])).ToBrep()
+            if bp:
+                tree_breps.append(bp)
+        except Exception:
+            pass
+
+    return breps, tree_breps
+
+
+# ────────────────────────────────────────────────────────────────
+# Background GA thread
+# ────────────────────────────────────────────────────────────────
+
+def _run_ga_thread(url: str, payload: dict, prog: OptimizationProgress):
+    """WebSocket GA loop — runs in daemon thread, updates prog state."""
+    if not _WS_OK:
+        prog.error("websocket-client not installed")
+        return
+
+    ws = _ws_lib.WebSocket()
+    try:
+        ws.settimeout(300.0)
+        ws.connect(url)
+        ws.send(json.dumps(payload))
+
+        while True:
+            raw  = ws.recv()
+            resp = json.loads(raw)
+            act  = resp.get("action", "")
+
+            if act == "optimize_started":
+                d = resp.get("data", {})
+                prog.update(f"GA started: pop={d.get('pop_size')} "
+                            f"gen={d.get('n_gen')}")
+
+            elif act == "optimize_progress":
+                d   = resp.get("data", {})
+                gen = d.get("generation", "?")
+                nf  = d.get("n_feasible", 0)
+                bu  = d.get("best_utci", "?")
+                bg  = d.get("best_green", 0) or 0
+                pc  = d.get("pareto_count", 0)
+                msg = (f"Gen {gen}/{d.get('n_gen','?')}  "
+                       f"feasible={nf}  best_UTCI={bu}°C  "
+                       f"green={float(bg)*100:.1f}%  pareto={pc}")
+                conv = (int(gen), float(bu) if isinstance(bu, (int,float)) else 0,
+                        float(bg)) if isinstance(gen, int) else None
+                prog.update(msg,
+                            pareto=d.get("pareto_designs"),
+                            conv_pt=conv)
+
+            elif act == "optimize_result":
+                d = resp.get("data", {})
+                prog.finish(
+                    f"Done: {len(d.get('pareto_designs',[]))} Pareto solutions "
+                    f"({d.get('generations_run','?')} gen)",
+                    d.get("pareto_designs", []))
+                break
+
+            elif act == "cancelled":
+                prog.finish("Cancelled by server", [])
+                break
+
+            elif act == "error":
+                prog.error(f"Server error: {resp.get('message','?')}")
+                break
+
+        try: ws.close()
+        except Exception: pass
+
+    except Exception as e:
+        prog.error(f"Thread error: {e}")
+        try: ws.close()
+        except Exception: pass
+
+
+def _send_cancel(url: str, job_id: str):
+    """Fire-and-forget cancel message on a short-lived socket."""
+    try:
+        ws = _ws_lib.WebSocket()
+        ws.settimeout(5.0)
+        ws.connect(url)
+        ws.send(json.dumps({"action": "cancel", "id": job_id}))
+        ws.close()
+    except Exception:
+        pass
+
+
+# ────────────────────────────────────────────────────────────────
+# Main (GhPython entry)
+# ────────────────────────────────────────────────────────────────
+
+# Output defaults
+pareto_designs    = []
+pareto_geometries = []
+best_utci_design  = []
+best_green_design = []
+progress_text     = ""
+convergence_data  = []
+status            = "idle"
+
+# Read GH inputs with safe defaults
+try: _site_boundary    # noqa
+except NameError: _site_boundary = None
+try: _context_buildings  # noqa
+except NameError: _context_buildings = None
+try: _constraints      # noqa
+except NameError: _constraints = {}
+try: _n_buildings      # noqa
+except NameError: _n_buildings = 2
+try: _n_trees          # noqa
+except NameError: _n_trees = 4
+try: _pop_size         # noqa
+except NameError: _pop_size = 40
+try: _n_gen            # noqa
+except NameError: _n_gen = 50
+try: _server_url       # noqa
+except NameError: _server_url = _DEFAULT_URL
+try: _run              # noqa
+except NameError: _run = False
+try: _cancel           # noqa
+except NameError: _cancel = False
+
+state = _get_state()
+prog  = OptimizationProgress(state)
+url   = _server_url or _DEFAULT_URL
+
+# ── Cancel ─────────────────────────────────────────────────────
+if _cancel and prog.is_running:
+    _send_cancel(url, state["job_id"])
+    prog.reset()
+
+# ── Start GA ───────────────────────────────────────────────────
+elif _run and not prog.is_running and not prog.is_done:
+    if not _WS_OK:
+        status = "ERROR: websocket-client not installed"
+    elif _site_boundary is None:
+        status = "ERROR: site_boundary missing"
+    else:
+        payload, pts = build_ga_config(
+            _site_boundary, _constraints,
+            _n_buildings or 2, _n_trees or 4,
+            _pop_size or 40, _n_gen or 50)
+
+        if payload is None:
+            status = "ERROR: site_boundary too few points"
+        else:
+            prog.start(payload["id"])
+            t = threading.Thread(
+                target=_run_ga_thread,
+                args=(url, payload, prog),
+                daemon=True)
+            t.start()
+
+# ── Allow re-run after previous job ────────────────────────────
+if not _run and prog.is_done:
+    prog.reset()
+
+# ── Read state → outputs ───────────────────────────────────────
+status        = state["status"]
+progress_text = state["progress"]
+convergence_data = state["convergence"]
+pareto        = state["pareto"]
+
+if pareto:
+    pareto_designs = pareto
+
+    geom_list = []
+    for entry in pareto:
+        bldgs, trees = decode_gene_to_brep(entry.get("design", {}))
+        geom_list.append(bldgs + trees)
+    pareto_geometries = geom_list
+
+    # Best UTCI design
+    best_u_idx = min(range(len(pareto)),
+                     key=lambda i: pareto[i].get("mean_utci", float("inf")))
+    best_utci_design = geom_list[best_u_idx] if best_u_idx < len(geom_list) else []
+
+    # Best green design
+    best_g_idx = max(range(len(pareto)),
+                     key=lambda i: pareto[i].get("green_ratio", 0.0))
+    best_green_design = geom_list[best_g_idx] if best_g_idx < len(geom_list) else []
+
+    if status not in ("running", "error"):
+        status = f"Complete | {len(pareto)} Pareto solutions"

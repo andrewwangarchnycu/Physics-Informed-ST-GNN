@@ -1,0 +1,22 @@
+{
+  "anchor": {
+    "lat": 24.78805,
+    "lon": 120.99754
+  },
+  "region_bbox": {
+    "lat_min": 23.95,
+    "lat_max": 25.1,
+    "lon_min": 120.55,
+    "lon_max": 121.3
+  },
+  "criteria": {
+    "min_buildings": 3,
+    "min_height_tag_frac": 0.5,
+    "min_landuse_classes": 2,
+    "min_canopy_pixels": 1,
+    "iot_max_dist_m": 150.0
+  },
+  "n_zones_tried": 5,
+  "n_qualified": 0,
+  "sites": []
+}

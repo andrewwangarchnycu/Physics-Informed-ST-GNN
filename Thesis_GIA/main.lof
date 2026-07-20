@@ -1,0 +1,33 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces 研究藍圖}}{5}{figure.caption.6}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2}{\ignorespaces PI-ST-GNN 整合運算框架示意圖}}{21}{figure.caption.7}%
+\contentsline {figure}{\numberline {3}{\ignorespaces 整合運算框架資料架構圖}}{22}{figure.caption.8}%
+\contentsline {figure}{\numberline {4}{\ignorespaces 研究場域地理脈絡：由國家尺度逐層放大至場域尺度}}{23}{figure.caption.9}%
+\contentsline {figure}{\numberline {5}{\ignorespaces 新竹都會區 EPA IoT 微型感測器空間分布實測圖（806 站，2026-07-08 正午時段）}}{24}{figure.caption.10}%
+\contentsline {figure}{\numberline {6}{\ignorespaces 研究範圍選定：IoT 感測器密度與模擬場域對照}}{25}{figure.caption.11}%
+\contentsline {figure}{\numberline {7}{\ignorespaces ETH GlobalCanopyHeight 樹冠高度資料與研究場域對照}}{26}{figure.caption.12}%
+\contentsline {figure}{\numberline {8}{\ignorespaces 六個典型隨機生成場景之建築量體與喬木配置示意}}{28}{figure.caption.13}%
+\contentsline {figure}{\numberline {9}{\ignorespaces 三服務融合建物向量化系統流程圖}}{30}{figure.caption.14}%
+\contentsline {figure}{\numberline {10}{\ignorespaces 異質圖建構實例（取自真實訓練資料場景 0）}}{33}{figure.caption.18}%
+\contentsline {figure}{\numberline {11}{\ignorespaces 異質圖拓樸全域視角（真實訓練資料場景 10）}}{33}{figure.caption.19}%
+\contentsline {figure}{\numberline {12}{\ignorespaces PI-ST-GNN 模型架構總覽}}{36}{figure.caption.20}%
+\contentsline {figure}{\numberline {13}{\ignorespaces RGCN 模組訊息聚合機制示意圖}}{37}{figure.caption.21}%
+\contentsline {figure}{\numberline {14}{\ignorespaces 物理引導損失函數示意圖}}{39}{figure.caption.22}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Grasshopper--FastAPI／WebSocket 非同步通訊架構時序圖}}{42}{figure.caption.23}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {16}{\ignorespaces 模型訓練收斂曲線（共 150 Epoch）}}{46}{figure.caption.25}%
+\contentsline {figure}{\numberline {17}{\ignorespaces 測試集預測值與模擬標籤之散點圖（共 3,707,154 個樣本）}}{47}{figure.caption.27}%
+\contentsline {figure}{\numberline {18}{\ignorespaces 11 個時步（08:00--18:00）之逐時段驗證 $R^2$ 分佈}}{48}{figure.caption.28}%
+\contentsline {figure}{\numberline {19}{\ignorespaces 測試集 UTCI 熱壓力六等級分類混淆矩陣（正規化百分比）}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {20}{\ignorespaces 測試場景空間 UTCI 熱壓力場比較（正午 12:00 時步）}}{49}{figure.caption.30}%
+\contentsline {figure}{\numberline {21}{\ignorespaces 典型場景輸入特徵場與 UTCI 輸出場空間分佈（正午時步）}}{50}{figure.caption.31}%
+\contentsline {figure}{\numberline {22}{\ignorespaces 消融實驗各變體 $R^2$（左）與 RMSE（右）比較圖。}}{52}{figure.caption.33}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {23}{\ignorespaces NSGA-II 真實收斂結果（PI-ST-GNN V2 checkpoint 作為適應度求值器，族群 40、演化 50 代）}}{56}{figure.caption.35}%
+\contentsline {figure}{\numberline {24}{\ignorespaces PI-ST-GNN 之 GNNExplainer 事後可解釋性分析（場景 70，驗證 $R^2=0.9965$）}}{61}{figure.caption.36}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsfinish 
+\contentsfinish 

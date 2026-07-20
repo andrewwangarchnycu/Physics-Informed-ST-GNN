@@ -67,6 +67,16 @@ OSM_LANDUSE_TO_MATERIAL: Dict[str, str] = {
     "salt_pond":          "water",
 }
 
+OSM_LEISURE_TO_MATERIAL: Dict[str, str] = {
+    "park":            "grass",
+    "garden":          "grass",
+    "pitch":           "grass",
+    "playground":      "grass",
+    "golf_course":     "grass",
+    "nature_reserve":  "grass",
+    "swimming_pool":   "water",
+}
+
 OSM_NATURAL_TO_MATERIAL: Dict[str, str] = {
     "water":    "water",
     "wetland":  "water",
@@ -116,10 +126,46 @@ def _m_per_deg_lon(lat_deg: float) -> float:
 def _latlon_to_local(lat: float, lon: float,
                      origin_lat: float, origin_lon: float
                      ) -> Tuple[float, float]:
-    """WGS84 → local XY in metres (origin = SW corner of bounding box)."""
+    """WGS84 → local XY in metres (origin = SW corner of bounding box).
+
+    overpy returns node lat/lon as ``decimal.Decimal``; cast to float first
+    so the mixed Decimal−float arithmetic below does not raise TypeError
+    (previously swallowed by callers' bare except, silently dropping every
+    building/landuse polygon and forcing a procedural fallback).
+    """
+    lat = float(lat); lon = float(lon)
+    origin_lat = float(origin_lat); origin_lon = float(origin_lon)
     x = (lon - origin_lon) * _m_per_deg_lon(origin_lat)
     y = (lat - origin_lat) * _M_PER_DEG_LAT
     return x, y
+
+
+def _parse_osm_number(tag, default: float = 0.0) -> float:
+    """Robustly parse an OSM numeric tag to float.
+
+    Handles the messy real-world variants: units ("18 m", "12m"),
+    semicolon multi-values from merged ways ("11;10;12"), ranges
+    ("3-5"), and commas. Returns ``default`` when nothing parses.
+    """
+    if tag is None:
+        return default
+    s = str(tag).strip().lower().replace("m", "").replace(",", ".")
+    for sep in (";", "-", "~"):
+        if sep in s:
+            parts = [p for p in s.split(sep) if p.strip()]
+            vals = []
+            for p in parts:
+                try:
+                    vals.append(float(p.strip()))
+                except ValueError:
+                    continue
+            if vals:
+                return sum(vals) / len(vals)   # mean of multi-value/range
+            return default
+    try:
+        return float(s.strip())
+    except ValueError:
+        return default
 
 
 def _shoelace_area(pts: List[Tuple[float, float]]) -> float:
@@ -288,17 +334,21 @@ class OSMLoader:
             tags   = way.tags
             fl_tag = tags.get("building:levels", tags.get("levels", None))
             h_tag  = tags.get("height", tags.get("building:height", None))
-            floors = int(float(fl_tag)) if fl_tag else 3
-            height = float(str(h_tag).replace("m", "").strip()) \
-                     if h_tag else floors * 3.6
+            floors = _parse_osm_number(fl_tag, default=3.0)
+            floors = int(round(floors)) if floors > 0 else 3
+            h_val  = _parse_osm_number(h_tag, default=0.0)
+            height = h_val if h_val > 0 else floors * 3.6
             btype  = tags.get("building", "yes")
 
             buildings.append({
-                "footprint":     [list(pt) for pt in local_pts],
-                "height":        height,
-                "floor_count":   floors,
-                "osm_id":        way.id,
-                "building_type": btype,
+                "footprint":       [list(pt) for pt in local_pts],
+                "height":          height,
+                "floor_count":     floors,
+                "osm_id":          way.id,
+                "building_type":   btype,
+                # True only when height came from a real OSM tag (height /
+                # building:height / building:levels), not the 3-floor guess.
+                "height_from_tag": bool(h_tag) or bool(fl_tag),
             })
 
         print(f"  [OSMLoader] {len(buildings)} buildings extracted "
@@ -328,6 +378,7 @@ class OSMLoader:
             material = (
                 OSM_LANDUSE_TO_MATERIAL.get(tags.get("landuse", ""))
                 or OSM_NATURAL_TO_MATERIAL.get(tags.get("natural", ""))
+                or OSM_LEISURE_TO_MATERIAL.get(tags.get("leisure", ""))
             )
             if material is None:
                 hw = tags.get("highway", "")

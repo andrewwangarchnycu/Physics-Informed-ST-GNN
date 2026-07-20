@@ -1,346 +1,162 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1"
-              connect="1" arrows="1" fold="1" page="1" pageScale="1"
-              pageWidth="1400" pageHeight="800" math="1" shadow="0">
-  <root>
-    <mxCell id="0" />
-    <mxCell id="1" parent="0" />
-
-    <!-- ═══════════════════════════════════════════════════════════
-         TITLE
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="2"
-      value="&lt;b&gt;RGCN Message Passing — One Block (5 Relation Types)&lt;/b&gt;"
-      style="text;html=1;strokeColor=none;fillColor=none;align=center;
-             verticalAlign=middle;whiteSpace=wrap;fontSize=15;fontStyle=1;"
-      vertex="1" parent="1">
-      <mxGeometry x="80" y="20" width="1240" height="40" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         TARGET NODE (centre)
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="target"
-      value="&lt;b&gt;h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#7C3AED'&gt;target node&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;
-             fontStyle=1;fontSize=12;strokeWidth=3;"
-      vertex="1" parent="1">
-      <mxGeometry x="380" y="310" width="120" height="120" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         SOURCE NODES — 5 relation types
-    ═══════════════════════════════════════════════════════════ -->
-
-    <!-- shadow (top-left) -->
-    <mxCell id="src_shadow"
-      value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#DC2626' size='1'&gt;shadow&lt;br/&gt;(obj→air)&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;
-             fontSize=9;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="90" y="80" width="100" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- veg_et (top-left-centre) -->
-    <mxCell id="src_veget"
-      value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#15803D' size='1'&gt;veg_et&lt;br/&gt;(obj→air)&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#15803D;
-             fontSize=9;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="240" y="50" width="100" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- convective (top-centre) -->
-    <mxCell id="src_conv"
-      value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#0891B2' size='1'&gt;convective&lt;br/&gt;(obj→air)&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0891B2;
-             fontSize=9;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="390" y="80" width="100" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- semantic (top-right-centre) -->
-    <mxCell id="src_sem"
-      value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#9333EA' size='1'&gt;semantic&lt;br/&gt;(obj→obj)&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#9333EA;
-             fontSize=9;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="540" y="50" width="100" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- contiguity (top-right) -->
-    <mxCell id="src_cont"
-      value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#EA580C' size='1'&gt;contiguity&lt;br/&gt;(air→air)&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;
-             fontSize=9;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="690" y="80" width="100" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         EDGES — source → target, with W_r label
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="e_shadow"
-      value="&lt;b&gt;W&lt;sub&gt;shadow&lt;/sub&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=2;
-             fontColor=#DC2626;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;
-             labelBackgroundColor=#FEF2F2;labelBorderColor=#DC2626;"
-      edge="1" source="src_shadow" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <mxPoint x="0.3" y="-10" as="offset" />
-      </mxGeometry>
-    </mxCell>
-
-    <mxCell id="e_veget"
-      value="&lt;b&gt;W&lt;sub&gt;veg_et&lt;/sub&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#15803D;strokeWidth=2;
-             fontColor=#15803D;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;
-             labelBackgroundColor=#F0FDF4;labelBorderColor=#15803D;"
-      edge="1" source="src_veget" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <mxPoint x="0.4" y="-10" as="offset" />
-      </mxGeometry>
-    </mxCell>
-
-    <mxCell id="e_conv"
-      value="&lt;b&gt;W&lt;sub&gt;conv&lt;/sub&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#0891B2;strokeWidth=2;
-             fontColor=#0891B2;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;
-             labelBackgroundColor=#E0F2FE;labelBorderColor=#0891B2;"
-      edge="1" source="src_conv" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry" />
-    </mxCell>
-
-    <mxCell id="e_sem"
-      value="&lt;b&gt;W&lt;sub&gt;sem&lt;/sub&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#9333EA;strokeWidth=2;
-             fontColor=#9333EA;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;
-             labelBackgroundColor=#F3E8FF;labelBorderColor=#9333EA;"
-      edge="1" source="src_sem" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <mxPoint x="0.6" y="-10" as="offset" />
-      </mxGeometry>
-    </mxCell>
-
-    <mxCell id="e_cont"
-      value="&lt;b&gt;W&lt;sub&gt;cont&lt;/sub&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#EA580C;strokeWidth=2;
-             fontColor=#EA580C;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;
-             labelBackgroundColor=#FFF7ED;labelBorderColor=#EA580C;"
-      edge="1" source="src_cont" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <mxPoint x="0.7" y="-10" as="offset" />
-      </mxGeometry>
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         SELF-LOOP (dashed arc)
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="self_loop"
-      value="&lt;b&gt;&lt;font color='#475569'&gt;W&lt;sub&gt;self&lt;/sub&gt;&lt;/font&gt;&lt;/b&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.8;
-             dashed=1;fontColor=#475569;fontSize=9;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;
-             entryX=0;entryY=1;entryDx=0;entryDy=0;"
-      edge="1" source="target" target="target" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="340" y="370" />
-          <mxPoint x="300" y="370" />
-          <mxPoint x="300" y="460" />
-          <mxPoint x="380" y="460" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         FORMULA PANEL (right side)
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="formula"
-      value="&lt;b&gt;RGCN Aggregation Formula  (Eq. 2)&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt;
-&lt;font face='Courier New' size='2'&gt;
-h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; = σ
-&lt;/font&gt;&lt;br/&gt;
-&lt;font size='2'&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp; Σ&lt;sub&gt;r ∈ R&lt;/sub&gt; &amp;nbsp;
-Σ&lt;sub&gt;j ∈ N&lt;sub&gt;r&lt;/sub&gt;(i)&lt;/sub&gt; &amp;nbsp;
-( 1 / |N&lt;sub&gt;r&lt;/sub&gt;(i)| ) · W&lt;sub&gt;r&lt;/sub&gt; h&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;
-&amp;nbsp;+&amp;nbsp; W&lt;sub&gt;self&lt;/sub&gt; h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;
-&lt;/font&gt;
-&lt;br/&gt;&lt;br/&gt;
-&lt;font size='2'&gt;&lt;b&gt;R = {&lt;/b&gt;
-&lt;font color='#DC2626'&gt;shadow&lt;/font&gt;,
-&lt;font color='#15803D'&gt;veg_et&lt;/font&gt;,
-&lt;font color='#0891B2'&gt;convective&lt;/font&gt;,
-&lt;font color='#9333EA'&gt;semantic&lt;/font&gt;,
-&lt;font color='#EA580C'&gt;contiguity&lt;/font&gt;
-&lt;b&gt;}&lt;/b&gt;&lt;/font&gt;
-&lt;br/&gt;&lt;br/&gt;
-&lt;hr/&gt;
-&lt;b&gt;Residual + Normalisation:&lt;/b&gt;&lt;br/&gt;
-&lt;font size='2'&gt;h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; ← LayerNorm( h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; + ResProj(h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;) )&lt;br/&gt;
-followed by PReLU + Dropout&lt;/font&gt;
-&lt;br/&gt;&lt;br/&gt;
-&lt;hr/&gt;
-&lt;b&gt;Implemented in:&lt;/b&gt;&lt;br/&gt;
-&lt;font size='2' color='#475569'&gt;03_model/layers/rgcn_block.py → RGCNBlock.forward()&lt;br/&gt;
-Stacked 3× by RGCNEncoder&lt;/font&gt;"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAF9;strokeColor=#7C3AED;
-             fontStyle=0;fontSize=10;arcSize=8;strokeWidth=2;align=left;
-             verticalAlign=top;spacingLeft=14;spacingTop=12;spacingRight=10;"
-      vertex="1" parent="1">
-      <mxGeometry x="870" y="200" width="440" height="380" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         AGGREGATION + RESIDUAL FLOW (below target node)
-    ═══════════════════════════════════════════════════════════ -->
-
-    <!-- Aggregate box -->
-    <mxCell id="agg"
-      value="&lt;b&gt;Aggregate&lt;/b&gt;&lt;br/&gt;&lt;font color='#475569'&gt;scatter_add (mean-norm)&lt;br/&gt;per relation r&lt;/font&gt;"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F4;strokeColor=#78716C;
-             fontSize=9;arcSize=15;"
-      vertex="1" parent="1">
-      <mxGeometry x="340" y="470" width="200" height="60" as="geometry" />
-    </mxCell>
-
-    <!-- Self-loop box -->
-    <mxCell id="self_box"
-      value="&lt;b&gt;Self transform&lt;/b&gt;&lt;br/&gt;&lt;font color='#475569'&gt;W&lt;sub&gt;self&lt;/sub&gt; · h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;&lt;/font&gt;"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F4;strokeColor=#78716C;
-             fontSize=9;arcSize=15;"
-      vertex="1" parent="1">
-      <mxGeometry x="170" y="470" width="150" height="60" as="geometry" />
-    </mxCell>
-
-    <!-- Sum node -->
-    <mxCell id="sum_node"
-      value="&lt;b&gt;+&lt;/b&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;
-             fontStyle=1;fontSize=16;"
-      vertex="1" parent="1">
-      <mxGeometry x="395" y="565" width="50" height="50" as="geometry" />
-    </mxCell>
-
-    <!-- LayerNorm + PReLU -->
-    <mxCell id="norm"
-      value="&lt;b&gt;LayerNorm + ResidualProj&lt;/b&gt;&lt;br/&gt;&lt;font color='#475569'&gt;PReLU activation + Dropout&lt;/font&gt;"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;
-             fontSize=9;arcSize=15;strokeWidth=1.5;"
-      vertex="1" parent="1">
-      <mxGeometry x="310" y="650" width="220" height="55" as="geometry" />
-    </mxCell>
-
-    <!-- Output node -->
-    <mxCell id="out_node"
-      value="&lt;b&gt;h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color='#7C3AED'&gt;updated hidden&lt;/font&gt;"
-      style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;
-             fontStyle=1;fontSize=10;strokeWidth=2;"
-      vertex="1" parent="1">
-      <mxGeometry x="365" y="735" width="110" height="90" as="geometry" />
-    </mxCell>
-
-    <!-- Flow arrows (aggregation path) -->
-    <mxCell id="fa1" style="endArrow=block;endFill=1;strokeColor=#475569;" edge="1" source="target" target="agg" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="440" y="430" />
-          <mxPoint x="440" y="470" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="fa2" style="endArrow=block;endFill=1;strokeColor=#475569;" edge="1" source="target" target="self_box" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="380" y="430" />
-          <mxPoint x="245" y="430" />
-          <mxPoint x="245" y="470" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="fa3" style="endArrow=block;endFill=1;strokeColor=#CA8A04;strokeWidth=1.5;" edge="1" source="agg" target="sum_node" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-    <mxCell id="fa4" style="endArrow=block;endFill=1;strokeColor=#CA8A04;strokeWidth=1.5;" edge="1" source="self_box" target="sum_node" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="245" y="590" />
-          <mxPoint x="395" y="590" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="fa5" style="endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;" edge="1" source="sum_node" target="norm" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-    <mxCell id="fa6" style="endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;" edge="1" source="norm" target="out_node" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-
-    <!-- Residual skip connection -->
-    <mxCell id="res_skip"
-      value="&lt;font color='#9333EA'&gt;residual&lt;/font&gt;"
-      style="endArrow=block;endFill=1;strokeColor=#9333EA;strokeWidth=1.5;
-             dashed=1;fontColor=#9333EA;fontSize=8;
-             edgeStyle=orthogonalEdgeStyle;rounded=1;"
-      edge="1" source="target" target="norm" parent="1">
-      <mxGeometry relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="500" y="370" />
-          <mxPoint x="550" y="370" />
-          <mxPoint x="550" y="677" />
-          <mxPoint x="530" y="677" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         STACKING NOTE
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="stack_note"
-      value="&lt;b&gt;RGCNEncoder = 3 × RGCNBlock&lt;/b&gt;&lt;br/&gt;
-Layer 0: 128 → 128&lt;br/&gt;
-Layer 1: 128 → 128&lt;br/&gt;
-Layer 2: 128 → 128&lt;br/&gt;
-Output: h_all (N&lt;sub&gt;obj&lt;/sub&gt;+N&lt;sub&gt;air&lt;/sub&gt;, 128)"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#16A34A;
-             fontSize=9;arcSize=10;align=left;spacingLeft=10;verticalAlign=top;
-             spacingTop=8;"
-      vertex="1" parent="1">
-      <mxGeometry x="870" y="620" width="260" height="130" as="geometry" />
-    </mxCell>
-
-    <!-- Per-step note -->
-    <mxCell id="step_note"
-      value="&lt;b&gt;Per-step Processing&lt;/b&gt;&lt;br/&gt;
-For each t ∈ {0 … T-1}:&lt;br/&gt;
-  1. air_encoder( air_feat[:,t,:] ) → h&lt;sub&gt;air,t&lt;/sub&gt;&lt;br/&gt;
-  2. h_all = cat[h&lt;sub&gt;obj&lt;/sub&gt; ; h&lt;sub&gt;air,t&lt;/sub&gt;]&lt;br/&gt;
-  3. edges_t = merge(dyn[t], static)&lt;br/&gt;
-  4. h_all = RGCN(h_all, edges_t)&lt;br/&gt;
-  5. air_hidden[t] = h_all[N&lt;sub&gt;obj&lt;/sub&gt;:]"
-      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#B45309;
-             fontSize=9;arcSize=10;align=left;spacingLeft=10;verticalAlign=top;
-             spacingTop=8;"
-      vertex="1" parent="1">
-      <mxGeometry x="870" y="90" width="440" height="100" as="geometry" />
-    </mxCell>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         LEGEND — node colours
-    ═══════════════════════════════════════════════════════════ -->
-    <mxCell id="legend"
-      value="&lt;b&gt;Node Colour Code&lt;/b&gt;"
-      style="swimlane;startSize=22;fillColor=#F8FAFC;strokeColor=#CBD5E1;
-             fontStyle=1;fontSize=9;"
-      vertex="1" parent="1">
-      <mxGeometry x="90" y="620" width="700" height="130" as="geometry" />
-    </mxCell>
-    <mxCell id="lg_shadow" value="shadow (obj→air)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="10" y="35" width="110" height="35" as="geometry"/></mxCell>
-    <mxCell id="lg_veget" value="veg_et (obj→air)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#15803D;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="130" y="35" width="110" height="35" as="geometry"/></mxCell>
-    <mxCell id="lg_conv" value="convective (obj→air)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0891B2;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="250" y="35" width="120" height="35" as="geometry"/></mxCell>
-    <mxCell id="lg_sem" value="semantic (obj→obj)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#9333EA;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="380" y="35" width="120" height="35" as="geometry"/></mxCell>
-    <mxCell id="lg_cont" value="contiguity (air→air)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=8;" vertex="1" parent="legend"><mxGeometry x="510" y="35" width="120" height="35" as="geometry"/></mxCell>
-    <mxCell id="lg_target" value="target node h_i" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;fontSize=8;fontStyle=1;" vertex="1" parent="legend"><mxGeometry x="250" y="80" width="120" height="35" as="geometry"/></mxCell>
-
-  </root>
-</mxGraphModel>
+<mxfile host="Electron">
+  <diagram id="4zSOB0fXP5DJYLEZPkl-" name="Page-1">
+    <mxGraphModel dx="875" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;              verticalAlign=middle;whiteSpace=wrap;fontSize=15;fontStyle=1;" value="&lt;b&gt;RGCN Message Passing — One Block (5 Relation Types)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="1240" x="80" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="target" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;              fontStyle=1;fontSize=12;strokeWidth=3;" value="&lt;font style=&quot;font-size: 21px;&quot;&gt;&lt;b style=&quot;&quot;&gt;h&lt;sub style=&quot;&quot;&gt;i&lt;/sub&gt;&lt;sup style=&quot;&quot;&gt;(l+1)&lt;/sup&gt;&lt;/b&gt;&lt;br&gt;&lt;/font&gt;&lt;font color=&quot;#7C3AED&quot;&gt;target node&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="120" x="380" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="src_shadow" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;              fontSize=9;strokeWidth=2;" value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#DC2626&#39; size=&#39;1&#39;&gt;shadow&lt;br/&gt;(obj→air)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="90" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="src_veget" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#15803D;              fontSize=9;strokeWidth=2;" value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#15803D&#39; size=&#39;1&#39;&gt;veg_et&lt;br/&gt;(obj→air)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="src_conv" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0891B2;              fontSize=9;strokeWidth=2;" value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#0891B2&#39; size=&#39;1&#39;&gt;convective&lt;br/&gt;(obj→air)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="390" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="src_sem" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#9333EA;              fontSize=9;strokeWidth=2;" value="&lt;b&gt;h&lt;sub&gt;j&lt;/sub&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#9333EA&#39; size=&#39;1&#39;&gt;semantic&lt;br/&gt;(obj→obj)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="540" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="src_cont" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;              fontSize=9;strokeWidth=2;" value="&lt;b&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;h&lt;sub style=&quot;&quot;&gt;j&lt;/sub&gt;&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#EA580C&quot; style=&quot;font-size: 11px;&quot;&gt;contiguity&lt;br&gt;(air→air)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="690" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_shadow" edge="1" parent="1" source="src_shadow" style="endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=2;              fontColor=#DC2626;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=1;              labelBackgroundColor=#FEF2F2;labelBorderColor=#DC2626;" target="target" value="&lt;b&gt;W&lt;sub&gt;shadow&lt;/sub&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.3" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_veget" edge="1" parent="1" source="src_veget" style="endArrow=block;endFill=1;strokeColor=#15803D;strokeWidth=2;              fontColor=#15803D;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=1;              labelBackgroundColor=#F0FDF4;labelBorderColor=#15803D;" target="target" value="&lt;b&gt;W&lt;sub&gt;veg_et&lt;/sub&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.4" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_conv" edge="1" parent="1" source="src_conv" style="endArrow=block;endFill=1;strokeColor=#0891B2;strokeWidth=2;              fontColor=#0891B2;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=1;              labelBackgroundColor=#E0F2FE;labelBorderColor=#0891B2;" target="target" value="&lt;b&gt;W&lt;sub&gt;conv&lt;/sub&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sem" edge="1" parent="1" source="src_sem" style="endArrow=block;endFill=1;strokeColor=#9333EA;strokeWidth=2;              fontColor=#9333EA;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=0;              labelBackgroundColor=#F3E8FF;labelBorderColor=#9333EA;entryX=0.786;entryY=0.082;entryDx=0;entryDy=0;entryPerimeter=0;curved=0;" target="target" value="&lt;b&gt;W&lt;sub&gt;sem&lt;/sub&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0.6" y="-10" as="offset" />
+            <Array as="points">
+              <mxPoint x="590" y="320" />
+            </Array>
+            <mxPoint x="520" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cont" edge="1" parent="1" source="src_cont" style="endArrow=block;endFill=1;strokeColor=#EA580C;strokeWidth=2;              fontColor=#EA580C;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=0;              labelBackgroundColor=#FFF7ED;labelBorderColor=#EA580C;curved=0;entryX=0.954;entryY=0.267;entryDx=0;entryDy=0;entryPerimeter=0;" target="target" value="&lt;b&gt;W&lt;sub&gt;cont&lt;/sub&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" x="0.0846" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="740" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="self_loop" edge="1" parent="1" source="target" style="endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.8;              dashed=1;fontColor=#475569;fontSize=9;              edgeStyle=orthogonalEdgeStyle;rounded=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;              entryX=0;entryY=1;entryDx=0;entryDy=0;" target="target" value="&lt;b&gt;&lt;font color=&#39;#475569&#39;&gt;W&lt;sub&gt;self&lt;/sub&gt;&lt;/font&gt;&lt;/b&gt;">
+          <mxGeometry relative="1" x="-0.1951" y="30" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="340" y="370" />
+              <mxPoint x="300" y="370" />
+              <mxPoint x="300" y="460" />
+              <mxPoint x="380" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="formula" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAF9;strokeColor=#7C3AED;              fontStyle=0;fontSize=10;arcSize=8;strokeWidth=2;align=left;              verticalAlign=top;spacingLeft=14;spacingTop=12;spacingRight=10;" value="&lt;b&gt;RGCN Aggregation Formula  (Eq. 2)&lt;/b&gt;&lt;br/&gt;&lt;hr/&gt; &lt;font face=&#39;Courier New&#39; size=&#39;2&#39;&gt; h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; = σ &lt;/font&gt;&lt;br/&gt; &lt;font size=&#39;2&#39;&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp; Σ&lt;sub&gt;r ∈ R&lt;/sub&gt; &amp;nbsp; Σ&lt;sub&gt;j ∈ N&lt;sub&gt;r&lt;/sub&gt;(i)&lt;/sub&gt; &amp;nbsp; ( 1 / |N&lt;sub&gt;r&lt;/sub&gt;(i)| ) · W&lt;sub&gt;r&lt;/sub&gt; h&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt; &amp;nbsp;+&amp;nbsp; W&lt;sub&gt;self&lt;/sub&gt; h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt; &lt;/font&gt; &lt;br/&gt;&lt;br/&gt; &lt;font size=&#39;2&#39;&gt;&lt;b&gt;R = {&lt;/b&gt; &lt;font color=&#39;#DC2626&#39;&gt;shadow&lt;/font&gt;, &lt;font color=&#39;#15803D&#39;&gt;veg_et&lt;/font&gt;, &lt;font color=&#39;#0891B2&#39;&gt;convective&lt;/font&gt;, &lt;font color=&#39;#9333EA&#39;&gt;semantic&lt;/font&gt;, &lt;font color=&#39;#EA580C&#39;&gt;contiguity&lt;/font&gt; &lt;b&gt;}&lt;/b&gt;&lt;/font&gt; &lt;br/&gt;&lt;br/&gt; &lt;hr/&gt; &lt;b&gt;Residual + Normalisation:&lt;/b&gt;&lt;br/&gt; &lt;font size=&#39;2&#39;&gt;h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; ← LayerNorm( h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt; + ResProj(h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;) )&lt;br/&gt; followed by PReLU + Dropout&lt;/font&gt; &lt;br/&gt;&lt;br/&gt; &lt;hr/&gt; &lt;b&gt;Implemented in:&lt;/b&gt;&lt;br/&gt; &lt;font size=&#39;2&#39; color=&#39;#475569&#39;&gt;03_model/layers/rgcn_block.py → RGCNBlock.forward()&lt;br/&gt; Stacked 3× by RGCNEncoder&lt;/font&gt;" vertex="1">
+          <mxGeometry height="300" width="370" x="870" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="agg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F4;strokeColor=#78716C;              fontSize=9;arcSize=15;" value="&lt;b&gt;Aggregate&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#475569&#39;&gt;scatter_add (mean-norm)&lt;br/&gt;per relation r&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="200" x="340" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="self_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F4;strokeColor=#78716C;              fontSize=9;arcSize=15;" value="&lt;b&gt;Self transform&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#475569&#39;&gt;W&lt;sub&gt;self&lt;/sub&gt; · h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l)&lt;/sup&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="150" x="170" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="sum_node" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;              fontStyle=1;fontSize=16;" value="&lt;b&gt;+&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="50" x="395" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="norm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;              fontSize=9;arcSize=15;strokeWidth=1.5;" value="&lt;b&gt;LayerNorm + ResidualProj&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#475569&#39;&gt;PReLU activation + Dropout&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="220" x="310" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="out_node" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;              fontStyle=1;fontSize=10;strokeWidth=2;" value="&lt;b&gt;h&lt;sub&gt;i&lt;/sub&gt;&lt;sup&gt;(l+1)&lt;/sup&gt;&lt;/b&gt;&lt;br/&gt;&lt;font color=&#39;#7C3AED&#39;&gt;updated hidden&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="110" x="365" y="735" as="geometry" />
+        </mxCell>
+        <mxCell id="fa1" edge="1" parent="1" source="target" style="endArrow=block;endFill=1;strokeColor=#475569;" target="agg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="430" />
+              <mxPoint x="440" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fa2" edge="1" parent="1" source="target" style="endArrow=block;endFill=1;strokeColor=#475569;" target="self_box">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="430" />
+              <mxPoint x="245" y="430" />
+              <mxPoint x="245" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fa3" edge="1" parent="1" source="agg" style="endArrow=block;endFill=1;strokeColor=#CA8A04;strokeWidth=1.5;" target="sum_node">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fa4" edge="1" parent="1" source="self_box" style="endArrow=block;endFill=1;strokeColor=#CA8A04;strokeWidth=1.5;" target="sum_node">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="245" y="590" />
+              <mxPoint x="395" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fa5" edge="1" parent="1" source="sum_node" style="endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;" target="norm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fa6" edge="1" parent="1" source="norm" style="endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;" target="out_node">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="res_skip" edge="1" parent="1" source="target" style="endArrow=block;endFill=1;strokeColor=#9333EA;strokeWidth=1.5;              dashed=1;fontColor=#9333EA;fontSize=8;              edgeStyle=orthogonalEdgeStyle;rounded=1;" target="norm" value="&lt;font color=&#39;#9333EA&#39;&gt;residual&lt;/font&gt;">
+          <mxGeometry relative="1" x="-0.3103" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="500" y="370" />
+              <mxPoint x="550" y="370" />
+              <mxPoint x="550" y="677" />
+              <mxPoint x="530" y="677" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="stack_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#16A34A;              fontSize=9;arcSize=10;align=center;spacingLeft=10;verticalAlign=middle;              spacingTop=8;" value="&lt;b&gt;RGCNEncoder = 3 × RGCNBlock&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div&gt; Layer 0: 128 → 128&lt;br&gt; Layer 1: 128 → 128&lt;br&gt; Layer 2: 128 → 128&lt;br&gt; Output: h_all (N&lt;sub&gt;obj&lt;/sub&gt;+N&lt;sub&gt;air&lt;/sub&gt;, 128)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="220" x="950" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="step_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#B45309;              fontSize=9;arcSize=10;align=left;spacingLeft=10;verticalAlign=middle;              spacingTop=8;" value="&lt;b&gt;Per-step Processing&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt; For each t ∈ {0 … T-1}:&lt;br&gt;   1. air_encoder( air_feat[:,t,:] ) → h&lt;sub&gt;air,t&lt;/sub&gt;&lt;br&gt;   2. h_all = cat[h&lt;sub&gt;obj&lt;/sub&gt; ; h&lt;sub&gt;air,t&lt;/sub&gt;]&lt;br&gt;   3. edges_t = merge(dyn[t], static)&lt;br&gt;   4. h_all = RGCN(h_all, edges_t)&lt;br&gt;   5. air_hidden[t] = h_all[N&lt;sub&gt;obj&lt;/sub&gt;:]&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="220" x="950" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="swimlane;startSize=22;fillColor=#F8FAFC;strokeColor=#CBD5E1;              fontStyle=1;fontSize=9;" value="&lt;b&gt;Node Colour Code&lt;/b&gt;" vertex="1">
+          <mxGeometry height="130" width="700" x="90" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_shadow" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontSize=8;" value="shadow (obj→air)" vertex="1">
+          <mxGeometry height="35" width="110" x="10" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_veget" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#15803D;fontSize=8;" value="veg_et (obj→air)" vertex="1">
+          <mxGeometry height="35" width="110" x="130" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_conv" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0891B2;fontSize=8;" value="convective (obj→air)" vertex="1">
+          <mxGeometry height="35" width="120" x="250" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_sem" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F3E8FF;strokeColor=#9333EA;fontSize=8;" value="semantic (obj→obj)" vertex="1">
+          <mxGeometry height="35" width="120" x="380" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_cont" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;fontSize=8;" value="contiguity (air→air)" vertex="1">
+          <mxGeometry height="35" width="120" x="510" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_target" parent="legend" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;fontSize=8;fontStyle=1;" value="target node h_i" vertex="1">
+          <mxGeometry height="35" width="120" x="250" y="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

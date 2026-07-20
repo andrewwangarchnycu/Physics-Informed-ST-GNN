@@ -379,10 +379,15 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     device = "cuda" if torch.cuda.is_available() else "cpu"
     ckpt   = torch.load(ckpt_path, map_location=device)
 
-    ds_test = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split="test")
-    cfg = {"model": {"out_timesteps": len(ds_test.sim_hours)}}
+    # Auto-detect dim_air from the checkpoint's air-encoder input width so
+    # V4 (dim_air=9) checkpoints load correctly, not just the default 10.
+    state = ckpt.get("model_state", ckpt.get("model_state_dict", ckpt))
+    enc_w = state.get("air_encoder.net.0.weight")
+    dim_air = int(enc_w.shape[1]) if enc_w is not None else 9
+    ds_test = UTCIGraphDataset(h5_path, scenario_pkl, epw_pkl, split="test", dim_air=dim_air)
+    cfg = {"model": {"out_timesteps": len(ds_test.sim_hours), "dim_air": dim_air}}
     model = build_model(cfg).to(device)
-    model.load_state_dict(ckpt["model_state"])
+    model.load_state_dict(state)
 
     fig_scatter_pred_vs_gt(model, ds_test, epw, device, out, n_samples=20)
     fig_hourly_r2(model, ds_test, epw, device, out, n_samples=30)

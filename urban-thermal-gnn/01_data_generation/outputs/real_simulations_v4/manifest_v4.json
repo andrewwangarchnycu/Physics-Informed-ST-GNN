@@ -1,0 +1,2411 @@
+{
+  "n_scenes": 300,
+  "provenance_counts": {
+    "ta_iot": 281,
+    "ta_cwb": 19,
+    "rh_iot": 212,
+    "rh_cwb": 88
+  },
+  "scenes": [
+    {
+      "scenario_id": 0,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 268,
+      "station_sensor_idx": 137
+    },
+    {
+      "scenario_id": 4,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 308,
+      "station_sensor_idx": 123
+    },
+    {
+      "scenario_id": 1,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 305,
+      "station_sensor_idx": 128
+    },
+    {
+      "scenario_id": 7,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 267,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 3,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 331,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 5,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 327,
+      "station_sensor_idx": 134
+    },
+    {
+      "scenario_id": 2,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 381,
+      "station_sensor_idx": 179
+    },
+    {
+      "scenario_id": 9,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 341,
+      "station_sensor_idx": 173
+    },
+    {
+      "scenario_id": 8,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 314,
+      "station_sensor_idx": 129
+    },
+    {
+      "scenario_id": 10,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 281,
+      "station_sensor_idx": 165
+    },
+    {
+      "scenario_id": 11,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 288,
+      "station_sensor_idx": 128
+    },
+    {
+      "scenario_id": 12,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 341,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 15,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 263,
+      "station_sensor_idx": 53
+    },
+    {
+      "scenario_id": 14,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 254,
+      "station_sensor_idx": 107
+    },
+    {
+      "scenario_id": 6,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 162
+    },
+    {
+      "scenario_id": 16,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 361,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 13,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 258,
+      "station_sensor_idx": 105
+    },
+    {
+      "scenario_id": 17,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 384,
+      "station_sensor_idx": 173
+    },
+    {
+      "scenario_id": 19,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 283,
+      "station_sensor_idx": 139
+    },
+    {
+      "scenario_id": 22,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 378,
+      "station_sensor_idx": 172
+    },
+    {
+      "scenario_id": 23,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 284,
+      "station_sensor_idx": 132
+    },
+    {
+      "scenario_id": 26,
+      "month": 8,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 182,
+      "station_sensor_idx": 74
+    },
+    {
+      "scenario_id": 29,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 212,
+      "station_sensor_idx": 130
+    },
+    {
+      "scenario_id": 20,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 331,
+      "station_sensor_idx": 120
+    },
+    {
+      "scenario_id": 25,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 275,
+      "station_sensor_idx": 135
+    },
+    {
+      "scenario_id": 21,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 367,
+      "station_sensor_idx": 156
+    },
+    {
+      "scenario_id": 24,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 364,
+      "station_sensor_idx": 153
+    },
+    {
+      "scenario_id": 18,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 382,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 28,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 360,
+      "station_sensor_idx": 154
+    },
+    {
+      "scenario_id": 27,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 275,
+      "station_sensor_idx": 88
+    },
+    {
+      "scenario_id": 31,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 280,
+      "station_sensor_idx": 76
+    },
+    {
+      "scenario_id": 32,
+      "month": 8,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 394,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 33,
+      "month": 6,
+      "ta_source": "cwb",
+      "rh_source": "iot",
+      "n_sensors": 311,
+      "station_sensor_idx": 182
+    },
+    {
+      "scenario_id": 30,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 151
+    },
+    {
+      "scenario_id": 36,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 343,
+      "station_sensor_idx": 144
+    },
+    {
+      "scenario_id": 40,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 349,
+      "station_sensor_idx": 161
+    },
+    {
+      "scenario_id": 38,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 370,
+      "station_sensor_idx": 159
+    },
+    {
+      "scenario_id": 35,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 353,
+      "station_sensor_idx": 171
+    },
+    {
+      "scenario_id": 34,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 374,
+      "station_sensor_idx": 163
+    },
+    {
+      "scenario_id": 41,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 375,
+      "station_sensor_idx": 164
+    },
+    {
+      "scenario_id": 39,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 47,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 368,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 42,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 371,
+      "station_sensor_idx": 177
+    },
+    {
+      "scenario_id": 37,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 392,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 44,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 252,
+      "station_sensor_idx": 100
+    },
+    {
+      "scenario_id": 43,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 345,
+      "station_sensor_idx": 134
+    },
+    {
+      "scenario_id": 45,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 307,
+      "station_sensor_idx": 116
+    },
+    {
+      "scenario_id": 52,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 322,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 50,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 328,
+      "station_sensor_idx": 152
+    },
+    {
+      "scenario_id": 46,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 377,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 48,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 399,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 53,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 358,
+      "station_sensor_idx": 161
+    },
+    {
+      "scenario_id": 49,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 393,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 58,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 341,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 51,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 392,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 56,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 304,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 59,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 340,
+      "station_sensor_idx": 169
+    },
+    {
+      "scenario_id": 61,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 291,
+      "station_sensor_idx": 122
+    },
+    {
+      "scenario_id": 60,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 373,
+      "station_sensor_idx": 187
+    },
+    {
+      "scenario_id": 55,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 360,
+      "station_sensor_idx": 149
+    },
+    {
+      "scenario_id": 54,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 393,
+      "station_sensor_idx": 184
+    },
+    {
+      "scenario_id": 64,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 272,
+      "station_sensor_idx": 134
+    },
+    {
+      "scenario_id": 62,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 209,
+      "station_sensor_idx": 98
+    },
+    {
+      "scenario_id": 57,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 394,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 66,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 277,
+      "station_sensor_idx": 152
+    },
+    {
+      "scenario_id": 63,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 321,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 68,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 232,
+      "station_sensor_idx": 117
+    },
+    {
+      "scenario_id": 69,
+      "month": 6,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 338,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 65,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 398,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 67,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 347,
+      "station_sensor_idx": 137
+    },
+    {
+      "scenario_id": 72,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 394,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 71,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 314,
+      "station_sensor_idx": 147
+    },
+    {
+      "scenario_id": 73,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 392,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 75,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 252,
+      "station_sensor_idx": 143
+    },
+    {
+      "scenario_id": 76,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 385,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 74,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 395,
+      "station_sensor_idx": 184
+    },
+    {
+      "scenario_id": 70,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 315,
+      "station_sensor_idx": 124
+    },
+    {
+      "scenario_id": 82,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 192,
+      "station_sensor_idx": 105
+    },
+    {
+      "scenario_id": 77,
+      "month": 8,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 395,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 78,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 369,
+      "station_sensor_idx": 170
+    },
+    {
+      "scenario_id": 80,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 294,
+      "station_sensor_idx": 131
+    },
+    {
+      "scenario_id": 88,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 288,
+      "station_sensor_idx": 158
+    },
+    {
+      "scenario_id": 79,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 217,
+      "station_sensor_idx": 89
+    },
+    {
+      "scenario_id": 84,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 361,
+      "station_sensor_idx": 165
+    },
+    {
+      "scenario_id": 87,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 367,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 90,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 262,
+      "station_sensor_idx": 141
+    },
+    {
+      "scenario_id": 83,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 81,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 359,
+      "station_sensor_idx": 148
+    },
+    {
+      "scenario_id": 86,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 94,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "iot",
+      "n_sensors": 136,
+      "station_sensor_idx": 51
+    },
+    {
+      "scenario_id": 85,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 387,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 89,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 379,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 97,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 330,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 91,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 268,
+      "station_sensor_idx": 159
+    },
+    {
+      "scenario_id": 92,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 224,
+      "station_sensor_idx": 89
+    },
+    {
+      "scenario_id": 96,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 308,
+      "station_sensor_idx": 126
+    },
+    {
+      "scenario_id": 95,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 310,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 99,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 394,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 93,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 103,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 300,
+      "station_sensor_idx": 144
+    },
+    {
+      "scenario_id": 105,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 212,
+      "station_sensor_idx": 97
+    },
+    {
+      "scenario_id": 98,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 367,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 104,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 322,
+      "station_sensor_idx": 120
+    },
+    {
+      "scenario_id": 100,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 352,
+      "station_sensor_idx": 155
+    },
+    {
+      "scenario_id": 102,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 101,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 107,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 289,
+      "station_sensor_idx": 134
+    },
+    {
+      "scenario_id": 106,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 329,
+      "station_sensor_idx": 155
+    },
+    {
+      "scenario_id": 108,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 110,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 114,
+      "month": 6,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 320,
+      "station_sensor_idx": 115
+    },
+    {
+      "scenario_id": 111,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 356,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 113,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 370,
+      "station_sensor_idx": 173
+    },
+    {
+      "scenario_id": 109,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 334,
+      "station_sensor_idx": 177
+    },
+    {
+      "scenario_id": 115,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 397,
+      "station_sensor_idx": 186
+    },
+    {
+      "scenario_id": 117,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 340,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 112,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 347,
+      "station_sensor_idx": 148
+    },
+    {
+      "scenario_id": 121,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 254,
+      "station_sensor_idx": 96
+    },
+    {
+      "scenario_id": 118,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 287,
+      "station_sensor_idx": 119
+    },
+    {
+      "scenario_id": 120,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 333,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 116,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 119,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 382,
+      "station_sensor_idx": 187
+    },
+    {
+      "scenario_id": 128,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 211,
+      "station_sensor_idx": 103
+    },
+    {
+      "scenario_id": 122,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 124,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 126,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 145
+    },
+    {
+      "scenario_id": 123,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 352,
+      "station_sensor_idx": 176
+    },
+    {
+      "scenario_id": 125,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 368,
+      "station_sensor_idx": 159
+    },
+    {
+      "scenario_id": 127,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 398,
+      "station_sensor_idx": 187
+    },
+    {
+      "scenario_id": 132,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 298,
+      "station_sensor_idx": 129
+    },
+    {
+      "scenario_id": 135,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 232,
+      "station_sensor_idx": 125
+    },
+    {
+      "scenario_id": 129,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 130,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 353,
+      "station_sensor_idx": 174
+    },
+    {
+      "scenario_id": 131,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 334,
+      "station_sensor_idx": 178
+    },
+    {
+      "scenario_id": 134,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 376,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 136,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 323,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 137,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 133,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 385,
+      "station_sensor_idx": 174
+    },
+    {
+      "scenario_id": 138,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 359,
+      "station_sensor_idx": 148
+    },
+    {
+      "scenario_id": 144,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 317,
+      "station_sensor_idx": 106
+    },
+    {
+      "scenario_id": 140,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 393,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 145,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 219,
+      "station_sensor_idx": 165
+    },
+    {
+      "scenario_id": 139,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 146,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 278,
+      "station_sensor_idx": 114
+    },
+    {
+      "scenario_id": 143,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 323,
+      "station_sensor_idx": 112
+    },
+    {
+      "scenario_id": 142,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 335,
+      "station_sensor_idx": 132
+    },
+    {
+      "scenario_id": 141,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 363,
+      "station_sensor_idx": 161
+    },
+    {
+      "scenario_id": 149,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 363,
+      "station_sensor_idx": 153
+    },
+    {
+      "scenario_id": 151,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 394,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 152,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 398,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 147,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 363,
+      "station_sensor_idx": 169
+    },
+    {
+      "scenario_id": 148,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 310,
+      "station_sensor_idx": 151
+    },
+    {
+      "scenario_id": 155,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 262,
+      "station_sensor_idx": 71
+    },
+    {
+      "scenario_id": 156,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 315,
+      "station_sensor_idx": 104
+    },
+    {
+      "scenario_id": 154,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 375,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 150,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 341,
+      "station_sensor_idx": 150
+    },
+    {
+      "scenario_id": 153,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 375,
+      "station_sensor_idx": 164
+    },
+    {
+      "scenario_id": 158,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 276,
+      "station_sensor_idx": 136
+    },
+    {
+      "scenario_id": 162,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 394,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 160,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 397,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 161,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 159,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 389,
+      "station_sensor_idx": 178
+    },
+    {
+      "scenario_id": 163,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 165,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 151
+    },
+    {
+      "scenario_id": 164,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 166,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 346,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 157,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 379,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 168,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 169,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 353,
+      "station_sensor_idx": 151
+    },
+    {
+      "scenario_id": 170,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 173,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 269,
+      "station_sensor_idx": 145
+    },
+    {
+      "scenario_id": 172,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 327,
+      "station_sensor_idx": 143
+    },
+    {
+      "scenario_id": 174,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 214,
+      "station_sensor_idx": 45
+    },
+    {
+      "scenario_id": 167,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 351,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 171,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 398,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 179,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 261,
+      "station_sensor_idx": 105
+    },
+    {
+      "scenario_id": 175,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 176,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 356,
+      "station_sensor_idx": 185
+    },
+    {
+      "scenario_id": 178,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 375,
+      "station_sensor_idx": 164
+    },
+    {
+      "scenario_id": 181,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 293,
+      "station_sensor_idx": 176
+    },
+    {
+      "scenario_id": 182,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 398,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 177,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 343,
+      "station_sensor_idx": 168
+    },
+    {
+      "scenario_id": 183,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 190,
+      "station_sensor_idx": 85
+    },
+    {
+      "scenario_id": 185,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 347,
+      "station_sensor_idx": 159
+    },
+    {
+      "scenario_id": 180,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 339,
+      "station_sensor_idx": 152
+    },
+    {
+      "scenario_id": 189,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 383,
+      "station_sensor_idx": 172
+    },
+    {
+      "scenario_id": 184,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "iot",
+      "n_sensors": 379,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 186,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 365,
+      "station_sensor_idx": 155
+    },
+    {
+      "scenario_id": 191,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 243,
+      "station_sensor_idx": 66
+    },
+    {
+      "scenario_id": 192,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 301,
+      "station_sensor_idx": 115
+    },
+    {
+      "scenario_id": 187,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 310,
+      "station_sensor_idx": 169
+    },
+    {
+      "scenario_id": 188,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 190,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 387,
+      "station_sensor_idx": 176
+    },
+    {
+      "scenario_id": 193,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 259,
+      "station_sensor_idx": 131
+    },
+    {
+      "scenario_id": 195,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 312,
+      "station_sensor_idx": 158
+    },
+    {
+      "scenario_id": 194,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 332,
+      "station_sensor_idx": 155
+    },
+    {
+      "scenario_id": 196,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 380,
+      "station_sensor_idx": 173
+    },
+    {
+      "scenario_id": 199,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 375,
+      "station_sensor_idx": 184
+    },
+    {
+      "scenario_id": 198,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 341,
+      "station_sensor_idx": 130
+    },
+    {
+      "scenario_id": 197,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 379,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 200,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 381,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 204,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 317,
+      "station_sensor_idx": 174
+    },
+    {
+      "scenario_id": 203,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 343,
+      "station_sensor_idx": 164
+    },
+    {
+      "scenario_id": 206,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 318,
+      "station_sensor_idx": 139
+    },
+    {
+      "scenario_id": 201,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 355,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 208,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 346,
+      "station_sensor_idx": 135
+    },
+    {
+      "scenario_id": 209,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 395,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 214,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 153,
+      "station_sensor_idx": 58
+    },
+    {
+      "scenario_id": 202,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 393,
+      "station_sensor_idx": 182
+    },
+    {
+      "scenario_id": 213,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 365,
+      "station_sensor_idx": 154
+    },
+    {
+      "scenario_id": 207,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 381,
+      "station_sensor_idx": 170
+    },
+    {
+      "scenario_id": 211,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 331,
+      "station_sensor_idx": 149
+    },
+    {
+      "scenario_id": 205,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 360,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 212,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 345,
+      "station_sensor_idx": 134
+    },
+    {
+      "scenario_id": 215,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 218,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 285,
+      "station_sensor_idx": 106
+    },
+    {
+      "scenario_id": 216,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 340,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 210,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 369,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 217,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 326,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 220,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 292,
+      "station_sensor_idx": 162
+    },
+    {
+      "scenario_id": 219,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 349,
+      "station_sensor_idx": 145
+    },
+    {
+      "scenario_id": 221,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 356,
+      "station_sensor_idx": 157
+    },
+    {
+      "scenario_id": 225,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 242,
+      "station_sensor_idx": 92
+    },
+    {
+      "scenario_id": 222,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 291,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 224,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 381,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 223,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 397,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 226,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 373,
+      "station_sensor_idx": 186
+    },
+    {
+      "scenario_id": 227,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 293,
+      "station_sensor_idx": 83
+    },
+    {
+      "scenario_id": 230,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 364,
+      "station_sensor_idx": 154
+    },
+    {
+      "scenario_id": 231,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 391,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 228,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 387,
+      "station_sensor_idx": 176
+    },
+    {
+      "scenario_id": 229,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 186
+    },
+    {
+      "scenario_id": 233,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 372,
+      "station_sensor_idx": 161
+    },
+    {
+      "scenario_id": 236,
+      "month": 8,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 284,
+      "station_sensor_idx": 109
+    },
+    {
+      "scenario_id": 238,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 198,
+      "station_sensor_idx": 74
+    },
+    {
+      "scenario_id": 232,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 235,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 234,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 239,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 372,
+      "station_sensor_idx": 166
+    },
+    {
+      "scenario_id": 240,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 324,
+      "station_sensor_idx": 181
+    },
+    {
+      "scenario_id": 241,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 394,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 237,
+      "month": 6,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 376,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 243,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 369,
+      "station_sensor_idx": 162
+    },
+    {
+      "scenario_id": 244,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 245,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 369,
+      "station_sensor_idx": 179
+    },
+    {
+      "scenario_id": 242,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 391,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 247,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 350,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 250,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 234,
+      "station_sensor_idx": 144
+    },
+    {
+      "scenario_id": 246,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 251,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 354,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 252,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 384,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 253,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 396,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 248,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 379,
+      "station_sensor_idx": 168
+    },
+    {
+      "scenario_id": 257,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 179,
+      "station_sensor_idx": 110
+    },
+    {
+      "scenario_id": 249,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 188
+    },
+    {
+      "scenario_id": 255,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 322,
+      "station_sensor_idx": 178
+    },
+    {
+      "scenario_id": 254,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 395,
+      "station_sensor_idx": 185
+    },
+    {
+      "scenario_id": 258,
+      "month": 6,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 291,
+      "station_sensor_idx": 122
+    },
+    {
+      "scenario_id": 256,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 392,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 260,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 147
+    },
+    {
+      "scenario_id": 261,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 348,
+      "station_sensor_idx": 153
+    },
+    {
+      "scenario_id": 263,
+      "month": 8,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 354,
+      "station_sensor_idx": 180
+    },
+    {
+      "scenario_id": 259,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 399,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 265,
+      "month": 7,
+      "ta_source": "cwb",
+      "rh_source": "cwb",
+      "n_sensors": 340,
+      "station_sensor_idx": 171
+    },
+    {
+      "scenario_id": 266,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 294,
+      "station_sensor_idx": 175
+    },
+    {
+      "scenario_id": 264,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 376,
+      "station_sensor_idx": 171
+    },
+    {
+      "scenario_id": 262,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 361,
+      "station_sensor_idx": 150
+    },
+    {
+      "scenario_id": 267,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 345,
+      "station_sensor_idx": 136
+    },
+    {
+      "scenario_id": 271,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 352,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 268,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 375,
+      "station_sensor_idx": 164
+    },
+    {
+      "scenario_id": 270,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 379,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 269,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 356,
+      "station_sensor_idx": 186
+    },
+    {
+      "scenario_id": 272,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 312,
+      "station_sensor_idx": 143
+    },
+    {
+      "scenario_id": 273,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 368,
+      "station_sensor_idx": 166
+    },
+    {
+      "scenario_id": 274,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 367,
+      "station_sensor_idx": 179
+    },
+    {
+      "scenario_id": 275,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 396,
+      "station_sensor_idx": 185
+    },
+    {
+      "scenario_id": 279,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 290,
+      "station_sensor_idx": 138
+    },
+    {
+      "scenario_id": 277,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 332,
+      "station_sensor_idx": 167
+    },
+    {
+      "scenario_id": 276,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 372,
+      "station_sensor_idx": 175
+    },
+    {
+      "scenario_id": 280,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 362,
+      "station_sensor_idx": 166
+    },
+    {
+      "scenario_id": 278,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 377,
+      "station_sensor_idx": 166
+    },
+    {
+      "scenario_id": 281,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 326,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 284,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 372,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 283,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 311,
+      "station_sensor_idx": 100
+    },
+    {
+      "scenario_id": 282,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 385,
+      "station_sensor_idx": 183
+    },
+    {
+      "scenario_id": 287,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 360,
+      "station_sensor_idx": 173
+    },
+    {
+      "scenario_id": 290,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 285,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 351,
+      "station_sensor_idx": 172
+    },
+    {
+      "scenario_id": 286,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 371,
+      "station_sensor_idx": 160
+    },
+    {
+      "scenario_id": 294,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 356,
+      "station_sensor_idx": 176
+    },
+    {
+      "scenario_id": 288,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 289,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 291,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 308,
+      "station_sensor_idx": 124
+    },
+    {
+      "scenario_id": 296,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 379,
+      "station_sensor_idx": 168
+    },
+    {
+      "scenario_id": 292,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 400,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 297,
+      "month": 6,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 355,
+      "station_sensor_idx": 172
+    },
+    {
+      "scenario_id": 295,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 349,
+      "station_sensor_idx": 144
+    },
+    {
+      "scenario_id": 293,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "cwb",
+      "n_sensors": 358,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 298,
+      "month": 7,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 372,
+      "station_sensor_idx": 189
+    },
+    {
+      "scenario_id": 299,
+      "month": 8,
+      "ta_source": "iot",
+      "rh_source": "iot",
+      "n_sensors": 386,
+      "station_sensor_idx": 189
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+\chapter{結果分析與設計應用討論}
+\label{chapter:results}
+
+\section{整合系統設計流程回顧}
+\label{sec:system_review}
+
+第三、四章分別建立了 PI-ST-GNN 之方法論架構與訓練驗證結果。本章聚焦於整合系統在\textbf{實際設計情境}下的應用操作成果，包含：（1）多目標最佳化帕累托前緣之設計方案解讀，涵蓋熱舒適人行動線設計目標；（2）第~\ref{sec:building_extraction}節真實建物擷取流程於既有場地案例之驗證表現；以及（3）系統整合架構之效能瓶頸與優化方向討論。
+
+
+\section{多目標最佳化設計方案分析}
+\label{sec:pareto_analysis}
+
+\subsection{NSGA-II 收斂過程與帕累托前緣形成}
+\label{subsec:nsga2_convergence}
+
+以訓練完成之 PI-ST-GNN 作為評估代理，NSGA-II 在 $80 \times 80$ 公尺場地尺度下同時優化第~\ref{subsec:design_variables}節定義之三項目標：$f_1$（最小化全場域時空平均 UTCI）、$f_2$（最小化人行動線時空平均熱暴露 $\bar{\Phi}_{\text{walkway}}$）與 $f_3$（最大化綠化率）。演算法設定如下：
+
+\begin{itemize}
+    \item \textbf{族群大小：}50 個個體
+    \item \textbf{演化代數：}100 代
+    \item \textbf{交叉算子：}模擬二進位交叉（SBX，交叉概率 0.9，$\eta_c = 15$）
+    \item \textbf{突變算子：}多項式突變（突變概率 $1/n_{\text{var}}$，$\eta_m = 20$）
+    \item \textbf{選擇策略：}可行性優先 + 非支配排序 + 擁擠距離選擇
+\end{itemize}
+
+由於每次個體評估僅需約 62ms（GNN 推理延遲），100 代 × 50 個體規模的完整優化過程理論上可在數分鐘內完成，相較第~\ref{subsec:wallacei_comparison}節所述、直接呼叫高擬真度模擬引擎之 Wallacei 案例常需數週至數月的收斂時間，此一運算時間尺度的壓縮，是本研究得以在方案概念階段即進行多目標搜尋、而非僅能於方案定案後事後驗證的關鍵前提。
+
+為驗證上述最佳化引擎並非僅停留在演算法規格層面，本研究實際執行一次完整之 NSGA-II 最佳化任務（族群 40、演化 50 代、亂數種子 42），以第~\ref{sec:gnn_model}章訓練完成之 V2 checkpoint（驗證 $R^2=0.9965$）作為適應度求值器，逐代真實呼叫 GNN 推理，於 GPU（NVIDIA RTX 5070 Ti）上共 318.9 秒完成，結果如圖~\ref{fig:nsga2_real}(a) 所示：族群最佳全域平均 UTCI 由第 1 代之 $31.00^\circ\text{C}$ 逐步下降至第 50 代之 $30.84^\circ\text{C}$，族群最佳綠化率則由 $0.008$ 上升至 $0.049$，可行解比例全程維持 40/40（即族群始終滿足 5 維法規違規向量之可行性要求）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_nsga2_convergence.png}
+    \caption{NSGA-II 真實收斂結果（PI-ST-GNN V2 checkpoint 作為適應度求值器，族群 40、演化 50 代）}
+    \label{fig:nsga2_real}
+\end{figure}
+
+上圖 (a) 為逐代族群最佳全域 UTCI（紅）與最佳綠化率（綠）之收斂曲線；(b) 為第 50 代最終帕累托前緣（$n=8$ 非支配解），色階代表各解之容積率（FAR）。
+
+
+\subsection{帕累托前緣之真實形態與現行目標函數之侷限}
+\label{subsec:pareto_morphology}
+
+圖~\ref{fig:nsga2_real}(b) 之最終帕累托前緣揭示一項本研究認為重要、且必須誠實面對的實證發現：8 個非支配解之 FAR 值幾乎全數收斂至單一數值 $\text{FAR}\approx 0.041$，較第~\ref{subsec:coverage}節訓練集之 FAR 覆蓋範圍（$0.8$--$2.5$）低了一個數量級，意即最佳化引擎收斂至一個「幾乎不興建任何建築量體」的退化解（Degenerate Solution），而非設計者實務上會考慮的中高密度都市街廓配置。
+
+此一現象之根本原因並非 GNN 代理模型失準，而是現行已完整實作之二目標適應度函數（$f_1$ 全域平均 UTCI、$f_3$ 綠化率，見第~\ref{subsec:design_variables}節）本身之結構性缺陷：$f_1$ 對整個場地（含未開發之開放地面）取空間平均，而空地本身之預測 UTCI 通常低於建物周邊之複雜熱交互作用區域；$f_3$ 之綠化率單調隨喬木覆蓋面積上升，亦不要求任何建築量體存在。兩項目標因此在數學上共同誘導出「不蓋房子、盡量種樹」之全域最優解，而現有 5 維違規向量（FAR、BCR、縮退、容納性、碰撞）僅檢核上限，未設定最低開發強度之下限約束，故此一退化解在法規意義上仍屬「可行」。換言之，本研究之量化實驗誠實地暴露了一項目標函數設計上的真實限制，而非僅是理論上可預期、實務上未發生的邊界情形。
+
+此一發現對後續研究有兩點直接啟示：其一，第~\ref{subsec:from_astar_to_walkway}節與附錄~\ref{appx:walkway_derivation}所定義之第三項目標 $f_2$（人行動線熱暴露 $\bar{\Phi}_{\text{walkway}}$）之數學形式雖已完整推導，但其與 $f_1$、$f_3$ 三者共同作用下能否修正此一退化傾向，仍待 $f_2$ 實際整合進適應度求值器後以真實三目標實驗驗證，目前尚不能宣稱三目標版本必然解決此問題；其二，更直接的修正方向是在既有 5 維違規向量之外，額外引入最低容積率（FAR $\ge$ FAR$_{\min}$）或建築棟數下限之可行性約束，強制搜索空間排除零開發解，使最佳化真正在「都市可實際興建之設計選項」範圍內進行權衡，此點已列入第~\ref{sec:limitations}節之研究局限與第~\ref{sec:future_work}節之後續工作。
+
+
+\section{真實建物擷取流程之案例驗證}
+\label{sec:real_case_validation}
+
+第~\ref{subsec:extraction_vs_parametric}節說明了真實建物擷取流程與隨機生成場景之互補分工：前者用於真實都市紋理下之案例驗證，後者支撐模型訓練所需之大規模樣本集。本節以第~\ref{subsec:vectorize_method}節三服務融合方法擷取之真實建物量體，作為 PI-ST-GNN 之推理輸入，檢視模型在未見過真實幾何配置下的表現。
+
+由於真實擷取之建物幾何（棟距、樓高分布、平面形態）與訓練資料集之程序化生成分布未必完全重疊，此一驗證本質上是對模型泛化能力的分布外（Out-of-Distribution）壓力測試，而非對訓練集內插能力的重複驗證。第~\ref{subsec:coverage}節所述之訓練集幾何特徵覆蓋範圍（FAR 0.8--2.5、BCR 25\%--60\%、樓高 6--36m），可作為判斷真實案例是否落於模型可靠泛化區間的參照基準：若真實場地之量體統計特徵落於此範圍內，可對模型輸出有較高信心；若明顯超出（如超高層建築群或極端窄巷紋理），則預測結果應視為初步參考，建議搭配傳統模擬工具進行交叉驗證。
+
+
+\section{系統整合架構效能討論}
+\label{sec:system_discussion}
+
+\subsection{FastAPI/WebSocket 通訊延遲}
+\label{subsec:api_latency}
+
+整合系統的端到端延遲由以下三個環節組成：
+
+\begin{enumerate}
+    \item \textbf{幾何序列化（Grasshopper → Python）：}Rhino 幾何物件轉換為異質圖張量需約 50--150ms，視建築數量而定；此步驟目前為效能瓶頸之一。
+    \item \textbf{GNN 推理（Python 後端）：}如第四章所測，平均 61.5ms；為整個流程中最穩定的環節。
+    \item \textbf{結果回傳與視覺化（Python → Grasshopper）：}UTCI 結果網格經 WebSocket 回傳後，Grasshopper 進行色彩映射渲染約需 20--80ms。
+\end{enumerate}
+
+綜合而言，整個端到端循環延遲約為 \textbf{150--350ms}，雖略高於純 GNN 推理延遲，但仍遠低於人眼察覺延遲（$\sim$1 秒）的門檻，能提供令設計師滿意的「近即時」互動體驗。
+
+未來可透過下列優化降低端到端延遲：
+\begin{itemize}
+    \item 採用增量式幾何更新（僅傳輸移動後改變的節點/邊緣差異，而非全量重建）；
+    \item 實作 GPU 本地化渲染，省去結果回傳 Grasshopper 的網路傳輸開銷；
+    \item 採用 ONNX 模型量化（INT8），在維持精度的前提下進一步壓縮推理延遲至 $\approx$20ms。
+\end{itemize}
+
+
+\subsection{使用者操作流程概覽}
+\label{subsec:user_workflow_overview}
+
+前述效能數字所服務的最終對象，是實際操作 Grasshopper 的設計者；系統是否真正達成即時閉環設計，最終仍須以使用者從「周遭環境模型建好」到「拿到熱舒適評估」之間實際要走的步驟來檢驗，而非僅以延遲毫秒數衡量。本研究實作之 \texttt{UTCIPredictor}（單次即時預測）與 \texttt{UTCIOptimizer}（多目標最佳化搜尋）兩個 Grasshopper 元件，其使用者操作流程可概述如下：
+
+\begin{itemize}
+    \item \textbf{一次性前置準備：}啟動背景運算服務、於 Rhino 之 Script Editor 環境安裝一項通訊套件，之後可持續使用而不需每次重複。
+    \item \textbf{準備場地幾何：}將基地邊界、既有建物、設計建物、喬木位置與尺寸等 Rhino 幾何，接上元件對應輸入端口。
+    \item \textbf{單次評估：}切換執行開關後，約數十毫秒內即可取得結果，可邊調整設計邊即時觀察熱力圖變化。
+    \item \textbf{最佳化搜尋：}額外設定法規限制與搜尋規模後啟動，搜尋於背景執行緒進行、不阻塞 Rhino 操作，並可中途取消。
+    \item \textbf{取得結果：}系統不另外產生 PDF 報告，評估結果即為元件輸出端口本身——套色熱力圖網格、數值指標、帕累托候選方案量體與收斂過程紀錄，皆直接呈現於設計者當下操作之 Rhino 場景中。
+\end{itemize}
+
+完整之逐步操作手冊、輸入輸出端口對照表與常見狀況排除，詳見附錄~\ref{appx:user_manual}。
+
+
+\subsection{物理一致性與建築師信任建立}
+\label{subsec:trustworthiness}
+
+本系統在建築設計輔助工具的脈絡中，預測結果的\textbf{物理合理性（Physical Plausibility）}比純粹的數值精度更為重要 \citep{shan2025physics}。一個預測「陰影區域比日照區域更熱」的 AI 模型，即便整體 $R^2$ 很高，也可能在關鍵設計決策點上誤導建築師。
+
+物理資訊損失函數在以下具體情境中的功效：
+
+\begin{enumerate}
+    \item \textbf{陰影形態評估：}$\mathcal{L}_{\text{rad}}$ 確保模型始終正確反映陰影帶的降溫效果，使建築師在評估不同立面開口率或遮陽板配置時，獲得符合直覺的熱舒適反饋。
+    \item \textbf{日間熱積累趨勢：}$\mathcal{L}_{\text{temp}}$ 確保 UTCI 預測曲線符合城市熱慣性的物理規律——早晨緩升、午後達峰、傍晚緩降，使設計師能正確評估不同朝向建築的日間熱積累差異。
+    \item \textbf{高層建築風場影響：}$\mathcal{L}_{\text{wind}}$ 確保高層建築背風側的「熱死角」能被正確識別，這是建築設計中常被忽略但對行人熱舒適影響顯著的空氣動力學現象 \citep{oke1987boundary}。
+\end{enumerate}
+
+上述物理一致性的維持，使得 PI-ST-GNN 不僅是一個「黑箱預測器」，更是一個\textbf{具有熱力學解釋能力的設計輔助工具}，能在設計師的專業判斷基礎上提供可驗證的科學依據。
+
+為進一步驗證此一物理一致性主張並非僅為訓練指標上的巧合，本研究以 GNNExplainer 對訓練完成之模型進行事後可解釋性分析 \citep{shan2025physics}，結果如圖~\ref{fig:gnnexplainer} 所示。以正午 14:00 時段一處熱壓力峰值節點（$\text{UTCI}=40.1°\text{C}$）為分析目標，梯度顯著性分析顯示該節點之預測值主要由其空間鄰域中的平均輻射溫度 $T_{\text{mrt}}$（正規化歸因值 1.00）與空氣溫度 $T_a$（0.44）主導，此一特徵重要性排序與都市微氣候學之物理直覺一致——輻射項對正午峰值熱壓力的貢獻理應顯著高於對流與植被效應。RGCN 各層之關係權重范數分析進一步顯示，\texttt{contiguity}（空間毗鄰）關係之權重范數（約 9.8--11.6）明顯高於其餘四類關係，反映模型在此一高密度空氣節點網格上，主要透過空間毗鄰邊傳遞熱梯度資訊，與第~\ref{subsec:edges}節之邊緣設計動機相符。此一可解釋性驗證，補強了單純數值指標無法呈現的「模型是否學到正確物理機制」此一問題的實證依據。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../urban-thermal-gnn/04_training/figures/fig_gnnexplainer.png}
+    \caption{PI-ST-GNN 之 GNNExplainer 事後可解釋性分析（場景 70，驗證 $R^2=0.9965$）}
+    \label{fig:gnnexplainer}
+\end{figure}
+
+上圖 (a) 為目標節點（黑圈標示，UTCI=40°C）周邊之空間梯度顯著性，顏色越深代表該節點對目標預測值之影響越大；(b) 為九維輸入特徵之歸因排序，平均輻射溫度與空氣溫度為主導特徵；(c) 為三層 RGCN 各關係類型之權重 Frobenius 范數，\texttt{contiguity} 關係權重顯著高於其餘四類（斜紋為訓練時無即時邊之關係類型）；(d) 為目標節點兩跳鄰域內前 40 條重要邊之子圖，邊寬與顏色深淺代表梯度歸因強度。
+
+
+\subsection{系統局限性與誤差來源}
+\label{subsec:limitations}
+
+儘管本系統取得優異的整體預測性能，仍存在若干局限性值得說明：
+
+\begin{enumerate}
+    \item \textbf{單一氣候日限制：}訓練資料僅涵蓋夏至（6月21日）之單一氣候日，模型對冬季東北季風、梅雨季陰天等不同氣候條件下的泛化能力尚待驗證；若應用於其他時段，建議使用對應季節之 EPW 重新微調。
+    \item \textbf{平流與濕球效應未建模：}現有模型未明確建模城市熱島效應中的大尺度平流傳熱，以及濕地、噴泉等蒸發冷卻設施的局部降溫效果，此類效應在極端熱壓力情境下可能不可忽略。
+    \item \textbf{極端熱壓力等級準確率偏低：}如消融實驗所示，極端熱壓力（UTCI $> 46°\text{C}$）之分類準確率明顯低於其他等級，主因是訓練資料中此等級樣本佔比極低（僅出現於正午直射、高 SVF 條件下），建議後續研究採用加權採樣或針對高溫情境進行額外資料擴增。
+    \item \textbf{單一行區尺度限制：}本研究聚焦於單一 $80 \times 80$ 公尺行區，尚未考量相鄰行區間的微氣候互動（如建築群之間形成的峽谷效應或大尺度通風廊道），多行區聯合建模為未來重要研究方向。
+    \item \textbf{真實建物擷取之樓高辨識限制：}第~\ref{subsec:vectorize_method}節之光學文字辨識於複合式大型建物之並列樓高分區仍偶有辨識失敗或分區未完全切割之情形（已於管線中如實標記為待覆核案例，而非以猜測值填補），此類案例於本章之真實案例驗證中須人工複核樓高屬性後方可採用。
+\end{enumerate}

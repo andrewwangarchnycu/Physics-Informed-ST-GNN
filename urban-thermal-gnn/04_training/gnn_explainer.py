@@ -290,36 +290,52 @@ REL_COLORS = {
 INACTIVE_ALPHA = 0.35
 HATCH_PATTERN  = "////"
 
-fig = plt.figure(figsize=(16, 13))
+fig = plt.figure(figsize=(15, 9.6))
 gs  = mgridspec.GridSpec(2, 2, figure=fig,
-                          hspace=0.44, wspace=0.30,
+                          hspace=0.30, wspace=0.34,
                           left=0.07, right=0.96,
-                          top=0.93, bottom=0.06)
+                          top=0.91, bottom=0.07)
 ax_a = fig.add_subplot(gs[0, 0])
 ax_b = fig.add_subplot(gs[0, 1])
 ax_c = fig.add_subplot(gs[1, 0])
 ax_d = fig.add_subplot(gs[1, 1])
-cax_a = fig.add_axes([0.468, 0.548, 0.010, 0.34])
+cax_a = fig.add_axes([0.452, 0.560, 0.009, 0.30])
 
 # ── (a) Spatial saliency ─────────────────────────────────────────────────────
+# Zoom to the region that actually carries signal instead of the full 81x81 m
+# scene -- most nodes have near-zero importance (node_imp_tgt_s ~ 0), so
+# plotting the whole scene wastes most of the panel on flat pale-yellow
+# background. Crop to the bounding box of salient nodes (+ target) with the
+# same generous-padding convention already used in panel (d).
+SALIENCY_THRESH = 0.08
+salient_mask = node_imp_tgt_s >= SALIENCY_THRESH
+salient_mask[target_node] = True
+sal_pts = pts_sub[salient_mask]
+pad_a = 8
+xa0 = max(0, sal_pts[:, 0].min() - pad_a); xa1 = min(81, sal_pts[:, 0].max() + pad_a)
+ya0 = max(0, sal_pts[:, 1].min() - pad_a); ya1 = min(81, sal_pts[:, 1].max() + pad_a)
+# Keep a sane minimum extent so the crop doesn't collapse to a tiny box
+if xa1 - xa0 < 24: cx = (xa0 + xa1) / 2; xa0, xa1 = cx - 12, cx + 12
+if ya1 - ya0 < 24: cy = (ya0 + ya1) / 2; ya0, ya1 = cy - 12, cy + 12
+
 sc_a = ax_a.scatter(
     pts_sub[:, 0], pts_sub[:, 1],
     c=node_imp_tgt_s, cmap="YlOrRd", vmin=0, vmax=1,
-    s=26, alpha=0.92, linewidths=0, zorder=3
+    s=95, alpha=0.92, linewidths=0.3, edgecolors="#00000022", zorder=3
 )
 # Target node ring
-ax_a.scatter(*pts_sub[target_node], s=140, c="none",
+ax_a.scatter(*pts_sub[target_node], s=280, c="none",
              edgecolors="black", linewidths=2.2, zorder=5)
 ax_a.annotate(
     f"Target  UTCI={target_utci:.0f}°C",
     xy=pts_sub[target_node],
-    xytext=(pts_sub[target_node, 0] + 7, pts_sub[target_node, 1] - 8),
-    fontsize=7.2, color="#111",
-    arrowprops=dict(arrowstyle="-|>", lw=0.75, color="#444"), zorder=6
+    xytext=(pts_sub[target_node, 0] + 2.2, pts_sub[target_node, 1] - 2.6),
+    fontsize=8.2, color="#111",
+    arrowprops=dict(arrowstyle="-|>", lw=0.85, color="#444"), zorder=6
 )
-ax_a.set_xlim(0, 81); ax_a.set_ylim(0, 81); ax_a.set_aspect("equal")
+ax_a.set_xlim(xa0, xa1); ax_a.set_ylim(ya0, ya1); ax_a.set_aspect("equal")
 ax_a.set_xlabel("Scene X [m]"); ax_a.set_ylabel("Scene Y [m]")
-ax_a.set_title(f"(a) Spatial Gradient Saliency  |  Peak Hour {sim_hours[peak_t]:02d}:00")
+ax_a.set_title(f"(a) Spatial Gradient Saliency (zoomed)  |  Peak Hour {sim_hours[peak_t]:02d}:00")
 ax_a.tick_params(length=3, width=0.6)
 for sp in ax_a.spines.values(): sp.set_linewidth(0.7)
 ax_a.xaxis.set_minor_locator(AutoMinorLocator(2)); ax_a.yaxis.set_minor_locator(AutoMinorLocator(2))

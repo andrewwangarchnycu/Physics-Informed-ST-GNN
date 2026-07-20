@@ -1,0 +1,314 @@
+\chapter{附錄}
+
+本附錄承載第~\ref{chapter:methodology}章正文中僅保留結論性定義、而將完整推導與參數全表移出主文的技術細節，供有意複現或驗證本研究實作的讀者查閱。
+
+\section{圖索引對齊機制完整計算流程}
+\label{appx:index_offset_detail}
+
+第~\ref{subsec:index_offset}節式~\eqref{eq:node_concat}--\eqref{eq:offset}所述之節點串接與索引偏移，於資料載入階段（\texttt{UTCIGraphDataset.get}）依下列順序執行：
+
+\begin{enumerate}
+    \item 建物節點特徵 $\mathbf{H}_{\text{obj}} \in \mathbb{R}^{N_{\text{obj}} \times 7}$ 依場景讀取順序取得原始索引 $0, 1, \ldots, N_{\text{obj}}-1$。
+    \item 空氣節點特徵 $\mathbf{H}_{\text{air}} \in \mathbb{R}^{N_{\text{air}} \times T \times 9}$ 之 KNN 毗鄰邊（\texttt{contiguity}）先以 \texttt{scipy.spatial.cKDTree} 在空氣節點局部座標系（$0, \ldots, N_{\text{air}}-1$）中求解 $k=8$ 近鄰，此時邊索引尚未偏移。
+    \item 串接張量 $\mathbf{H} = [\mathbf{H}_{\text{obj}}; \mathbf{H}_{\text{air}}]$ 完成後，空氣節點於全域索引空間中的實際位置為原索引 $+N_{\text{obj}}$，因此所有 \texttt{contiguity} 邊之 \texttt{edge\_index} 兩端點皆須加上 $N_{\text{obj}}$ 偏移。
+    \item \texttt{semantic} 邊（建物 $\leftrightarrow$ 建物）之索引本即位於 $0, \ldots, N_{\text{obj}}-1$ 範圍內，無需偏移。
+    \item 動態邊集合 \texttt{dynamic\_edges[t]}（\texttt{shadow}、\texttt{veg\_et}、\texttt{convective}）之來源端或目標端凡屬空氣節點者，於各時步重新計算時同步套用相同偏移規則。
+\end{enumerate}
+
+此偏移規則若未正確套用，將導致模型在前向傳播時把空氣節點的特徵誤植於建物節點索引位置，是實作階段最常見但難以察覺的錯誤來源之一，故於此完整記錄以利複現。
+
+
+\section{RGCN 各關係矩陣維度設定}
+\label{appx:rgcn_detail}
+
+第~\ref{subsec:rgcn}節式~\eqref{eq:rgcn}中，$|\mathcal{R}|=5$ 種關係各自維護獨立投影矩陣 $\mathbf{W}_r \in \mathbb{R}^{256 \times 256}$（隱藏維度 $d=256$，即物件與空氣編碼器 128 維輸出經 RGCNBlock 內部升維後之工作維度），加上自迴路矩陣 $\mathbf{W}_{\text{self}} \in \mathbb{R}^{256\times256}$，單層 RGCNBlock 之可訓練參數量為：
+
+\begin{equation}
+    |\theta_{\text{RGCNBlock}}| = (|\mathcal{R}| + 1) \times 256^2 = 6 \times 65{,}536 = 393{,}216
+    \label{eq:rgcn_params_appx}
+\end{equation}
+
+三層堆疊（$L=3$）之 RGCN 編碼器總參數量約為 $1.18 \times 10^6$（不含 LayerNorm 與 Dropout 之可訓練縮放參數）。各層之間以殘差連接直接相加，未使用額外投影對齊維度，故要求所有層之隱藏維度一致固定為 256。
+
+
+\section{模型完整超參數表}
+\label{appx:model_hparams}
+
+第~\ref{subsec:lstm}節所述模型之完整超參數設定，詳見表~\ref{tab:model_params}；訓練最佳化器為 Adam，初始學習率 $1\times10^{-3}$，搭配 \texttt{ReduceLROnPlateau} 排程（驗證集 loss 連續 10 個 epoch 未改善時學習率乘以 0.5），Early Stopping 之耐心值（patience）設為 20 個 epoch。
+
+\begin{table}[htbp]
+    \centering
+    \caption{PI-ST-GNN 模型超參數設定}
+    \label{tab:model_params}
+    \small
+    \begin{tabular}{llcc}
+        \toprule
+        \textbf{子模組} & \textbf{超參數} & \textbf{設定值} & \textbf{備註} \\
+        \midrule
+        物件節點編碼器     & 輸入維度         & 7          & 靜態幾何特徵 \\
+                          & 隱層→輸出維度   & 64 → 128   & 兩層 MLP \\
+        空氣節點編碼器     & 輸入維度         & 9          & 每時步動態特徵 \\
+                          & 隱層→輸出維度   & 64 → 128   & 兩層 MLP \\
+        全域情境編碼器     & 輸入維度         & 8          & 全場域統計+差分 \\
+                          & 輸出維度         & 192        & 三層 MLP \\
+        RGCN 塊            & 輸入→輸出維度   & 256 → 256  & 含殘差+LN \\
+                          & 堆疊層數         & 3          & --- \\
+                          & 關係數           & 5          & 5 種邊類型 \\
+                          & Dropout          & 0.1        & 訓練期間 \\
+        Fusion MLP         & 輸入維度         & 256 + 192  & RGCN + 情境 \\
+                          & 輸出維度         & 256        & 兩層 MLP \\
+        LSTM               & 隱藏維度         & 256        & 單層 \\
+                          & 初始隱藏狀態     & RGCN 投影  & 非零初始 \\
+        輸出 MLP           & 輸入維度         & 256        & --- \\
+                          & 輸出維度         & 1（逐時步）& 純量 UTCI \\
+        \midrule
+        \textbf{學習率}   & 初始值           & $1 \times 10^{-3}$ & ReduceLROnPlateau \\
+        \textbf{批次大小} & ---              & 1（逐場景） & 異質圖結構差異 \\
+        \textbf{最大 Epoch} & ---            & 250         & 含 Early Stopping \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\section{物理引導損失函數完整推導}
+\label{appx:physics_loss_derivation}
+
+三項物理引導損失均遵循同一套推導邏輯：先將物理原則表述為一條不等式約束，再以\textbf{外點懲罰法}（Exterior Penalty Method）將該不等式約束轉化為可微分的軟性懲罰項，使其能以梯度下降與資料損失聯合最佳化，而不需要對神經網路輸出施加硬性投影。
+
+\subsection{外點懲罰法的一般形式}
+
+對任一應恆成立之不等式約束 $g(\hat{u}) \le 0$，外點懲罰法將其轉化為懲罰項：
+
+\begin{equation}
+    \mathcal{L}_{\text{penalty}} = \left[\text{ReLU}\big(g(\hat{u})\big)\right]^p,\qquad p \in \{1, 2\}
+    \label{eq:exterior_penalty_general}
+\end{equation}
+
+當 $g(\hat{u}) \le 0$（約束滿足）時 $\text{ReLU}(g)=0$，懲罰為零、不產生梯度，訓練不受干擾；當 $g(\hat{u}) > 0$（約束違反）時懲罰隨違反量增加。指數 $p=2$（平方鉸鏈）使懲罰在違反邊界處梯度連續且趨於零，讓最佳化在約束邊界附近平滑；$p=1$（線性鉸鏈）則在違反邊界處梯度不連續但恆定，使懲罰強度不隨違反程度二次放大。本研究三項約束依各自對訓練穩定性之要求，分別採用兩種形式，詳見以下三小節。
+
+\subsection{輻射空間一致性約束（$\mathcal{L}_{\text{rad}}$）完整推導}
+
+\noindent\textbf{物理原則}：於太陽高度角 $\theta_{\text{sol}} > 10^\circ$ 之有效日照時段，完全日照節點之熱壓力應顯著高於完全遮蔭節點，兩者間應存在至少 $m_{\text{rad}}$ 之最小間隔，而非僅要求「不反轉」。
+
+\noindent\textbf{約束表述}：令 $\bar{u}_{\text{sun}}$、$\bar{u}_{\text{shade}}$ 為當前時步日照節點集合 $\mathcal{S}_{\text{sun}} = \{i : \text{SVF}_i > 0.5,\ \text{shadow}_i = 0\}$ 與陰影節點集合 $\mathcal{S}_{\text{shade}} = \{i : \text{SVF}_i < 0.5,\ \text{shadow}_i = 1\}$ 之預測均值，則所需約束為：
+
+\begin{equation}
+    g_{\text{rad}} = \bar{u}_{\text{shade}} - \bar{u}_{\text{sun}} + m_{\text{rad}} \le 0
+    \quad\Longleftrightarrow\quad
+    \bar{u}_{\text{sun}} - \bar{u}_{\text{shade}} \ge m_{\text{rad}}
+    \label{eq:rad_constraint}
+\end{equation}
+
+\noindent\textbf{套用外點懲罰法}（$p=2$，平方鉸鏈，使邊界處梯度平滑）：
+
+\begin{equation}
+    \mathcal{L}_{\text{rad}} = \left[\text{ReLU}\big(g_{\text{rad}}\big)\right]^2
+    = \left[\text{ReLU}\big(\bar{u}_{\text{shade}} - \bar{u}_{\text{sun}} + m_{\text{rad}}\big)\right]^2
+\end{equation}
+
+此即正文式~\eqref{eq:lrad}。$m_{\text{rad}} = 0.5$ 為正規化 UTCI 空間中之設定值，對應約半個標準差之最小溫差要求。當太陽高度角 $\theta_{\text{sol}} \le 10^\circ$（清晨、黃昏或夜間）時，直射輻射貢獻可忽略，此時 $\mathcal{S}_{\text{shade}}$ 與 $\mathcal{S}_{\text{sun}}$ 均設為空集合，該時步不產生懲罰梯度，避免在低輻射時段對模型施加不具物理意義的約束；訓練時，$\mathcal{L}_{\text{rad}}$ 對所有滿足 $\theta_{\text{sol}}>10^\circ$ 之有效時步取平均。
+
+\subsection{都市熱慣性時序平滑約束（$\mathcal{L}_{\text{temp}}$）完整推導}
+
+\noindent\textbf{物理原則}：都市鋪面之熱儲存效應限制 UTCI 逐時變化率不得超過 $\dot{u}_{\text{max}} = 5\,^\circ\text{C/hr}$。
+
+\noindent\textbf{約束表述}：模擬以整點為間隔（$\Delta t = 1$ hr），約束為 $|u_{i,t+1} - u_{i,t}| \le \dot{u}_{\text{max}} \cdot \Delta t = 5\,^\circ\text{C}$（原始溫度單位）。
+
+\noindent\textbf{單位換算至正規化空間}：模型於 z-score 正規化空間中預測，換算需除以 UTCI 之標準差 $\sigma_{\text{UTCI}}$：
+
+\begin{equation}
+    \delta_{\text{temp}} = \frac{\dot{u}_{\text{max}} \cdot \Delta t}{\sigma_{\text{UTCI}}}
+    \label{eq:delta_temp_derivation}
+\end{equation}
+
+實作中 $\delta_{\text{temp}}$ 取值 $0.625 = 5/8$，對應假設 $\sigma_{\text{UTCI}} \approx 8\,^\circ\text{C}$。然而，本研究訓練資料集（\texttt{ground\_truth\_v2.h5}）實測之 UTCI 標準化統計量為 $\sigma_{\text{UTCI}} = 2.9841\,^\circ\text{C}$（均值 $\mu_{\text{UTCI}} = 35.6146\,^\circ\text{C}$），與 $\delta_{\text{temp}}$ 換算所隱含之 $8\,^\circ\text{C}$ 假設值有明顯落差。若代入實測標準差，依式~\eqref{eq:delta_temp_derivation}反推，$\delta_{\text{temp}}$ 之精確值應為：
+
+\begin{equation}
+    \delta_{\text{temp}}^{\text{(實測校正)}} = \frac{5}{2.9841} \approx 1.676
+\end{equation}
+
+亦即，若以實際訓練所用之 $\delta_{\text{temp}} = 0.625$ 反推其對應之\textbf{實際容許原始變化率}，可得：
+
+\begin{equation}
+    \dot{u}_{\text{max}}^{\text{(實際生效)}} = \delta_{\text{temp}} \times \sigma_{\text{UTCI}} = 0.625 \times 2.9841 \approx 1.865\,^\circ\text{C/hr}
+\end{equation}
+
+換言之，本研究實際訓練並報告之模型，其時序平滑約束在原始溫度尺度上生效的容許變化率約為 $1.87\,^\circ\text{C/hr}$，較正文所述之設計目標 $5\,^\circ\text{C/hr}$ 嚴格約 2.7 倍。此一落差源於 $\delta_{\text{temp}}$ 設定時所採用之標準差假設值與訓練資料實測值不一致，特此誠實揭露；由於本研究之全部量化結果（第~\ref{chapter:experiments}章）均基於 $\delta_{\text{temp}}=0.625$ 之模型訓練與評估，此處不回溯更動已訓練模型之設定，而將此列為後續研究應修正之已知實作落差（見第~\ref{sec:limitations}節）。
+
+\noindent\textbf{套用外點懲罰法}（$p=1$，線性鉸鏈，避免訓練初期時序尚不穩定時梯度二次放大而主導總損失）：
+
+\begin{equation}
+    \mathcal{L}_{\text{temp}} = \text{mean}_{i,t}\!\left[\text{ReLU}\big(|u_{i,t+1} - u_{i,t}| - \delta_{\text{temp}}\big)\right]
+\end{equation}
+
+此即正文式~\eqref{eq:ltemp}，求和範圍 $t=0,\ldots,T-2$（即相鄰時步差分），對應 $T=11$ 個模擬時步共可產生 10 組差分；首個時步（$t=0$，對應 08:00）因無前一時步可比較，不計入此項損失。
+
+\subsection{風場阻滯尾流約束（$\mathcal{L}_{\text{wind}}$）完整推導}
+
+\noindent\textbf{物理原則}：高層建築背風側易形成熱累積之「熱死角」，此類節點之 UTCI 不應顯著偏離場域統計中心。
+
+\noindent\textbf{統計離群定義}：在常態分布假設下，$P(Z > 1.5) \approx 6.7\%$（$Z$ 為標準常態分布），故 $\mu_{\hat{u}} + 1.5\sigma_{\hat{u}}$ 界定了當前時步全場域預測值中最熱的約 6.7\% 尾端，作為「顯著偏離」之操作型定義：
+
+\begin{equation}
+    g_{\text{wind}} = \hat{u}_i - \mu_{\hat{u}} - 1.5\,\sigma_{\hat{u}} \le 0,
+    \qquad i \in \mathcal{B}_{\text{tall}} = \{i : B_h/50 > 0.4\}
+\end{equation}
+
+\noindent\textbf{套用外點懲罰法}（$p=1$，線性鉸鏈，理由同 $\mathcal{L}_{\text{temp}}$）：
+
+\begin{equation}
+    \mathcal{L}_{\text{wind}} = \text{mean}_{i \in \mathcal{B}_{\text{tall}}}\!\left[\text{ReLU}\big(\hat{u}_i - \mu_{\hat{u}} - 1.5\,\sigma_{\hat{u}}\big)\right]
+\end{equation}
+
+此即正文式~\eqref{eq:lwind}。其中 $\mu_{\hat{u}}$、$\sigma_{\hat{u}}$ 取當前時步\textbf{全場域}（所有節點，非僅 $\mathcal{B}_{\text{tall}}$）預測值之均值與標準差，逐時步重新計算，$\mathcal{B}_{\text{tall}}$ 亦逐時步依當時風向與建築幾何關係重新判定背風側範圍，而非訓練前一次性標記。
+
+
+\section{熱舒適人行動線熱暴露指標完整推導}
+\label{appx:walkway_derivation}
+
+\subsection{無量綱熱壓力懲罰函數 $\Phi(\cdot)$ 之推導}
+
+第~\ref{subsec:from_astar_to_walkway}節式~\eqref{eq:walkway_exposure}所用之熱壓力懲罰函數，其設計目標為：低於舒適閾值時不產生懲罰，高於閾值時懲罰隨超出量遞增，且懲罰量正規化至 $[0,1]$ 便於跨場景比較。此三項需求對應下列分段函數：
+
+\begin{equation}
+    \Phi(\text{UTCI}_j) =
+    \begin{cases}
+        0, & \text{UTCI}_j \le \text{UTCI}_{\text{comfort}} \\[4pt]
+        \dfrac{\text{UTCI}_j - \text{UTCI}_{\text{comfort}}}{\text{UTCI}_{\text{max}} - \text{UTCI}_{\text{comfort}}}, & \text{UTCI}_j > \text{UTCI}_{\text{comfort}}
+    \end{cases}
+    \label{eq:penalty_appx}
+\end{equation}
+
+以 ReLU 合併兩種情形，可寫成正文所引用之單行形式：
+
+\begin{equation}
+    \Phi(\text{UTCI}_j) = \frac{\text{ReLU}\big(\text{UTCI}_j - \text{UTCI}_{\text{comfort}}\big)}{\text{UTCI}_{\text{max}} - \text{UTCI}_{\text{comfort}}}
+\end{equation}
+
+其中 $\text{UTCI}_{\text{comfort}} = 26\,^\circ\text{C}$ 為熱舒適閾值上限；$\text{UTCI}_{\text{max}}$ 為研究時段內場域可能出現之最大 UTCI 值，用以將懲罰量正規化至 $[0,1]$ 區間。以本研究訓練資料集（20 個場景抽樣）實測為例，正午高輻射時段之場域最大 UTCI 可達約 $55$--$56\,^\circ\text{C}$，故 $\text{UTCI}_{\text{max}}$ 建議依實際部署場域之逐時模擬結果動態設定，而非採用固定常數，以避免不同氣候條件或場地尺度下正規化基準失真。
+
+\subsection{時空平均人行動線熱暴露指標之推導}
+
+單一時步、單一路段之熱暴露定義為 $D_{ij}\cdot\Phi(\text{UTCI}_{j,t})$，即以邊之實際步行距離加權之熱壓力懲罰，確保較長路段之熱暴露對總指標的貢獻與其實際行走時間成比例。對整個人行動線網絡 $E_{\text{walk}}$ 取空間平均，再對 $T$ 個模擬時步取時間平均，即得正文式~\eqref{eq:walkway_exposure}：
+
+\begin{equation}
+    \bar{\Phi}_{\text{walkway}}
+    = \underbrace{\frac{1}{T}\sum_{t=1}^{T}}_{\text{時間平均}}\ \
+      \underbrace{\frac{1}{|E_{\text{walk}}|}\sum_{(i,j)\in E_{\text{walk}}} D_{ij}\cdot\Phi\!\left(\text{UTCI}_{j,t}\right)}_{\text{空間平均（距離加權）}}
+\end{equation}
+
+此一時空平均指標之量綱與 $f_1$（全域時空平均 UTCI）一致，使 NSGA-II 之 $f_1$、$f_2$ 兩項熱壓力相關目標可在同一最佳化框架下直接比較收斂行為，而不需額外的尺度校正。
+
+
+\section{NSGA-II 適應度求值器輸入維度修正紀錄}
+\label{appx:fitness_dim_fix}
+
+第~\ref{subsec:pareto_morphology}節所呈現之真實 NSGA-II 收斂結果，係於本論文撰寫過程中修正一項適應度求值器之輸入維度缺陷後方能取得。原始 \texttt{07\_optimization/fitness.py} 之 \texttt{FitnessEvaluator} 建構子在初始化 \texttt{GNNInputBuilder}（\texttt{06\_deployment/geometry\_converter.py}）時未傳入 \texttt{dim\_air} 參數，導致其採用套件預設值 \texttt{dim\_air=8}；然而第~\ref{sec:gnn_model}章訓練完成之 V2 checkpoint 之空氣節點編碼器輸入維度為 9（含地表溫度 $T_s$ 特徵，見第~\ref{subsec:nodes}節），兩者不一致造成矩陣乘法維度錯誤（\texttt{RuntimeError: mat1 and mat2 shapes cannot be multiplied}），使適應度求值器對任何染色體個體皆拋出例外，落入例外處理分支回傳懲罰值（UTCI $=60^\circ\text{C}$、綠化率 $=0$），造成整個族群在演化過程中呈現虛假的「零多樣性」收斂假象。本研究於 \texttt{FitnessEvaluator} 建構子與 \texttt{06\_deployment/app.py} 之對應呼叫處新增顯式 \texttt{dim\_air} 參數傳遞（對齊自 checkpoint 權重形狀自動偵測之維度），修正後之適應度求值器方能對每個染色體個體正確執行 GNN 推理，取得第~\ref{subsec:pareto_morphology}節所呈現之真實、非退化之收斂軌跡與帕累托前緣。此一修正記錄於此，以說明圖~\ref{fig:nsga2_real}之收斂數據並非模擬或示意性繪製，而是修正後管線之直接輸出。
+
+
+\section{Grasshopper 元件使用者操作手冊}
+\label{appx:user_manual}
+
+本附錄以第~\ref{sec:nsga2}節所定義之系統為對象，提供一份面向參數化設計／數位建築程式開發者的操作手冊，說明從「周遭環境模型建好之後」到「拿到熱舒適評估結果」之間，使用者實際需要做的每一步。內容對應本研究實際完成之兩個 Grasshopper 元件——\texttt{UTCIPredictor}（單次即時預測）與 \texttt{UTCIOptimizer}（多目標最佳化搜尋）。
+
+\subsection{使用前的準備工作}
+\label{appx:user_manual_prep}
+
+在 Grasshopper 中開始操作之前，有兩件事需要先完成一次，之後就不用重複：
+
+\begin{enumerate}
+    \item \textbf{啟動後端運算服務}：本系統的 GNN 模型並不是跑在 Grasshopper 元件裡面，而是跑在一支獨立啟動的背景程式（伺服器）上，Grasshopper 元件只是透過網路跟它「問問題、拿答案」。因此每次要使用前，須先在終端機執行一次啟動指令（等同於「打開這套運算服務的電源」），啟動後即可保持開啟，供多次設計迭代重複使用，不需每次重開。
+    \item \textbf{在 Rhino 的 Script Editor 環境安裝一個通訊套件}：僅需執行一次 \texttt{pip install websocket-client}，讓 Grasshopper 元件具備與後端服務對話的能力。這與一般安裝 Grasshopper 外掛的方式不同，是在 Rhino 8 內建的 Python 環境中安裝，而非系統上其他的 Python。
+\end{enumerate}
+
+完成以上兩步後，Grasshopper 元件即可持續使用，除非重開機或伺服器程式被關閉，否則不需重複準備。
+
+\subsection{準備場地幾何——這是使用者最主要的工作}
+\label{appx:user_manual_geometry}
+
+周遭環境模型（基地紋理、既有建物、喬木）建好之後，使用者需要把這些幾何物件，接到元件對應的輸入端口上。可以把每個輸入端口想成一個「貼標籤」的插槽，只要把正確類型的 Rhino 幾何拖進去即可，如表~\ref{tab:gh_inputs} 所整理：
+
+\begin{table}[htbp]
+    \centering
+    \caption{Grasshopper 元件輸入端口與使用者準備事項對照}
+    \label{tab:gh_inputs}
+    \small
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{輸入端口} & \textbf{幾何類型} & \textbf{使用者要準備什麼} \\
+        \midrule
+        site\_boundary     & 封閉曲線     & 一條圈出基地範圍的封閉多邊形 \\
+        context\_buildings & 建物量體清單 & 周遭「固定不動」的既有建物 \\
+        design\_buildings  & 建物量體清單 & 設計中、要被評估的新建物（僅預測元件使用） \\
+        tree\_points       & 點清單       & 喬木種植位置 \\
+        tree\_radii        & 數值清單     & 對應每棵樹的樹冠半徑（公尺） \\
+        tree\_heights      & 數值清單     & 對應每棵樹的樹高（公尺） \\
+        server\_url        & 文字         & 通常不需更動，預設已指向本機服務 \\
+        run                & 開關（True/False）& 切成 True 才會真正送出計算請求 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+一個實務上的小提醒：喬木半徑／高度清單的順序必須與喬木位置清單一一對應（第 1 個半徑對應第 1 個位置，以此類推），若順序對不上，系統仍會運算，但每棵樹的遮蔭效果會被套用到錯誤的位置上。
+
+\subsection{操作流程 A：單次即時評估（UTCIPredictor）}
+\label{appx:user_manual_predict}
+
+這個元件適合「我現在想看這個設計方案的熱舒適表現如何」的情境，操作步驟如下：
+
+\begin{enumerate}
+    \item 依第~\ref{appx:user_manual_geometry}節，把場地邊界、既有建物、設計建物、喬木資訊接上對應輸入端口。
+    \item 把 \texttt{run} 接上一個開關元件（Boolean Toggle），切成 True。
+    \item 系統會在約數十毫秒內回傳結果——這個速度快到可以邊拖動滑桿調整建築高度、邊即時看到熱舒適熱力圖跟著變化，不需要每次都手動重新觸發。
+    \item 若之後修改了建物或喬木的幾何，只要 \texttt{run} 仍保持 True，結果會自動更新；不需要的時候把 \texttt{run} 切回 False 即可暫停運算。
+\end{enumerate}
+
+\subsection{操作流程 B：多目標最佳化搜尋（UTCIOptimizer）}
+\label{appx:user_manual_optimize}
+
+這個元件適合「我不確定哪種建築配置最好，想讓系統自動幫我搜尋一批候選方案」的情境，除了場地邊界與既有建物外，還需要多準備幾項設定：
+
+\begin{itemize}
+    \item \textbf{法規限制}（\texttt{constraints}）：例如容積率上限、建蔽率上限、退縮距離，系統會確保搜尋出來的方案都符合這些限制。
+    \item \textbf{搜尋規模}：要優化幾棟建築（\texttt{n\_buildings}）、幾棵樹（\texttt{n\_trees}），以及要嘗試多少組候選方案（\texttt{pop\_size}）、反覆演化幾輪（\texttt{n\_gen}）。這兩個數字越大，找到的方案通常越多樣，但等待時間也越長。
+\end{itemize}
+
+操作步驟：
+
+\begin{enumerate}
+    \item 設定好上述參數後，把 \texttt{run} 切成 True 啟動搜尋。搜尋過程在背景執行緒中進行，\textbf{不會卡住 Rhino 畫面}，使用者可以在等待的同時繼續操作模型其他部分。
+    \item 因為整個搜尋通常需要數十秒到數分鐘才能完成，且過程中會持續產生新一代的候選方案，建議另外接一個 Grasshopper 內建的計時器元件（Timer，觸發間隔建議設為 1 秒），讓這個最佳化元件被重複觸發、持續讀取最新進度——如果沒有接計時器，畫面就會停留在使用者上一次手動觸發當下的結果，不會自動更新。
+    \item 如果想中途停止（例如發現參數設錯了），把 \texttt{cancel} 輸入端口切成 True 即可安全中斷，已經算出的候選方案不會遺失。
+\end{enumerate}
+
+\subsection{看得懂拿到的結果——輸出如何解讀}
+\label{appx:user_manual_output}
+
+本系統沒有另外產生一份 PDF 或文件報告，\textbf{評估結果就是元件輸出端口本身}，即時顯示在 Rhino 場景裡，讓使用者可以直接在自己的模型上比對，而不需切換到其他軟體查看。
+
+\textbf{UTCIPredictor（單次評估）拿到的東西：}
+
+\begin{itemize}
+    \item \textbf{熱力圖網格（utci\_mesh）}：一片鋪在場地上、依顏色深淺呈現熱壓力高低的網格，藍色代表涼爽、經黃橘色至深紅色代表越來越炎熱，設計者可以直接看出陰影覆蓋不足或悶熱的角落在哪裡。
+    \item \textbf{數值指標（mean\_utci／max\_utci／min\_utci）}：全場地的平均、最高、最低熱壓力數值，方便用具體數字比較不同設計版本的優劣。
+    \item \textbf{狀態文字（status）}：一行簡短摘要，例如「OK | Mean: 30.8°C  Max: 42.1°C」，方便快速確認這次運算是否成功、結果大致落在什麼範圍。
+\end{itemize}
+
+\textbf{UTCIOptimizer（最佳化搜尋）拿到的東西：}
+
+\begin{itemize}
+    \item \textbf{一組候選方案（pareto\_designs／pareto\_geometries）}：系統不會只給「一個最好的答案」，而是給一整批「各有取捨、但都值得參考」的候選方案——例如某方案熱舒適度最好但綠化較少、另一方案綠化最多但熱舒適度普通——連同對應的 3D 建物量體，讓設計者依自己的判斷選擇，而非被單一答案綁住。
+    \item \textbf{兩個代表方案（best\_utci\_design／best\_green\_design）}：分別是「全場最涼」與「綠化率最高」的極端方案量體，可作為理解候選方案分布範圍的快速參考點。
+    \item \textbf{搜尋過程紀錄（convergence\_data）}：記錄每一輪搜尋的最佳表現，讓使用者可以自行畫出一條「越搜尋、方案越好」的進步曲線，確認搜尋確實有在收斂，而不是原地打轉。
+    \item \textbf{即時進度文字（progress\_text／status）}：搜尋進行中會持續回報目前跑到第幾輪、目前最好的方案表現如何。
+\end{itemize}
+
+\subsection{常見狀況排除}
+\label{appx:user_manual_troubleshoot}
+
+\begin{itemize}
+    \item \textbf{狀態顯示「無法連線」}：通常代表附錄~\ref{appx:user_manual_prep}第 1 步的後端服務尚未啟動，或已經被關閉，需要重新啟動一次。
+    \item \textbf{狀態顯示「websocket-client 未安裝」}：代表附錄~\ref{appx:user_manual_prep}第 2 步的通訊套件尚未安裝，依指示安裝後重新開啟 Rhino 檔案即可。
+    \item \textbf{場地邊界輸入被判定錯誤}：通常是因為封閉曲線的節點數過少（少於 3 個點無法構成一個範圍），確認邊界曲線確實封閉、且形狀合理即可。
+    \item \textbf{最佳化畫面卡住不動}：最常見原因是忘記接計時器元件（見附錄~\ref{appx:user_manual_optimize}第 2 步），導致元件沒有被重複觸發去讀取最新進度，而非搜尋真的卡住。
+\end{itemize}

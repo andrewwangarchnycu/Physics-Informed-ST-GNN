@@ -1,5 +1,47 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+
+    // LaTeX Workshop: XeLaTeX + BibTeX full recipe for Chinese thesis
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex → bibtex → xelatex × 2",
+            "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+        },
+        {
+            "name": "xelatex (single pass)",
+            "tools": ["xelatex"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": ["%DOCFILE%"],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "xelatex → bibtex → xelatex × 2",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab",
+    // Clean auxiliary files on build failure
+    "latex-workshop.latex.autoClean.run": "onFailed",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof",
+        "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg",
+        "*.glg", "*.glo", "*.gls", "*.fls", "*.log", "*.fdb_latexmk",
+        "*.snm", "*.synctex.gz", "*.nav", "*.xdv"
+    ]
 }

@@ -1,0 +1,326 @@
+[
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Data",
+    "tw_term": "資料",
+    "cn_term": "數據"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Algorithm",
+    "tw_term": "演算法",
+    "cn_term": "算法"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Optimization",
+    "tw_term": "最佳化",
+    "cn_term": "優化"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Digital",
+    "tw_term": "數位",
+    "cn_term": "數字"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Information",
+    "tw_term": "資訊",
+    "cn_term": "信息"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Software",
+    "tw_term": "軟體",
+    "cn_term": "軟件"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Database",
+    "tw_term": "資料庫",
+    "cn_term": "數據庫"
+  },
+  {
+    "domain": "Cross-Domain/Basic IT",
+    "english": "Project",
+    "tw_term": "專案",
+    "cn_term": "項目"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Robustness",
+    "tw_term": "穩健性",
+    "cn_term": "魯棒性"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Overfitting",
+    "tw_term": "過度擬合",
+    "cn_term": "過擬合"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Underfitting",
+    "tw_term": "未達擬合",
+    "cn_term": "欠擬合"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Regularization",
+    "tw_term": "正規化",
+    "cn_term": "正則化"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Normalization",
+    "tw_term": "標準化",
+    "cn_term": "歸一化"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Generalization",
+    "tw_term": "一般化",
+    "cn_term": "泛化"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Vector",
+    "tw_term": "向量",
+    "cn_term": "矢量"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Operator",
+    "tw_term": "運算子",
+    "cn_term": "算子"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Ground Truth",
+    "tw_term": "真實標籤",
+    "cn_term": "地面真值"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Hyperparameter",
+    "tw_term": "超參數",
+    "cn_term": "超參數"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Convolution",
+    "tw_term": "卷積",
+    "cn_term": "卷積"
+  },
+  {
+    "domain": "Machine Learning",
+    "english": "Pooling",
+    "tw_term": "池化",
+    "cn_term": "池化"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Building Information Modeling (BIM)",
+    "tw_term": "建築資訊模型",
+    "cn_term": "建築信息模型"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Digital Twin",
+    "tw_term": "數位雙生",
+    "cn_term": "數字孿生"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Smart Building",
+    "tw_term": "智慧建築",
+    "cn_term": "智能建築"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Green Building",
+    "tw_term": "綠建築",
+    "cn_term": "綠色建築"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Component / Family",
+    "tw_term": "元件",
+    "cn_term": "構件"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Family (Revit Specific)",
+    "tw_term": "族群",
+    "cn_term": "族"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Object",
+    "tw_term": "物件",
+    "cn_term": "對象"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Clash Detection",
+    "tw_term": "碰撞偵測",
+    "cn_term": "碰撞檢查"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Laser Scanning",
+    "tw_term": "雷射掃描",
+    "cn_term": "激光掃描"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Rendering",
+    "tw_term": "算圖",
+    "cn_term": "渲染"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Facility Management (FM)",
+    "tw_term": "設施管理",
+    "cn_term": "物業管理"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Lifecycle",
+    "tw_term": "生命週期",
+    "cn_term": "生命周期"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Prefabricated",
+    "tw_term": "預鑄",
+    "cn_term": "預製"
+  },
+  {
+    "domain": "Building Information Modeling",
+    "english": "Pipeline / Ductwork",
+    "tw_term": "管線",
+    "cn_term": "管路"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Urban",
+    "tw_term": "都市",
+    "cn_term": "城市"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Urban Heat Island (UHI)",
+    "tw_term": "都市熱島效應",
+    "cn_term": "城市熱島效應"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Microclimate",
+    "tw_term": "微氣候",
+    "cn_term": "微氣候"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Thermal Comfort",
+    "tw_term": "熱舒適性",
+    "cn_term": "熱舒適度"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Evapotranspiration",
+    "tw_term": "蒸發散",
+    "cn_term": "蒸騰"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Sky View Factor (SVF)",
+    "tw_term": "天空可見率",
+    "cn_term": "天空開闊度"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Greenery Ratio / Green Cover",
+    "tw_term": "綠覆率",
+    "cn_term": "綠地率"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Wind Corridor",
+    "tw_term": "通風廊道",
+    "cn_term": "風道"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Albedo",
+    "tw_term": "反射率",
+    "cn_term": "反照率"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Anthropogenic Heat",
+    "tw_term": "人為排熱",
+    "cn_term": "人為熱"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Roughness Length",
+    "tw_term": "粗糙度長度",
+    "cn_term": "粗糙長度"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Mean Radiant Temperature (MRT)",
+    "tw_term": "平均輻射溫度",
+    "cn_term": "平均輻射溫度"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Predicted Mean Vote (PMV)",
+    "tw_term": "預測平均熱感",
+    "cn_term": "預測平均投票數"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Physiologically Equivalent Temperature (PET)",
+    "tw_term": "生理等效溫度",
+    "cn_term": "生理等效溫度"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Universal Thermal Climate Index (UTCI)",
+    "tw_term": "全球通用熱氣候指數",
+    "cn_term": "通用熱氣候指數"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Computational Fluid Dynamics (CFD)",
+    "tw_term": "計算流體力學",
+    "cn_term": "計算流體力學"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Sensible Heat",
+    "tw_term": "顯熱",
+    "cn_term": "顯熱"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Latent Heat",
+    "tw_term": "潛熱",
+    "cn_term": "潛熱"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Wind Tunnel Test",
+    "tw_term": "風洞試驗",
+    "cn_term": "風洞實驗"
+  },
+  {
+    "domain": "Urban Microclimate & Thermal Comfort",
+    "english": "Shading Coefficient",
+    "tw_term": "遮蔽係數",
+    "cn_term": "遮陽係數"
+  }
+]

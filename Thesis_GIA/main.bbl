@@ -1,0 +1,216 @@
+\begin{thebibliography}{}
+
+\bibitem[Aman et~al., 2023]{aman2023ai}
+Aman, J., Kim, J.~B., and Verniz, D. (2023).
+\newblock {AI}-integrated urban building energy simulation: A framework to
+  forecast the morphological impact on daylight availability.
+\newblock In {\em Proceedings of the 28th CAADRIA Conference}, volume~1, pages
+  665--674.
+
+\bibitem[Blazejczyk et~al., 2012]{blazejczyk2012comparison}
+Blazejczyk, K., Epstein, Y., Jendritzky, G., Staiger, H., and Tinz, B. (2012).
+\newblock Comparison of {UTCI} to selected thermal indices.
+\newblock {\em International Journal of Biometeorology}, 56(3):515--535.
+
+\bibitem[Bradski, 2000]{bradski2000opencv}
+Bradski, G. (2000).
+\newblock The opencv library.
+\newblock Dr. Dobb's Journal of Software Tools.
+
+\bibitem[Cheng et~al., 2023]{cheng2023urbangenogan}
+Cheng, W., Chu, Y., Xia, C., Zhang, B., Chen, J., Jia, M., and Wang, W. (2023).
+\newblock {UrbanGenoGAN}: pioneering urban spatial planning using the
+  synergistic integration of {GAN}, {GA}, and {GIS}.
+\newblock {\em Frontiers in Environmental Science}, 11:1287858.
+
+\bibitem[Coccolo et~al., 2018]{coccolo2018thermal}
+Coccolo, S., Pearlmutter, D., Kaempf, J., and Scartezzini, J.~L. (2018).
+\newblock Thermal comfort maps to estimate the impact of urban greening on the
+  outdoor human comfort.
+\newblock {\em Urban Forestry \& Urban Greening}, 32:99--112.
+
+\bibitem[Da{\u{g}}l{\i}er et~al., 2025]{daglier2025developing}
+Da{\u{g}}l{\i}er, Y., Ekici, B., and Korkmaz, K. (2025).
+\newblock Developing machine learning models to predict outdoor thermal comfort
+  of kinetic shading devices: An approach for global optimization.
+\newblock In {\em Proceedings of eCAADe 2025}.
+
+\bibitem[Deb et~al., 2002]{deb2002fast}
+Deb, K., Pratap, A., Agarwal, S., and Meyarivan, T. (2002).
+\newblock A fast and elitist multiobjective genetic algorithm: {NSGA-II}.
+\newblock {\em IEEE Transactions on Evolutionary Computation}, 6(2):182--197.
+
+\bibitem[Douglas and Peucker, 1973]{douglas1973algorithms}
+Douglas, D.~H. and Peucker, T.~K. (1973).
+\newblock Algorithms for the reduction of the number of points required to
+  represent a digitized line or its caricature.
+\newblock {\em Cartographica: The International Journal for Geographic
+  Information and Geovisualization}, 10(2):112--122.
+
+\bibitem[Erell et~al., 2011]{erell2011urban}
+Erell, E., Pearlmutter, D., and Williamson, T. (2011).
+\newblock {\em Urban microclimate: designing the spaces between buildings}.
+\newblock Routledge.
+
+\bibitem[Fanger, 1970]{fanger1970thermal}
+Fanger, P.~O. (1970).
+\newblock {\em Thermal comfort: Analysis and applications in environmental
+  engineering}.
+\newblock Danish Technical Press.
+
+\bibitem[Fette and Melnikov, 2011]{rfc6455}
+Fette, I. and Melnikov, A. (2011).
+\newblock The websocket protocol.
+\newblock RFC 6455, Internet Engineering Task Force (IETF).
+
+\bibitem[Fiala et~al., 2011]{fiala2011utci}
+Fiala, D., Havenith, G., Br{\"o}de, P., Kampmann, B., and Jendritzky, G.
+  (2011).
+\newblock {UTCI-Fiala} multi-node model of human heat transfer and temperature
+  regulation.
+\newblock {\em International Journal of Biometeorology}, 56(3):429--441.
+
+\bibitem[Hart et~al., 1968]{hart1968formal}
+Hart, P.~E., Nilsson, N.~J., and Raphael, B. (1968).
+\newblock A formal basis for the heuristic determination of minimum cost paths.
+\newblock {\em IEEE Transactions on Systems Science and Cybernetics},
+  4(2):100--107.
+
+\bibitem[H{\"o}ppe, 1999]{hoppe1999physiological}
+H{\"o}ppe, P. (1999).
+\newblock The physiological equivalent temperature---a universal index for the
+  biometeorological assessment of the thermal environment.
+\newblock {\em International Journal of Biometeorology}, 43(2):71--75.
+
+\bibitem[Hu et~al., 2022]{hu2022times}
+Hu, Y., Cheng, X., Wang, S., Chen, J., Zhao, T., and Dai, E. (2022).
+\newblock Times series forecasting for urban building energy consumption based
+  on graph convolutional network.
+\newblock {\em Applied Energy}, 307:118231.
+
+\bibitem[Jendritzky et~al., 2012]{jendritzky2012utci}
+Jendritzky, G., de~Dear, R., and Havenith, G. (2012).
+\newblock {UTCI}---plus {\c{c}}a change, plus c'est la m{\^e}me chose?
+\newblock {\em International Journal of Biometeorology}, 56(3):403--404.
+
+\bibitem[Kipf and Welling, 2017]{kipf2017semi}
+Kipf, T.~N. and Welling, M. (2017).
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock In {\em 5th International Conference on Learning Representations
+  (ICLR)}, Toulon, France.
+
+\bibitem[Lang et~al., 2023]{lang2023high}
+Lang, N., Jetz, W., Schindler, K., and Wegner, J.~D. (2023).
+\newblock A high-resolution canopy height model of the {Earth}.
+\newblock {\em Nature Ecology \& Evolution}, 7:1778--1789.
+
+\bibitem[Liu et~al., 2022]{liu2022impacts}
+Liu, Z., Zhou, X., Tian, W., Liu, X., and Yan, D. (2022).
+\newblock Impacts of uncertainty in building envelope thermal transmittance on
+  heating/cooling demand in the urban context.
+\newblock {\em Energy and Buildings}, 273:112363.
+
+\bibitem[Lopez-Cabeza et~al., 2025]{lopezcabeza2025open}
+Lopez-Cabeza, V.~P., Videras-Rodriguez, M., and Gomez-Melgar, S. (2025).
+\newblock An open-source urban digital twin for enhancing outdoor thermal
+  comfort in the city of {Huelva} ({Spain}).
+\newblock {\em Smart Cities}, 8(5):160.
+
+\bibitem[Lynch, 1960]{lynch1960image}
+Lynch, K. (1960).
+\newblock {\em The Image of the City}.
+\newblock Harvard-MIT Joint Center for Urban Studies Series. MIT Press,
+  Cambridge, MA.
+
+\bibitem[Oke, 1987]{oke1987boundary}
+Oke, T.~R. (1987).
+\newblock {\em Boundary layer climates}.
+\newblock Routledge.
+
+\bibitem[Oke, 1988]{oke1988street}
+Oke, T.~R. (1988).
+\newblock Street design and urban canopy layer climate.
+\newblock {\em Energy and Buildings}, 11(1--3):103--113.
+
+\bibitem[Oskarsson, 2023]{oskarsson2023modeling}
+Oskarsson, J. (2023).
+\newblock {\em Modeling Spatio-Temporal Systems with Graph-based Machine
+  Learning}.
+\newblock PhD thesis, Link{\"o}ping University Electronic Press.
+
+\bibitem[Romaszko et~al., 2022]{romaszko2022universal}
+Romaszko, J., Draga{\'n}ska, E., Jalali, R., Cymes, I., and
+  Gli{\'n}ska-Lewczuk, K. (2022).
+\newblock Universal climate thermal index as a prognostic tool in medical
+  science in the context of climate change: A systematic review.
+\newblock {\em Science of The Total Environment}, 828:154492.
+
+\bibitem[Sadeghipour~Roudsari et~al., 2013]{sadeghipour2013ladybug}
+Sadeghipour~Roudsari, M., Pak, M., and Viola, A. (2013).
+\newblock {Ladybug}: A parametric environmental plugin for grasshopper to help
+  designers create an environmentally-conscious design.
+\newblock In {\em Proceedings of the 13th International Conference of the
+  International Building Performance Simulation Association}.
+
+\bibitem[Schlichtkrull et~al., 2018]{schlichtkrull2018modeling}
+Schlichtkrull, M., Kipf, T.~N., Bloem, P., van~den Berg, R., Titov, I., and
+  Welling, M. (2018).
+\newblock Modeling relational data with graph convolutional networks.
+\newblock In {\em The Semantic Web: 15th International Conference (ESWC)},
+  pages 593--607, Heraklion, Crete, Greece.
+
+\bibitem[Shan et~al., 2025]{shan2025physics}
+Shan, R., Ning, H., Xu, Q., Su, X., Guo, M., and Jia, X. (2025).
+\newblock Physics-informed and explainable graph neural networks for
+  generalizable urban building energy modeling.
+\newblock {\em Applied Sciences}, 15(16):8854.
+
+\bibitem[Smith, 2007]{smith2007overview}
+Smith, R. (2007).
+\newblock An overview of the tesseract ocr engine.
+\newblock In {\em Ninth International Conference on Document Analysis and
+  Recognition (ICDAR)}, volume~2, pages 629--633, Curitiba, Brazil.
+
+\bibitem[Su and Antoni, 2023]{su2023outdoor}
+Su, Y.-M. and Antoni, J. (2023).
+\newblock Outdoor thermal comfort study on urban areas with various densities
+  in taipei.
+\newblock {\em Engineering Proceedings}, 38(1):77.
+
+\bibitem[Suzuki and Abe, 1985]{suzuki1985topological}
+Suzuki, S. and Abe, K. (1985).
+\newblock Topological structural analysis of digitized binary images by border
+  following.
+\newblock {\em Computer Vision, Graphics, and Image Processing}, 30(1):32--46.
+
+\bibitem[Wang et~al., 2005]{wang2005object}
+Wang, W., Rivard, H., and Zmeureanu, R. (2005).
+\newblock An object-oriented framework for simulation-based green building
+  design optimization with genetic algorithms.
+\newblock {\em Advanced Engineering Informatics}, 19(1):5--23.
+
+\bibitem[Westermann and Evins, 2019]{westermann2019surrogate}
+Westermann, P. and Evins, R. (2019).
+\newblock Surrogate modelling for sustainable building design---{A} review.
+\newblock {\em Energy and Buildings}, 198:170--186.
+
+\bibitem[Wortmann, 2017]{wortmann2017opossum}
+Wortmann, T. (2017).
+\newblock Opossum: An {RBF}-based black-box optimization tool for
+  {Grasshopper}.
+\newblock In {\em Proceedings of the 22nd CAADRIA Conference}, pages 301--310.
+
+\bibitem[Wu et~al., 2023]{wu2023data}
+Wu, Z., Li, M., Liu, W., Wang, Z., Jack, C.~P., and Kwok, H.~H. (2023).
+\newblock A data-driven model for sustainable performance prediction of
+  residential block layout design using graph neural network.
+\newblock In {\em Proceedings of eCAADe 2023}.
+
+\bibitem[Xin et~al., 2025]{xin2025urbangraph}
+Xin, W., Huang, C., Li, P., Zhong, J., and Yao, J. (2025).
+\newblock {UrbanGraph}: Physics-informed spatio-temporal dynamic heterogeneous
+  graphs for urban microclimate prediction.
+\newblock {\em Preprint submitted to International Conference on Learning
+  Representations ({ICLR})}.
+
+\end{thebibliography}

@@ -340,6 +340,7 @@ async def _handle_optimize(ws: WebSocket, job_id: str,
             cfg         = cfg,
             checker     = checker,
             device      = DEVICE,
+            dim_air     = _dim_air,
         )
         optimizer = NSGA2Optimizer(
             evaluator  = evaluator,
