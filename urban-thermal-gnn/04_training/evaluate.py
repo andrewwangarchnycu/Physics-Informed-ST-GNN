@@ -1,8 +1,8 @@
 """
 04_training/evaluate.py
 ════════════════════════════════════════════════════════════════
-[REMOVED_ZH:6]
-compute: R², RMSE, MAE, UTCI Thermal Stress[REMOVED_ZH:7]
+Model evaluation script.
+compute: R², RMSE, MAE, UTCI Thermal Stress classification accuracy
 
 Run:
   python evaluate.py --ckpt checkpoints/best_model.pt
@@ -23,11 +23,12 @@ from train     import build_env_time_seq
 
 
 # ════════════════════════════════════════════════════════════════
-# UTCI Thermal Stress[REMOVED_ZH:2]（Fiala 2012）
+# UTCI Thermal Stress categories（Fiala 2012）
 # ════════════════════════════════════════════════════════════════
 UTCI_THRESHOLDS = [-40, 9, 26, 32, 38, 46, 200]
-UTCI_LABELS     = ["[REMOVED_ZH:3] (<9)", "[REMOVED_ZH:2] (9–26)", "[REMOVED_ZH:2] (26–32)",
-                    "[REMOVED_ZH:2] (32–38)", "[REMOVED_ZH:4] (38–46)", "[REMOVED_ZH:2] (>46)"]
+UTCI_LABELS     = ["Cold Stress (<9)", "No Thermal Stress (9–26)", "Moderate Heat Stress (26–32)",
+                    "Strong Heat Stress (32–38)", "Very Strong Heat Stress (38–46)",
+                    "Extreme Heat Stress (>46)"]
 
 def utci_to_class(utci_vals: np.ndarray) -> np.ndarray:
     classes = np.zeros_like(utci_vals, dtype=int)
@@ -37,14 +38,14 @@ def utci_to_class(utci_vals: np.ndarray) -> np.ndarray:
 
 
 # ════════════════════════════════════════════════════════════════
-# [REMOVED_ZH:2]compute
+# Metrics compute
 # ════════════════════════════════════════════════════════════════
 def compute_metrics(pred_norm: np.ndarray,
                      tgt_norm:  np.ndarray,
                      norm_stats: dict) -> dict:
     """
-    pred_norm, tgt_norm: [REMOVED_ZH:5] UTCI，shape (N_all,)
-    denormalize[REMOVED_ZH:1]compute[REMOVED_ZH:4]。
+    pred_norm, tgt_norm: normalized UTCI，shape (N_all,)
+    denormalize before computing metrics.
     """
     mean = norm_stats["utci"]["mean"]
     std  = norm_stats["utci"]["std"]
@@ -57,12 +58,12 @@ def compute_metrics(pred_norm: np.ndarray,
     rmse   = float(np.sqrt(np.mean((pred - tgt)**2)))
     mae    = float(np.mean(np.abs(pred - tgt)))
 
-    # UTCI [REMOVED_ZH:7]
+    # UTCI thermal stress class accuracy
     pred_cls = utci_to_class(pred)
     tgt_cls  = utci_to_class(tgt)
     acc      = float((pred_cls == tgt_cls).mean())
 
-    # [REMOVED_ZH:3] accuracy
+    # per-class accuracy
     per_cls_acc = {}
     for i, label in enumerate(UTCI_LABELS):
         mask = tgt_cls == i
@@ -111,7 +112,7 @@ def compute_metrics_shaped(pred_all: list,
 
 
 # ════════════════════════════════════════════════════════════════
-# [REMOVED_ZH:5]
+# Full-dataset evaluation loop
 # ════════════════════════════════════════════════════════════════
 def evaluate(model:      UrbanGraph,
               dataset:   UTCIGraphDataset,
@@ -181,8 +182,8 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     model = build_model(cfg).to(device)
     model.load_state_dict(ckpt["model_state"])
 
-    print(f"\n[Evaluate] split={split}  {len(ds)} [REMOVED_ZH:2]  "
-          f"[REMOVED_ZH:2] epoch={ckpt.get('epoch','?')}")
+    print(f"\n[Evaluate] split={split}  {len(ds)} scenarios  "
+          f"best epoch={ckpt.get('epoch','?')}")
 
     metrics = evaluate(model, ds, epw, device)
 
@@ -190,8 +191,8 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     print(f"  R²   = {metrics['R2']:.4f}")
     print(f"  RMSE = {metrics['RMSE']:.3f} °C")
     print(f"  MAE  = {metrics['MAE']:.3f} °C")
-    print(f"  [REMOVED_ZH:5] = {metrics['category_accuracy']*100:.1f}%")
-    print(f"\n  [REMOVED_ZH:6]:")
+    print(f"  Category Accuracy = {metrics['category_accuracy']*100:.1f}%")
+    print(f"\n  Per-category accuracy:")
     for label, acc in metrics["per_category_accuracy"].items():
         print(f"    {label}: {acc*100:.1f}%")
     print(f"{'-'*50}\n")
@@ -203,7 +204,7 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
 
     with open(out_json, "w") as f:
         json.dump(metrics, f, indent=2, ensure_ascii=False)
-    print(f"  [REMOVED_ZH:4]: {out_json}")
+    print(f"  Saved results to: {out_json}")
     return metrics
 
 

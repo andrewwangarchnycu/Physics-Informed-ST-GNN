@@ -1,0 +1,13 @@
+{
+  "R2": 0.9092999696731567,
+  "RMSE": 1.46169114112854,
+  "MAE": 0.7912322282791138,
+  "category_accuracy": 0.9312363936641394,
+  "per_category_accuracy": {
+    "Moderate Heat Stress (26¡V32)": 0.8266666666666667,
+    "Strong Heat Stress (32¡V38)": 0.8733093142755891,
+    "Very Strong Heat Stress (38¡V46)": 0.970894174909719,
+    "Extreme Heat Stress (>46)": 0.8509344244166759
+  },
+  "n_samples": 79926
+}

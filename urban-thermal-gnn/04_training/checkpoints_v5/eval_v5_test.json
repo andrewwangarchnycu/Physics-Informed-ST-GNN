@@ -1,0 +1,13 @@
+{
+  "R2": 0.34332960844039917,
+  "RMSE": 4.86962366104126,
+  "MAE": 3.802532911300659,
+  "category_accuracy": 0.5401045310506605,
+  "per_category_accuracy": {
+    "Strong Heat Stress (32–38)": 0.45749905553456743,
+    "Very Strong Heat Stress (38–46)": 0.9637100405222873,
+    "Extreme Heat Stress (>46)": 0.0
+  },
+  "n_samples": 24299,
+  "note": "Evaluated on the original 6-scenario test split from the 39-scenario V5 dataset (before expansion to 150 scenarios). The current ground_truth_v5.h5 test split now refers to a different, larger 21-scenario split, so this checkpoint cannot be re-evaluated against it for a like-for-like comparison; these are the original recorded values."
+}

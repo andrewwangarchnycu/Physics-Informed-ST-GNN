@@ -114,10 +114,10 @@ def fig_scatter_pred_vs_gt(model: UrbanGraph, dataset: UTCIGraphDataset,
     metrics = compute_metrics(pred_norm_all, tgt_norm_all, norm_stats)
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    fig.suptitle(f"Phase 4 — Prediction vs Ground Truth  (n={n_samples} [REMOVED_ZH:2])",
+    fig.suptitle(f"Phase 4 — Prediction vs Ground Truth  (n={n_samples} scenarios)",
                   fontsize=12)
 
-    # [REMOVED_ZH:3]
+    # Scatter plot
     ax  = axes[0]
     lim = [min(t_all.min(), p_all.min())-2, max(t_all.max(), p_all.max())+2]
     ax.scatter(t_all, p_all, c=t_all, cmap=UTCI_CMAP,
@@ -130,7 +130,7 @@ def fig_scatter_pred_vs_gt(model: UrbanGraph, dataset: UTCIGraphDataset,
                   f"MAE={metrics['MAE']:.2f}°C")
     ax.legend(); ax.grid(True, alpha=0.3)
 
-    # [REMOVED_ZH:5]
+    # Residual histogram
     ax2 = axes[1]
     res = p_all - t_all
     ax2.hist(res, bins=60, color="#2980b9", alpha=0.75, edgecolor="none")
@@ -140,7 +140,7 @@ def fig_scatter_pred_vs_gt(model: UrbanGraph, dataset: UTCIGraphDataset,
     ax2.axvline(-metrics["RMSE"], c="r", ls=":", lw=1.5)
     ax2.set_xlabel("Residual (Pred − GT) [°C]")
     ax2.set_ylabel("Count")
-    ax2.set_title(f"[REMOVED_ZH:4]  bias={res.mean():.3f}°C")
+    ax2.set_title(f"Residual Distribution  bias={res.mean():.3f}°C")
     ax2.legend(); ax2.grid(True, alpha=0.3)
 
     fig.tight_layout()
@@ -151,7 +151,7 @@ def fig_scatter_pred_vs_gt(model: UrbanGraph, dataset: UTCIGraphDataset,
 
 
 # ════════════════════════════════════════════════════════════════
-# Fig C: [REMOVED_ZH:2] R² [REMOVED_ZH:2] (hour-by-hour)
+# Fig C: Hourly R² (hour-by-hour)
 # ════════════════════════════════════════════════════════════════
 def fig_hourly_r2(model: UrbanGraph, dataset: UTCIGraphDataset,
                    epw, device: str, out_dir: Path, n_samples: int = 30):
@@ -199,9 +199,9 @@ def fig_hourly_r2(model: UrbanGraph, dataset: UTCIGraphDataset,
 
     fig, ax = plt.subplots(figsize=(10, 4))
     ax.bar(sim_hours, r2_list, color=[cm.RdYlGn(r) for r in r2_list], alpha=0.85)
-    ax.axhline(0.90, ls="--", c="orange", lw=1.5, label="[REMOVED_ZH:2] R²=0.90")
+    ax.axhline(0.90, ls="--", c="orange", lw=1.5, label="Deployment Threshold R²=0.90")
     ax.set_xlabel("Hour of Day"); ax.set_ylabel("R²")
-    ax.set_title("Phase 4 — [REMOVED_ZH:2] R²（[REMOVED_ZH:11]）", fontsize=11)
+    ax.set_title("Phase 4 — Hourly R² (Test Set)", fontsize=11)
     ax.set_ylim(0, 1.0); ax.legend(); ax.grid(True, alpha=0.3)
     for hr, r2 in zip(sim_hours, r2_list):
         ax.text(hr, r2+0.01, f"{r2:.3f}", ha="center", fontsize=7)
@@ -251,7 +251,7 @@ def fig_confusion_matrix(model: UrbanGraph, dataset: UTCIGraphDataset,
                 if tc < n_cls and pc < n_cls:
                     conf[tc, pc] += 1
 
-    # [REMOVED_ZH:6]
+    # Row-normalize confusion matrix
     conf_norm = conf.astype(float) / (conf.sum(axis=1, keepdims=True) + 1e-9)
     fig, ax   = plt.subplots(figsize=(9, 7))
     im  = ax.imshow(conf_norm, cmap="Blues", vmin=0, vmax=1)
@@ -261,7 +261,7 @@ def fig_confusion_matrix(model: UrbanGraph, dataset: UTCIGraphDataset,
     ax.set_xticks(range(n_cls)); ax.set_xticklabels(short_labels, rotation=30, ha="right")
     ax.set_yticks(range(n_cls)); ax.set_yticklabels(short_labels)
     ax.set_xlabel("Predicted Class"); ax.set_ylabel("True Class")
-    ax.set_title("UTCI Thermal Stress Class Confusion Matrix ([REMOVED_ZH:5])", fontsize=12)
+    ax.set_title("UTCI Thermal Stress Class Confusion Matrix (Test Set)", fontsize=12)
 
     for i in range(n_cls):
         for j in range(n_cls):
@@ -280,11 +280,11 @@ def fig_confusion_matrix(model: UrbanGraph, dataset: UTCIGraphDataset,
 
 
 # ════════════════════════════════════════════════════════════════
-# Fig E: [REMOVED_ZH:4] UTCI [REMOVED_ZH:2] vs GT [REMOVED_ZH:4]
+# Fig E: Spatial UTCI Prediction vs GT Comparison
 # ════════════════════════════════════════════════════════════════
 def fig_spatial_comparison(model: UrbanGraph, dataset: UTCIGraphDataset,
                              epw, device: str, out_dir: Path):
-    """[REMOVED_ZH:3] test [REMOVED_ZH:2]，[REMOVED_ZH:7] GT / Pred / Error [REMOVED_ZH:2]。"""
+    """Pick one test scenario and plot its GT / Pred / Error spatial maps."""
     model.eval()
     sim_hours = dataset.sim_hours
     env_seq, time_seq = build_env_time_seq(epw, sim_hours)
@@ -310,14 +310,14 @@ def fig_spatial_comparison(model: UrbanGraph, dataset: UTCIGraphDataset,
     with torch.no_grad():
         pred = model(obj_feat, air_feat, dyn, static_e, env_seq, time_seq)
 
-    # [REMOVED_ZH:5] (t_idx=4 → 12:00)
+    # pick timestep (t_idx=4 → 12:00)
     t_show = min(4, len(sim_hours)-1)
     gt_vals   = target[:, t_show].cpu().numpy() * std + mean
     pred_vals = pred[:,   t_show].cpu().numpy() * std + mean
     err_vals  = pred_vals - gt_vals
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    fig.suptitle(f"Phase 4 — [REMOVED_ZH:6]  {sim_hours[t_show]:02d}:00", fontsize=12)
+    fig.suptitle(f"Phase 4 — Spatial Comparison  {sim_hours[t_show]:02d}:00", fontsize=12)
 
     vmin, vmax = min(gt_vals.min(), pred_vals.min()), max(gt_vals.max(), pred_vals.max())
     for ax, vals, title in zip(axes,
@@ -359,15 +359,15 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     out.mkdir(parents=True, exist_ok=True)
     print("\n[viz_training] ── Phase 3+4 Model Training Verification Visualization ──")
 
-    # [REMOVED_ZH:4]（[REMOVED_ZH:2] JSON）
+    # Training curves (from history JSON)
     if Path(history_json).exists():
         fig_training_curves(history_json, out)
     else:
-        print(f"  [[REMOVED_ZH:2]] [REMOVED_ZH:3] {history_json}")
+        print(f"  [skip] history not found: {history_json}")
 
-    # [REMOVED_ZH:7]
+    # Model checkpoint
     if not Path(ckpt_path).exists():
-        print(f"  [[REMOVED_ZH:2]] [REMOVED_ZH:3] {ckpt_path}，[REMOVED_ZH:2]Run train.py")
+        print(f"  [skip] checkpoint not found: {ckpt_path}, please run train.py first")
         return
 
     import __main__
@@ -394,7 +394,7 @@ def main(ckpt_path:    str = "checkpoints/best_model.pt",
     fig_confusion_matrix(model, ds_test, epw, device, out, n_samples=50)
     fig_spatial_comparison(model, ds_test, epw, device, out)
 
-    print(f"\n[viz_training] [REMOVED_ZH:2]，[REMOVED_ZH:5] {out}\n")
+    print(f"\n[viz_training] done, saved to {out}\n")
 
 
 if __name__ == "__main__":
