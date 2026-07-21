@@ -47,17 +47,17 @@
 \contentsline {subsection}{\numberline {3.5.3}圖索引對齊機制（$+N_{\text {obj}}$ 偏移量）}{48}{subsection.3.5.3}%
 \contentsline {section}{\numberline {3.6}物理資訊時空圖神經網路 (PI-ST-GNN) 模型架構}{49}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}整體架構概述}{49}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}關係圖卷積網路（RGCN）}{51}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.2}關係圖卷積網路（RGCN）}{50}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}全域情境融合與 LSTM 時序建模}{52}{subsection.3.6.3}%
 \contentsline {section}{\numberline {3.7}物理引導損失函數}{53}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}輻射空間一致性約束（$\mathcal {L}_{\text {rad}}$）}{54}{subsection.3.7.1}%
 \contentsline {subsection}{\numberline {3.7.2}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）}{54}{subsection.3.7.2}%
 \contentsline {subsection}{\numberline {3.7.3}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）}{55}{subsection.3.7.3}%
-\contentsline {section}{\numberline {3.8}模組五：Grasshopper 介面整合與多目標最佳化——熱舒適人行動線設計}{55}{section.3.8}%
-\contentsline {subsection}{\numberline {3.8.1}從最短路徑到熱舒適動線評估}{55}{subsection.3.8.1}%
+\contentsline {section}{\numberline {3.8}模組五：Grasshopper 介面整合與多目標最佳化——熱舒適人行動線設計}{56}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}從最短路徑到熱舒適動線評估}{56}{subsection.3.8.1}%
 \contentsline {subsection}{\numberline {3.8.2}Grasshopper 介面與非同步通訊架構}{56}{subsection.3.8.2}%
-\contentsline {subsection}{\numberline {3.8.3}染色體編碼機制與多目標函數}{57}{subsection.3.8.3}%
-\contentsline {subsection}{\numberline {3.8.4}與 Wallacei 都市型態最佳化案例之比較}{58}{subsection.3.8.4}%
+\contentsline {subsection}{\numberline {3.8.3}染色體編碼機制與多目標函數}{58}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}與 Wallacei 都市型態最佳化案例之比較}{59}{subsection.3.8.4}%
 \contentsline {chapter}{\numberline {4}實驗成果分析與驗證}{60}{chapter.4}%
 \contentsline {section}{\numberline {4.1}訓練流程與超參數配置}{60}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}訓練環境與硬體配置}{60}{subsection.4.1.1}%
@@ -109,7 +109,7 @@
 \contentsline {subsection}{\numberline {A.4.3}都市熱慣性時序平滑約束（$\mathcal {L}_{\text {temp}}$）完整推導}{103}{subsection.A.4.3}%
 \contentsline {subsection}{\numberline {A.4.4}風場阻滯尾流約束（$\mathcal {L}_{\text {wind}}$）完整推導}{105}{subsection.A.4.4}%
 \contentsline {section}{\numberline {A.5}熱舒適人行動線熱暴露指標完整推導}{105}{section.A.5}%
-\contentsline {subsection}{\numberline {A.5.1}無量綱熱壓力懲罰函數 $\Phi (\cdot )$ 之推導}{105}{subsection.A.5.1}%
+\contentsline {subsection}{\numberline {A.5.1}正規化熱壓力懲罰函數 $\Phi (\cdot )$ 之推導}{105}{subsection.A.5.1}%
 \contentsline {subsection}{\numberline {A.5.2}時空平均人行動線熱暴露指標之推導}{106}{subsection.A.5.2}%
 \contentsline {section}{\numberline {A.6}NSGA-II 適應度求值器輸入維度修正紀錄}{107}{section.A.6}%
 \contentsline {section}{\numberline {A.7}Grasshopper 元件使用者操作手冊}{107}{section.A.7}%

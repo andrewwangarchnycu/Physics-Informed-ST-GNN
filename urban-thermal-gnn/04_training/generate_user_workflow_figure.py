@@ -9,35 +9,35 @@ addressing the committee's request for a numbered 1-8 step operation
 diagram (data prep -> import -> convert -> read/analyze results) rather
 than a plain bullet list.
 
+House style: matches fig_overview_pistgnn_white.png -- white background,
+white step boxes with black borders, black bold bilingual-adjacent text,
+black arrows; colour reserved for small step-category corner tags only.
+
 Produces:
   figures/fig_user_workflow.pdf
   figures/fig_user_workflow.png
 """
 import sys
 from pathlib import Path
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
 from matplotlib.lines import Line2D
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from thesis_diagram_style import apply_rcparams, tag, ACCENTS, TEXT_MAIN, BOX_EDGE, BOX_FILL, ARROW_COLOR
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
 FIG_DIR = _SCRIPT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
+apply_rcparams(9.5)
 
-mpl.rcParams.update({
-    "font.family": "Microsoft JhengHei", "font.size": 9.5,
-    "axes.unicode_minus": False,
-    "figure.dpi": 150, "savefig.dpi": 300, "savefig.bbox": "tight",
-    "pdf.fonttype": 42, "ps.fonttype": 42,
-})
-
-C_PREP = "#8a6fa3"
-C_GEOM = "#5b7fa6"
-C_PRED = "#7a9e6a"
-C_OPT  = "#c9704f"
-C_OUT  = "#4a4a4a"
+C_PREP = ACCENTS[3]
+C_GEOM = ACCENTS[2]
+C_PRED = ACCENTS[1]
+C_OPT  = ACCENTS[0]
+C_OUT  = "#5a5a5a"
 
 fig, ax = plt.subplots(figsize=(13, 10))
 ax.set_xlim(0, 13)
@@ -46,13 +46,14 @@ ax.axis("off")
 
 def numbered_box(n, x, y, w, h, text, color, fontsize=8.6):
     b = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.07,rounding_size=0.09",
-                        linewidth=1.1, edgecolor=color, facecolor=color, alpha=0.92)
+                        linewidth=1.2, edgecolor=BOX_EDGE, facecolor=BOX_FILL)
     ax.add_patch(b)
-    ax.add_patch(Circle((x + 0.32, y + h - 0.32), 0.24, facecolor="white", edgecolor=color, linewidth=1.3, zorder=5))
-    ax.text(x + 0.32, y + h - 0.32, str(n), ha="center", va="center", fontsize=9.5, fontweight="bold", color=color, zorder=6)
-    ax.text(x + w/2 + 0.15, y + h/2, text, ha="center", va="center", fontsize=fontsize, color="white", linespacing=1.25)
+    ax.add_patch(Circle((x + 0.32, y + h - 0.32), 0.24, facecolor="white", edgecolor=BOX_EDGE, linewidth=1.3, zorder=5))
+    ax.text(x + 0.32, y + h - 0.32, str(n), ha="center", va="center", fontsize=9.5, fontweight="bold", color=TEXT_MAIN, zorder=6)
+    ax.text(x + w/2 + 0.15, y + h/2, text, ha="center", va="center", fontsize=fontsize, color=TEXT_MAIN, linespacing=1.25, fontweight="bold")
+    tag(ax, x + w - 0.28, y + h - 0.28, "", color, fontsize=6)
 
-def arrow(p1, p2, color="#444444", lw=1.4, style="-|>"):
+def arrow(p1, p2, color=ARROW_COLOR, lw=1.4, style="-|>"):
     a = FancyArrowPatch(p1, p2, arrowstyle=style, mutation_scale=13,
                          linewidth=lw, color=color, shrinkA=3, shrinkB=3)
     ax.add_patch(a)
@@ -73,8 +74,8 @@ numbered_box(5, 4.55, 7.2, 4.1, 1.3, "切換 run 開關為 True\n（送出計算
 arrow((6.6, 9.3), (6.6, 8.5))
 
 # branch labels
-ax.text(2.6, 6.75, "路徑 A：單次即時評估\n（UTCIPredictor）", ha="center", fontsize=9, fontweight="bold", color=C_PRED)
-ax.text(10.6, 6.75, "路徑 B：多目標最佳化搜尋\n（UTCIOptimizer）", ha="center", fontsize=9, fontweight="bold", color=C_OPT)
+ax.text(2.6, 6.75, "路徑 A：單次即時評估\n（UTCIPredictor）", ha="center", fontsize=9, fontweight="bold", color=TEXT_MAIN)
+ax.text(10.6, 6.75, "路徑 B：多目標最佳化搜尋\n（UTCIOptimizer）", ha="center", fontsize=9, fontweight="bold", color=TEXT_MAIN)
 
 arrow((5.2, 7.2), (2.6, 6.4), color=C_PRED)
 arrow((8.0, 7.2), (10.6, 6.4), color=C_OPT)
@@ -106,9 +107,9 @@ legend_elems = [
     Line2D([0], [0], marker="s", color="w", markerfacecolor=C_OUT, markersize=12, label="結果讀取與設計回饋"),
 ]
 fig.legend(handles=legend_elems, loc="lower center", bbox_to_anchor=(0.5, -0.05),
-           ncol=3, fontsize=8.5, frameon=False)
+           ncol=3, fontsize=8.5, frameon=False, labelcolor=TEXT_MAIN)
 
-fig.suptitle("Grasshopper 元件操作流程（1--8 步驟）：資料準備 → 匯入 → 計算 → 結果讀取", fontsize=13, fontweight="bold", y=1.0)
+fig.suptitle("Grasshopper 元件操作流程（1--8 步驟）：資料準備 → 匯入 → 計算 → 結果讀取", fontsize=13, fontweight="bold", y=1.0, color=TEXT_MAIN)
 fig.tight_layout()
 
 out_pdf = FIG_DIR / "fig_user_workflow.pdf"

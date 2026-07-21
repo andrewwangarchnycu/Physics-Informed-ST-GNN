@@ -254,11 +254,11 @@ mpl.rcParams.update({
 
 # Palette — CVD-safe, brand-neutral
 REL_COLORS = {
-    "shadow":     "#4e79a7",
-    "veg_et":     "#59a14f",
-    "convective": "#e15759",
-    "semantic":   "#f28e2b",
-    "contiguity": "#76b7b2",
+    "shadow":     "#8a3a1f",
+    "veg_et":     "#4f7a55",
+    "convective": "#4a6a8a",
+    "semantic":   "#7a5f8c",
+    "contiguity": "#b89a55",
 }
 INACTIVE_ALPHA = 0.35
 HATCH_PATTERN  = "////"
@@ -472,7 +472,7 @@ for ax, letter in [(ax_a,"a"),(ax_b,"b"),(ax_c,"c"),(ax_d,"d")]:
 
 # ── Supertitle ────────────────────────────────────────────────────────────────
 fig.suptitle(
-    "GNNExplainer Interpretability Analysis of PIN-ST-GNN  "
+    "GNNExplainer Interpretability Analysis of PI-ST-GNN  "
     f"|  Scenario {sid}  |  Val R² = {ckpt['val_r2']:.4f}",
     fontsize=12.5, fontweight="bold", y=0.975
 )

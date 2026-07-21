@@ -31,15 +31,19 @@ mpl.rcParams.update({
     "font.family": "Microsoft JhengHei", "font.size": 9.5,
     "axes.unicode_minus": False,
     "figure.dpi": 150, "savefig.dpi": 300, "savefig.bbox": "tight",
+    "savefig.facecolor": "white", "figure.facecolor": "white",
     "pdf.fonttype": 42, "ps.fonttype": 42,
 })
 
-C_BLDG   = "#4a4a4a"
-C_SUN    = "#d99a2b"
+# House style (matches fig_overview_pistgnn_white.png): buildings/labels in
+# black/gray, colour reserved only as sparing per-mechanism accent tags.
+C_BLDG   = "#5a5a5a"
+C_SUN    = "#c9704f"
 C_SHADE  = "#2b3a55"
-C_LW     = "#c9704f"
+C_LW     = "#8a6fa3"
 C_WIND   = "#3f7fa6"
-C_VORTEX = "#7a9e6a"
+C_VORTEX = "#5b8c5a"
+TEXT_MAIN = "#000000"
 
 fig, axes = plt.subplots(1, 2, figsize=(13, 6))
 
@@ -47,7 +51,9 @@ fig, axes = plt.subplots(1, 2, figsize=(13, 6))
 ax = axes[0]
 ax.set_xlim(-1, 11)
 ax.set_ylim(-0.5, 8)
-ax.axis("off")
+ax.set_xticks([]); ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(True); spine.set_linewidth(1.3); spine.set_color("black")
 ax.set_title("(a) 天空視角因子（SVF）短波遮擋與\n夜間長波輻射多重反射", fontsize=10.5, fontweight="bold")
 
 ground = Rectangle((-1, -0.5), 12, 0.5, facecolor="#8a8a8a", edgecolor="none")
@@ -68,13 +74,13 @@ theta1 = np.degrees(np.arctan2(6.5 - obs_y, 0.5 + 2.2 - obs_x))
 theta2 = np.degrees(np.arctan2(5.0 - obs_y, 7.3 - obs_x))
 wedge = Wedge((obs_x, obs_y), 6.5, theta1, theta2, facecolor=C_SUN, alpha=0.28, edgecolor=C_SUN, linewidth=1.2)
 ax.add_patch(wedge)
-ax.text(obs_x, 3.4, "SVF\n(暴露立體角)", ha="center", fontsize=8.3, color="#8a5f10", fontweight="bold")
+ax.text(obs_x, 3.4, "SVF\n(暴露立體角)", ha="center", fontsize=8.3, color=TEXT_MAIN, fontweight="bold")
 
 # incoming shortwave
 arrow1 = FancyArrowPatch((3.6, 7.6), (obs_x + 0.3, obs_y + 0.4), arrowstyle="-|>",
                           mutation_scale=13, linewidth=1.4, color=C_SUN)
 ax.add_patch(arrow1)
-ax.text(3.0, 7.6, "太陽短波輻射", fontsize=8, color=C_SUN, fontweight="bold")
+ax.text(3.0, 7.6, "太陽短波輻射", fontsize=8, color=TEXT_MAIN, fontweight="bold")
 
 # nocturnal longwave bouncing between the two facades
 for k, (x0, y0, x1, y1) in enumerate([
@@ -84,7 +90,7 @@ for k, (x0, y0, x1, y1) in enumerate([
     a = FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>", mutation_scale=9,
                          linewidth=1.0, color=C_LW, linestyle="--", alpha=0.85)
     ax.add_patch(a)
-ax.text(5.0, 5.1, "長波輻射多重反射\n（夜間熱遲滯）", ha="center", fontsize=8.3, color=C_LW, fontweight="bold")
+ax.text(5.0, 5.1, "長波輻射多重反射\n（夜間熱遲滯）", ha="center", fontsize=8.3, color=TEXT_MAIN, fontweight="bold")
 ax.annotate("", xy=(5.0, 4.7), xytext=(5.0, 4.95),
             arrowprops=dict(arrowstyle="-", color=C_LW, lw=0))
 
@@ -94,7 +100,9 @@ ax.text(5.0, -0.15, r"街谷高寬比 $H/W$", ha="center", fontsize=8.3, style="
 ax = axes[1]
 ax.set_xlim(-1, 11)
 ax.set_ylim(-0.5, 8)
-ax.axis("off")
+ax.set_xticks([]); ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(True); spine.set_linewidth(1.3); spine.set_color("black")
 ax.set_title("(b) 街谷高寬比 $H/W$ 主導之\n迎風下沖流與背風渦流帶", fontsize=10.5, fontweight="bold")
 
 ground = Rectangle((-1, -0.5), 12, 0.5, facecolor="#8a8a8a", edgecolor="none")
@@ -110,13 +118,13 @@ for y in [5.2, 6.0, 6.8]:
     a = FancyArrowPatch((-0.8, y), (0.4, y), arrowstyle="-|>", mutation_scale=11,
                          linewidth=1.3, color=C_WIND)
     ax.add_patch(a)
-ax.text(-0.8, 7.3, "來流風", fontsize=8.3, color=C_WIND, fontweight="bold")
+ax.text(-0.8, 7.3, "來流風", fontsize=8.3, color=TEXT_MAIN, fontweight="bold")
 
 # downwash along the windward facade
 downwash = FancyArrowPatch((2.55, 6.6), (2.9, 1.0), arrowstyle="-|>", mutation_scale=12,
                             linewidth=1.6, color=C_WIND, connectionstyle="arc3,rad=0.25")
 ax.add_patch(downwash)
-ax.text(3.6, 3.6, "迎風面\n下沖流", ha="center", fontsize=8.3, color=C_WIND, fontweight="bold")
+ax.text(3.6, 3.6, "迎風面\n下沖流", ha="center", fontsize=8.3, color=TEXT_MAIN, fontweight="bold")
 
 # leeward wake-recirculation vortex (circular arrows)
 vx, vy, vr = 5.6, 1.6, 1.1
@@ -128,7 +136,7 @@ a = FancyArrowPatch((vxs[-2], vys[-2]), (vxs[-1], vys[-1]), arrowstyle="-|>",
                      mutation_scale=12, linewidth=1.6, color=C_VORTEX)
 ax.add_patch(a)
 ax.text(vx, vy - 1.0, "背風渦流帶\n(Wake Recirculation)", ha="center", fontsize=8.3,
-        color="#4d6b40", fontweight="bold")
+        color=TEXT_MAIN, fontweight="bold")
 
 ax.text(5.0, -0.15, r"街谷高寬比 $H/W$", ha="center", fontsize=8.3, style="italic")
 

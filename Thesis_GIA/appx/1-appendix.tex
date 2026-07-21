@@ -166,7 +166,7 @@
 \section{熱舒適人行動線熱暴露指標完整推導}
 \label{appx:walkway_derivation}
 
-\subsection{無量綱熱壓力懲罰函數 $\Phi(\cdot)$ 之推導}
+\subsection{正規化熱壓力懲罰函數 $\Phi(\cdot)$ 之推導}
 
 第~\ref{subsec:from_astar_to_walkway}節式~\eqref{eq:walkway_exposure}所用之熱壓力懲罰函數，其設計目標為：低於舒適閾值時不產生懲罰，高於閾值時懲罰隨超出量遞增，且懲罰量正規化至 $[0,1]$ 便於跨場景比較。此三項需求對應下列分段函數：
 
@@ -233,7 +233,7 @@
     \caption{Grasshopper 元件輸入端口與使用者準備事項對照}
     \label{tab:gh_inputs}
     \small
-    \begin{tabular}{lll}
+    \begin{tabularx}{\textwidth}{llX}
         \toprule
         \textbf{輸入端口} & \textbf{幾何類型} & \textbf{使用者要準備什麼} \\
         \midrule
@@ -246,7 +246,7 @@
         server\_url        & 文字         & 通常不需更動，預設已指向本機服務 \\
         run                & 開關（True/False）& 切成 True 才會真正送出計算請求 \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
 一個實務上的小提醒：喬木半徑／高度清單的順序必須與喬木位置清單一一對應（第 1 個半徑對應第 1 個位置，以此類推），若順序對不上，系統仍會運算，但每棵樹的遮蔭效果會被套用到錯誤的位置上。
@@ -329,7 +329,7 @@
 
 且此後在整個方法中未再對此變數重新賦值。\texttt{git log} 追溯顯示，此行為自本專案第一次提交以來即是如此，並非後續某次修改造成的退化。這意味著 \texttt{shadow}、\texttt{veg\_et}、\texttt{convective} 三類「應隨太陽方位角、風向逐時步重新計算」之動態邊，於本論文第四、五章所報告之全部量化結果訓練過程中，實際上皆為空集合——RGCN 從未透過這三類邊進行過任何真實的訊息傳遞。這三類邊所對應之物理效應（陰影、最近樹木高度）改以靜態的空氣節點特徵（\texttt{shadow\_nt}、\texttt{bh\_nt}、\texttt{th\_nt}）呈現，而非圖邊。此一發現同時解釋了第~\ref{subsec:trustworthiness}節原先報告之 GNNExplainer 分析中，\texttt{contiguity} 關係權重范數「明顯高於其餘四類」之現象——並非模型學習到毗鄰關係確實較重要，而是其餘四類關係之權重矩陣於訓練過程中幾乎未收到真實梯度訊號，其范數僅反映初始化後的殘留值。
 
-另需一併說明：\texttt{\_extract\_object\_features()} 方法原僅自 \texttt{scenario["buildings"]} 擷取物件節點特徵，喬木從未被納入物件節點——與第~\ref{subsec:nodes}節「物件節點包含建物與喬木」之設計描述不符，亦一併於本次修正中補上。
+另需一併說明：物件節點特徵擷取方法 \texttt{\_extract\_object\_features()} 原僅自 \texttt{scenario["buildings"]} 擷取物件節點特徵，喬木從未被納入物件節點——與第~\ref{subsec:nodes}節「物件節點包含建物與喬木」之設計描述不符，亦一併於本次修正中補上。
 
 \subsection{修正方法}
 

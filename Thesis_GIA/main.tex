@@ -16,6 +16,7 @@
 
 \usepackage{multirow}     % for multi-row table
 \usepackage{booktabs}     % table style used in books
+\usepackage{tabularx}     % 允許表格欄位依版面寬度自動換行（避免長中文描述撐破表格）
 \usepackage{parskip}      % yclee 取消段落縮排
 % \usepackage[]{apacite}
 % \usepackage[natbibapa]{apacite}
@@ -39,6 +40,10 @@
 \usepackage{natbib}
 \usepackage{amsmath,amssymb}
 \usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}
+
+% 避免內文中夾雜之長程式碼／檔案路徑（\texttt{}，不可斷行）造成 overfull hbox
+% （行末溢出版面），允許段落於必要時使用額外的字間彈性空間吸收該長度
+\setlength{\emergencystretch}{3em}
 
 % yclee 以 URL (網址連結) 的設定：皆顯示為黑色 (無須修改)
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
@@ -80,7 +85,7 @@
 
 \renewcommand{\cftfigpresnum}{圖}
 \renewcommand{\cftfigaftersnum}{\hspace{1em}} % 在數字和標題之間增加間距
-\setlength{\cftfignumwidth}{3em} % 設置圖目錄中數字部分的寬度
+\setlength{\cftfignumwidth}{3.6em} % 設置圖目錄中數字部分的寬度（放寬以容納兩位數圖號，避免 overfull hbox）
 
 % 修改表目錄格式
 \makeatletter

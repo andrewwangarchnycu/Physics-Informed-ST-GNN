@@ -7,6 +7,12 @@ diagram showing solar angle, building shadow, tree shade, and pedestrian
 UTCI thermal-stress geometry together with the multi-height air-node
 sampling used by the heterogeneous graph.
 
+House style: matches fig_overview_pistgnn_white.png -- white background,
+black-outlined geometry, bold black bilingual-adjacent labels; colour
+retained only as sparing per-mechanism accent (shadow / shade / air-node /
+thermal-stress swatches), muted to the same desaturated palette used by
+the other redrawn schematic figures.
+
 Produces:
   figures/fig_street_crosssection.pdf
   figures/fig_street_crosssection.png
@@ -29,22 +35,26 @@ mpl.rcParams.update({
     "font.family": "Microsoft JhengHei", "font.size": 9.5,
     "axes.unicode_minus": False,
     "figure.dpi": 150, "savefig.dpi": 300, "savefig.bbox": "tight",
+    "savefig.facecolor": "white", "figure.facecolor": "white",
     "pdf.fonttype": 42, "ps.fonttype": 42,
 })
 
-C_BLDG   = "#4a4a4a"
-C_TREE   = "#5f8a4f"
-C_SUN    = "#d99a2b"
-C_SHADOW = "#2b3a55"
-C_AIR    = "#3f7fa6"
-C_HOT    = "#b3401f"
-C_COOL   = "#5f8a4f"
+TEXT_MAIN = "#000000"
+C_BLDG   = "#5a5a5a"
+C_TREE   = "#6f8a63"
+C_SUN    = "#b89a55"
+C_SHADOW = "#3a3a3a"
+C_AIR    = "#4a6a8a"
+C_HOT    = "#8a3a1f"
+C_COOL   = "#4f7a55"
 C_GROUND = "#8a8a8a"
 
 fig, ax = plt.subplots(figsize=(13, 7.5))
 ax.set_xlim(-2, 32)
 ax.set_ylim(-1.5, 16)
-ax.axis("off")
+ax.set_xticks([]); ax.set_yticks([])
+for spine in ax.spines.values():
+    spine.set_visible(True); spine.set_linewidth(1.3); spine.set_color("black")
 
 # ── ground ──
 ax.add_patch(Rectangle((-2, -1.5), 34, 1.5, facecolor=C_GROUND, edgecolor="none", alpha=0.35))
@@ -62,12 +72,12 @@ tree_x, tree_trunk_h, canopy_r = 14.0, 2.2, 2.3
 ax.plot([tree_x, tree_x], [0, tree_trunk_h], color="#6b4a2f", linewidth=4, solid_capstyle="round")
 canopy_cy = tree_trunk_h + canopy_r * 0.75
 ax.add_patch(Circle((tree_x, canopy_cy), canopy_r, facecolor=C_TREE, edgecolor="#3f5c33", alpha=0.85, linewidth=1.0))
-ax.text(tree_x, canopy_cy + canopy_r + 0.6, "喬木冠層\n（樹蔭）", ha="center", fontsize=8.5, color="#3f5c33", fontweight="bold")
+ax.text(tree_x, canopy_cy + canopy_r + 0.6, "喬木冠層\n（樹蔭）", ha="center", fontsize=8.5, color=TEXT_MAIN, fontweight="bold")
 
 # ── sun and incoming solar rays at a low afternoon angle ──
 sun_x, sun_y = 2.5, 15.3
-ax.add_patch(Circle((sun_x, sun_y), 0.55, facecolor=C_SUN, edgecolor="#a87418", linewidth=1.0, zorder=6))
-ax.text(sun_x, sun_y + 0.9, "太陽", ha="center", fontsize=8.5, color="#a87418", fontweight="bold")
+ax.add_patch(Circle((sun_x, sun_y), 0.55, facecolor=C_SUN, edgecolor="black", linewidth=1.0, zorder=6))
+ax.text(sun_x, sun_y + 0.9, "太陽", ha="center", fontsize=8.5, color=TEXT_MAIN, fontweight="bold")
 
 sun_angle_deg = 35  # elevation angle above horizon, illustrative
 ray_dx, ray_dy = np.cos(np.radians(180 - sun_angle_deg)), -np.sin(np.radians(sun_angle_deg))
@@ -76,17 +86,17 @@ for start_x in [9, 15, 21, 29]:
     length = 20
     x1, y1 = x0 + ray_dx * length, y0 + ray_dy * length
     ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>", mutation_scale=10,
-                                  linewidth=1.1, color=C_SUN, alpha=0.75, linestyle="--"))
+                                  linewidth=1.1, color=C_SUN, alpha=0.85, linestyle="--"))
 ax.annotate("", xy=(6, 8), xytext=(6, 14),
             arrowprops=dict(arrowstyle="-", color="none"))
-ax.text(6.6, 12.3, r"太陽仰角 $\theta_{sun}$", fontsize=8.5, color="#a87418", fontweight="bold", rotation=-35)
+ax.text(6.6, 12.3, r"太陽仰角 $\theta_{sun}$", fontsize=8.5, color=TEXT_MAIN, fontweight="bold", rotation=-35)
 
 # ── building A cast shadow on the ground (dark band to the right of A) ──
 shadow_end = 6 + 14.0 / np.tan(np.radians(sun_angle_deg))
 shadow_end = min(shadow_end, 24)
 ax.add_patch(Rectangle((6, 0), shadow_end - 6, 0.35, facecolor=C_SHADOW, edgecolor="none", alpha=0.75, zorder=2))
 ax.annotate("建築 A 陰影範圍", xy=((6 + shadow_end) / 2, 0.35), xytext=((6 + shadow_end) / 2, 1.6),
-            ha="center", fontsize=8.3, color=C_SHADOW, fontweight="bold",
+            ha="center", fontsize=8.3, color=TEXT_MAIN, fontweight="bold",
             arrowprops=dict(arrowstyle="-|>", color=C_SHADOW, lw=1.0))
 
 # tree shade footprint on the ground
@@ -96,16 +106,16 @@ ax.add_patch(Rectangle((tree_x - canopy_r * 0.9, 0), canopy_r * 1.8, 0.35, facec
 ped_x = 19.0
 ax.add_patch(Circle((ped_x, 1.55), 0.35, facecolor="#d9b48f", edgecolor="black", linewidth=0.8, zorder=6))
 ax.add_patch(Rectangle((ped_x - 0.28, 0.15), 0.56, 1.25, facecolor="#5b7fa6", edgecolor="black", linewidth=0.8, zorder=6))
-ax.text(ped_x, -0.9, "行人", ha="center", fontsize=8.5)
+ax.text(ped_x, -0.9, "行人", ha="center", fontsize=8.5, color=TEXT_MAIN)
 ax.annotate("高熱壓力\nUTCI > 38°C\n（曝曬於街谷中段）", xy=(ped_x, 2.0), xytext=(ped_x + 3.0, 4.5),
-            fontsize=8.3, color=C_HOT, fontweight="bold", ha="left",
+            fontsize=8.3, color=TEXT_MAIN, fontweight="bold", ha="left",
             arrowprops=dict(arrowstyle="-|>", color=C_HOT, lw=1.2))
 
 ped2_x = 13.3
 ax.add_patch(Circle((ped2_x, 1.55), 0.35, facecolor="#d9b48f", edgecolor="black", linewidth=0.8, zorder=6))
 ax.add_patch(Rectangle((ped2_x - 0.28, 0.15), 0.56, 1.25, facecolor="#5b7fa6", edgecolor="black", linewidth=0.8, zorder=6))
 ax.annotate("低熱壓力\nUTCI < 32°C\n（樹蔭遮蔽）", xy=(ped2_x, 2.0), xytext=(ped2_x - 4.6, 5.4),
-            fontsize=8.3, color=C_COOL, fontweight="bold", ha="left",
+            fontsize=8.3, color=TEXT_MAIN, fontweight="bold", ha="left",
             arrowprops=dict(arrowstyle="-|>", color=C_COOL, lw=1.2))
 
 # ── multi-height air-node sampling column (heterogeneous graph air nodes) ──
@@ -114,7 +124,7 @@ air_heights = [0.5, 3.0, 6.0, 9.0, 12.0]
 for h in air_heights:
     ax.add_patch(Circle((air_x + 4.5, h), 0.28, facecolor=C_AIR, edgecolor="black", linewidth=0.8, zorder=5))
 ax.plot([air_x + 4.5] * 2, [0.5, 12.0], color=C_AIR, linewidth=1.0, linestyle=":", zorder=4, alpha=0.7)
-ax.text(air_x + 4.5, 13.0, "空氣節點\n（逐高度取樣）", ha="center", fontsize=8.3, color=C_AIR, fontweight="bold")
+ax.text(air_x + 4.5, 13.0, "空氣節點\n（逐高度取樣）", ha="center", fontsize=8.3, color=TEXT_MAIN, fontweight="bold")
 
 # ── street canyon aspect ratio annotation H/W ──
 ax.annotate("", xy=(0, -0.9), xytext=(24, -0.9),
