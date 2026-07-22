@@ -15,3872 +15,3872 @@
   "n_gen": 50,
   "seed": 42,
   "n_objectives": 3,
-  "checkpoint": "C:\\Users\\user\\Desktop\\UTIC GNN\\Physics-Informed ST-GNN\\urban-thermal-gnn\\04_training\\checkpoints_v4\\best_model.pt",
-  "checkpoint_epoch": 195,
-  "checkpoint_val_r2": 0.9907928463962165,
-  "total_wall_time_s": 274.29,
+  "checkpoint": "C:\\Users\\user\\Desktop\\UTIC GNN\\Physics-Informed ST-GNN\\urban-thermal-gnn\\04_training\\checkpoints_v5_300\\best_model.pt",
+  "checkpoint_epoch": 119,
+  "checkpoint_val_r2": 0.9836761355400085,
+  "total_wall_time_s": 186.35,
   "history": [
     {
       "generation": 1,
       "n_gen": 50,
-      "n_feasible": 37,
-      "best_utci": 36.59,
+      "n_feasible": 39,
+      "best_utci": 36.29,
       "best_green": 0.0089,
-      "elapsed_s": 4.72,
-      "pareto_count": 6,
-      "best_walkway_exposure": 0.3494
+      "elapsed_s": 4.95,
+      "pareto_count": 5,
+      "best_walkway_exposure": 0.341
     },
     {
       "generation": 2,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.59,
-      "best_green": 0.0113,
-      "elapsed_s": 6.31,
-      "pareto_count": 6,
-      "best_walkway_exposure": 0.349
+      "best_utci": 36.29,
+      "best_green": 0.0148,
+      "elapsed_s": 6.51,
+      "pareto_count": 9,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 3,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.59,
-      "best_green": 0.0113,
-      "elapsed_s": 5.61,
-      "pareto_count": 6,
-      "best_walkway_exposure": 0.3463
+      "best_utci": 36.28,
+      "best_green": 0.0148,
+      "elapsed_s": 5.96,
+      "pareto_count": 10,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 4,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.59,
-      "best_green": 0.0113,
-      "elapsed_s": 5.68,
-      "pareto_count": 12,
-      "best_walkway_exposure": 0.3463
+      "best_utci": 36.28,
+      "best_green": 0.0148,
+      "elapsed_s": 6.49,
+      "pareto_count": 17,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 5,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.56,
-      "best_green": 0.0178,
-      "elapsed_s": 5.82,
-      "pareto_count": 13,
-      "best_walkway_exposure": 0.3463
+      "best_utci": 36.28,
+      "best_green": 0.0205,
+      "elapsed_s": 7.2,
+      "pareto_count": 12,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 6,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.0178,
-      "elapsed_s": 5.4,
+      "best_utci": 36.28,
+      "best_green": 0.0249,
+      "elapsed_s": 6.58,
       "pareto_count": 16,
-      "best_walkway_exposure": 0.3463
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 7,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.0169,
-      "elapsed_s": 5.32,
-      "pareto_count": 20,
-      "best_walkway_exposure": 0.3462
+      "best_utci": 36.27,
+      "best_green": 0.0249,
+      "elapsed_s": 6.85,
+      "pareto_count": 25,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 8,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.018,
-      "elapsed_s": 5.36,
-      "pareto_count": 16,
-      "best_walkway_exposure": 0.3442
+      "best_utci": 36.27,
+      "best_green": 0.0249,
+      "elapsed_s": 6.48,
+      "pareto_count": 25,
+      "best_walkway_exposure": 0.3388
     },
     {
       "generation": 9,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.0262,
-      "elapsed_s": 5.7,
-      "pareto_count": 21,
-      "best_walkway_exposure": 0.3441
+      "best_utci": 36.27,
+      "best_green": 0.0249,
+      "elapsed_s": 3.3,
+      "pareto_count": 26,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 10,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.0262,
-      "elapsed_s": 5.54,
-      "pareto_count": 24,
-      "best_walkway_exposure": 0.3441
+      "best_utci": 36.27,
+      "best_green": 0.0233,
+      "elapsed_s": 3.07,
+      "pareto_count": 32,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 11,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.55,
-      "best_green": 0.0262,
-      "elapsed_s": 5.48,
-      "pareto_count": 13,
-      "best_walkway_exposure": 0.3409
+      "best_utci": 36.27,
+      "best_green": 0.0233,
+      "elapsed_s": 2.84,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 12,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.54,
-      "best_green": 0.0263,
-      "elapsed_s": 5.95,
-      "pareto_count": 12,
-      "best_walkway_exposure": 0.3409
+      "best_utci": 36.27,
+      "best_green": 0.0233,
+      "elapsed_s": 2.98,
+      "pareto_count": 25,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 13,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.54,
-      "best_green": 0.0263,
-      "elapsed_s": 6.41,
-      "pareto_count": 16,
-      "best_walkway_exposure": 0.3409
+      "best_utci": 36.27,
+      "best_green": 0.0233,
+      "elapsed_s": 3.21,
+      "pareto_count": 33,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 14,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0263,
-      "elapsed_s": 6.05,
-      "pareto_count": 25,
-      "best_walkway_exposure": 0.3409
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.43,
+      "pareto_count": 28,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 15,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0297,
-      "elapsed_s": 5.04,
-      "pareto_count": 32,
-      "best_walkway_exposure": 0.3403
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 2.97,
+      "pareto_count": 37,
+      "best_walkway_exposure": 0.3386
     },
     {
       "generation": 16,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0297,
-      "elapsed_s": 4.73,
-      "pareto_count": 33,
-      "best_walkway_exposure": 0.3403
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.35,
+      "pareto_count": 36,
+      "best_walkway_exposure": 0.3367
     },
     {
       "generation": 17,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0297,
-      "elapsed_s": 5.38,
-      "pareto_count": 38,
-      "best_walkway_exposure": 0.3392
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.04,
+      "pareto_count": 34,
+      "best_walkway_exposure": 0.3367
     },
     {
       "generation": 18,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0295,
-      "elapsed_s": 4.93,
-      "pareto_count": 19,
-      "best_walkway_exposure": 0.3392
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 2.95,
+      "pareto_count": 39,
+      "best_walkway_exposure": 0.3367
     },
     {
       "generation": 19,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0295,
-      "elapsed_s": 5.89,
-      "pareto_count": 34,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 2.91,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3367
     },
     {
       "generation": 20,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0295,
-      "elapsed_s": 5.09,
-      "pareto_count": 28,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.11,
+      "pareto_count": 35,
+      "best_walkway_exposure": 0.3367
     },
     {
       "generation": 21,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0295,
-      "elapsed_s": 5.6,
-      "pareto_count": 33,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.07,
+      "pareto_count": 31,
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 22,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.031,
-      "elapsed_s": 4.84,
-      "pareto_count": 29,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 2.84,
+      "pareto_count": 35,
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 23,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0294,
-      "elapsed_s": 5.83,
-      "pareto_count": 35,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.0231,
+      "elapsed_s": 3.08,
+      "pareto_count": 36,
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 24,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0303,
-      "elapsed_s": 6.21,
-      "pareto_count": 38,
-      "best_walkway_exposure": 0.3368
+      "best_utci": 36.27,
+      "best_green": 0.028,
+      "elapsed_s": 3.1,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 25,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0303,
-      "elapsed_s": 5.41,
+      "best_utci": 36.27,
+      "best_green": 0.028,
+      "elapsed_s": 2.97,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3368
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 26,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0303,
-      "elapsed_s": 5.26,
+      "best_utci": 36.27,
+      "best_green": 0.0279,
+      "elapsed_s": 3.26,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3358
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 27,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0288,
-      "elapsed_s": 5.68,
-      "pareto_count": 33,
-      "best_walkway_exposure": 0.3358
+      "best_utci": 36.27,
+      "best_green": 0.0279,
+      "elapsed_s": 2.97,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 28,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0303,
-      "elapsed_s": 4.81,
+      "best_utci": 36.26,
+      "best_green": 0.0279,
+      "elapsed_s": 2.87,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3358
+      "best_walkway_exposure": 0.3364
     },
     {
       "generation": 29,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0282,
-      "elapsed_s": 5.32,
+      "best_utci": 36.26,
+      "best_green": 0.0275,
+      "elapsed_s": 3.34,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3358
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 30,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.53,
-      "best_green": 0.0281,
-      "elapsed_s": 5.97,
-      "pareto_count": 30,
-      "best_walkway_exposure": 0.3358
+      "best_utci": 36.26,
+      "best_green": 0.0275,
+      "elapsed_s": 2.88,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 31,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0281,
-      "elapsed_s": 5.47,
-      "pareto_count": 32,
-      "best_walkway_exposure": 0.3343
+      "best_utci": 36.26,
+      "best_green": 0.0275,
+      "elapsed_s": 3.31,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 32,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0281,
-      "elapsed_s": 5.07,
-      "pareto_count": 32,
-      "best_walkway_exposure": 0.3343
+      "best_utci": 36.26,
+      "best_green": 0.0252,
+      "elapsed_s": 3.35,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 33,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.031,
-      "elapsed_s": 5.54,
-      "pareto_count": 35,
-      "best_walkway_exposure": 0.3343
+      "best_utci": 36.26,
+      "best_green": 0.0252,
+      "elapsed_s": 2.65,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 34,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 4.98,
+      "best_utci": 36.26,
+      "best_green": 0.0238,
+      "elapsed_s": 3.15,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3343
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 35,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 5.09,
-      "pareto_count": 39,
-      "best_walkway_exposure": 0.3343
+      "best_utci": 36.26,
+      "best_green": 0.0238,
+      "elapsed_s": 3.17,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 36,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 4.89,
+      "best_utci": 36.26,
+      "best_green": 0.0238,
+      "elapsed_s": 3.05,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.334
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 37,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 5.31,
+      "best_utci": 36.26,
+      "best_green": 0.0238,
+      "elapsed_s": 3.15,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.334
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 38,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 4.96,
+      "best_utci": 36.26,
+      "best_green": 0.0269,
+      "elapsed_s": 2.94,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.334
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 39,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 5.9,
-      "pareto_count": 37,
-      "best_walkway_exposure": 0.334
+      "best_utci": 36.26,
+      "best_green": 0.0269,
+      "elapsed_s": 3.13,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 40,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 4.79,
-      "pareto_count": 32,
-      "best_walkway_exposure": 0.334
+      "best_utci": 36.26,
+      "best_green": 0.0269,
+      "elapsed_s": 2.95,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 41,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0334,
-      "elapsed_s": 5.63,
-      "pareto_count": 37,
-      "best_walkway_exposure": 0.3338
+      "best_utci": 36.26,
+      "best_green": 0.0269,
+      "elapsed_s": 2.61,
+      "pareto_count": 34,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 42,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0337,
-      "elapsed_s": 5.27,
-      "pareto_count": 28,
-      "best_walkway_exposure": 0.3338
+      "best_utci": 36.26,
+      "best_green": 0.0334,
+      "elapsed_s": 3.17,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 43,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0337,
-      "elapsed_s": 5.71,
-      "pareto_count": 33,
-      "best_walkway_exposure": 0.3338
+      "best_utci": 36.26,
+      "best_green": 0.0333,
+      "elapsed_s": 3.21,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 44,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0337,
-      "elapsed_s": 4.97,
-      "pareto_count": 33,
-      "best_walkway_exposure": 0.3338
+      "best_utci": 36.26,
+      "best_green": 0.0333,
+      "elapsed_s": 3.35,
+      "pareto_count": 40,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 45,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 5.14,
+      "best_utci": 36.26,
+      "best_green": 0.0254,
+      "elapsed_s": 3.99,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3338
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 46,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 5.01,
-      "pareto_count": 40,
-      "best_walkway_exposure": 0.3338
+      "best_utci": 36.26,
+      "best_green": 0.0254,
+      "elapsed_s": 3.32,
+      "pareto_count": 38,
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 47,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 5.06,
+      "best_utci": 36.26,
+      "best_green": 0.0254,
+      "elapsed_s": 3.14,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3338
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 48,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 4.91,
+      "best_utci": 36.26,
+      "best_green": 0.0347,
+      "elapsed_s": 3.35,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3338
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 49,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 5.07,
+      "best_utci": 36.26,
+      "best_green": 0.0347,
+      "elapsed_s": 3.2,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3337
+      "best_walkway_exposure": 0.3361
     },
     {
       "generation": 50,
       "n_gen": 50,
       "n_feasible": 40,
-      "best_utci": 36.52,
-      "best_green": 0.0406,
-      "elapsed_s": 5.08,
+      "best_utci": 36.26,
+      "best_green": 0.0347,
+      "elapsed_s": 3.04,
       "pareto_count": 40,
-      "best_walkway_exposure": 0.3337
+      "best_walkway_exposure": 0.3361
     }
   ],
   "final_pareto": [
     {
       "genes": [
-        0.31108201524748913,
-        0.7812077676833952,
-        0.9994293600825205,
-        0.5622283348089719,
-        0.6710969038997399,
-        0.9999665319335538,
-        0.8400069350639079,
-        0.4108972207922351,
-        0.5765127247668833,
-        0.6807861741547603,
-        0.16478231021125064,
-        0.77510120155591,
-        0.5812300613089356,
-        0.5912315693765787,
-        0.929239616725638,
-        0.04393885671626569,
-        0.9462602608751756,
-        0.8464100141377247,
-        0.9784924833549443,
-        0.7220952680236997,
-        0.7198767695979521,
-        0.9614819844218067,
-        0.9507827407763028,
-        0.6102254828168984,
-        0.9625948655055994,
-        0.6713596972656813,
-        0.9269017580992475,
-        0.0605471388685308
+        0.13515744854744857,
+        0.8067263386408886,
+        0.999739547361694,
+        0.6977607118710591,
+        0.9830495199519875,
+        0.9767367926028064,
+        0.8541456107420506,
+        0.43554093230008367,
+        0.7954365491039772,
+        0.9192439980501741,
+        0.9108864470020106,
+        0.9923407367161293,
+        0.7035379216650718,
+        0.9908609165898292,
+        0.9699385598507844,
+        0.09104326157921443,
+        0.9586201941037074,
+        0.9984823297949262,
+        0.999174009469677,
+        0.7461275248092873,
+        0.7731238248665646,
+        0.9998269533143351,
+        0.9759960053396873,
+        0.9820581705577397,
+        0.9983887780120413,
+        0.9417573887009846,
+        0.7994243786036794,
+        0.9342461934378212
       ],
       "design": {
         "buildings": [
           {
-            "cx": 30.74064705597592,
-            "cy": 53.78271092078797,
-            "w": 29.98744592181545,
-            "d": 20.369023365797382,
-            "rot": 120.79744270195317,
+            "cx": 22.120624446312952,
+            "cy": 55.03134812245455,
+            "w": 29.994270041957268,
+            "d": 23.350735661163302,
+            "rot": 176.94891359135775,
             "floors": 8
           },
           {
-            "cx": 59.0481079383561,
-            "cy": 35.00822135984373,
-            "w": 20.683279944871433,
-            "d": 22.977295831404724,
-            "rot": 29.660815838025115,
-            "floors": 7
+            "cx": 57.982321366255846,
+            "cy": 36.726985637573215,
+            "w": 25.499604080287497,
+            "d": 28.22336795710383,
+            "rot": 163.9595604603619,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 45.72633938352684,
-            "y": 46.431398922071175,
-            "radius": 4.752338658539733,
-            "height": 3.3075719970138597
+            "x": 54.29048501790664,
+            "y": 74.46355606374762,
+            "radius": 4.894784959477745,
+            "height": 3.637302831054501
           },
           {
-            "x": 71.30540391118389,
-            "y": 64.3008539236563,
-            "radius": 4.9247236917423045,
-            "height": 8.054666876165898
+            "x": 72.10606529882092,
+            "y": 74.89664527743244,
+            "radius": 4.99710903314387,
+            "height": 8.222892673665012
           },
           {
-            "x": 55.46712599562264,
-            "y": 72.46272905870694,
-            "radius": 4.82773959271706,
-            "height": 7.271578379718289
+            "x": 59.16456018049542,
+            "y": 75.07187163663252,
+            "radius": 4.915986018688906,
+            "height": 9.874407193904178
           },
           {
-            "x": 72.61834468505738,
-            "y": 52.08286145681707,
-            "radius": 4.744156153347366,
-            "height": 3.423829972079716
+            "x": 75.58696693276993,
+            "y": 71.54325754828473,
+            "radius": 4.297985325112878,
+            "height": 9.539723354064748
           }
         ]
       },
-      "mean_utci": 36.52,
-      "green_ratio": 0.0455,
-      "far": 1.283,
-      "bcr": 0.17,
+      "mean_utci": 36.26,
+      "green_ratio": 0.0449,
+      "far": 1.775,
+      "bcr": 0.222,
+      "violation": 0.0,
+      "walkway_exposure": 0.3421
+    },
+    {
+      "genes": [
+        0.13605258894031202,
+        0.8067263386408886,
+        0.999739547361694,
+        0.6977607118710591,
+        0.8841819914352457,
+        0.9767367926028064,
+        0.8541456107420506,
+        0.43554093230008367,
+        0.7954365491039772,
+        0.9192427306635891,
+        0.9108864470020106,
+        0.9713095800959175,
+        0.5599995185252323,
+        0.687462674746234,
+        0.9699385598507844,
+        0.09103068125176174,
+        0.9163557613788806,
+        0.9984823297949262,
+        0.9192015939220393,
+        0.739729656154796,
+        0.7731238248665646,
+        0.9998244660111416,
+        0.9643125142067314,
+        0.9820581705577397,
+        0.9979946047985266,
+        0.9419079547471662,
+        0.7994243786036794,
+        0.37154108587745316
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.164491454680157,
+            "cy": 55.03134812245455,
+            "w": 29.994270041957268,
+            "d": 23.350735661163302,
+            "rot": 159.1527584583442,
+            "floors": 8
+          },
+          {
+            "cx": 57.98233124072256,
+            "cy": 36.726983840292945,
+            "w": 25.499604080287497,
+            "d": 28.22334007459896,
+            "rot": 163.9595604603619,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 44.212592000312156,
+            "y": 53.161835018076054,
+            "radius": 4.894784959477745,
+            "height": 3.637214768762332
+          },
+          {
+            "x": 69.38038946968717,
+            "y": 75.17569912958305,
+            "radius": 4.717205578727137,
+            "height": 8.178107593083572
+          },
+          {
+            "x": 59.18689745899763,
+            "y": 75.11257497048922,
+            "radius": 4.87509379972356,
+            "height": 9.874407193904178
+          },
+          {
+            "x": 75.55882137706323,
+            "y": 71.55400857066536,
+            "radius": 4.297985325112878,
+            "height": 5.600787601142172
+          }
+        ]
+      },
+      "mean_utci": 36.26,
+      "green_ratio": 0.0434,
+      "far": 1.775,
+      "bcr": 0.222,
       "violation": 0.0,
       "walkway_exposure": 0.3415
     },
     {
       "genes": [
-        0.33466219413617726,
-        0.7812320772124832,
-        0.9525521208681722,
-        0.5621867761891641,
-        0.6891716176129363,
-        0.9625526046854372,
-        0.8400076503744718,
-        0.41089724138493977,
-        0.5765136371957472,
-        0.6808936748990926,
-        0.1635288289700565,
-        0.77510120155591,
-        0.5808407790632044,
-        0.5910601588213108,
-        0.9318687868436216,
-        0.04395727597776269,
-        0.9548648459996639,
-        0.8229637678060546,
-        0.9767371195545663,
-        0.7230499108860051,
-        0.732679190902766,
-        0.9440581932447321,
-        0.9968202050100019,
-        0.7839425934301765,
-        0.9630956938147239,
-        0.6714083358453435,
-        0.969166809322152,
-        0.06202586029466318
+        0.1351851610914282,
+        0.7865368828704142,
+        0.9943769536916938,
+        0.6977607118710591,
+        0.9752556865248521,
+        0.9760326876716914,
+        0.8455146246695809,
+        0.43554093230008367,
+        0.797174855125062,
+        0.9192439980501741,
+        0.913931902128837,
+        0.9955224978374654,
+        0.6963965434934223,
+        0.9873895155629834,
+        0.9689239875427867,
+        0.09104326157921443,
+        0.9586201941037074,
+        0.975261881819172,
+        0.9562447115670499,
+        0.7440605119051151,
+        0.7742449609860493,
+        0.9998253508637119,
+        0.9759960053396873,
+        0.9820581705577397,
+        0.9991065376110985,
+        0.9441704103174613,
+        0.7994243786036794,
+        0.9522828926021043
       ],
       "design": {
         "buildings": [
           {
-            "cx": 31.725859091644626,
-            "cy": 54.073936826778244,
-            "w": 28.956146659099787,
-            "d": 20.36810907616161,
-            "rot": 124.05089117032854,
+            "cx": 22.078942737350896,
+            "cy": 54.0757538842015,
+            "w": 29.87629298121726,
+            "d": 23.350735661163302,
+            "rot": 175.54602357447337,
             "floors": 8
           },
           {
-            "cx": 59.04734388832733,
-            "cy": 35.00843324298593,
-            "w": 20.68330001830644,
-            "d": 22.97966084778004,
-            "rot": 29.43518921461017,
-            "floors": 7
+            "cx": 57.544068962286694,
+            "cy": 36.726985637573215,
+            "w": 25.537846812751365,
+            "d": 28.22336795710383,
+            "rot": 164.50774238319067,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 45.69740899687489,
-            "y": 46.41763939112671,
-            "radius": 4.7615407539526755,
-            "height": 3.3077009318443387
+            "x": 53.790480594564634,
+            "y": 74.22328894800889,
+            "radius": 4.891233956399754,
+            "height": 3.637302831054501
           },
           {
-            "x": 71.91460948569572,
-            "y": 62.66005521905458,
-            "radius": 4.918579918440982,
-            "height": 8.061349376202035
+            "x": 72.2438829993788,
+            "y": 73.41389827238334,
+            "radius": 4.846856490484675,
+            "height": 8.208423583335806
           },
           {
-            "x": 56.292722468072185,
-            "y": 71.09395762525827,
-            "radius": 4.988870717535007,
-            "height": 8.487598154011234
+            "x": 59.24322809107733,
+            "y": 75.07175919583239,
+            "radius": 4.915986018688906,
+            "height": 9.874407193904178
           },
           {
-            "x": 72.51664959183704,
-            "y": 52.03557897049429,
-            "radius": 4.892083832627533,
-            "height": 3.434181022062642
+            "x": 75.63821786024708,
+            "y": 71.71555701460927,
+            "radius": 4.297985325112878,
+            "height": 9.66598024821473
           }
         ]
       },
-      "mean_utci": 36.52,
-      "green_ratio": 0.047,
-      "far": 1.257,
-      "bcr": 0.166,
-      "violation": 0.0,
-      "walkway_exposure": 0.3417
-    },
-    {
-      "genes": [
-        0.31108311898613067,
-        0.7812077676254972,
-        0.9997995268626748,
-        0.5533532781739582,
-        0.6735012868143171,
-        0.9844267686229865,
-        0.8398946033276488,
-        0.4108972225432975,
-        0.5764822314624908,
-        0.6809210218306192,
-        0.9662048540114515,
-        0.8145794458358301,
-        0.5809618894371544,
-        0.5918673449925212,
-        0.8901115087158176,
-        0.04395305502003627,
-        0.9463718428859225,
-        0.8286709538387205,
-        0.9769937119182531,
-        0.7221036033001594,
-        0.7321050362775386,
-        0.9760725868424517,
-        0.9963601841550711,
-        0.7731039239977916,
-        0.9631087623941247,
-        0.6713116109340617,
-        0.9998506090474039,
-        0.061416688063782546
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.74223962960413,
-            "cy": 53.780420854924515,
-            "w": 29.995589590978845,
-            "d": 20.173772119827078,
-            "rot": 121.23023162657708,
-            "floors": 8
-          },
-          {
-            "cx": 59.040806462786406,
-            "cy": 35.008485794596936,
-            "w": 20.682609092174797,
-            "d": 22.980262480273623,
-            "rot": 173.91687372206127,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 45.729609719773165,
-            "y": 46.50138029705306,
-            "radius": 4.615390280505362,
-            "height": 3.307671385140254
-          },
-          {
-            "x": 71.31791451647767,
-            "y": 63.059897259247236,
-            "radius": 4.919477991713886,
-            "height": 8.054725223101116
-          },
-          {
-            "x": 56.25326627654883,
-            "y": 73.3372107947861,
-            "radius": 4.987260644542749,
-            "height": 8.41172746798454
-          },
-          {
-            "x": 72.41809765740291,
-            "y": 51.99199191221756,
-            "radius": 4.9994771316659135,
-            "height": 3.429916816446478
-          }
-        ]
-      },
-      "mean_utci": 36.52,
-      "green_ratio": 0.0468,
-      "far": 1.276,
-      "bcr": 0.169,
-      "violation": 0.0,
-      "walkway_exposure": 0.346
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.7812372523758098,
-        1.0,
-        0.5237589736418014,
-        0.6708146425628646,
-        0.9988194563503542,
-        0.8309708016377776,
-        0.41089720650370515,
-        0.5766733797931808,
-        0.6780580780434046,
-        0.16488774822244018,
-        0.8107566140964937,
-        0.7360945685301721,
-        0.5918622631252073,
-        0.9338827929916429,
-        0.049455095848524755,
-        0.9460288308680193,
-        0.8316645163198687,
-        0.9785049436352354,
-        0.7241213482270427,
-        0.7267445438870526,
-        0.9683334935778296,
-        0.9996132417231985,
-        0.7725677518113491,
-        0.9993137216893814,
-        0.6712861288305988,
-        0.999212960093679,
-        0.07136790284996192
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.742099393138837,
-            "cy": 53.780625366414675,
-            "w": 30.0,
-            "d": 19.52269742011963,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 58.561743552048284,
-            "cy": 35.00287277770377,
-            "w": 20.686814355449975,
-            "d": 22.9172777169549,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.635889191339466,
-            "y": 46.472874152635654,
-            "radius": 4.76858977547075,
-            "height": 3.3461856709396733
-          },
-          {
-            "x": 71.28913006478007,
-            "y": 63.266420174698226,
-            "radius": 4.924767302723324,
-            "height": 8.068849437589298
-          },
-          {
-            "x": 55.872731939397156,
-            "y": 72.78461247343269,
-            "radius": 4.998646346031195,
-            "height": 8.407974262679444
-          },
-          {
-            "x": 74.9547113770299,
-            "y": 51.990972681273426,
-            "radius": 4.997245360327876,
-            "height": 3.4995753199497335
-          }
-        ]
-      },
-      "mean_utci": 36.52,
-      "green_ratio": 0.0476,
-      "far": 1.251,
-      "bcr": 0.166,
-      "violation": 0.0,
-      "walkway_exposure": 0.3429
-    },
-    {
-      "genes": [
-        0.31108201524748913,
-        0.7812077676833952,
-        0.9994293600825205,
-        0.5622283348089719,
-        0.6710969038997399,
-        0.9999665319335538,
-        0.8400069350639079,
-        0.4108972207922351,
-        0.5765127247668833,
-        0.6807861741547603,
-        0.16478231021125064,
-        0.77510120155591,
-        0.5812300613089356,
-        0.5912315693765787,
-        0.929239616725638,
-        0.04393885671626569,
-        0.9462602608751756,
-        0.8464100141377247,
-        0.9784924833549443,
-        0.7220952680236997,
-        0.7198767695979521,
-        0.9614819844218067,
-        0.9507827407763028,
-        0.6102254828168984,
-        0.9625948655055994,
-        0.6713596972656813,
-        0.9269017580992475,
-        0.0605471388685308
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.74064705597592,
-            "cy": 53.78271092078797,
-            "w": 29.98744592181545,
-            "d": 20.369023365797382,
-            "rot": 120.79744270195317,
-            "floors": 8
-          },
-          {
-            "cx": 59.0481079383561,
-            "cy": 35.00822135984373,
-            "w": 20.683279944871433,
-            "d": 22.977295831404724,
-            "rot": 29.660815838025115,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 45.72633938352684,
-            "y": 46.431398922071175,
-            "radius": 4.752338658539733,
-            "height": 3.3075719970138597
-          },
-          {
-            "x": 71.30540391118389,
-            "y": 64.3008539236563,
-            "radius": 4.9247236917423045,
-            "height": 8.054666876165898
-          },
-          {
-            "x": 55.46712599562264,
-            "y": 72.46272905870694,
-            "radius": 4.82773959271706,
-            "height": 7.271578379718289
-          },
-          {
-            "x": 72.61834468505738,
-            "y": 52.08286145681707,
-            "radius": 4.744156153347366,
-            "height": 3.423829972079716
-          }
-        ]
-      },
-      "mean_utci": 36.52,
-      "green_ratio": 0.0455,
-      "far": 1.283,
-      "bcr": 0.17,
-      "violation": 0.0,
-      "walkway_exposure": 0.3415
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.8029728868511516,
-        0.9983072877810821,
-        0.5596747100244599,
-        0.6708146425628646,
-        0.9988698584862764,
-        0.8409729300551977,
-        0.4325513618340707,
-        0.5766725371463035,
-        0.6780580780434046,
-        0.16488774822244018,
-        0.8101329291853205,
-        0.7366213271512174,
-        0.6716033708032674,
-        0.9338827929916429,
-        0.0,
-        0.9551538340923105,
-        0.8316645163198687,
-        0.9995394346562667,
-        0.7241213482270427,
-        0.7322459503772719,
-        0.9683334935778296,
-        1.0,
-        0.7841420988707702,
-        0.9993361539050486,
-        0.6712861288305988,
-        0.999959869799592,
-        0.8668000111219826
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.735063451250415,
-            "cy": 54.856954065673065,
-            "w": 29.96276033118381,
-            "d": 20.312843620538118,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 59.12269014232181,
-            "cy": 36.21729675737059,
-            "w": 20.686795817218677,
-            "d": 22.9172777169549,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.67300608947417,
-            "y": 52.09165750536385,
-            "radius": 4.76858977547075,
-            "height": 3.0
-          },
-          {
-            "x": 71.86223578303608,
-            "y": 63.21758541466455,
-            "radius": 4.998388021296933,
-            "height": 8.068849437589298
-          },
-          {
-            "x": 56.25721652640903,
-            "y": 72.78334455044808,
-            "radius": 5.0,
-            "height": 8.488994692095392
-          },
-          {
-            "x": 74.95367104257289,
-            "y": 51.990077134368654,
-            "radius": 4.999859544298571,
-            "height": 9.067600077853879
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.048,
-      "far": 1.279,
-      "bcr": 0.169,
-      "violation": 0.0,
-      "walkway_exposure": 0.3482
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.8057621959235726,
-        0.9933522483441579,
-        0.5134203030822031,
-        0.6708146425628646,
-        1.0,
-        0.8309937664350292,
-        0.43300059826079423,
-        0.5761135463237215,
-        0.6805636800025123,
-        0.16488774822244018,
-        0.8122362691969772,
-        0.7361878868869111,
-        0.5916468800006555,
-        0.9338827929916429,
-        0.04920034960752134,
-        0.968672594422658,
-        0.8325464237982675,
-        0.9992405564113546,
-        0.7912982649529141,
-        0.7178882972197433,
-        0.9683334935778296,
-        0.9930341995563875,
-        0.7733751142480929,
-        0.9981372610921387,
-        0.6712861288305988,
-        0.9983511723335714,
-        0.8301816957339527
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.714467292527498,
-            "cy": 55.02706548542844,
-            "w": 29.853749463571475,
-            "d": 19.29524666780847,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 58.54478603054293,
-            "cy": 36.246184383439605,
-            "w": 20.67449801912187,
-            "d": 22.97240096005527,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.64246466595496,
-            "y": 46.457697650202604,
-            "radius": 4.76858977547075,
-            "height": 3.3444024472526492
-          },
-          {
-            "x": 72.80957312236512,
-            "y": 63.2800175176251,
-            "radius": 4.997341947439741,
-            "height": 8.539087854670399
-          },
-          {
-            "x": 55.26280517016404,
-            "y": 72.80618077404932,
-            "radius": 4.975619698447357,
-            "height": 8.41362579973665
-          },
-          {
-            "x": 74.87535767393409,
-            "y": 51.99200596729855,
-            "radius": 4.9942291031675,
-            "height": 8.81127187013767
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.0478,
-      "far": 1.24,
-      "bcr": 0.164,
-      "violation": 0.0,
-      "walkway_exposure": 0.3443
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.8019515779623655,
-        1.0,
-        0.5520953149763056,
-        0.6708146425628646,
-        0.9991278992601615,
-        0.8395208495526042,
-        0.43183704176060744,
-        0.5765618317628055,
-        0.6808873009101234,
-        0.16488774822244018,
-        0.814589274690752,
-        0.7323989443030241,
-        0.5918622631252073,
-        0.9314778796321445,
-        0.049455095848524755,
-        0.9463705487831797,
-        0.831700458488515,
-        0.999238875143517,
-        0.7241292892270829,
-        0.7178882972197433,
-        0.9915963997601425,
-        0.9999927329427025,
-        0.7733240053683157,
-        0.9981372610921387,
-        0.7384626176748712,
-        0.9999694741227543,
-        0.8547760973844489
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.742099393138837,
-            "cy": 54.79562732015591,
-            "w": 30.0,
-            "d": 20.146096929478723,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 59.02012075143403,
-            "cy": 36.18147840347186,
-            "w": 20.68436029878172,
-            "d": 22.979520620022715,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.37939738025594,
-            "y": 46.47442059812241,
-            "radius": 4.760172578712506,
-            "height": 3.3461856709396733
-          },
-          {
-            "x": 71.24831662086174,
-            "y": 63.22079935244309,
-            "radius": 4.99733606300231,
-            "height": 8.06890502458958
-          },
-          {
-            "x": 55.25219188922922,
-            "y": 74.41177299042441,
-            "radius": 4.999974565299459,
-            "height": 8.41326803757821
-          },
-          {
-            "x": 74.86971471898792,
-            "y": 56.692434192205155,
-            "radius": 4.999893159429639,
-            "height": 8.983432681691141
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.0479,
-      "far": 1.275,
-      "bcr": 0.169,
-      "violation": 0.0,
-      "walkway_exposure": 0.3466
-    },
-    {
-      "genes": [
-        0.3110636994073511,
-        0.8057621959235726,
-        0.9933522483441579,
-        0.5134203030822031,
-        0.6708146425628646,
-        0.9999660214919912,
-        0.8309992930656226,
-        0.41156694618270273,
-        0.5760933202641195,
-        0.6805636800025123,
-        0.1647843241944357,
-        0.8122362691969772,
-        0.5873339218611545,
-        0.5660016461355223,
-        0.9295853032237152,
-        0.04396690650661195,
-        0.9418876668327841,
-        0.8326425314550279,
-        0.9992405564113546,
-        0.721755840441531,
-        0.7177958756705378,
-        0.9615271355592127,
-        0.9930341995563875,
-        0.611102166310699,
-        0.9981372610921387,
-        0.6712861288305988,
-        0.9983511723335714,
-        0.8301816957339527
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.714489235647704,
-            "cy": 55.02706548542844,
-            "w": 29.853749463571475,
-            "d": 19.29524666780847,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 58.54509567438586,
-            "cy": 35.045308318846615,
-            "w": 20.67405304581063,
-            "d": 22.97240096005527,
-            "rot": 29.661178354998427,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 46.156421671663786,
-            "y": 44.65264763078215,
-            "radius": 4.7535485612830035,
-            "height": 3.3077683455462834
-          },
-          {
-            "x": 70.93448579958324,
-            "y": 63.28674556451673,
-            "radius": 4.997341947439741,
-            "height": 8.052290883090716
-          },
-          {
-            "x": 55.25633115518919,
-            "y": 72.3294038306242,
-            "radius": 4.975619698447357,
-            "height": 7.277715164174893
-          },
-          {
-            "x": 74.87535767393409,
-            "y": 51.99200596729855,
-            "radius": 4.9942291031675,
-            "height": 8.81127187013767
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.0477,
-      "far": 1.24,
-      "bcr": 0.164,
-      "violation": 0.0,
-      "walkway_exposure": 0.3456
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.7812372523758098,
-        1.0,
-        0.5237589736418014,
-        0.6708146425628646,
-        0.9320646663430479,
-        0.8309708016377776,
-        0.4113681701819472,
-        0.5470795450942254,
-        0.6780580780434046,
-        0.16488774822244018,
-        0.8107950309505827,
-        0.7360945685301721,
-        0.5918622631252073,
-        0.9338827929916429,
-        0.049455095848524755,
-        0.9460288308680193,
-        0.8316645163198687,
-        0.9785049436352354,
-        0.7241213482270427,
-        0.7267445438870526,
-        0.9683334935778296,
-        0.9996123094506758,
-        0.7725677518113491,
-        0.9993137216893814,
-        0.6712861288305988,
-        0.9992147956189632,
-        0.07136790284996192
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.742099393138837,
-            "cy": 53.780625366414675,
-            "w": 30.0,
-            "d": 19.52269742011963,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 58.561743552048284,
-            "cy": 35.029285702876024,
-            "w": 20.035749992072958,
-            "d": 22.9172777169549,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.635889191339466,
-            "y": 46.472874152635654,
-            "radius": 4.76858977547075,
-            "height": 3.3461856709396733
-          },
-          {
-            "x": 71.28913006478007,
-            "y": 63.266420174698226,
-            "radius": 4.924767302723324,
-            "height": 8.068849437589298
-          },
-          {
-            "x": 55.8727334191111,
-            "y": 72.78461552973381,
-            "radius": 4.998643083077365,
-            "height": 8.407974262679444
-          },
-          {
-            "x": 74.95470496150917,
-            "y": 51.990970480473294,
-            "radius": 4.997251784666371,
-            "height": 3.4995753199497335
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.0476,
-      "far": 1.234,
-      "bcr": 0.163,
-      "violation": 0.0,
-      "walkway_exposure": 0.3427
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.8037728131075847,
-        0.9999002238552818,
-        0.5238140555296202,
-        0.7913221978002621,
-        0.9988698584862764,
-        0.8309708016377776,
-        0.43300059826079423,
-        0.5758339716396278,
-        0.6784872052811239,
-        0.16488774822244018,
-        0.8122370116615061,
-        0.7374501649859833,
-        0.6133190409481835,
-        0.9338827929916429,
-        0.04861723651594285,
-        0.9471379363276423,
-        0.8316645163198687,
-        0.9999708665750173,
-        0.7241213482270427,
-        0.7051752078900448,
-        0.9683334935778296,
-        0.9999523168897457,
-        0.7767750932143185,
-        0.9985866059105541,
-        0.6712861288305988,
-        0.9999707362918236,
-        0.8488930474449492
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.741684662774016,
-            "cy": 54.88553464643522,
-            "w": 29.997804924816197,
-            "d": 19.523909221651646,
-            "rot": 142.4379956040472,
-            "floors": 8
-          },
-          {
-            "cx": 58.55861892315909,
-            "cy": 36.24312368703029,
-            "w": 20.66834737607181,
-            "d": 22.926718516184728,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.73140834100666,
-            "y": 47.984779235791365,
-            "radius": 4.76858977547075,
-            "height": 3.3403206556116
-          },
-          {
-            "x": 71.29974672955164,
-            "y": 63.21658378005396,
-            "radius": 4.999898033012561,
-            "height": 8.068849437589298
-          },
-          {
-            "x": 54.36233303604756,
-            "y": 72.78350087163135,
-            "radius": 4.99983310911411,
-            "height": 8.43742565250023
-          },
-          {
-            "x": 74.90116454718934,
-            "y": 51.99006410541293,
-            "radius": 4.9998975770213825,
-            "height": 8.942251332114644
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.048,
-      "far": 1.25,
-      "bcr": 0.166,
-      "violation": 0.0,
-      "walkway_exposure": 0.3447
-    },
-    {
-      "genes": [
-        0.31106325292120074,
-        0.8022404196863219,
-        1.0,
-        0.5237589736418014,
-        0.6708146425628646,
-        0.9988698584862764,
-        0.8309708016377776,
-        0.43300059826079423,
-        0.576568599258055,
-        0.6780580780434046,
-        0.16488774822244018,
-        0.8122362691969772,
-        0.7361878868869111,
-        0.5918622631252073,
-        0.9338827929916429,
-        0.049455095848524755,
-        0.9463363814544817,
-        0.8316645163198687,
-        0.9992405564113546,
-        0.7241213482270427,
-        0.7178882972197433,
-        0.9683334935778296,
-        1.0,
-        0.7733240053683157,
-        0.9981372610921387,
-        0.6712861288305988,
-        0.9999707362918236,
-        0.8488930474449492
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 30.742099393138837,
-            "cy": 54.80978056462977,
-            "w": 30.0,
-            "d": 19.52269742011963,
-            "rot": 120.74663566131562,
-            "floors": 8
-          },
-          {
-            "cx": 58.561743552048284,
-            "cy": 36.242491159129955,
-            "w": 20.68450918367721,
-            "d": 22.9172777169549,
-            "rot": 29.679794680039233,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.64246466595496,
-            "y": 46.472874152635654,
-            "radius": 4.76858977547075,
-            "height": 3.3461856709396733
-          },
-          {
-            "x": 71.24591947293665,
-            "y": 63.218279305824325,
-            "radius": 4.997341947439741,
-            "height": 8.068849437589298
-          },
-          {
-            "x": 55.25218080538203,
-            "y": 72.78334455044808,
-            "radius": 5.0,
-            "height": 8.41326803757821
-          },
-          {
-            "x": 74.86971031785379,
-            "y": 51.99006410541293,
-            "radius": 4.9998975770213825,
-            "height": 8.942251332114644
-          }
-        ]
-      },
-      "mean_utci": 36.53,
-      "green_ratio": 0.048,
-      "far": 1.251,
-      "bcr": 0.166,
-      "violation": 0.0,
-      "walkway_exposure": 0.3474
-    },
-    {
-      "genes": [
-        0.8883368674146811,
-        0.2551695433333494,
-        0.9934320442688944,
-        0.5124570834808346,
-        0.7902069222465025,
-        0.9632576017599357,
-        0.8398759916546672,
-        0.8724677624175233,
-        0.5372366132952087,
-        0.6736097819764905,
-        0.1593699731309209,
-        0.8122369998193448,
-        0.6648766380032186,
-        0.6127711643257682,
-        0.8732410917710766,
-        0.0,
-        0.9198903466601668,
-        0.8210029099239725,
-        0.9999978888043799,
-        0.7221490312308371,
-        0.41919708105312364,
-        0.986028145040374,
-        0.9973734690956282,
-        0.7168226106246454,
-        0.961371990849518,
-        1.0,
-        0.9751520578042394,
-        0.8767155396949677
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 59.084619249105955,
-            "cy": 27.967930840111833,
-            "w": 29.85550497391568,
-            "d": 19.274055836578363,
-            "rot": 142.23724600437043,
-            "floors": 8
-          },
-          {
-            "cx": 59.094431969455414,
-            "cy": 60.925456710466705,
-            "w": 19.81920549249459,
-            "d": 22.81941520348279,
-            "rot": 28.686595163565762,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 51.687661738605506,
-            "y": 47.99404475049124,
-            "radius": 4.556343821198768,
-            "height": 3.0
-          },
-          {
-            "x": 69.3923304715063,
-            "y": 62.47020843857764,
-            "radius": 4.99999261081533,
-            "height": 8.05504321861586
-          },
-          {
-            "x": 34.342310054172216,
-            "y": 74.03090612842958,
-            "radius": 4.990807141834699,
-            "height": 8.017758274372518
-          },
-          {
-            "x": 72.37628837138186,
-            "y": 75.08696779768516,
-            "radius": 4.913032202314838,
-            "height": 9.137008777864775
-          }
-        ]
-      },
-      "mean_utci": 36.56,
-      "green_ratio": 0.0465,
-      "far": 1.214,
-      "bcr": 0.161,
+      "mean_utci": 36.26,
+      "green_ratio": 0.0442,
+      "far": 1.773,
+      "bcr": 0.222,
       "violation": 0.0,
       "walkway_exposure": 0.3405
     },
     {
       "genes": [
-        0.8973036381765662,
-        0.2551695433333494,
-        0.9997683101347513,
-        0.5229850897261792,
-        0.8197513122688619,
-        0.9987984924176971,
-        0.8311615903410836,
-        0.8668357901585679,
-        0.5757764212712366,
-        0.5855557307769269,
-        0.16510487472544205,
-        0.789445414687075,
-        0.7233353693660012,
-        0.5918570946232568,
-        0.8970891591943492,
-        0.049680843217541876,
-        0.9175698875038464,
-        0.8316652233340709,
-        0.9979686858159751,
-        0.7241415534010323,
-        0.7137979478388813,
-        0.9545921160957864,
-        0.9997622976582904,
-        0.7733394277750499,
-        0.9811581152092048,
-        0.9651712456538903,
-        0.9785931608105475,
-        0.9274640971902164
+        0.1351851610914282,
+        0.8067263386408886,
+        1.0,
+        0.6977607118710591,
+        0.9785619950839154,
+        0.9767367926028064,
+        0.8454359249306409,
+        0.43554093230008367,
+        0.7954365491039772,
+        0.9192439980501741,
+        0.913931902128837,
+        0.9955224978374654,
+        0.7035379216650718,
+        0.9908609165898292,
+        0.9689239875427867,
+        0.09104326157921443,
+        0.9586201941037074,
+        1.0,
+        0.9985718162517401,
+        0.7442358289815566,
+        0.7742449609860493,
+        0.9998269533143351,
+        0.9759960053396873,
+        0.9820581705577397,
+        0.9983887780120413,
+        0.9417573887009846,
+        0.7994243786036794,
+        0.9559561615179885
       ],
       "design": {
         "buildings": [
           {
-            "cx": 59.46990339763237,
-            "cy": 28.002059679152815,
-            "w": 29.99490282296453,
-            "d": 19.505671973975943,
-            "rot": 147.55523620839514,
+            "cx": 22.124072893479983,
+            "cy": 55.02959059340354,
+            "w": 30.0,
+            "d": 23.350735661163302,
+            "rot": 176.14115911510478,
             "floors": 8
           },
           {
-            "cx": 59.24637443939365,
-            "cy": 61.31967951926683,
-            "w": 20.667081267967205,
-            "d": 20.88222607709239,
-            "rot": 29.71887745057957,
-            "floors": 7
+            "cx": 57.54007285460066,
+            "cy": 36.726985637573215,
+            "w": 25.499604080287497,
+            "d": 28.22336795710383,
+            "rot": 164.50774238319067,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 55.794361270121755,
-            "y": 46.49616825951948,
-            "radius": 4.639812057180222,
-            "height": 3.3477659025227933
+            "x": 54.29193054547927,
+            "y": 74.46704216099897,
+            "radius": 4.891233956399754,
+            "height": 3.637302831054501
           },
           {
-            "x": 69.2358296347164,
-            "y": 63.22128164729249,
-            "radius": 4.992890400355913,
-            "height": 8.068990873807227
+            "x": 72.10799854461442,
+            "y": 75.00499864311891,
+            "radius": 4.99500135688109,
+            "height": 8.209650802870897
           },
           {
-            "x": 54.96621209063168,
-            "y": 71.82220452997869,
-            "radius": 4.999168041804016,
-            "height": 8.41337599442535
+            "x": 59.24322809107733,
+            "y": 75.07187163663252,
+            "radius": 4.915986018688906,
+            "height": 9.874407193904178
           },
           {
-            "x": 73.75316858542321,
-            "y": 72.63169211813121,
-            "radius": 4.925076062836917,
-            "height": 9.492248680331514
+            "x": 75.58696693276993,
+            "y": 71.54325754828473,
+            "radius": 4.297985325112878,
+            "height": 9.691693130625918
           }
         ]
       },
-      "mean_utci": 36.56,
-      "green_ratio": 0.047,
-      "far": 1.203,
-      "bcr": 0.159,
+      "mean_utci": 36.26,
+      "green_ratio": 0.0449,
+      "far": 1.775,
+      "bcr": 0.222,
+      "violation": 0.0,
+      "walkway_exposure": 0.3405
+    },
+    {
+      "genes": [
+        0.13408107482056678,
+        0.7757118139776289,
+        0.9975005044408508,
+        0.5295775727615186,
+        0.9538652259056154,
+        0.9982553742959706,
+        0.8529627178130725,
+        0.5011311482243967,
+        0.830477347859003,
+        0.8782127507618649,
+        0.9197057297332513,
+        0.9422749023068586,
+        0.6993534785929549,
+        0.9963159673508728,
+        0.9959019059278164,
+        0.34266479816297196,
+        0.9736958951572432,
+        0.9702951277648613,
+        0.9999931081659804,
+        0.7122173435934573,
+        0.8025466593208705,
+        0.9985694849852486,
+        0.998113117364928,
+        0.9828107181074295,
+        0.9966316910240551,
+        0.9394007441585708,
+        0.836390056250419,
+        0.9532690814215141
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.04985118618089,
+            "cy": 53.52503997490595,
+            "w": 29.945011097698718,
+            "d": 19.65070660075341,
+            "rot": 171.69574066301078,
+            "floors": 8
+          },
+          {
+            "cx": 58.240873059534096,
+            "cy": 40.0584569704715,
+            "w": 26.270501652898066,
+            "d": 27.320680516761026,
+            "rot": 165.54703135198523,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.960462286669085,
+            "y": 74.75635536122721,
+            "radius": 4.985656670747357,
+            "height": 5.398653587140804
+          },
+          {
+            "x": 73.15873551344143,
+            "y": 72.92068163191202,
+            "radius": 4.999975878580932,
+            "height": 7.985521405154201
+          },
+          {
+            "x": 61.18226224272533,
+            "y": 74.90644914369257,
+            "radius": 4.993395910777248,
+            "height": 9.879675026752007
+          },
+          {
+            "x": 75.33299555291279,
+            "y": 71.26128440834711,
+            "radius": 4.427365196876466,
+            "height": 9.6728835699506
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0463,
+      "far": 1.633,
+      "bcr": 0.204,
       "violation": 0.0,
       "walkway_exposure": 0.3407
     },
     {
       "genes": [
-        0.8973036381765662,
-        0.2551695433333494,
-        0.9997645706418796,
-        0.5229850897261792,
-        0.9398325638772781,
-        0.9987984924176971,
-        0.8388989455959567,
-        0.8668357901585679,
-        0.5757764212712366,
-        0.5855557307769269,
-        0.1890488192903105,
-        0.7572599117374679,
-        0.7230554720208106,
-        0.5935783501336824,
-        0.8970788665965246,
-        0.09548731144572618,
-        0.9178270343138802,
-        0.8319350410078665,
-        0.9979686858159751,
-        0.7241415534010323,
-        0.7138408880932217,
-        0.9547068308880763,
-        0.9997626509765484,
-        0.7733394277750499,
-        0.9830341245733356,
-        0.9651712456538903,
-        0.9999645312992219,
-        0.9274640971902164
+        0.17237861963779658,
+        0.29962943794185526,
+        0.9941097992319747,
+        0.3763689634523466,
+        0.9751721633256103,
+        0.9622760735701131,
+        0.8545003517529911,
+        0.5243998103164362,
+        0.41289873244234454,
+        0.9195769392124427,
+        0.8905908175042827,
+        0.9717419840860608,
+        0.5591757761737631,
+        0.6764321692427117,
+        0.9450501122832405,
+        0.09102974457191881,
+        0.9170020168727512,
+        0.9598980973950759,
+        0.9190966366916143,
+        0.7397495307576536,
+        0.7789646056398488,
+        0.9998814808597473,
+        0.4371981938990554,
+        0.9606935307514559,
+        0.9980213246080383,
+        0.9452521965110249,
+        0.7979905198107091,
+        0.3617167274422951
       ],
       "design": {
         "buildings": [
           {
-            "cx": 59.469936083343065,
-            "cy": 28.00203953723437,
-            "w": 29.99482055412135,
-            "d": 19.505671973975943,
-            "rot": 169.16986149791006,
+            "cx": 23.904097736714952,
+            "cy": 30.15587755670337,
+            "w": 29.870415583103444,
+            "d": 16.280117195951625,
+            "rot": 175.53098939860985,
             "floors": 8
           },
           {
-            "cx": 59.69605230285758,
-            "cy": 61.31967951926683,
-            "w": 20.667081267967205,
-            "d": 20.88222607709239,
-            "rot": 34.02878747225589,
-            "floors": 7
+            "cx": 57.99773730933788,
+            "cy": 41.23876146892762,
+            "w": 17.08377211373158,
+            "d": 28.23069266267374,
+            "rot": 160.30634715077088,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 55.77458289540233,
-            "y": 46.61790283836226,
-            "radius": 4.639776033087836,
-            "height": 3.668411180120083
+            "x": 44.16506624795752,
+            "y": 52.41811634221639,
+            "radius": 4.807675392991342,
+            "height": 3.637208212003432
           },
           {
-            "x": 69.2538335678405,
-            "y": 63.24017272104947,
-            "radius": 4.992890400355913,
-            "height": 8.068990873807227
+            "x": 69.42629924079228,
+            "y": 72.45331793766404,
+            "radius": 4.7168382284206505,
+            "height": 8.178246715303576
           },
           {
-            "x": 54.969217451007246,
-            "y": 71.83023363172121,
-            "radius": 4.999169278417919,
-            "height": 8.41337599442535
+            "x": 60.62653488203583,
+            "y": 76.96104306203227,
+            "radius": 3.030193678646694,
+            "height": 9.724854715260191
           },
           {
-            "x": 73.81250864828331,
-            "y": 72.56210268891039,
-            "radius": 4.999875859547277,
-            "height": 9.492248680331514
+            "x": 75.56572792491345,
+            "y": 71.79726990916407,
+            "radius": 4.292966819337482,
+            "height": 5.532017092096066
           }
         ]
       },
-      "mean_utci": 36.57,
-      "green_ratio": 0.0473,
-      "far": 1.203,
+      "mean_utci": 36.27,
+      "green_ratio": 0.0358,
+      "far": 1.211,
+      "bcr": 0.151,
+      "violation": 0.0,
+      "walkway_exposure": 0.3373
+    },
+    {
+      "genes": [
+        0.1169916769361406,
+        0.7207537693447891,
+        0.9502451904969449,
+        0.5185574218608114,
+        0.9563254442896374,
+        0.9362014836606498,
+        0.8408005572383914,
+        0.43570529642446365,
+        0.8058660293756995,
+        0.8689919341409724,
+        0.7973386930990347,
+        0.9932551035278355,
+        0.6795478054086659,
+        0.8876531344899583,
+        0.8178230839242044,
+        0.16578745144767645,
+        0.9587191693654202,
+        0.9688552202864097,
+        0.9202743883796675,
+        0.6111047394674399,
+        0.7560368628726905,
+        0.9949757975121306,
+        0.9745275360368765,
+        0.9514356957670904,
+        0.9688535730376293,
+        0.8878102725591822,
+        0.736913554531418,
+        0.3217400530586196
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 20.813349034524098,
+            "cy": 51.058573056192955,
+            "w": 28.90539419093279,
+            "d": 19.408263280937852,
+            "rot": 172.13857997213472,
+            "floors": 8
+          },
+          {
+            "cx": 57.68147498532575,
+            "cy": 36.664250780069686,
+            "w": 25.72905264626539,
+            "d": 27.117822551101394,
+            "rot": 143.52096475782625,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 52.79731263694931,
+            "y": 67.63006958213656,
+            "radius": 4.362380793734715,
+            "height": 4.160512160133735
+          },
+          {
+            "x": 72.36634351995681,
+            "y": 73.08152380443971,
+            "radius": 4.720960359328837,
+            "height": 7.277733176272079
+          },
+          {
+            "x": 57.968233629427615,
+            "y": 74.73656359800236,
+            "radius": 4.910846376129068,
+            "height": 9.660049870369633
+          },
+          {
+            "x": 73.68319325246405,
+            "y": 67.86091246200934,
+            "radius": 4.079197440859963,
+            "height": 5.252180371410337
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0403,
+      "far": 1.573,
+      "bcr": 0.197,
+      "violation": 0.0,
+      "walkway_exposure": 0.3401
+    },
+    {
+      "genes": [
+        0.13345291334762893,
+        0.303034618051311,
+        0.9636737781964387,
+        0.37850049855469303,
+        0.9765533661538258,
+        0.9622396516427507,
+        0.8542155153894441,
+        0.5243689251635695,
+        0.4179402656867035,
+        0.9112239775110005,
+        0.886634084089345,
+        0.971423015262694,
+        0.5628086647337164,
+        0.8965757520567234,
+        0.9601257145388566,
+        0.08463943701574686,
+        0.9133523244598574,
+        0.959930950786476,
+        0.9198779522434538,
+        0.6098872233046657,
+        0.7702464864327394,
+        0.9891299396455516,
+        0.9977040764941798,
+        0.14097028429140934,
+        0.9858856304865633,
+        0.9282710807888934,
+        0.4796956933192441,
+        0.35958590975182747
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 21.746256797067787,
+            "cy": 30.191286105163833,
+            "w": 29.20082312032165,
+            "d": 16.327010968203247,
+            "rot": 175.77960590768865,
+            "floors": 8
+          },
+          {
+            "cx": 58.0483688344064,
+            "cy": 41.24167161047868,
+            "w": 17.19468584510748,
+            "d": 28.04692750524201,
+            "rot": 159.5941351360821,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 44.414137685749324,
+            "y": 67.87099486718198,
+            "radius": 4.8604400008859985,
+            "height": 3.5924760591102283
+          },
+          {
+            "x": 69.16649315495458,
+            "y": 72.4531208222787,
+            "radius": 4.719572832852089,
+            "height": 7.26921056313266
+          },
+          {
+            "x": 58.921597307115725,
+            "y": 74.24695680966944,
+            "radius": 4.99196426772963,
+            "height": 3.9867919900398654
+          },
+          {
+            "x": 75.7816528367346,
+            "y": 71.53879466955152,
+            "radius": 3.1789349266173543,
+            "height": 5.517101368262792
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0397,
+      "far": 1.199,
+      "bcr": 0.15,
+      "violation": 0.0,
+      "walkway_exposure": 0.3378
+    },
+    {
+      "genes": [
+        0.13401370903669457,
+        0.6944910421452616,
+        0.9642216157563719,
+        0.5121741062833165,
+        0.936309231863571,
+        0.9756070318044785,
+        0.8530365144886561,
+        0.5010849618408836,
+        0.8023231220463016,
+        0.9107697110466045,
+        0.9197266536005202,
+        0.9417594017677022,
+        0.6978598113572712,
+        0.8965757520567234,
+        0.9607231550282802,
+        0.34252298821026644,
+        0.9217433855642369,
+        0.970510045794125,
+        0.9248233926005933,
+        0.5816809334089839,
+        0.7701254382965959,
+        0.9891299396455516,
+        0.9977189783920336,
+        0.1446815415049571,
+        0.9858856304865633,
+        0.8914466752440531,
+        0.45813250808360984,
+        0.34928731458073903
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 21.778594983586352,
+            "cy": 49.68314972034978,
+            "w": 29.21287554664018,
+            "d": 19.26783033823296,
+            "rot": 168.53566173544277,
+            "floors": 8
+          },
+          {
+            "cx": 57.991823314320456,
+            "cy": 40.05529298229174,
+            "w": 25.651108685018635,
+            "d": 28.0369336430253,
+            "rot": 165.55079764809363,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.90458595896666,
+            "y": 67.86933635430215,
+            "radius": 4.862531042598981,
+            "height": 5.397660917471866
+          },
+          {
+            "x": 69.74397364793559,
+            "y": 73.18330264851974,
+            "radius": 4.736881874102076,
+            "height": 7.071766533862887
+          },
+          {
+            "x": 58.91309381449303,
+            "y": 74.24690578691866,
+            "radius": 4.9920164243721175,
+            "height": 4.0127707905347
+          },
+          {
+            "x": 75.8549935297092,
+            "y": 68.88605286401825,
+            "radius": 3.1034637782926344,
+            "height": 5.445011202065173
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0396,
+      "far": 1.603,
+      "bcr": 0.2,
+      "violation": 0.0,
+      "walkway_exposure": 0.3395
+    },
+    {
+      "genes": [
+        0.13408107482056678,
+        0.2938391450202117,
+        0.9975005044408508,
+        0.09271984326655824,
+        0.9538652259056154,
+        0.9628166688363862,
+        0.8529627178130725,
+        0.5011278544500849,
+        0.830477347859003,
+        0.8781615400250803,
+        0.9134558647912823,
+        0.9423962136246398,
+        0.6951170557659414,
+        0.6580493993917611,
+        0.9729272033694076,
+        0.34270851024613747,
+        0.9685656479296523,
+        0.9804918646738618,
+        1.0,
+        0.3903253543445268,
+        0.8025466593208705,
+        0.9985694849852486,
+        0.9966842556254274,
+        0.9039592192072055,
+        0.9966316910240551,
+        0.8598100512417486,
+        0.7941150253310654,
+        0.3053758574749022
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.04985118618089,
+            "cy": 29.886781546877543,
+            "w": 29.945011097698718,
+            "d": 10.039836551864282,
+            "rot": 171.69574066301078,
+            "floors": 8
+          },
+          {
+            "cx": 58.2412707201125,
+            "cy": 40.05828802113819,
+            "w": 26.270501652898066,
+            "d": 27.319553880551766,
+            "rot": 164.4220556624308,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.69517045420527,
+            "y": 51.09340983215452,
+            "radius": 4.905245211792927,
+            "height": 5.398959571722962
+          },
+          {
+            "x": 72.79959535507565,
+            "y": 73.63443052717032,
+            "radius": 5.0,
+            "height": 5.732277480411687
+          },
+          {
+            "x": 61.18528832414676,
+            "y": 74.91143585172361,
+            "radius": 4.988394894688996,
+            "height": 9.327714534450438
+          },
+          {
+            "x": 75.4799613935678,
+            "y": 65.70525996992116,
+            "radius": 4.279402588658729,
+            "height": 5.137631002324316
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0453,
+      "far": 1.273,
       "bcr": 0.159,
       "violation": 0.0,
-      "walkway_exposure": 0.3409
+      "walkway_exposure": 0.3402
     },
     {
       "genes": [
-        0.8768760788877344,
-        0.2551695433333494,
-        0.9958259187975796,
-        0.5011915119762431,
-        0.9398325638772781,
-        0.9860488010273722,
-        0.8388989455959567,
-        0.8724677624175233,
-        0.5693396723606099,
-        0.6097911858217253,
-        0.1900787966552888,
-        0.7766104314573251,
-        0.7230554720208106,
-        0.5935783501336824,
-        0.8970788665965246,
-        0.09548731144572618,
-        0.9178270343138802,
-        0.8219765942460583,
-        0.9956420154861567,
-        0.7215813483464264,
-        0.41554964825517116,
-        0.9883551820663597,
-        0.9994309683656009,
-        0.7733394277750499,
-        0.8763335547076593,
-        0.9624784138211923,
-        1.0,
-        0.8788478519704981
+        0.12528641066916624,
+        0.29283397747169854,
+        0.9630993361765622,
+        0.085082976912395,
+        0.938028434010048,
+        0.9633529466729317,
+        0.8540881178480008,
+        0.5036899004273465,
+        0.8015524396870185,
+        0.8853695470960493,
+        0.9139754051127158,
+        0.9911583511628536,
+        0.6951036880799792,
+        0.6787399898518109,
+        0.9698424238926571,
+        0.34397755181738204,
+        0.9923181012760278,
+        0.9780721018257077,
+        0.9964241306191715,
+        0.39226315404552237,
+        0.7536504088280945,
+        0.9700883639303565,
+        0.9966918100861849,
+        0.903806100326103,
+        0.9857332830973773,
+        0.8602252983508076,
+        0.794985885224751,
+        0.32025754445047133
       ],
       "design": {
         "buildings": [
           {
-            "cx": 58.501536315342584,
-            "cy": 27.980824894781172,
-            "w": 29.908170213546754,
-            "d": 19.02621326347735,
-            "rot": 169.16986149791006,
+            "cx": 21.334836158609786,
+            "cy": 29.680684493548203,
+            "w": 29.188185395884368,
+            "d": 9.87182549207269,
+            "rot": 168.84511812180864,
             "floors": 8
           },
           {
-            "cx": 59.51535815932173,
-            "cy": 61.448404844095336,
-            "w": 20.525472791933417,
-            "d": 21.415406088077958,
-            "rot": 34.214183397951984,
-            "floors": 7
+            "cx": 58.24328196352216,
+            "cy": 40.19011056999743,
+            "w": 25.634153673114408,
+            "d": 27.478130036113086,
+            "rot": 164.51557292028883,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 55.77458289540233,
-            "y": 46.61790283836226,
-            "radius": 4.639776033087836,
-            "height": 3.668411180120083
+            "x": 53.69844514585321,
+            "y": 52.549531843558434,
+            "radius": 4.8944484836243,
+            "height": 5.407842862721674
           },
           {
-            "x": 69.26063858818665,
-            "y": 62.54818378030489,
-            "radius": 4.984747054201549,
-            "height": 8.051069438424985
+            "x": 74.47459034588981,
+            "y": 73.47701379153477,
+            "radius": 4.9874844571671,
+            "height": 5.745842078318656
           },
           {
-            "x": 34.088138993410226,
-            "y": 74.18680797147711,
-            "radius": 4.998008389279603,
-            "height": 8.41337599442535
+            "x": 57.76140248403545,
+            "y": 72.91707146621404,
+            "radius": 4.988421335301647,
+            "height": 9.32664270228272
           },
           {
-            "x": 66.34334882953615,
-            "y": 72.37348896748345,
-            "radius": 5.0,
-            "height": 9.151934963793487
+            "x": 74.698405070174,
+            "y": 65.73272977918381,
+            "radius": 4.282450598286628,
+            "height": 5.241802811153299
           }
         ]
       },
-      "mean_utci": 36.57,
-      "green_ratio": 0.0473,
-      "far": 1.192,
-      "bcr": 0.158,
+      "mean_utci": 36.27,
+      "green_ratio": 0.0452,
+      "far": 1.241,
+      "bcr": 0.155,
       "violation": 0.0,
-      "walkway_exposure": 0.3406
+      "walkway_exposure": 0.3396
     },
     {
       "genes": [
-        0.8896711677368383,
-        0.2551695433333494,
-        0.9934320442688944,
-        0.5124570834808346,
-        0.7886776991741948,
-        0.9628262850443006,
-        0.8398759916546672,
-        0.8724677624175233,
-        0.5341478121317563,
-        0.6736097819764905,
-        0.1819253690440372,
-        0.8122369998193448,
-        0.7269562348197891,
-        0.6127767426974676,
-        0.8734082091703959,
-        0.025285924587996472,
-        0.9176198383240941,
-        0.8219765942460583,
-        0.9999978888043799,
-        0.722143011911691,
-        0.4340106506045585,
-        0.9911634040260496,
-        0.9975120996954271,
-        0.7751415511147728,
-        0.961371990849518,
-        0.9758930336731462,
-        0.9883657101680111,
-        0.8767155396949677
+        0.1169916769361406,
+        0.7207537693447891,
+        0.9502451904969449,
+        0.5185574218608114,
+        0.9563254442896374,
+        0.9362014836606498,
+        0.8408005572383914,
+        0.43570529642446365,
+        0.8058660293756995,
+        0.8689919341409724,
+        0.7973386930990347,
+        0.9932551035278355,
+        0.6795478054086659,
+        0.8876531344899583,
+        0.8178230839242044,
+        0.16578745144767645,
+        0.9587191693654202,
+        0.9688552202864097,
+        0.9202743883796675,
+        0.6111047394674399,
+        0.7560368628726905,
+        0.9949757975121306,
+        0.9745275360368765,
+        0.9514356957670904,
+        0.9688535730376293,
+        0.8878102725591822,
+        0.736913554531418,
+        0.3217400530586196
       ],
       "design": {
         "buildings": [
           {
-            "cx": 59.15019276465151,
-            "cy": 27.967930840111833,
-            "w": 29.85550497391568,
-            "d": 19.274055836578363,
-            "rot": 141.96198585135508,
+            "cx": 20.813349034524098,
+            "cy": 51.058573056192955,
+            "w": 28.90539419093279,
+            "d": 19.408263280937852,
+            "rot": 172.13857997213472,
             "floors": 8
           },
           {
-            "cx": 59.094431969455414,
-            "cy": 60.925456710466705,
-            "w": 19.75125186689864,
-            "d": 22.81941520348279,
-            "rot": 32.746566427926695,
+            "cx": 57.68147498532575,
+            "cy": 36.664250780069686,
+            "w": 25.72905264626539,
+            "d": 27.117822551101394,
+            "rot": 143.52096475782625,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 52.79731263694931,
+            "y": 67.63006958213656,
+            "radius": 4.362380793734715,
+            "height": 4.160512160133735
+          },
+          {
+            "x": 72.36634351995681,
+            "y": 73.08152380443971,
+            "radius": 4.720960359328837,
+            "height": 7.277733176272079
+          },
+          {
+            "x": 57.968233629427615,
+            "y": 74.73656359800236,
+            "radius": 4.910846376129068,
+            "height": 9.660049870369633
+          },
+          {
+            "x": 73.68319325246405,
+            "y": 67.86091246200934,
+            "radius": 4.079197440859963,
+            "height": 5.252180371410337
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0403,
+      "far": 1.573,
+      "bcr": 0.197,
+      "violation": 0.0,
+      "walkway_exposure": 0.3401
+    },
+    {
+      "genes": [
+        0.13408107482056678,
+        0.7744061197815986,
+        0.9975005044408508,
+        0.5295775727615186,
+        0.9535094216325509,
+        0.9767595555554285,
+        0.8529627178130725,
+        0.5011311482243967,
+        0.830477347859003,
+        0.8803070189080182,
+        0.9197057297332513,
+        0.9450894356497829,
+        0.6993126371410603,
+        0.9963159673508728,
+        0.9959019059278164,
+        0.08670475610083211,
+        0.9588033646618265,
+        0.9820184306753815,
+        0.9991731112836079,
+        0.7112843841393164,
+        0.8025466593208705,
+        0.9984252693079357,
+        0.9771074390654203,
+        0.9820319534392655,
+        0.9966832608788465,
+        0.9394007441585708,
+        0.836390056250419,
+        0.9344405608598039
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.04985118618089,
+            "cy": 53.460989160609884,
+            "w": 29.945011097698718,
+            "d": 19.65070660075341,
+            "rot": 171.63169589385916,
+            "floors": 8
+          },
+          {
+            "cx": 58.224610690846795,
+            "cy": 40.05840485406221,
+            "w": 26.270501652898066,
+            "d": 27.366754415976402,
+            "rot": 165.54703135198523,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.95760221343167,
+            "y": 74.75635536122721,
+            "radius": 4.985656670747357,
+            "height": 3.6069332927058246
+          },
+          {
+            "x": 72.11889118160482,
+            "y": 73.74408017648663,
+            "radius": 4.9971058894926275,
+            "height": 7.978990688975214
+          },
+          {
+            "x": 61.226748627299344,
+            "y": 74.96964046749827,
+            "radius": 4.9198760367289704,
+            "height": 9.874223674074859
+          },
+          {
+            "x": 75.33666450413548,
+            "y": 71.26128440834711,
+            "radius": 4.427365196876466,
+            "height": 9.541083926018628
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.046,
+      "far": 1.634,
+      "bcr": 0.204,
+      "violation": 0.0,
+      "walkway_exposure": 0.3407
+    },
+    {
+      "genes": [
+        0.12562327094526743,
+        0.292808940405398,
+        0.9970781773319669,
+        0.3683866567627366,
+        0.9481173363570986,
+        0.9633529466729317,
+        0.8540881178480008,
+        0.5036899004273465,
+        0.8015524396870185,
+        0.8853695470960493,
+        0.9090588137702753,
+        0.9981915140610675,
+        0.6950907045540545,
+        0.6787399898518109,
+        0.9410459379768976,
+        0.34397755181738204,
+        0.9923181012760278,
+        0.9809876604834211,
+        0.9964241306191715,
+        0.7452152380189453,
+        0.7536504088280945,
+        0.9977112538127157,
+        0.998217026982653,
+        0.8877042282018672,
+        0.9857332830973773,
+        0.8602252983508076,
+        0.794985885224751,
+        0.319785476079077
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 21.631475303224708,
+            "cy": 29.83431981810468,
+            "w": 29.935719901303273,
+            "d": 16.104506448780207,
+            "rot": 170.66112054427774,
+            "floors": 8
+          },
+          {
+            "cx": 58.24328196352216,
+            "cy": 40.19011056999743,
+            "w": 25.634153673114408,
+            "d": 27.478130036113086,
+            "rot": 163.63058647864955,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.73685904525868,
+            "y": 52.58556142876088,
+            "radius": 4.793660782919142,
+            "height": 5.407842862721674
+          },
+          {
+            "x": 74.47459034588981,
+            "y": 73.68117587717323,
+            "radius": 4.9874844571671,
+            "height": 8.216506666132616
+          },
+          {
+            "x": 57.758694380810084,
+            "y": 74.84599960704195,
+            "radius": 4.993759594439286,
+            "height": 9.21392959741307
+          },
+          {
+            "x": 74.698405070174,
+            "y": 65.73272977918381,
+            "radius": 4.282450598286628,
+            "height": 5.238498332553538
+          }
+        ]
+      },
+      "mean_utci": 36.27,
+      "green_ratio": 0.0447,
+      "far": 1.483,
+      "bcr": 0.185,
+      "violation": 0.0,
+      "walkway_exposure": 0.3395
+    },
+    {
+      "genes": [
+        0.13401370903669457,
+        0.29475434629444386,
+        0.9544971940079086,
+        0.41591273315624727,
+        0.9929040005735718,
+        0.962799799818012,
+        0.8542210145165735,
+        0.5226427530775345,
+        0.4017639726576764,
+        0.901638174945216,
+        0.8272130494648015,
+        0.6764895171313294,
+        0.547208785111482,
+        0.6753680317362657,
+        0.5165473120904025,
+        0.3455449837204456,
+        0.9559532344016505,
+        0.9998440014429394,
+        0.992276281853703,
+        0.6104376407436084,
+        0.7626091283344798,
+        0.9893095435496834,
+        0.9969611319950928,
+        0.7731540878943997,
+        0.9858856304865633,
+        0.8612093322970118,
+        0.732501872714699,
+        0.35957909893348206
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 21.700296872541728,
+            "cy": 29.737499398879503,
+            "w": 28.998938268173987,
+            "d": 17.15008012943744,
+            "rot": 178.72272010324292,
+            "floors": 8
+          },
+          {
+            "cx": 58.12334987144547,
+            "cy": 41.158492916172555,
+            "w": 16.83880739846888,
+            "d": 27.83603984879475,
+            "rot": 148.89834890366427,
+            "floors": 6
+          }
+        ],
+        "trees": [
+          {
+            "x": 43.464377456189396,
+            "y": 52.8692372457528,
+            "radius": 3.3079155923164087,
+            "height": 5.418814886043119
+          },
+          {
+            "x": 71.94137798800841,
+            "y": 75.0161046802956,
+            "radius": 4.97296698648796,
+            "height": 7.273063485205259
+          },
+          {
+            "x": 58.38822522475882,
+            "y": 74.26207667829254,
+            "radius": 4.989363961982825,
+            "height": 8.412078615260798
+          },
+          {
+            "x": 74.92180860766938,
+            "y": 65.9610130004228,
+            "radius": 4.063756554501447,
+            "height": 5.5170536925343745
+          }
+        ]
+      },
+      "mean_utci": 36.28,
+      "green_ratio": 0.0378,
+      "far": 1.061,
+      "bcr": 0.151,
+      "violation": 0.0,
+      "walkway_exposure": 0.3378
+    },
+    {
+      "genes": [
+        0.13401370903669457,
+        0.865974517371743,
+        1.0,
+        0.3943102963696529,
+        0.9731201449596507,
+        0.9741675633901438,
+        0.8543264575823166,
+        0.5227860721036016,
+        0.4130144631438683,
+        0.9108449091249282,
+        0.9757452386715262,
+        0.9971602557444581,
+        0.6978246176369054,
+        0.8828397571658346,
+        0.9784191114360693,
+        0.34834600380461045,
+        0.9902872744961196,
+        0.9801691694695226,
+        0.9947396855531067,
+        0.6145476943290558,
+        0.7616825770062886,
+        0.9995368478896158,
+        0.9966440137571481,
+        0.9939700306721875,
+        0.9862133477276175,
+        0.8935979308078734,
+        0.8322615879250814,
+        0.8174851596305385
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.066671742798036,
+            "cy": 57.93275135121541,
+            "w": 30.0,
+            "d": 16.674826520132363,
+            "rot": 175.16162609273712,
+            "floors": 8
+          },
+          {
+            "cx": 58.05697658708778,
+            "cy": 41.1612104083163,
+            "w": 17.086318189165105,
+            "d": 28.03858800074842,
+            "rot": 175.63414296087473,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.87760785178236,
+            "y": 66.8566171565691,
+            "radius": 4.924466890026243,
+            "height": 5.438422026632273
+          },
+          {
+            "x": 74.3381626713605,
+            "y": 73.62952274860037,
+            "radius": 4.981588899435874,
+            "height": 7.3018338603033905
+          },
+          {
+            "x": 58.32392781233918,
+            "y": 74.97931442379829,
+            "radius": 4.988254048150019,
+            "height": 9.957790214705312
+          },
+          {
+            "x": 74.60583092507544,
+            "y": 68.01400559991893,
+            "radius": 4.412915557737785,
+            "height": 8.72239611741377
+          }
+        ]
+      },
+      "mean_utci": 36.28,
+      "green_ratio": 0.0459,
+      "far": 1.224,
+      "bcr": 0.153,
+      "violation": 0.0,
+      "walkway_exposure": 0.3397
+    },
+    {
+      "genes": [
+        0.17028553093036836,
+        0.29962943794185526,
+        0.961460751672571,
+        0.41725991407169527,
+        0.9819294806709342,
+        0.9627970077570109,
+        0.8542210747920499,
+        0.524174928132378,
+        0.41289873244234454,
+        0.9108144995006925,
+        0.8275386583511293,
+        0.7848607673489875,
+        0.5591757761737631,
+        0.6764264511071653,
+        0.5165567010326798,
+        0.08467579281270385,
+        0.9170020168727512,
+        0.9598980973950759,
+        0.9916419855370973,
+        0.5464231416517986,
+        0.6575996272528938,
+        0.989598163044761,
+        0.9685079435542461,
+        0.795566067616736,
+        0.9217126944127231,
+        0.8876270590652873,
+        0.6976007939585833,
+        0.3617167274422951
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 23.56443816397439,
+            "cy": 30.011955580480272,
+            "w": 29.15213653679656,
+            "d": 17.179718109577294,
+            "rot": 176.74730652076815,
+            "floors": 8
+          },
+          {
+            "cx": 58.05184310935054,
+            "cy": 41.23200464591698,
+            "w": 17.08377211373158,
+            "d": 28.037918989015235,
+            "rot": 148.95695850320328,
             "floors": 7
           }
         ],
         "trees": [
           {
-            "x": 56.08805201082571,
-            "y": 47.994308257576755,
-            "radius": 4.556928732096385,
-            "height": 3.1770014721159754
+            "x": 44.34256125933018,
+            "y": 52.94689687633997,
+            "radius": 3.3079484536143795,
+            "height": 3.592730549688927
           },
           {
-            "x": 69.2333948544268,
-            "y": 62.53836635551312,
-            "radius": 4.99999261081533,
-            "height": 8.055001083381836
+            "x": 69.21453834330916,
+            "y": 72.21977366230173,
+            "radius": 4.970746949379841,
+            "height": 6.82496199156259
           },
           {
-            "x": 35.379596317861875,
-            "y": 74.38999204090078,
-            "radius": 4.991292348933994,
-            "height": 8.42599085780341
+            "x": 51.0667158622035,
+            "y": 74.37980058403767,
+            "radius": 4.889777802439861,
+            "height": 8.568962473317152
           },
           {
-            "x": 72.3336135076996,
-            "y": 73.35126909949967,
-            "radius": 4.959279985588038,
-            "height": 9.137008777864775
+            "x": 70.41256769666657,
+            "y": 67.95442093888069,
+            "radius": 3.9416027788550414,
+            "height": 5.532017092096066
           }
         ]
       },
-      "mean_utci": 36.57,
-      "green_ratio": 0.0468,
-      "far": 1.212,
-      "bcr": 0.16,
+      "mean_utci": 36.28,
+      "green_ratio": 0.0369,
+      "far": 1.15,
+      "bcr": 0.153,
+      "violation": 0.0,
+      "walkway_exposure": 0.3374
+    },
+    {
+      "genes": [
+        0.13408107482056678,
+        0.7757118139776289,
+        0.9660716781409405,
+        0.5295775727615186,
+        0.998589898744142,
+        0.997530084246613,
+        0.8529583515636937,
+        0.7098341604020206,
+        0.830477347859003,
+        0.875773760946656,
+        0.9199869249206852,
+        0.9963811634795277,
+        0.6993534785929549,
+        0.9959650292725956,
+        0.9960445881654317,
+        0.34266479816297196,
+        0.9674802288899176,
+        0.9804963431624844,
+        0.9999931081659804,
+        0.7140276188387497,
+        0.8006148390604606,
+        0.9999614020636649,
+        0.998113117364928,
+        0.9808935695427712,
+        0.9966316910240551,
+        0.9394007441585708,
+        0.8307842587304981,
+        0.9496049427825433
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 21.796842334715976,
+            "cy": 53.71567654653334,
+            "w": 29.25357691910069,
+            "d": 19.65070660075341,
+            "rot": 179.74618177394555,
+            "floors": 8
+          },
+          {
+            "cx": 58.25958637487996,
+            "cy": 50.85534584827551,
+            "w": 26.270501652898066,
+            "d": 27.267022740826434,
+            "rot": 165.59764648572335,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.96026317726627,
+            "y": 74.7312842707059,
+            "radius": 4.986156058579011,
+            "height": 5.398653587140804
+          },
+          {
+            "x": 72.72363857486725,
+            "y": 73.63476720188122,
+            "radius": 4.999975878580932,
+            "height": 7.9981933318712475
+          },
+          {
+            "x": 61.04700930866991,
+            "y": 75.00390172387085,
+            "radius": 4.993395910777248,
+            "height": 9.866254986799397
+          },
+          {
+            "x": 75.3524836698258,
+            "y": 71.2785267495601,
+            "radius": 4.4077449055567435,
+            "height": 9.647234599477802
+          }
+        ]
+      },
+      "mean_utci": 36.28,
+      "green_ratio": 0.0463,
+      "far": 1.614,
+      "bcr": 0.202,
       "violation": 0.0,
       "walkway_exposure": 0.3403
     },
     {
       "genes": [
-        0.8768760788877344,
-        0.2551695433333494,
-        0.9356937313294468,
-        0.5119408377342093,
-        0.9510298229398537,
-        0.9991393696779722,
-        0.8388989455959567,
-        0.8724615589506572,
-        0.5682300940282615,
-        0.5793967001217517,
-        0.1890488192903105,
-        0.8135244818278715,
-        0.7230554720208106,
-        0.607940545461589,
-        0.895690155668327,
-        0.09513885403540265,
-        0.9524047886065767,
-        0.8412905562307136,
-        0.9999204961943338,
-        0.7216189554318607,
-        0.44401420610211795,
-        0.9984001301781084,
-        0.99987455980696,
-        0.7732416803528851,
-        0.9577996695274206,
-        0.96544623462969,
-        0.9992652116115862,
-        0.8851935160316958
+        0.13401370903669457,
+        0.8611163189307955,
+        0.9731415758319617,
+        0.3941261713951534,
+        0.9368023509037867,
+        0.9741538313613183,
+        0.8542621037092798,
+        0.5227875792017084,
+        0.41294098391815626,
+        0.9107697110466045,
+        0.916169519443305,
+        0.9913942177548534,
+        0.7076548588251079,
+        0.8976398860851932,
+        0.9783744405053538,
+        0.34557957982916304,
+        0.993729861607354,
+        0.9780746135026331,
+        0.9987895219682019,
+        0.5960619941286206,
+        0.7446551332022509,
+        0.9891299396455516,
+        0.9976849226128075,
+        0.9959268407936633,
+        0.9858856304865633,
+        0.9662164567590917,
+        0.7836132738271976,
+        0.8190239807345091
       ],
       "design": {
         "buildings": [
           {
-            "cx": 59.00010874195709,
-            "cy": 27.65693669458104,
-            "w": 28.58526208924783,
-            "d": 19.262698430152604,
-            "rot": 171.18536812917367,
+            "cx": 21.850415811865684,
+            "cy": 57.908077963501555,
+            "w": 29.409114668303157,
+            "d": 16.670775770693375,
+            "rot": 168.6244231626816,
             "floors": 8
           },
           {
-            "cx": 59.74197266074607,
-            "cy": 61.697104725575954,
-            "w": 20.501062068621753,
-            "d": 20.746727402678538,
-            "rot": 34.02878747225589,
-            "floors": 7
+            "cx": 58.05428309909749,
+            "cy": 41.16132491097149,
+            "w": 17.084701646199438,
+            "d": 28.0369336430253,
+            "rot": 164.91051349979492,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 55.77675121240347,
-            "y": 47.63465301277045,
-            "radius": 4.634915544839144,
-            "height": 3.6659719782478186
+            "x": 54.56727468528469,
+            "y": 67.89498632106138,
+            "radius": 4.9243105417687385,
+            "height": 5.419057058804141
           },
           {
-            "x": 71.66858697777714,
-            "y": 63.89052887343635,
-            "radius": 4.9997217366801685,
-            "height": 8.051332688023024
+            "x": 74.5652738565726,
+            "y": 73.46927383690476,
+            "radius": 4.9957633268887065,
+            "height": 7.172433958900344
           },
           {
-            "x": 36.0809452670667,
-            "y": 74.88844674832737,
-            "radius": 4.99956095932436,
-            "height": 8.412691762470196
+            "x": 57.12982409312332,
+            "y": 74.24702239082733,
+            "radius": 4.9918972291448265,
+            "height": 9.971487885555643
           },
           {
-            "x": 72.04833156808917,
-            "y": 72.58363045549876,
-            "radius": 4.997428240640552,
-            "height": 9.196354612221871
+            "x": 74.7479685401872,
+            "y": 73.34133334249832,
+            "radius": 4.242646458395192,
+            "height": 8.733167865141564
           }
         ]
       },
-      "mean_utci": 36.58,
-      "green_ratio": 0.0473,
-      "far": 1.153,
+      "mean_utci": 36.28,
+      "green_ratio": 0.0452,
+      "far": 1.212,
+      "bcr": 0.151,
+      "violation": 0.0,
+      "walkway_exposure": 0.3393
+    },
+    {
+      "genes": [
+        0.13401370903669457,
+        0.865974517371743,
+        1.0,
+        0.3943102963696529,
+        0.9746279322108994,
+        0.9741756327395695,
+        0.8543264575823166,
+        0.5227875792017084,
+        0.40180622413348815,
+        0.9082052528011375,
+        0.9757452386715262,
+        0.9971602557444581,
+        0.6978791263866906,
+        0.8828397571658346,
+        0.9783744405053538,
+        0.34557957982916304,
+        0.9902694231061707,
+        0.9801691694695226,
+        0.9987895219682019,
+        0.613287541265605,
+        0.7616825770062886,
+        0.997501213899554,
+        0.9966440137571481,
+        0.9939700306721875,
+        0.9858856304865633,
+        0.8935979308078734,
+        0.8086107391057702,
+        0.8174851596305385
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 22.066671742798036,
+            "cy": 57.93275135121541,
+            "w": 30.0,
+            "d": 16.674826520132363,
+            "rot": 175.4330277979619,
+            "floors": 8
+          },
+          {
+            "cx": 58.07755318872553,
+            "cy": 41.16261054246979,
+            "w": 16.839736930936738,
+            "d": 27.980515561625026,
+            "rot": 175.63414296087473,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 53.881493574811316,
+            "y": 66.85673686922696,
+            "radius": 4.9243105417687385,
+            "height": 5.419057058804141
+          },
+          {
+            "x": 74.32301383999628,
+            "y": 73.61591050248491,
+            "radius": 4.9957633268887065,
+            "height": 7.293012788859235
+          },
+          {
+            "x": 58.32392781233918,
+            "y": 74.8367722235763,
+            "radius": 4.988254048150019,
+            "height": 9.957790214705312
+          },
+          {
+            "x": 74.66294717594508,
+            "y": 68.07916807601886,
+            "radius": 4.330137586870196,
+            "height": 8.72239611741377
+          }
+        ]
+      },
+      "mean_utci": 36.28,
+      "green_ratio": 0.0456,
+      "far": 1.214,
       "bcr": 0.152,
       "violation": 0.0,
-      "walkway_exposure": 0.3404
+      "walkway_exposure": 0.3397
     },
     {
       "genes": [
-        0.8870697194837236,
-        0.46211505322932334,
-        0.5456697181919955,
-        0.0777691932650588,
-        0.7155737942880684,
-        0.9988957216708746,
-        0.8297690765735344,
-        0.8722337399478877,
-        0.5514598883275835,
-        0.17875865204814423,
-        0.18117042212375542,
-        0.7567199690168686,
-        0.5706766723675214,
-        0.5835268474040715,
-        0.8865880229902087,
-        0.0,
-        0.9464685064807088,
-        0.7310530418663822,
-        0.7179420973821136,
-        0.701437717021691,
-        0.18677191276554295,
-        0.9324479113606557,
-        0.9234868878852704,
-        0.6658742254828424,
-        0.9140583100614778,
-        0.6552559791173044,
-        0.962050260230948,
-        0.060701671445765465
+        0.17047551068731107,
+        0.32445501002219435,
+        0.961460751672571,
+        0.41760742335462636,
+        0.9809821311110823,
+        0.9627970077570109,
+        0.8542633230232846,
+        0.524174928132378,
+        0.43584939967232816,
+        0.9108144995006925,
+        0.8275386583511293,
+        0.7848607673489875,
+        0.6795595518507289,
+        0.9775236756055371,
+        0.5165567010326798,
+        0.33364139379978,
+        0.9664419074023076,
+        0.9775579677542754,
+        0.9916419855370973,
+        0.6142676548913669,
+        0.6575996272528938,
+        0.989598163044761,
+        0.9998058559615828,
+        0.9666455262255728,
+        0.9217126944127231,
+        0.8876270590652873,
+        0.6976007939585833,
+        0.3617167274422951
       ],
       "design": {
         "buildings": [
           {
-            "cx": 62.835281138814935,
-            "cy": 37.76496748029958,
-            "w": 20.004733800223903,
-            "d": 9.710922251831294,
-            "rot": 128.80328297185233,
+            "cx": 23.573908248959242,
+            "cy": 31.24945730793693,
+            "w": 29.15213653679656,
+            "d": 17.187363313801782,
+            "rot": 176.57678359999483,
             "floors": 8
           },
           {
-            "cx": 59.412807237616036,
-            "cy": 61.91261204970476,
-            "w": 20.13211754320684,
-            "d": 11.932690345059173,
-            "rot": 32.61067598227598,
+            "cx": 58.0539961671333,
+            "cy": 41.23200464591698,
+            "w": 17.588686792791222,
+            "d": 28.037918989015235,
+            "rot": 148.95695850320328,
             "floors": 7
           }
         ],
         "trees": [
           {
-            "x": 45.003476133718216,
-            "y": 45.91318993256744,
-            "radius": 4.603058080465731,
-            "height": 3.0
+            "x": 53.17681666430568,
+            "y": 75.04264663987578,
+            "radius": 3.3079484536143795,
+            "height": 5.335489756598459
           },
           {
-            "x": 72.13430524730984,
-            "y": 56.629905285322955,
-            "radius": 4.012797340837397,
-            "height": 7.910064019151837
+            "x": 72.67822321561874,
+            "y": 73.45699779760882,
+            "radius": 4.970746949379841,
+            "height": 7.299873584239569
           },
           {
-            "x": 17.906271503295642,
-            "y": 70.50296934392593,
-            "radius": 4.732204107598447,
-            "height": 7.661119578379896
+            "x": 51.03218808689919,
+            "y": 74.27253678108531,
+            "radius": 4.99932049586554,
+            "height": 9.766518683579008
           },
           {
-            "x": 69.09407554011577,
-            "y": 50.90916200624695,
-            "radius": 4.867175910808318,
-            "height": 3.4249117001203584
+            "x": 70.41256769666657,
+            "y": 67.95442093888069,
+            "radius": 3.9416027788550414,
+            "height": 5.532017092096066
           }
         ]
       },
-      "mean_utci": 36.63,
-      "green_ratio": 0.0409,
-      "far": 0.506,
-      "bcr": 0.068,
+      "mean_utci": 36.29,
+      "green_ratio": 0.0374,
+      "far": 1.166,
+      "bcr": 0.155,
       "violation": 0.0,
-      "walkway_exposure": 0.3368
+      "walkway_exposure": 0.3377
     },
     {
       "genes": [
-        0.8870697194837236,
-        0.46888702824073314,
-        0.5456697181919955,
-        0.09432400452365028,
-        0.7155737942880684,
-        0.9988770107484451,
-        0.8297690765735344,
-        0.8722362598687111,
-        0.5518936070738552,
-        0.17875865204814423,
-        0.18117042212375542,
-        0.7569645367829508,
-        0.5849590032460137,
-        0.5836252848197935,
-        0.8865880229902087,
-        0.022968867836855925,
-        0.9462392745756352,
-        0.7261971669667655,
-        0.7191487056344352,
-        0.701437717021691,
-        0.18677191276554295,
-        0.9313289166176206,
-        0.926233143000295,
-        0.6650951411157838,
-        0.9139930099797491,
-        0.6552559791173044,
-        0.962050260230948,
-        0.060701671445765465
+        0.13401370903669457,
+        0.9973003915380327,
+        0.963083204146644,
+        0.39457459725423094,
+        0.9375177979865624,
+        0.974180228169625,
+        0.8542624322011018,
+        0.5227843953919228,
+        0.40180622413348815,
+        0.9107493788768583,
+        0.9192834684088609,
+        0.9913942177548534,
+        0.6978791263866906,
+        0.8965757520567234,
+        0.9783498863774166,
+        0.3483104910745418,
+        0.9902694231061707,
+        0.9780746135026331,
+        0.9987895219682019,
+        0.6161897564456466,
+        0.7693262343612361,
+        0.9891299396455516,
+        0.9966440137571481,
+        0.9968862563191162,
+        0.9862507359760154,
+        0.8607276876794304,
+        0.8022183424902694,
+        0.9740820681564675
       ],
       "design": {
         "buildings": [
           {
-            "cx": 62.835281138814935,
-            "cy": 38.16448194879594,
-            "w": 20.004733800223903,
-            "d": 10.075128099520306,
-            "rot": 128.80328297185233,
+            "cx": 21.76942883664841,
+            "cy": 64.77161140007208,
+            "w": 29.187830491226165,
+            "d": 16.68064113959308,
+            "rot": 168.75320363758124,
             "floors": 8
           },
           {
-            "cx": 59.40966064294613,
-            "cy": 61.90920858354076,
-            "w": 20.141659355624814,
-            "d": 11.932690345059173,
-            "rot": 32.61067598227598,
-            "floors": 7
+            "cx": 58.05445830437394,
+            "cy": 41.16117284589839,
+            "w": 16.839736930936738,
+            "d": 28.03648633529088,
+            "rot": 165.47102431359497,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 46.01457780688134,
-            "y": 45.92015869954148,
-            "radius": 4.603058080465731,
-            "height": 3.1607820748579916
+            "x": 53.881527586057004,
+            "y": 67.82040401461455,
+            "radius": 4.924224602320958,
+            "height": 5.438173437521793
           },
           {
-            "x": 72.11403736532368,
-            "y": 56.278496057544665,
-            "radius": 4.017020469720523,
-            "height": 7.910064019151837
+            "x": 74.32301383999628,
+            "y": 73.46927383690476,
+            "radius": 4.9957633268887065,
+            "height": 7.3133282951195255
           },
           {
-            "x": 17.9122929329528,
-            "y": 70.41574861281723,
-            "radius": 4.741816000501032,
-            "height": 7.655665987810487
+            "x": 58.85916339124801,
+            "y": 74.25058636862752,
+            "radius": 4.988254048150019,
+            "height": 9.978203794233814
           },
           {
-            "x": 69.08948718754701,
-            "y": 50.90916200624695,
-            "radius": 4.867175910808318,
-            "height": 3.4249117001203584
+            "x": 74.71075185400771,
+            "y": 65.75035537741236,
+            "radius": 4.307764198715943,
+            "height": 9.818574477095272
           }
         ]
       },
-      "mean_utci": 36.63,
-      "green_ratio": 0.041,
-      "far": 0.515,
-      "bcr": 0.069,
-      "violation": 0.0,
-      "walkway_exposure": 0.3369
-    },
-    {
-      "genes": [
-        0.8856046725394555,
-        0.4745412145043308,
-        0.5230712796240231,
-        0.07841565329823132,
-        0.9094063186961306,
-        0.9613898739961884,
-        0.8389947833140879,
-        0.8721673402791904,
-        0.5535335021937876,
-        0.18999410660185315,
-        0.16368512220511797,
-        0.7580042138630129,
-        0.7275284175259712,
-        0.5835243542338117,
-        0.8764323422255954,
-        0.02789875459451592,
-        0.9702055586383805,
-        0.8225009067727297,
-        0.9939409940547318,
-        0.7911995433622666,
-        0.440491618188137,
-        0.9946103401232431,
-        0.9234799716957048,
-        0.743690271490967,
-        0.8786671745655973,
-        0.9561044893424329,
-        0.9742642835010095,
-        0.8632454307173065
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 62.94055970142861,
-            "cy": 38.48539493895914,
-            "w": 19.507568151728506,
-            "d": 9.72514437256109,
-            "rot": 163.69313736530353,
-            "floors": 8
-          },
-          {
-            "cx": 59.94044028336827,
-            "cy": 61.89172515195099,
-            "w": 20.177737048263328,
-            "d": 12.179870345240769,
-            "rot": 29.463321996921234,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.1237953022336,
-            "y": 45.91895115810536,
-            "radius": 4.567513197789584,
-            "height": 3.1952912821616115
-          },
-          {
-            "x": 72.93433195261365,
-            "y": 62.5887417184715,
-            "radius": 4.978793479191561,
-            "height": 8.538396803535866
-          },
-          {
-            "x": 35.802538191745484,
-            "y": 74.88765698920781,
-            "radius": 4.732179900934967,
-            "height": 8.205831900436769
-          },
-          {
-            "x": 66.57491911695647,
-            "y": 72.00948148479173,
-            "radius": 4.909924992253533,
-            "height": 9.042718015021146
-          }
-        ]
-      },
-      "mean_utci": 36.64,
-      "green_ratio": 0.0452,
-      "far": 0.506,
-      "bcr": 0.068,
+      "mean_utci": 36.29,
+      "green_ratio": 0.0455,
+      "far": 1.199,
+      "bcr": 0.15,
       "violation": 0.0,
       "walkway_exposure": 0.3388
     },
     {
       "genes": [
-        0.8854775978269429,
-        0.4616720542385825,
-        0.5228763192552632,
-        0.07841565329823132,
-        0.7244683496036601,
-        0.9232285445645044,
-        0.8294222209400774,
-        0.8722348521317971,
-        0.5514485374058229,
-        0.18988877913841942,
-        0.16367845685207802,
-        0.7567172280617203,
-        0.7181402396797874,
-        0.5835243542338117,
-        0.8666449503189319,
-        0.022600037944368868,
-        0.9702055586383805,
-        0.8187311443991134,
-        0.7179442273531352,
-        0.7911995433622666,
-        0.18532749273914417,
-        0.9317539652626221,
-        0.9234799716957048,
-        0.6600710821121027,
-        0.8786671745655973,
-        0.9561044893424329,
-        0.9608532419572191,
-        0.11498584968350306
+        0.1327526183256952,
+        0.9973654680885136,
+        0.9630679046472743,
+        0.3909853763357269,
+        0.9375162118270856,
+        0.9739808042916152,
+        0.8542633642846775,
+        0.5226427530775345,
+        0.41270513324244346,
+        0.9108483848213779,
+        0.817313881886828,
+        0.9983454967178453,
+        0.6896271918894182,
+        0.9904629885989967,
+        0.9722983321878812,
+        0.3483662473120872,
+        0.965477894007041,
+        0.9780747998425521,
+        0.9215470433467662,
+        0.6145150808379266,
+        0.7718753242887023,
+        0.9995388951573101,
+        0.9981578517098678,
+        0.9641272980773063,
+        0.9862507180679589,
+        0.9277345020923683,
+        0.8324029373775181,
+        0.9767972481082238
       ],
       "design": {
         "buildings": [
           {
-            "cx": 62.93465308055647,
-            "cy": 37.71961290543496,
-            "w": 19.50327902361579,
-            "d": 9.72514437256109,
-            "rot": 130.40430292865884,
+            "cx": 21.706487560962312,
+            "cy": 64.77502041197432,
+            "w": 29.187493902240035,
+            "d": 16.601678279385993,
+            "rot": 168.7529181288754,
             "floors": 8
           },
           {
-            "cx": 59.39247084436506,
-            "cy": 61.912770476207434,
-            "w": 20.131867822928104,
-            "d": 12.177553141045227,
-            "rot": 29.462122233374043,
-            "floors": 7
+            "cx": 58.05373417469021,
+            "cy": 41.153904936996156,
+            "w": 17.079512931333756,
+            "d": 28.038664466070312,
+            "rot": 147.11649873962904,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 55.47344749508469,
-            "y": 45.92467355722583,
-            "radius": 4.533257326116262,
-            "height": 3.158200265610582
+            "x": 53.310674358604345,
+            "y": 74.42751570141994,
+            "radius": 4.903044162657585,
+            "height": 5.43856373118461
           },
           {
-            "x": 73.84275844969883,
-            "y": 62.940479822338716,
-            "radius": 4.012804795735973,
-            "height": 8.538396803535866
+            "x": 72.83907939978388,
+            "y": 73.727780659822,
+            "radius": 4.725414651713681,
+            "height": 7.301605565865486
           },
           {
-            "x": 17.804373247604804,
-            "y": 70.45404234788026,
-            "radius": 4.732179900934967,
-            "height": 7.62049757478472
+            "x": 59.034778542855534,
+            "y": 74.97416423406268,
+            "radius": 4.993552480984537,
+            "height": 9.748891086541144
           },
           {
-            "x": 66.61046736542205,
-            "y": 72.0522993385759,
-            "radius": 4.862986346850267,
-            "height": 3.8049009477845215
+            "x": 74.60800960908097,
+            "y": 70.44322446939658,
+            "radius": 4.413410280821314,
+            "height": 9.837580736757566
           }
         ]
       },
-      "mean_utci": 36.64,
-      "green_ratio": 0.0406,
-      "far": 0.505,
-      "bcr": 0.068,
+      "mean_utci": 36.29,
+      "green_ratio": 0.0446,
+      "far": 1.204,
+      "bcr": 0.151,
       "violation": 0.0,
-      "walkway_exposure": 0.3366
+      "walkway_exposure": 0.3388
     },
     {
       "genes": [
-        0.8765398210591979,
-        0.47241423524646425,
-        0.467647347683648,
-        0.08104673163301314,
-        0.6994191453190113,
-        0.9922351644086301,
-        0.8392713514600632,
-        0.8723122989540413,
-        0.5525598069115578,
-        0.20103618827817152,
-        0.15901239076550933,
-        0.7585579450252715,
-        0.7274011703584474,
-        0.6125875585466389,
-        0.8657721206474172,
-        0.020428396468008418,
-        0.9522738176493301,
-        0.8557215234679301,
-        0.821062109444263,
-        0.7192074098503671,
-        0.18546239536803713,
-        0.9934205959554108,
-        0.9995782369986767,
-        0.7167267003358866,
-        0.8839938278741674,
-        0.9561044893424329,
-        0.9703309307210923,
-        0.04119041717905264
+        0.13275343895903668,
+        0.9997315462431211,
+        0.9615665809242522,
+        0.43277235218217475,
+        0.9395538761966,
+        0.9634274645179691,
+        0.8542210766952829,
+        0.5226427530775345,
+        0.41289873244234454,
+        0.9149652439791508,
+        0.8125422714049413,
+        0.9942845037778404,
+        0.6849436820474557,
+        0.997999667290835,
+        0.972301857732623,
+        0.34557957982916304,
+        0.9653294818954993,
+        0.9996275295368503,
+        0.9215470401833358,
+        0.5503892096374453,
+        0.6492698199764945,
+        0.9993448978439852,
+        0.9981622682970145,
+        0.9027889164801783,
+        0.9858856304865633,
+        0.9211588880899255,
+        0.8326586992512212,
+        0.9513982441378754
       ],
       "design": {
         "buildings": [
           {
-            "cx": 62.860394625659644,
-            "cy": 38.32521971635691,
-            "w": 18.288241649040256,
-            "d": 9.783028095926289,
-            "rot": 125.89544615742203,
+            "cx": 21.69439860733128,
+            "cy": 64.90938638863987,
+            "w": 29.154464780333548,
+            "d": 17.520991748007845,
+            "rot": 169.119697715388,
             "floors": 8
           },
           {
-            "cx": 59.96397627968978,
-            "cy": 61.90822736127838,
-            "w": 20.156315752054272,
-            "d": 12.422796142119774,
-            "rot": 28.622230337791677,
-            "floors": 7
+            "cx": 58.01949702042183,
+            "cy": 41.151854162438134,
+            "w": 17.08377211373158,
+            "d": 28.129235367541316,
+            "rot": 146.25760885288943,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 56.13174696310789,
-            "y": 47.98691582284113,
-            "radius": 4.53020242226596,
-            "height": 3.142998775276059
+            "x": 52.98191591823953,
+            "y": 74.95653236979456,
+            "radius": 4.903056502064181,
+            "height": 5.419057058804141
           },
           {
-            "x": 72.22566969563943,
-            "y": 65.34607105599747,
-            "radius": 4.37371738305492,
-            "height": 8.03445186895257
+            "x": 72.82860905869755,
+            "y": 75.2483078770659,
+            "radius": 4.7254146406416755,
+            "height": 6.852724467462117
           },
           {
-            "x": 17.98143905349349,
-            "y": 74.54089846273901,
-            "radius": 4.998523829495369,
-            "height": 8.017086902351206
+            "x": 50.4508076235179,
+            "y": 74.96056648272541,
+            "radius": 4.993567939039551,
+            "height": 9.319522415361249
           },
           {
-            "x": 66.95931712756482,
-            "y": 72.02203962381935,
-            "radius": 4.896158257523823,
-            "height": 3.2883329202533687
+            "x": 74.58115526800476,
+            "y": 69.97446309937892,
+            "radius": 4.414305447379274,
+            "height": 9.659787708965128
           }
         ]
       },
-      "mean_utci": 36.64,
-      "green_ratio": 0.0435,
-      "far": 0.498,
-      "bcr": 0.067,
-      "violation": 0.0,
-      "walkway_exposure": 0.3391
-    },
-    {
-      "genes": [
-        0.8856044287337762,
-        0.4619314062390421,
-        0.5230712796240231,
-        0.07841565329823132,
-        0.7244683496036601,
-        0.9234703471468088,
-        0.8389947833140879,
-        0.8721681471853073,
-        0.5535335021937876,
-        0.18999410660185315,
-        0.1631591811583223,
-        0.7580042138630129,
-        0.7159311041466951,
-        0.5835243542338117,
-        0.8657688396052996,
-        0.02260215477404233,
-        0.9702055586383805,
-        0.8187311443991134,
-        0.7179442273531352,
-        0.7911995433622666,
-        0.18532749273914417,
-        0.9941047668331986,
-        0.9234799716957048,
-        0.743690271490967,
-        0.8786671745655973,
-        0.9561044893424329,
-        0.9608910987944884,
-        0.8632454307173065
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 62.94054519683585,
-            "cy": 37.735206780116684,
-            "w": 19.507568151728506,
-            "d": 9.72514437256109,
-            "rot": 130.40430292865884,
-            "floors": 8
-          },
-          {
-            "cx": 59.94044028336827,
-            "cy": 61.89177261599478,
-            "w": 20.177737048263328,
-            "d": 12.179870345240769,
-            "rot": 29.36865260849801,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 55.3180700689931,
-            "y": 45.925185793296976,
-            "radius": 4.530190938618548,
-            "height": 3.1582150834182965
-          },
-          {
-            "x": 73.84275844969883,
-            "y": 62.940479822338716,
-            "radius": 4.012804795735973,
-            "height": 8.538396803535866
-          },
-          {
-            "x": 17.804373247604804,
-            "y": 74.85199605352744,
-            "radius": 4.732179900934967,
-            "height": 8.205831900436769
-          },
-          {
-            "x": 66.61036701943081,
-            "y": 72.0521784718619,
-            "radius": 4.8631188457807095,
-            "height": 9.042718015021146
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0406,
-      "far": 0.506,
-      "bcr": 0.068,
-      "violation": 0.0,
-      "walkway_exposure": 0.3361
-    },
-    {
-      "genes": [
-        0.9120370677366425,
-        0.47241071578583155,
-        0.4154475713888083,
-        0.07735469207642909,
-        0.9308919920807299,
-        0.9851378683460463,
-        0.8393822968807643,
-        0.872236866356484,
-        0.6689742730739068,
-        0.2196801667506939,
-        0.15901509830580948,
-        0.7585579450252715,
-        0.7276679516319476,
-        0.5871734080899059,
-        0.8567387417209759,
-        0.09064642004509514,
-        0.9521644298089469,
-        0.821088589385034,
-        0.8220459240376561,
-        0.7159191891033886,
-        0.17690538801825867,
-        0.988405110504652,
-        1.0,
-        0.7167289907202817,
-        0.9519911763688546,
-        0.9561044893424329,
-        0.973175967129459,
-        0.862671343724276
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 65.48867622880783,
-            "cy": 38.29332264550294,
-            "w": 17.139846570553782,
-            "d": 9.70180322568144,
-            "rot": 167.5605585745314,
-            "floors": 8
-          },
-          {
-            "cx": 59.10130652083511,
-            "cy": 60.950445995503344,
-            "w": 22.717434007625947,
-            "d": 12.832963668515266,
-            "rot": 28.622717695045708,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.16506859478054,
-            "y": 46.18955857121343,
-            "radius": 4.498585596023416,
-            "height": 3.634524940315666
-          },
-          {
-            "x": 72.21476160965412,
-            "y": 62.876174419534856,
-            "radius": 4.377160734131796,
-            "height": 8.01143432372372
-          },
-          {
-            "x": 17.383377161278105,
-            "y": 74.18835773532564,
-            "radius": 5.0,
-            "height": 8.017102935041972
-          },
-          {
-            "x": 71.7242519290246,
-            "y": 72.01295618667196,
-            "radius": 4.906115884953106,
-            "height": 9.03869940606993
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0434,
-      "far": 0.527,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3352
-    },
-    {
-      "genes": [
-        0.9136948628013281,
-        0.47241071578583155,
-        0.4379622508511026,
-        0.07735469207642909,
-        0.6609806252660726,
-        0.9845848001701131,
-        0.839375384956029,
-        0.8724257887983584,
-        0.6629273038917369,
-        0.2196801667506939,
-        0.18157049421892577,
-        0.7804639088218756,
-        0.7325557879226209,
-        0.6141663061126627,
-        0.8864175897113441,
-        0.0492273490390752,
-        0.9664837618786178,
-        0.8220622737071198,
-        0.8220459240376561,
-        0.7222559723430223,
-        0.42739412165529034,
-        0.9841326659040704,
-        0.9999967240276366,
-        0.7733659901108291,
-        0.9504653142786388,
-        0.9561044893424329,
-        1.0,
-        0.7986142497424492
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 65.38631512677813,
-            "cy": 38.30698825109782,
-            "w": 17.635169518724254,
-            "d": 9.70180322568144,
-            "rot": 118.97651254789307,
-            "floors": 8
-          },
-          {
-            "cx": 59.146065734843404,
-            "cy": 61.01062407519076,
-            "w": 22.584400685618213,
-            "d": 12.832963668515266,
-            "rot": 32.68268895940664,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.463804883015264,
-            "y": 48.08241241744059,
-            "radius": 4.602461563989705,
-            "height": 3.344591443273526
-          },
-          {
-            "x": 73.23495213907908,
-            "y": 62.94554521973757,
-            "radius": 4.377160734131796,
-            "height": 8.055791806401157
-          },
-          {
-            "x": 34.917586850886366,
-            "y": 73.88929771532156,
-            "radius": 4.999988534096728,
-            "height": 8.413561930775803
-          },
-          {
-            "x": 71.53257199950471,
-            "y": 71.9273142539703,
-            "radius": 5.0,
-            "height": 8.590299748197143
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0443,
-      "far": 0.531,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3376
-    },
-    {
-      "genes": [
-        0.8854775978269429,
-        0.4616720542385825,
-        0.499089164640387,
-        0.07841565329823132,
-        0.9475010674760863,
-        0.9232285445645044,
-        0.8294222209400774,
-        0.9073486108636291,
-        0.5587123750992544,
-        0.18988877913841942,
-        0.16367845685207802,
-        0.8098022915959048,
-        0.7279326505918988,
-        0.5835243542338117,
-        0.8512113051443061,
-        0.022600037944368868,
-        0.9702055586383805,
-        0.8222556110023073,
-        0.9993400976776813,
-        0.7912444941643777,
-        0.44175267589326994,
-        0.9317539652626221,
-        0.9926439369961276,
-        0.7753755800727049,
-        0.9964918317468396,
-        0.9561044893424329,
-        0.9740319382448523,
-        0.8391807466608507
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 63.13638021539824,
-            "cy": 37.699555224453206,
-            "w": 18.979961622088513,
-            "d": 9.72514437256109,
-            "rot": 170.55019214569555,
-            "floors": 8
-          },
-          {
-            "cx": 59.339827714363665,
-            "cy": 63.91475575419966,
-            "w": 20.291672252183595,
-            "d": 12.177553141045227,
-            "rot": 29.462122233374043,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.19268215260889,
-            "y": 45.93369715395261,
-            "radius": 4.479239568005071,
-            "height": 3.158200265610582
-          },
-          {
-            "x": 72.91656113286743,
-            "y": 62.55938137074406,
-            "radius": 4.997690341871884,
-            "height": 8.538711459150644
-          },
-          {
-            "x": 35.919688015627344,
-            "y": 70.24500963397806,
-            "radius": 4.974253779486446,
-            "height": 8.427629060508934
-          },
-          {
-            "x": 74.84467873611287,
-            "y": 72.0102233007926,
-            "radius": 4.909111783856983,
-            "height": 8.874265226625955
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0461,
-      "far": 0.501,
-      "bcr": 0.067,
-      "violation": 0.0,
-      "walkway_exposure": 0.3386
-    },
-    {
-      "genes": [
-        0.8870697194837236,
-        0.4724088050294793,
-        0.5413021794229893,
-        0.06592316086370009,
-        0.9399338509657591,
-        0.992501031239117,
-        0.8389843928975464,
-        0.8722295055728801,
-        0.5532906666176273,
-        0.20064420521998683,
-        0.17984971333554658,
-        0.7552305523688227,
-        0.7277775526008429,
-        0.5875363594239006,
-        0.8865880229902087,
-        0.028062599089285427,
-        0.9685754875438115,
-        0.7270790744451643,
-        0.995305334297771,
-        0.7907597167433794,
-        0.3915192093547134,
-        0.9860331566989383,
-        0.9185685384558129,
-        0.7716142995774594,
-        0.9138633293257934,
-        0.9561048338322283,
-        0.9738707536587018,
-        0.8784728068169564
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 62.872473062950306,
-            "cy": 38.36959898444243,
-            "w": 19.908647947305766,
-            "d": 9.450309539001402,
-            "rot": 169.18809317383665,
-            "floors": 8
-          },
-          {
-            "cx": 59.941640079902186,
-            "cy": 61.89737044766478,
-            "w": 20.172394665587802,
-            "d": 12.41417251483971,
-            "rot": 32.372948400398386,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.1252575999714,
-            "y": 46.197038860750574,
-            "radius": 4.603058080465731,
-            "height": 3.196438193624998
-          },
-          {
-            "x": 72.81568276495874,
-            "y": 55.90299763355893,
-            "radius": 4.983568670042199,
-            "height": 8.535318017203656
-          },
-          {
-            "x": 32.34450840950794,
-            "y": 74.2993697010882,
-            "radius": 4.7149898845953455,
-            "height": 8.401300097042217
-          },
-          {
-            "x": 69.04613061099062,
-            "y": 72.0107620971806,
-            "radius": 4.908547637805457,
-            "height": 9.149309647718695
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0453,
-      "far": 0.509,
-      "bcr": 0.069,
-      "violation": 0.0,
-      "walkway_exposure": 0.3399
-    },
-    {
-      "genes": [
-        0.9135407429533248,
-        0.47241071578583155,
-        0.4154475713888083,
-        0.08078843873786277,
-        0.9291672814808357,
-        0.9984204536118597,
-        0.8393822968807643,
-        0.8805250959851827,
-        0.6605728368136725,
-        0.22008292960155026,
-        0.18157049421892577,
-        0.8115773612616736,
-        0.7966158452948973,
-        0.6141663061126627,
-        0.8862471570166929,
-        0.08891260644329164,
-        0.9664837618786178,
-        0.8218533592786219,
-        0.9143978828127686,
-        0.7223599941712723,
-        0.4336643006571154,
-        0.9838475435789308,
-        0.9999966931106326,
-        0.7750479312104093,
-        0.9529830671089606,
-        0.9561044893424329,
-        0.988578790379461,
-        0.8014900684281402
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 65.58169380841986,
-            "cy": 38.29332264550294,
-            "w": 17.139846570553782,
-            "d": 9.777345652232981,
-            "rot": 167.25011066655043,
-            "floors": 8
-          },
-          {
-            "cx": 59.1640350930072,
-            "cy": 61.487261888005975,
-            "w": 22.532602409900797,
-            "d": 12.841824451234107,
-            "rot": 32.68268895940664,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 60.999295440376144,
-            "y": 48.08254862113891,
-            "radius": 4.601865049558425,
-            "height": 3.6223882451030414
-          },
-          {
-            "x": 72.93338731505517,
-            "y": 62.72259445235005,
-            "radius": 4.700392589844689,
-            "height": 8.056519959198905
-          },
-          {
-            "x": 35.35649951044435,
-            "y": 73.86933925073724,
-            "radius": 4.999988425887214,
-            "height": 8.425335518472865
-          },
-          {
-            "x": 71.74502999957528,
-            "y": 71.96377910884183,
-            "radius": 4.960025766328114,
-            "height": 8.610430478996982
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0456,
-      "far": 0.526,
-      "bcr": 0.071,
-      "violation": 0.0,
-      "walkway_exposure": 0.3357
-    },
-    {
-      "genes": [
-        0.9123605624791709,
-        0.47241071578583155,
-        0.43053125117911517,
-        0.07735469207642909,
-        0.9306965055698494,
-        0.9993500133308055,
-        0.8393822968807643,
-        0.8805250959851827,
-        0.6659857926889251,
-        0.2196801667506939,
-        0.15901509830580948,
-        0.8115773612616736,
-        0.7276679516319476,
-        0.6141607277409633,
-        0.8862504723120248,
-        0.08891260644329164,
-        0.9687542702436641,
-        0.821088589385034,
-        0.8220459240376561,
-        0.7222619916621684,
-        0.4188507311056806,
-        0.9860735315999146,
-        1.0,
-        0.7167289907202817,
-        0.9519911763688546,
-        0.9561044893424329,
-        0.9753651380158955,
-        0.8014900684281402
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 65.37184954019736,
-            "cy": 38.30247789993501,
-            "w": 17.47168752594053,
-            "d": 9.70180322568144,
-            "rot": 167.52537100257288,
-            "floors": 8
-          },
-          {
-            "cx": 59.12361974225435,
-            "cy": 61.44194704581811,
-            "w": 22.651687439156355,
-            "d": 12.832963668515266,
-            "rot": 28.622717695045708,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.118036468011084,
-            "y": 48.082151043894775,
-            "radius": 4.601876653092087,
-            "height": 3.6223882451030414
-          },
-          {
-            "x": 73.3967160481588,
-            "y": 62.876174419534856,
-            "radius": 4.377160734131796,
-            "height": 8.055833941635179
-          },
-          {
-            "x": 34.31955117739764,
-            "y": 74.02514721199402,
-            "radius": 5.0,
-            "height": 8.017102935041972
-          },
-          {
-            "x": 71.71732552755498,
-            "y": 72.00596675198726,
-            "radius": 4.913777983055635,
-            "height": 8.610430478996982
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0439,
-      "far": 0.53,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3356
-    },
-    {
-      "genes": [
-        0.9459829204841378,
-        0.47421827497962477,
-        0.4362752217577118,
-        0.07735469207642909,
-        0.9368353208102628,
-        0.9846684613262339,
-        0.839614651415811,
-        0.872236866356484,
-        0.6692851467373818,
-        0.2196801667506939,
-        0.17514405360853766,
-        0.7799666951844879,
-        0.7341417440157276,
-        0.615302119467512,
-        0.8567386576884393,
-        0.11288647436921381,
-        0.9521644298089469,
-        0.7969933508547098,
-        0.994294724978384,
-        0.7195614783916837,
-        0.4427952812631439,
-        0.988405110504652,
-        0.9999995494280537,
-        0.7729002485991676,
-        0.9627930657857605,
-        0.9668164293595463,
-        0.9782618362278571,
-        0.8629657790303056
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 67.38421880861767,
-            "cy": 38.4169519351657,
-            "w": 17.598054878669657,
-            "d": 9.70180322568144,
-            "rot": 168.6303577458473,
-            "floors": 8
-          },
-          {
-            "cx": 59.11206133076868,
-            "cy": 60.94790018546019,
-            "w": 22.7242732282224,
-            "d": 12.832963668515266,
-            "rot": 31.525929649536778,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.624726304872965,
-            "y": 48.18677671756982,
-            "radius": 4.498585301909538,
-            "height": 3.7902053205844966
-          },
-          {
-            "x": 71.66956814361565,
-            "y": 60.80139556105322,
-            "radius": 4.980031537424344,
-            "height": 8.036930348741786
-          },
-          {
-            "x": 35.99566950799618,
-            "y": 74.18835927575712,
-            "radius": 4.999998422998187,
-            "height": 8.410301740194173
-          },
-          {
-            "x": 72.46593650519988,
-            "y": 72.74818417911885,
-            "radius": 4.9239164267975,
-            "height": 9.040760453212139
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0463,
-      "far": 0.532,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3385
-    },
-    {
-      "genes": [
-        0.9136948628013281,
-        0.47241071578583155,
-        0.4379622508511026,
-        0.07735469207642909,
-        0.6637201466412767,
-        0.998675176470843,
-        0.839375384956029,
-        0.8805250959851827,
-        0.6628969915254728,
-        0.2196801667506939,
-        0.18157049421892577,
-        0.8115773612616736,
-        0.7969640575237589,
-        0.6141663061126627,
-        0.8864175897113441,
-        0.049119080683043784,
-        0.9664837618786178,
-        0.8220622737071198,
-        0.8220459240376561,
-        0.7222559723430223,
-        0.42739412165529034,
-        0.9841275484320208,
-        0.9999966931106326,
-        0.7733659901108291,
-        0.9504305637836448,
-        0.9561044893424329,
-        0.9882675229699402,
-        0.8014900684281402
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 65.38631512677813,
-            "cy": 38.30698825109782,
-            "w": 17.635169518724254,
-            "d": 9.70180322568144,
-            "rot": 119.4696263954298,
-            "floors": 8
-          },
-          {
-            "cx": 59.146292054804746,
-            "cy": 61.467805105720544,
-            "w": 22.5837338135604,
-            "d": 12.832963668515266,
-            "rot": 32.68268895940664,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 61.023593280621654,
-            "y": 48.08241241744059,
-            "radius": 4.602461563989705,
-            "height": 3.3438335647813067
-          },
-          {
-            "x": 73.23495213907908,
-            "y": 62.94554521973757,
-            "radius": 4.377160734131796,
-            "height": 8.055791806401157
-          },
-          {
-            "x": 34.917586835173076,
-            "y": 73.88893959693516,
-            "radius": 4.999988425887214,
-            "height": 8.413561930775803
-          },
-          {
-            "x": 71.56713212855773,
-            "y": 71.96477290208192,
-            "radius": 4.958936330394791,
-            "height": 8.610430478996982
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0441,
-      "far": 0.531,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3372
-    },
-    {
-      "genes": [
-        0.8870697194837236,
-        0.4619314062390421,
-        0.5230712796240231,
-        0.07841565329823132,
-        0.7244683496036601,
-        0.9994725551709014,
-        0.8389960112579248,
-        0.8723158785765643,
-        0.5514485374058229,
-        0.18988877913841942,
-        0.18117042212375542,
-        0.7567172280617203,
-        0.7219023764201206,
-        0.5835243542338117,
-        0.8865880229902087,
-        0.02260215477404233,
-        0.9702055586383805,
-        0.8445244981412434,
-        0.7179442273531352,
-        0.7907597167433794,
-        0.18532749273914417,
-        0.9941047668331986,
-        0.9234799716957048,
-        0.7732388613529299,
-        0.914650672866163,
-        0.9561672608791925,
-        0.9608910987944884,
-        0.8632454307173065
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 63.027718906915,
-            "cy": 37.735206780116684,
-            "w": 19.507568151728506,
-            "d": 9.72514437256109,
-            "rot": 130.40430292865884,
-            "floors": 8
-          },
-          {
-            "cx": 59.95606199823166,
-            "cy": 61.91754035166784,
-            "w": 20.131867822928104,
-            "d": 12.177553141045227,
-            "rot": 32.61067598227598,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 55.70933105989928,
-            "y": 45.91301343136168,
-            "radius": 4.603058080465731,
-            "height": 3.1582150834182965
-          },
-          {
-            "x": 73.84275844969883,
-            "y": 64.79694073452005,
-            "radius": 4.012804795735973,
-            "height": 8.535318017203656
-          },
-          {
-            "x": 17.804373247604804,
-            "y": 74.85199605352744,
-            "radius": 4.732179900934967,
-            "height": 8.41267202947051
-          },
-          {
-            "x": 69.13906282603087,
-            "y": 72.05658966391587,
-            "radius": 4.8631188457807095,
-            "height": 9.042718015021146
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0409,
-      "far": 0.505,
-      "bcr": 0.068,
-      "violation": 0.0,
-      "walkway_exposure": 0.336
-    },
-    {
-      "genes": [
-        0.8854405823112441,
-        0.47241071578583155,
-        0.5235694333593176,
-        0.07735469207642909,
-        0.9308919920807299,
-        0.9845977328438688,
-        0.8393799797438221,
-        0.8723122989540413,
-        0.5525598069115578,
-        0.2196801667506939,
-        0.15901509830580948,
-        0.7585579450252715,
-        0.7273867592059977,
-        0.5871734080899059,
-        0.8657721206474172,
-        0.09064642004509514,
-        0.9521644298089469,
-        0.8210612898447437,
-        0.8208025400425069,
-        0.7915396723724623,
-        0.18546239536803713,
-        0.9935777569256465,
-        0.9995782369986767,
-        0.7167289907202817,
-        0.9519911763688546,
-        0.9561044893424329,
-        0.973175967129459,
-        0.8631903520856755
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 62.92657338406189,
-            "cy": 38.35894875065567,
-            "w": 19.518527533904987,
-            "d": 9.70180322568144,
-            "rot": 167.5605585745314,
-            "floors": 8
-          },
-          {
-            "cx": 59.970368368119686,
-            "cy": 61.90822736127838,
-            "w": 20.156315752054272,
-            "d": 12.832963668515266,
-            "rot": 28.622717695045708,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.13072464178738,
-            "y": 46.184046278220336,
-            "radius": 4.53020242226596,
-            "height": 3.634524940315666
-          },
-          {
-            "x": 72.21869710776052,
-            "y": 62.87702386254804,
-            "radius": 4.372808890148773,
-            "height": 8.540777706607237
-          },
-          {
-            "x": 17.98143905349349,
-            "y": 74.55190019464828,
-            "radius": 4.998523829495369,
-            "height": 8.017102935041972
-          },
-          {
-            "x": 71.7242519290246,
-            "y": 72.01295618667196,
-            "radius": 4.906115884953106,
-            "height": 9.042332464599728
-          }
-        ]
-      },
-      "mean_utci": 36.65,
-      "green_ratio": 0.0435,
-      "far": 0.52,
-      "bcr": 0.07,
+      "mean_utci": 36.3,
+      "green_ratio": 0.0446,
+      "far": 1.239,
+      "bcr": 0.155,
       "violation": 0.0,
       "walkway_exposure": 0.3387
     },
     {
       "genes": [
-        0.9459829204841378,
-        0.47421827497962477,
-        0.4362752217577118,
-        0.07735469207642909,
-        0.9395725413328218,
-        0.9987519611686941,
-        0.839614651415811,
-        0.8803361735433084,
-        0.6692548343711175,
-        0.2196801667506939,
-        0.17514405360853766,
-        0.8245766599605772,
-        0.7985500136168656,
-        0.615302119467512,
-        0.8567386576884393,
-        0.11277820601555535,
-        0.9521644298089469,
-        0.7969933508547098,
-        0.994294724978384,
-        0.7195614783916837,
-        0.4427952812631439,
-        0.9883999930326023,
-        0.9999995184059745,
-        0.7729002485991676,
-        0.9627583152907666,
-        0.9668164293595463,
-        0.9782618362278571,
-        0.8658415977159967
+        0.9346659892213746,
+        0.30087434903213145,
+        0.44717968958850224,
+        0.38531161520579427,
+        0.9750847614589925,
+        0.9626596842604378,
+        0.8399841227376933,
+        0.7084286966362554,
+        0.38688469198582265,
+        0.49315217886695756,
+        0.1302292826814203,
+        0.9972654131520454,
+        0.551095180721085,
+        0.6743425563011165,
+        0.9773431630724145,
+        0.274945102999215,
+        0.9543296646446814,
+        0.9801145970761533,
+        0.9987853633286331,
+        0.610673766798919,
+        0.7617900804286111,
+        0.99746598935345,
+        0.27179938065091075,
+        0.901863659868597,
+        0.05358715473572223,
+        0.8931383152010346,
+        0.6931540744567661,
+        0.30462603908951275
       ],
       "design": {
         "buildings": [
           {
-            "cx": 67.38421880861767,
-            "cy": 38.4169519351657,
-            "w": 17.598054878669657,
-            "d": 9.70180322568144,
-            "rot": 169.1230574399079,
+            "cx": 66.58506158775434,
+            "cy": 27.82106761063757,
+            "w": 17.83795317094705,
+            "d": 16.476855534527473,
+            "rot": 175.51525706261864,
             "floors": 8
           },
           {
-            "cx": 59.11228781029013,
-            "cy": 61.40394821931332,
-            "w": 22.723606356164588,
-            "d": 12.832963668515266,
-            "rot": 31.525929649536778,
-            "floors": 7
+            "cx": 60.4502666743944,
+            "cy": 52.537122011713606,
+            "w": 16.511463223688096,
+            "d": 18.849347935073066,
+            "rot": 23.441270882655655,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 61.19789568306579,
-            "y": 48.18677671756982,
-            "radius": 4.498585301909538,
-            "height": 3.7894474421088873
+            "x": 43.584766236717634,
+            "y": 52.23162929715173,
+            "radius": 4.92070107075345,
+            "height": 4.924615720994505
           },
           {
-            "x": 71.66956814361565,
-            "y": 60.80139556105322,
-            "radius": 4.980031537424344,
-            "height": 8.036930348741786
+            "x": 71.80693944342867,
+            "y": 73.61210394890321,
+            "radius": 4.9957487716502165,
+            "height": 7.274716367592434
           },
           {
-            "x": 35.99566949557392,
-            "y": 74.1880011587558,
-            "radius": 4.99999831442091,
-            "height": 8.410301740194173
+            "x": 59.65975552095571,
+            "y": 77.35840454560753,
+            "radius": 2.4512978322781875,
+            "height": 9.313045619080178
           },
           {
-            "x": 72.46349868266664,
-            "y": 72.74818417911885,
-            "radius": 4.9239164267975,
-            "height": 9.060891184011977
+            "x": 7.792241092744016,
+            "y": 68.364112295433,
+            "radius": 3.9260392605986816,
+            "height": 5.13238227362659
           }
         ]
       },
-      "mean_utci": 36.66,
-      "green_ratio": 0.0463,
-      "far": 0.532,
-      "bcr": 0.072,
-      "violation": 0.0,
-      "walkway_exposure": 0.3379
-    },
-    {
-      "genes": [
-        0.8853261559835798,
-        0.4744877904629068,
-        0.09166952858979005,
-        0.07806081690968797,
-        0.945099077269631,
-        0.9618552403085492,
-        0.8389976062549436,
-        0.871697395213754,
-        0.5584318331355576,
-        0.780313922222619,
-        0.16368710569111786,
-        0.81034855116817,
-        0.7277417905300833,
-        0.5875640736739353,
-        0.8870026401492831,
-        0.027834590961205094,
-        0.9700032032111305,
-        0.8221955242640107,
-        1.0,
-        0.7884897295036755,
-        0.44371383106155127,
-        0.9884658829991454,
-        0.9978886316153025,
-        0.7743370912038819,
-        0.9969872356651062,
-        0.9558761554290744,
-        0.9740541515872375,
-        0.8712491242302431
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 66.58105839924289,
-            "cy": 38.240084351740464,
-            "w": 10.01672962897538,
-            "d": 9.717337972013135,
-            "rot": 170.11783390853358,
-            "floors": 8
-          },
-          {
-            "cx": 58.24928990536176,
-            "cy": 60.00962070871468,
-            "w": 20.285500328982266,
-            "d": 25.166906288897618,
-            "rot": 29.463679024401213,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.12206488450885,
-            "y": 46.198746721175965,
-            "radius": 4.604509240522491,
-            "height": 3.1948421367284356
-          },
-          {
-            "x": 72.90022422477914,
-            "y": 62.553686698480746,
-            "radius": 5.0,
-            "height": 8.519428106525728
-          },
-          {
-            "x": 36.059136288445444,
-            "y": 74.19983112989676,
-            "radius": 4.992610210653559,
-            "height": 8.420359638427174
-          },
-          {
-            "x": 74.87936978491496,
-            "y": 71.9941275354015,
-            "radius": 4.909189530555331,
-            "height": 9.098743869611702
-          }
-        ]
-      },
-      "mean_utci": 36.66,
-      "green_ratio": 0.0467,
-      "far": 0.68,
+      "mean_utci": 36.32,
+      "green_ratio": 0.0347,
+      "far": 0.756,
       "bcr": 0.095,
       "violation": 0.0,
-      "walkway_exposure": 0.3339
+      "walkway_exposure": 0.3363
     },
     {
       "genes": [
-        0.8853261559835798,
-        0.4744877904629068,
-        0.09166952858979005,
-        0.07773668627128681,
-        0.945099077269631,
-        0.9618552403085492,
-        0.8389976062549436,
-        0.871697395213754,
-        0.40621627488420237,
-        0.7618914252595773,
-        0.16368710569111786,
-        0.81034855116817,
-        0.7277417905300833,
-        0.5875640736739353,
-        0.8767607154591741,
-        0.027834590961205094,
-        0.9700231847141254,
-        0.8221955242640107,
+        0.8541074499335349,
+        0.27681073800132766,
+        0.4463172280232391,
+        0.3853759177566657,
+        0.9749431477212861,
+        0.9614705839841766,
+        0.8536208938421199,
+        0.7116154767914952,
+        0.4348884251816374,
+        0.4931729462609612,
+        0.8796325969775198,
+        0.9577905686683883,
+        0.6513367378996276,
+        0.6803605787035845,
         1.0,
-        0.7219742551773228,
-        0.4338799563876914,
-        0.9884658829991454,
-        0.9975077560639605,
-        0.7424695296805944,
-        1.0,
-        0.9558761554290744,
-        0.974048031199625,
-        0.8712491242302431
+        0.09104331635055772,
+        0.9545161767156705,
+        0.9801236469578818,
+        0.9948532403311573,
+        0.6123716401495483,
+        0.7617916794466049,
+        0.9975171451678917,
+        0.4378382332987898,
+        0.9269953642607922,
+        0.9482172888082329,
+        0.8943738468055977,
+        0.6923254907870711,
+        0.3691551650289412
       ],
       "design": {
         "buildings": [
           {
-            "cx": 66.58105839924289,
-            "cy": 38.240084351740464,
-            "w": 10.01672962897538,
-            "d": 9.71020709796831,
-            "rot": 170.11783390853358,
+            "cx": 61.66465532479329,
+            "cy": 26.345053078369858,
+            "w": 17.81897901651126,
+            "d": 16.478270190646647,
+            "rot": 175.4897665898315,
             "floors": 8
           },
           {
-            "cx": 58.386683917539386,
-            "cy": 60.16026777967359,
-            "w": 16.93675804745245,
-            "d": 24.761611355710702,
-            "rot": 29.463679024401213,
-            "floors": 7
+            "cx": 61.270365785128355,
+            "cy": 52.72871223259521,
+            "w": 17.567545353996024,
+            "d": 18.849804817741145,
+            "rot": 158.33386745595357,
+            "floors": 8
           }
         ],
         "trees": [
           {
-            "x": 56.138392484380645,
-            "y": 46.20502449371286,
-            "radius": 4.56866250410711,
-            "height": 3.1948421367284356
-          },
-          {
-            "x": 72.90162292998878,
-            "y": 62.553686698480746,
+            "x": 50.593571652973935,
+            "y": 52.625240509250915,
             "radius": 5.0,
-            "height": 8.05381978624126
+            "height": 3.637303214453904
           },
           {
-            "x": 35.37044343619419,
-            "y": 74.20113344288424,
-            "radius": 4.991277146223862,
-            "height": 8.19728670776416
+            "x": 71.83250736878702,
+            "y": 73.62595285420724,
+            "radius": 4.98198634115905,
+            "height": 7.286601481046838
           },
           {
-            "x": 75.09083189080131,
-            "y": 71.99414706637292,
-            "radius": 4.909168109198688,
-            "height": 9.098743869611702
+            "x": 59.355602472440005,
+            "y": 76.7839959827945,
+            "radius": 3.0324338165457645,
+            "height": 9.488967549825546
+          },
+          {
+            "x": 72.34054545706006,
+            "y": 68.45554073472813,
+            "radius": 3.923139217754749,
+            "height": 5.584086155202588
           }
         ]
       },
-      "mean_utci": 36.66,
-      "green_ratio": 0.0466,
-      "far": 0.58,
-      "bcr": 0.081,
+      "mean_utci": 36.32,
+      "green_ratio": 0.0365,
+      "far": 0.781,
+      "bcr": 0.098,
       "violation": 0.0,
-      "walkway_exposure": 0.3338
+      "walkway_exposure": 0.3365
     },
     {
       "genes": [
-        0.8856406310952831,
-        0.4744924249211027,
-        0.09962616059620477,
-        0.07775017683477606,
-        0.9450826198405432,
-        0.9934543830985831,
-        0.8410605281737863,
-        0.872331176610928,
-        0.40765672060159897,
-        0.7618914252595773,
-        0.1636965832501491,
-        0.81034855116817,
-        0.7277417541579199,
-        0.6128441375383572,
-        0.96105367012915,
-        0.09803596544060339,
-        0.9700239640821668,
-        0.8310079388904479,
-        0.9999998492083365,
-        0.7923155157849219,
-        0.4376844386868453,
-        0.99373524824798,
-        0.9999947624080687,
-        0.7414866425390372,
-        0.9752368119043261,
-        0.9364981328198311,
-        0.9933344288061329,
-        0.8712439361951961
+        0.8514145102927345,
+        0.2948754253434896,
+        0.46389015668982325,
+        0.37605293480141383,
+        1.0,
+        0.9808100585975054,
+        0.8396771109120528,
+        0.711803775046917,
+        0.4089529444142699,
+        0.4944670914883179,
+        0.8273705166618641,
+        0.9972654131520454,
+        0.657751425617319,
+        0.8961450646888196,
+        0.9499766970862799,
+        0.04764713530362166,
+        0.9546014632346891,
+        0.9749123459886454,
+        0.929301296697543,
+        0.6156567984499722,
+        0.7696398529641716,
+        0.9916702188545239,
+        0.9559922163874978,
+        0.9261642834037286,
+        0.04673667981212648,
+        0.8597138261958113,
+        0.7016118658668458,
+        0.3477509746429497
       ],
       "design": {
         "buildings": [
           {
-            "cx": 66.53524710795486,
-            "cy": 38.24486904836536,
-            "w": 10.191775533116505,
-            "d": 9.710503890365073,
-            "rot": 170.11487157129778,
+            "cx": 61.36404012144312,
+            "cy": 27.529571163111285,
+            "w": 18.20558344717611,
+            "d": 16.273164565631106,
+            "rot": 180.0,
             "floors": 8
           },
           {
-            "cx": 58.4985734783164,
-            "cy": 60.19464306140903,
-            "w": 16.968447853235176,
-            "d": 24.761611355710702,
-            "rot": 29.465384985026837,
+            "cx": 60.42197350704333,
+            "cy": 52.73400810282982,
+            "w": 16.996964777113938,
+            "d": 18.878276012742994,
+            "rot": 148.92669299913555,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 51.097838524653426,
+            "y": 67.8688699201983,
+            "radius": 4.82491843980198,
+            "height": 3.333529947125352
+          },
+          {
+            "x": 72.04708056421887,
+            "y": 73.47889402851125,
+            "radius": 4.752554538441401,
+            "height": 7.3095975891498055
+          },
+          {
+            "x": 58.9578534736099,
+            "y": 74.56837653601711,
+            "radius": 4.845972757356242,
+            "height": 9.483149983826099
+          },
+          {
+            "x": 7.324828812175847,
+            "y": 65.93130819565005,
+            "radius": 3.9556415305339603,
+            "height": 5.434256822500648
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0417,
+      "far": 0.771,
+      "bcr": 0.096,
+      "violation": 0.0,
+      "walkway_exposure": 0.3366
+    },
+    {
+      "genes": [
+        0.8171332363232191,
+        0.27681073800132766,
+        0.46389107332617685,
+        0.3853759177566657,
+        0.9757562172260817,
+        0.9614705839841766,
+        0.8398609376720949,
+        0.6975244796910742,
+        0.4089524312002026,
+        0.49444513152617586,
+        0.8266745740635092,
+        0.9633699900439571,
+        0.6506485542189876,
+        0.8842880729073512,
+        0.9495487491019041,
+        0.351947277800455,
+        0.9542133428057884,
+        0.9752535665673199,
+        0.9969429128789631,
+        0.6155695665413764,
+        0.8846846664011127,
+        0.9917976996907907,
+        0.9561011995209729,
+        0.9261529691829353,
+        0.9842457220336644,
+        0.9109209451827472,
+        0.7135952950710408,
+        0.36886716076436865
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 59.27992367647015,
+            "cy": 26.431343536769973,
+            "w": 18.20560361317589,
+            "d": 16.478270190646647,
+            "rot": 175.6361191006947,
+            "floors": 8
+          },
+          {
+            "cx": 60.433189682105194,
+            "cy": 51.875607676575434,
+            "w": 16.996953486404458,
+            "d": 18.87779289357587,
+            "rot": 148.80142333143166,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.598601651373485,
+            "y": 67.03587980139834,
+            "radius": 4.823420621856664,
+            "height": 5.463630944603185
+          },
+          {
+            "x": 71.80465398472866,
+            "y": 73.27791990061546,
+            "radius": 4.989300195076371,
+            "height": 7.308986965789635
+          },
+          {
+            "x": 67.04613701600167,
+            "y": 74.57696428201874,
+            "radius": 4.8463541983234055,
+            "height": 9.483070784280548
+          },
+          {
+            "x": 74.86803231428165,
+            "y": 69.58829400717165,
+            "radius": 3.9975835327486426,
+            "height": 5.5820701253505804
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.043,
+      "far": 0.776,
+      "bcr": 0.097,
+      "violation": 0.0,
+      "walkway_exposure": 0.3372
+    },
+    {
+      "genes": [
+        0.8514145102927345,
+        0.2948754253434896,
+        0.46389015668982325,
+        0.37605293480141383,
+        1.0,
+        0.9808100585975054,
+        0.8396771109120528,
+        0.711803775046917,
+        0.4089529444142699,
+        0.4944670914883179,
+        0.879177200451409,
+        0.9972654131520454,
+        0.657751425617319,
+        0.8961450646888196,
+        0.9826683238165905,
+        0.09112077369116969,
+        0.9546014632346891,
+        0.9787029896272182,
+        0.9236434663291326,
+        0.6156567984499722,
+        0.7696398529641716,
+        0.999942851466117,
+        0.9569207982232739,
+        0.9261642834037286,
+        0.046446812429055025,
+        0.859672947288415,
+        0.7016118658668458,
+        0.3477509746429497
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 61.36404012144312,
+            "cy": 27.529571163111285,
+            "w": 18.20558344717611,
+            "d": 16.273164565631106,
+            "rot": 180.0,
+            "floors": 8
+          },
+          {
+            "cx": 60.42197350704333,
+            "cy": 52.73400810282982,
+            "w": 16.996964777113938,
+            "d": 18.878276012742994,
+            "rot": 158.25189608125362,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 51.061738469596236,
+            "y": 67.77821553409727,
+            "radius": 4.939339133358066,
+            "height": 3.637845415838188
+          },
+          {
+            "x": 72.06508496996838,
+            "y": 73.765073980526,
+            "radius": 4.732752132151964,
+            "height": 7.3095975891498055
+          },
+          {
+            "x": 58.956100794922236,
+            "y": 75.14675957545417,
+            "radius": 4.8492227937814585,
+            "height": 9.483149983826099
+          },
+          {
+            "x": 7.30393264444778,
+            "y": 65.92836128766598,
+            "radius": 3.9556415305339603,
+            "height": 5.434256822500648
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0422,
+      "far": 0.771,
+      "bcr": 0.096,
+      "violation": 0.0,
+      "walkway_exposure": 0.3366
+    },
+    {
+      "genes": [
+        0.9346659892213746,
+        0.30087434903213145,
+        0.44717968958850224,
+        0.38531161520579427,
+        0.9572967981067785,
+        0.9626596842604378,
+        0.8399841227376933,
+        0.7084286966362554,
+        0.38688469198582265,
+        0.49664686247859074,
+        0.1302292826814203,
+        0.9972654131520454,
+        0.558080539067069,
+        0.6594409649178676,
+        0.9773431630724145,
+        0.274945102999215,
+        0.9542399168607242,
+        0.9686119345396831,
+        0.9987853633286331,
+        0.610673766798919,
+        0.7617900804286111,
+        0.99746598935345,
+        0.27846017873156914,
+        0.8997762168714188,
+        0.05358715473572223,
+        0.8931383152010346,
+        0.6931540744567661,
+        0.30462603908951275
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 66.58506158775434,
+            "cy": 27.82106761063757,
+            "w": 17.83795317094705,
+            "d": 16.476855534527473,
+            "rot": 172.31342365922012,
+            "floors": 8
+          },
+          {
+            "cx": 60.42412766167156,
+            "cy": 52.52109738000637,
+            "w": 16.511463223688096,
+            "d": 18.926230974529,
+            "rot": 23.441270882655655,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 44.07484918381099,
+            "y": 51.18615453984278,
+            "radius": 4.92070107075345,
+            "height": 4.924615720994505
+          },
+          {
+            "x": 71.80065633547503,
+            "y": 72.80681977046014,
+            "radius": 4.9957487716502165,
+            "height": 7.274716367592434
+          },
+          {
+            "x": 59.64754940489894,
+            "y": 77.33520990205798,
+            "radius": 2.474610625560492,
+            "height": 9.298433518099932
+          },
+          {
+            "x": 7.792241092744016,
+            "y": 68.364112295433,
+            "radius": 3.9260392605986816,
+            "height": 5.13238227362659
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0347,
+      "far": 0.758,
+      "bcr": 0.095,
+      "violation": 0.0,
+      "walkway_exposure": 0.3363
+    },
+    {
+      "genes": [
+        0.8171332363232191,
+        0.27681073800132766,
+        0.46411766735121424,
+        0.3853759177566657,
+        0.9763160760453176,
+        0.9614705839841766,
+        0.8398609376720949,
+        0.7786407853825632,
+        0.4348884251816374,
+        0.49444513152617586,
+        0.8767389847583233,
+        0.9633699900439571,
+        0.6506485542189876,
+        0.8838768689533978,
+        1.0,
+        0.351947277800455,
+        0.9542087442744086,
+        0.9795417362702981,
+        0.9969429128789631,
+        0.6251809862294995,
+        0.764113207850751,
+        0.9985986642421963,
+        0.9905739102284207,
+        0.9261529691829353,
+        0.9842457220336644,
+        0.8943261135802147,
+        0.7135952950710408,
+        0.36886716076436865
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 59.278342745547334,
+            "cy": 26.432456150540848,
+            "w": 18.210588681726712,
+            "d": 16.478270190646647,
+            "rot": 175.73689368815715,
+            "floors": 8
+          },
+          {
+            "cx": 60.433189682105194,
+            "cy": 56.752499007067144,
+            "w": 17.567545353996024,
+            "d": 18.87779289357587,
+            "rot": 157.8130172564982,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.545398795329135,
+            "y": 66.87138082673785,
+            "radius": 5.0,
+            "height": 5.463630944603185
+          },
+          {
+            "x": 71.80433198912529,
+            "y": 73.57818354498252,
+            "radius": 4.989300195076371,
+            "height": 7.3762669036064965
+          },
+          {
+            "x": 58.505351433201994,
+            "y": 74.9348053473377,
+            "radius": 4.967008685799472,
+            "height": 9.483070784280548
+          },
+          {
+            "x": 74.86803231428165,
+            "y": 68.3933859300551,
+            "radius": 3.9975835327486426,
+            "height": 5.5820701253505804
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0444,
+      "far": 0.79,
+      "bcr": 0.099,
+      "violation": 0.0,
+      "walkway_exposure": 0.3384
+    },
+    {
+      "genes": [
+        0.8523573843688386,
+        0.29491719964109414,
+        0.4389714207056361,
+        0.3911773327602829,
+        0.9930931373212268,
+        0.9627869509890775,
+        0.839958710849441,
+        0.7118534351765319,
+        0.4173659295146047,
+        0.4983810829048281,
+        0.82714304123007,
+        1.0,
+        0.5214103457597236,
+        0.7489585258208304,
+        0.9496522781731669,
+        0.3482359704037183,
+        0.9547650318407366,
+        0.9748222283529987,
+        0.991990972509209,
+        0.6085948516574312,
+        0.768862270170872,
+        0.9917907290330777,
+        0.9703722293494758,
+        0.7633581041446876,
+        0.06349276153182908,
+        0.8612350528560332,
+        0.7353954431933228,
+        0.35535240686690167
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 61.614528214712294,
+            "cy": 27.41968191570615,
+            "w": 17.657371255523994,
+            "d": 16.605901320726225,
+            "rot": 178.75676471782083,
+            "floors": 8
+          },
+          {
+            "cx": 60.409630680276685,
+            "cy": 52.718751519845235,
+            "w": 17.182050449321302,
+            "d": 18.964383823906218,
+            "rot": 148.8857474214126,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 41.50626993810834,
+            "y": 57.51483826968925,
+            "radius": 4.823782973606084,
+            "height": 5.437651792826028
+          },
+          {
+            "x": 71.8590478083446,
+            "y": 73.26417603467074,
+            "radius": 4.971968403782231,
+            "height": 7.260163961602019
+          },
+          {
+            "x": 58.87611943970145,
+            "y": 74.52734567281036,
+            "radius": 4.896302802723165,
+            "height": 8.343506729012812
+          },
+          {
+            "x": 8.635980676583596,
+            "y": 65.95554478737037,
+            "radius": 4.0738840511766305,
+            "height": 5.487466848068312
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0435,
+      "far": 0.774,
+      "bcr": 0.097,
+      "violation": 0.0,
+      "walkway_exposure": 0.3368
+    },
+    {
+      "genes": [
+        0.8171332363232191,
+        0.27681073800132766,
+        0.46411766735121424,
+        0.3853759177566657,
+        0.9763160760453176,
+        0.9614705839841766,
+        0.8398609376720949,
+        0.7786407853825632,
+        0.4348884251816374,
+        0.49444513152617586,
+        0.8767389847583233,
+        0.9633699900439571,
+        0.6506485542189876,
+        0.8838768689533978,
+        1.0,
+        0.351947277800455,
+        0.9542087442744086,
+        0.9795417362702981,
+        0.9969429128789631,
+        0.6251809862294995,
+        0.764113207850751,
+        0.9985986642421963,
+        0.9905739102284207,
+        0.9261529691829353,
+        0.9842457220336644,
+        0.9109209451827472,
+        0.7135952950710408,
+        0.36886716076436865
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 59.278342745547334,
+            "cy": 26.432456150540848,
+            "w": 18.210588681726712,
+            "d": 16.478270190646647,
+            "rot": 175.73689368815715,
+            "floors": 8
+          },
+          {
+            "cx": 60.433189682105194,
+            "cy": 56.752499007067144,
+            "w": 17.567545353996024,
+            "d": 18.87779289357587,
+            "rot": 157.8130172564982,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.545398795329135,
+            "y": 66.87138082673785,
+            "radius": 5.0,
+            "height": 5.463630944603185
+          },
+          {
+            "x": 71.80433198912529,
+            "y": 73.57818354498252,
+            "radius": 4.989300195076371,
+            "height": 7.3762669036064965
+          },
+          {
+            "x": 58.505351433201994,
+            "y": 74.9348053473377,
+            "radius": 4.967008685799472,
+            "height": 9.483070784280548
+          },
+          {
+            "x": 74.86803231428165,
+            "y": 69.58829400717165,
+            "radius": 3.9975835327486426,
+            "height": 5.5820701253505804
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0444,
+      "far": 0.79,
+      "bcr": 0.099,
+      "violation": 0.0,
+      "walkway_exposure": 0.3384
+    },
+    {
+      "genes": [
+        0.8541074499335349,
+        0.27681073800132766,
+        0.4463172280232391,
+        0.38784054875079244,
+        0.9749431477212861,
+        0.9614705839841766,
+        0.8536208938421199,
+        0.7116154767914952,
+        0.4196553362312132,
+        0.4931729462609612,
+        0.8796325969775198,
+        0.9573832579235659,
+        0.6521001889906736,
+        0.6803605787035845,
+        0.9959231880709738,
+        0.09104331635055772,
+        1.0,
+        0.9801235820030189,
+        0.9949312975161084,
+        0.6123716401495483,
+        0.7617916794466049,
+        0.9974802336535543,
+        0.45467758165102307,
+        0.9278114250360756,
+        0.9482172888082329,
+        0.8943738468055977,
+        0.6923254907870711,
+        0.3670837266818403
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 61.66465532479329,
+            "cy": 26.345053078369858,
+            "w": 17.81897901651126,
+            "d": 16.532492072517435,
+            "rot": 175.4897665898315,
+            "floors": 8
+          },
+          {
+            "cx": 61.270365785128355,
+            "cy": 52.72871223259521,
+            "w": 17.232417397086692,
+            "d": 18.849804817741145,
+            "rot": 158.33386745595357,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.65135381640133,
+            "y": 52.630387582362395,
+            "radius": 4.9857311582484085,
+            "height": 3.637303214453904
+          },
+          {
+            "x": 75.01774045869362,
+            "y": 73.62568596536003,
+            "radius": 4.982259541306379,
+            "height": 7.286601481046838
+          },
+          {
+            "x": 59.32474366343858,
+            "y": 76.7226262244262,
+            "radius": 3.0913715357785807,
+            "height": 9.494679975252529
+          },
+          {
+            "x": 72.34054545706006,
+            "y": 68.45554073472813,
+            "radius": 3.923139217754749,
+            "height": 5.569586086772882
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.0366,
+      "far": 0.774,
+      "bcr": 0.097,
+      "violation": 0.0,
+      "walkway_exposure": 0.3365
+    },
+    {
+      "genes": [
+        0.8610769876756088,
+        0.29491799132939345,
+        0.4389714207056361,
+        0.42185528310879256,
+        1.0,
+        0.9630804537379393,
+        0.8399589144124381,
+        0.7196304968163899,
+        0.4173659295146047,
+        0.4984321619671833,
+        0.8802218481804007,
+        1.0,
+        0.6587853924823628,
+        0.7489585258208304,
+        0.9759726394993785,
+        0.3482359704037183,
+        0.9547665099772439,
+        0.9748222283529987,
+        0.999125533462475,
+        0.6085948516574312,
+        0.768862270170872,
+        0.9917907290330777,
+        0.9703722293494758,
+        0.9316605771386172,
+        0.06349276153182908,
+        0.8611276367725907,
+        0.7353954431933228,
+        0.35535240686690167
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 62.149411603158605,
+            "cy": 27.419730479947575,
+            "w": 17.657371255523994,
+            "d": 17.280816228393434,
+            "rot": 180.0,
+            "floors": 8
+          },
+          {
+            "cx": 60.40926087608972,
+            "cy": 53.18540539999704,
+            "w": 17.182050449321302,
+            "d": 18.96550756327803,
+            "rot": 158.43993267247214,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 51.14168383083725,
+            "y": 57.468969521205345,
+            "radius": 4.915904238247824,
+            "height": 5.437651792826028
+          },
+          {
+            "x": 71.83643944507462,
+            "y": 73.2404624977597,
+            "radius": 4.996939367118662,
+            "height": 7.260163961602019
+          },
+          {
+            "x": 58.87611943970145,
+            "y": 74.52734567281036,
+            "radius": 4.896302802723165,
+            "height": 9.52162403997032
+          },
+          {
+            "x": 8.635980676583596,
+            "y": 65.94782670203332,
+            "radius": 4.0738840511766305,
+            "height": 5.487466848068312
+          }
+        ]
+      },
+      "mean_utci": 36.32,
+      "green_ratio": 0.044,
+      "far": 0.789,
+      "bcr": 0.099,
+      "violation": 0.0,
+      "walkway_exposure": 0.3369
+    },
+    {
+      "genes": [
+        0.9346723094644321,
+        0.30087432088484195,
+        0.43898984329139706,
+        0.3851676548344197,
+        0.9526885835912007,
+        0.9626596864405361,
+        0.839984139010077,
+        0.7082993848250263,
+        0.4089529444142699,
+        0.4931521971164084,
+        0.8088235451098067,
+        0.7876058926576747,
+        0.6567910316639421,
+        0.6888630785456125,
+        0.9773518375093642,
+        0.27504026058831377,
+        0.9543415587737895,
+        0.980530684864567,
+        0.9988011980755819,
+        0.610682307727296,
+        0.7617489555462278,
+        0.9974676930007652,
+        0.954361542784067,
+        0.9025572528899077,
+        0.934380765358624,
+        0.8932629445077036,
+        0.6931596032170145,
+        0.3695537245361796
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 66.66376593364687,
+            "cy": 27.78518809756502,
+            "w": 17.657776552410738,
+            "d": 16.473688406357233,
+            "rot": 171.48394504641612,
+            "floors": 8
+          },
+          {
+            "cx": 60.45026751668938,
+            "cy": 52.5293437383188,
+            "w": 16.996964777113938,
+            "d": 18.849348336560986,
+            "rot": 145.5882381197652,
             "floors": 7
           }
         ],
         "trees": [
           {
-            "x": 56.004010729434,
-            "y": 47.92985368271694,
-            "radius": 4.863687845452025,
-            "height": 3.686251758084224
+            "x": 51.00022941781135,
+            "y": 53.25035731003255,
+            "radius": 4.920731431282775,
+            "height": 4.925281824118196
           },
           {
-            "x": 72.90167798188155,
-            "y": 63.170556071724015,
-            "radius": 4.999999472229177,
-            "height": 8.546208610494453
+            "x": 71.80772177291027,
+            "y": 73.64118036828799,
+            "radius": 4.9958041932645365,
+            "height": 7.2747761540910725
           },
           {
-            "x": 35.637908423394805,
-            "y": 74.56148547924488,
-            "radius": 4.999981668428241,
-            "height": 8.19040649777326
+            "x": 58.40604761779902,
+            "y": 74.98166411621683,
+            "radius": 4.840265399744235,
+            "height": 9.317900770229354
           },
           {
-            "x": 73.28875090692868,
-            "y": 70.57523586305028,
-            "radius": 4.976670500821465,
-            "height": 9.098707553366374
+            "x": 71.33965253988644,
+            "y": 68.37308882106878,
+            "radius": 3.926058611259551,
+            "height": 5.586876071753257
           }
         ]
       },
-      "mean_utci": 36.67,
-      "green_ratio": 0.0483,
-      "far": 0.583,
-      "bcr": 0.081,
+      "mean_utci": 36.33,
+      "green_ratio": 0.0432,
+      "far": 0.714,
+      "bcr": 0.096,
       "violation": 0.0,
-      "walkway_exposure": 0.3341
+      "walkway_exposure": 0.3361
     },
     {
       "genes": [
-        0.8853261559835798,
-        0.47449232818084935,
-        0.09166952858979005,
-        0.07773668627128681,
-        0.9449742322221891,
-        0.9618552403085492,
-        0.8410352117096986,
-        0.871697395213754,
-        0.40621627488420237,
-        0.7618914252595773,
-        0.16368710569111786,
-        0.81034855116817,
-        0.7277417905300833,
-        0.5875640736739353,
-        0.9667151960454029,
-        0.0993616320008627,
-        0.9700231847141254,
-        0.8221955242640107,
-        0.9999995791126801,
-        0.7219742551773228,
-        0.4374829650265802,
-        0.9884658829991454,
-        0.999998646623049,
-        0.7424695296805944,
-        0.9999997607873632,
-        0.9558761554290744,
-        0.974048031199625,
-        0.8712491242302431
+        0.8604830790400031,
+        0.2938730580963073,
+        0.4458468736265638,
+        0.07218194404521935,
+        0.9934615336922914,
+        0.9630807824871808,
+        0.839879876297935,
+        0.719685665061375,
+        0.40917777840019115,
+        0.49450597551864905,
+        0.8791449244032782,
+        0.9939469163702733,
+        0.6565237732355526,
+        0.8918497101993464,
+        0.9755015819704036,
+        0.3464415980265243,
+        0.9545932841474062,
+        0.9570122308782113,
+        0.9992881974279048,
+        0.6072515734935219,
+        0.7541745275024471,
+        0.9973605233843716,
+        0.9975956400985715,
+        0.9265430583103874,
+        0.005621499179556677,
+        0.8593622982096681,
+        0.7969602085093602,
+        0.9540946099250648
       ],
       "design": {
         "buildings": [
           {
-            "cx": 66.58105839924289,
-            "cy": 38.240397378364165,
-            "w": 10.01672962897538,
-            "d": 9.71020709796831,
-            "rot": 170.09536179999404,
+            "cx": 62.05845302856444,
+            "cy": 27.386810282433068,
+            "w": 17.808631219784402,
+            "d": 9.588002768994826,
+            "rot": 178.82307606461245,
             "floors": 8
           },
           {
-            "cx": 58.49720035409812,
-            "cy": 60.16026777967359,
-            "w": 16.93675804745245,
-            "d": 24.761611355710702,
-            "rot": 29.463679024401213,
+            "cx": 60.43387336182029,
+            "cy": 53.20769298896758,
+            "w": 17.001911124804206,
+            "d": 18.87913146141028,
+            "rot": 158.2460863925901,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.98350622028675,
+            "y": 67.49667759999095,
+            "radius": 4.9142555368964125,
+            "height": 5.42509118618567
+          },
+          {
+            "x": 71.82379495500084,
+            "y": 71.99313327884472,
+            "radius": 4.997508690997666,
+            "height": 7.250761014454653
+          },
+          {
+            "x": 57.79649481446452,
+            "y": 74.82360747279887,
+            "radius": 4.991584740345,
+            "height": 9.485801408172712
+          },
+          {
+            "x": 4.690855388500702,
+            "y": 65.66611479736339,
+            "radius": 4.289360729782761,
+            "height": 9.678662269475453
+          }
+        ]
+      },
+      "mean_utci": 36.33,
+      "green_ratio": 0.0454,
+      "far": 0.615,
+      "bcr": 0.077,
+      "violation": 0.0,
+      "walkway_exposure": 0.3371
+    },
+    {
+      "genes": [
+        0.8604830790400031,
+        0.3234837678145073,
+        0.44583855979711695,
+        0.07845638134226596,
+        0.9934615336922914,
+        0.9633215006043024,
+        0.839879876297935,
+        0.719685665061375,
+        0.43821121985476996,
+        0.49873482141554953,
+        0.9553513211799006,
+        0.9939469163702733,
+        0.7037290125897703,
+        0.9895602893919366,
+        0.9755015819704036,
+        0.3464415980265243,
+        0.9922945376863654,
+        0.9745061215535977,
+        0.9992881974279048,
+        0.6073691767607494,
+        0.7541745275024471,
+        0.9973605233843716,
+        0.9975956400985715,
+        0.9772661798539333,
+        0.9667432340648547,
+        0.886668090815745,
+        0.7969602085093602,
+        0.9540946099250648
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 62.058518962450876,
+            "cy": 29.198697855074677,
+            "w": 17.808448315536573,
+            "d": 9.726040389529851,
+            "rot": 178.82307606461245,
+            "floors": 8
+          },
+          {
+            "cx": 60.40225277017322,
+            "cy": 53.18725461885492,
+            "w": 17.64064683680494,
+            "d": 18.97216607114209,
+            "rot": 171.96323781238212,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 54.2959681508902,
+            "y": 74.35317442577707,
+            "radius": 4.9142555368964125,
+            "height": 5.42509118618567
+          },
+          {
+            "x": 74.46307055367267,
+            "y": 73.21779279149642,
+            "radius": 4.997508690997666,
+            "height": 7.251584237325246
+          },
+          {
+            "x": 57.79649481446452,
+            "y": 74.82360747279887,
+            "radius": 4.991584740345,
+            "height": 9.840863258977533
+          },
+          {
+            "x": 73.3353985270092,
+            "y": 67.61632941684935,
+            "radius": 4.289360729782761,
+            "height": 9.678662269475453
+          }
+        ]
+      },
+      "mean_utci": 36.33,
+      "green_ratio": 0.0454,
+      "far": 0.635,
+      "bcr": 0.079,
+      "violation": 0.0,
+      "walkway_exposure": 0.3375
+    },
+    {
+      "genes": [
+        0.9530652475191078,
+        0.3008756037667418,
+        0.44724987749790013,
+        0.3853091597452749,
+        1.0,
+        0.9626596864052093,
+        0.8399848720470993,
+        0.7082997083495145,
+        0.38688469198582265,
+        0.493152254086904,
+        0.09091102008900681,
+        0.9970996664515515,
+        0.6554152809162495,
+        0.6884228074256384,
+        0.9773509866044954,
+        0.34838010970294153,
+        0.9909384081307318,
+        0.9797839337281659,
+        0.998803726159468,
+        0.6106498079273955,
+        0.8979072827181381,
+        0.997496558058682,
+        0.9920238429000877,
+        0.969238565129197,
+        0.04976657546120611,
+        0.8926730196670579,
+        0.6927427369950957,
+        0.36339482017529573
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 67.70969829192417,
+            "cy": 27.821451827526367,
+            "w": 17.839497304953802,
+            "d": 16.476801514396048,
+            "rot": 180.0,
+            "floors": 8
+          },
+          {
+            "cx": 60.450311183223604,
+            "cy": 52.52936293745495,
+            "w": 16.511463223688096,
+            "d": 18.84934958991189,
+            "rot": 16.363983616021226,
+            "floors": 8
+          }
+        ],
+        "trees": [
+          {
+            "x": 50.90370968359284,
+            "y": 53.21946965462051,
+            "radius": 4.920728453115734,
+            "height": 5.438660767920591
+          },
+          {
+            "x": 74.36979964657594,
+            "y": 73.5888930317548,
+            "radius": 4.995813041558138,
+            "height": 7.274548655491769
+          },
+          {
+            "x": 67.87572618725677,
+            "y": 74.85253583903393,
+            "radius": 4.972083450150307,
+            "height": 9.784669955904379
+          },
+          {
+            "x": 7.515297854124624,
+            "y": 68.33167283764546,
+            "radius": 3.9245995794828348,
+            "height": 5.54376374122707
+          }
+        ]
+      },
+      "mean_utci": 36.33,
+      "green_ratio": 0.0438,
+      "far": 0.756,
+      "bcr": 0.095,
+      "violation": 0.0,
+      "walkway_exposure": 0.3362
+    },
+    {
+      "genes": [
+        0.9346723094644321,
+        0.30087432088484195,
+        0.43898984329139706,
+        0.3851676548344197,
+        0.9526885835912007,
+        0.9626596864405361,
+        0.839984139010077,
+        0.7084275557868346,
+        0.4089529444142699,
+        0.49315412621348687,
+        0.8384543882394674,
+        0.7876058926576747,
+        0.7047129482066326,
+        0.6888630785456125,
+        0.97739453353594,
+        0.27504026058831377,
+        0.9543415587737895,
+        0.980530684864567,
+        0.9992603366717139,
+        0.6119562605113084,
+        0.7617489555462278,
+        0.9974676930007652,
+        0.954361542784067,
+        0.9025572528899077,
+        0.9351657283119676,
+        0.8932731317194614,
+        0.8007022540526615,
+        0.9675800824060572
+      ],
+      "design": {
+        "buildings": [
+          {
+            "cx": 66.66376593364687,
+            "cy": 27.78518809756502,
+            "w": 17.657776552410738,
+            "d": 16.473688406357233,
+            "rot": 171.48394504641612,
+            "floors": 8
+          },
+          {
+            "cx": 60.45025308771636,
+            "cy": 52.537044459502134,
+            "w": 16.996964777113938,
+            "d": 18.849390776696712,
+            "rot": 150.92178988310414,
             "floors": 7
           }
         ],
         "trees": [
           {
-            "x": 55.994987723056276,
-            "y": 46.149887028355394,
-            "radius": 4.88350318615891,
-            "height": 3.695531424006039
+            "x": 54.36229979626239,
+            "y": 53.25030086411141,
+            "radius": 4.920880867375789,
+            "height": 4.925281824118196
           },
           {
-            "x": 72.90162431477634,
-            "y": 62.55368764773681,
-            "radius": 4.99999852689438,
-            "height": 8.05381978624126
+            "x": 71.80626153269205,
+            "y": 73.63963595699965,
+            "radius": 4.9974111783509985,
+            "height": 7.283693823579158
           },
           {
-            "x": 35.62380695959682,
-            "y": 74.19261643748948,
-            "radius": 4.999995263180672,
-            "height": 8.19728670776416
+            "x": 58.40604761779902,
+            "y": 74.98166411621683,
+            "radius": 4.840265399744235,
+            "height": 9.317900770229354
           },
           {
-            "x": 75.09081510246047,
-            "y": 71.99414706637292,
-            "radius": 4.909168109198688,
-            "height": 9.098743869611702
+            "x": 71.06869382320049,
+            "y": 68.07776836121569,
+            "radius": 4.302457889184315,
+            "height": 9.7730605768424
           }
         ]
       },
-      "mean_utci": 36.67,
-      "green_ratio": 0.0481,
-      "far": 0.58,
-      "bcr": 0.081,
+      "mean_utci": 36.33,
+      "green_ratio": 0.0447,
+      "far": 0.714,
+      "bcr": 0.096,
       "violation": 0.0,
-      "walkway_exposure": 0.3337
-    },
-    {
-      "genes": [
-        0.8856496375838709,
-        0.47448787378935636,
-        0.09166952858979005,
-        0.07775016121819334,
-        0.9422254255185046,
-        0.9934543830985831,
-        0.8390229227190311,
-        0.872331176610928,
-        0.4076873653651872,
-        0.7618914252595773,
-        0.163696889708444,
-        0.81034855116817,
-        0.7276754004742852,
-        0.6140619949817006,
-        0.8705182929702818,
-        0.026508938169685622,
-        0.9700239640821668,
-        0.8226840186287812,
-        0.9999506949524564,
-        0.7918630256731473,
-        0.37738723916394584,
-        0.9935793430649602,
-        0.9972998233692647,
-        0.7414866425390372,
-        0.9996373616299193,
-        0.9561044893424329,
-        0.9938934033359196,
-        0.8712439361951961
-      ],
-      "design": {
-        "buildings": [
-          {
-            "cx": 66.60337321793583,
-            "cy": 38.240090099871466,
-            "w": 10.01672962897538,
-            "d": 9.710503546800254,
-            "rot": 169.60057659333083,
-            "floors": 8
-          },
-          {
-            "cx": 58.38805704175767,
-            "cy": 60.19464306140903,
-            "w": 16.96912203803412,
-            "d": 24.761611355710702,
-            "rot": 29.46544014751992,
-            "floors": 7
-          }
-        ],
-        "trees": [
-          {
-            "x": 56.143636629714564,
-            "y": 48.087722241441156,
-            "radius": 4.546814025395987,
-            "height": 3.1855625671877994
-          },
-          {
-            "x": 72.90183970762894,
-            "y": 62.58799267367083,
-            "radius": 4.999827432333597,
-            "height": 8.54304117971203
-          },
-          {
-            "x": 31.41478920869614,
-            "y": 74.55988327440014,
-            "radius": 4.990549381792427,
-            "height": 8.19040649777326
-          },
-          {
-            "x": 74.99597290101481,
-            "y": 71.94681097704193,
-            "radius": 4.978626911675718,
-            "height": 9.098707553366374
-          }
-        ]
-      },
-      "mean_utci": 36.67,
-      "green_ratio": 0.0468,
-      "far": 0.581,
-      "bcr": 0.081,
-      "violation": 0.0,
-      "walkway_exposure": 0.3341
+      "walkway_exposure": 0.3361
     }
   ],
   "status": "complete"

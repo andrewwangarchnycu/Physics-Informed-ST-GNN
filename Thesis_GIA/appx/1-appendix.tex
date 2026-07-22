@@ -133,7 +133,7 @@
     \dot{u}_{\text{max}}^{\text{(實際生效)}} = \delta_{\text{temp}} \times \sigma_{\text{UTCI}} = 0.625 \times 2.9841 \approx 1.865\,^\circ\text{C/hr}
 \end{equation}
 
-換言之，本研究實際訓練並報告之模型，其時序平滑約束在原始溫度尺度上生效的容許變化率約為 $1.87\,^\circ\text{C/hr}$，較正文所述之設計目標 $5\,^\circ\text{C/hr}$ 嚴格約 2.7 倍。此一落差源於 $\delta_{\text{temp}}$ 設定時所採用之標準差假設值與訓練資料實測值不一致，特此誠實揭露；由於本研究之全部量化結果（第~\ref{chapter:experiments}章）均基於 $\delta_{\text{temp}}=0.625$ 之模型訓練與評估，此處不回溯更動已訓練模型之設定，而將此列為後續研究應修正之已知實作落差（見第~\ref{sec:limitations}節）。
+換言之，本研究實際訓練並報告之模型，其時序平滑約束在原始溫度尺度上生效的容許變化率約為 $1.87\,^\circ\text{C/hr}$，較正文所述之設計目標 $5\,^\circ\text{C/hr}$ 嚴格約 2.7 倍。此一落差源於 $\delta_{\text{temp}}$ 設定時所採用之標準差假設值與訓練資料實測值不一致，特此揭露；由於本研究之全部量化結果（第~\ref{chapter:experiments}章）均基於 $\delta_{\text{temp}}=0.625$ 之模型訓練與評估，此處不回溯更動已訓練模型之設定，而將此列為後續研究應修正之已知實作落差（見第~\ref{sec:limitations}節）。
 
 \noindent\textbf{套用外點懲罰法}（$p=1$，線性鉸鏈，避免訓練初期時序尚不穩定時梯度二次放大而主導總損失）：
 
@@ -203,7 +203,7 @@
 \section{NSGA-II 適應度求值器輸入維度修正紀錄}
 \label{appx:fitness_dim_fix}
 
-第~\ref{subsec:pareto_morphology}節所呈現之真實 NSGA-II 收斂結果，係於本論文撰寫過程中修正一項適應度求值器之輸入維度缺陷後方能取得。原始 \texttt{07\_optimization/fitness.py} 之 \texttt{FitnessEvaluator} 建構子在初始化 \texttt{GNNInputBuilder}（\texttt{06\_deployment/geometry\_converter.py}）時未傳入 \texttt{dim\_air} 參數，導致其採用套件預設值 \texttt{dim\_air=8}；然而第~\ref{sec:gnn_model}章訓練完成之 V2 checkpoint 之空氣節點編碼器輸入維度為 9（含地表溫度 $T_s$ 特徵，見第~\ref{subsec:nodes}節），兩者不一致造成矩陣乘法維度錯誤（\texttt{RuntimeError: mat1 and mat2 shapes cannot be multiplied}），使適應度求值器對任何染色體個體皆拋出例外，落入例外處理分支回傳懲罰值（UTCI $=60^\circ\text{C}$、綠化率 $=0$），造成整個族群在演化過程中呈現虛假的「零多樣性」收斂假象。本研究於 \texttt{FitnessEvaluator} 建構子與 \texttt{06\_deployment/app.py} 之對應呼叫處新增顯式 \texttt{dim\_air} 參數傳遞（對齊自 checkpoint 權重形狀自動偵測之維度），修正後之適應度求值器方能對每個染色體個體正確執行 GNN 推理，取得第~\ref{subsec:pareto_morphology}節所呈現之真實、非退化之收斂軌跡與帕累托前緣。此一修正記錄於此，以說明圖~\ref{fig:nsga2_real}之收斂數據並非模擬或示意性繪製，而是修正後管線之直接輸出。
+第~\ref{subsec:pareto_morphology}節所呈現之真實 NSGA-II 收斂結果，係於本論文撰寫過程中修正一項適應度求值器之輸入維度缺陷後方能取得。原始 \texttt{07\_optimization/fitness.py} 之 \texttt{FitnessEvaluator} 建構子在初始化 \texttt{GNNInputBuilder}（\texttt{06\_deployment/geometry\_converter.py}）時未傳入 \texttt{dim\_air} 參數，導致其採用套件預設值 \texttt{dim\_air=8}；然而第~\ref{sec:gnn_model}章訓練完成之 V2 checkpoint 之空氣節點編碼器輸入維度為 9（含地表溫度 $T_s$ 特徵，見第~\ref{subsec:nodes}節），兩者不一致造成矩陣乘法維度錯誤（\texttt{RuntimeError: mat1 and mat2 shapes cannot be multiplied}），使適應度求值器對任何染色體個體皆拋出例外，落入例外處理分支回傳懲罰值（UTCI $=60^\circ\text{C}$、綠化率 $=0$），造成整個族群在演化過程中呈現虛假的「零多樣性」收斂假象。本研究於 \texttt{FitnessEvaluator} 建構子與 \texttt{06\_deployment/app.py} 之對應呼叫處新增顯式 \texttt{dim\_air} 參數傳遞（對齊自 checkpoint 權重形狀自動偵測之維度），修正後之適應度求值器方能對每個染色體個體正確執行 GNN 推理，取得第~\ref{subsec:pareto_morphology}節所呈現之真實、非退化之收斂軌跡與帕累托前緣。此一修正記錄於此，以說明圖~\ref{fig:nsga2_real}之收斂數據並非模擬或示意性繪製，而是修正後流程之直接輸出。
 
 
 \section{Grasshopper 元件使用者操作手冊}
@@ -317,7 +317,7 @@
 \section{異質圖動態邊缺陷修正紀錄}
 \label{appx:dynamic_edges_fix}
 
-第~\ref{subsec:edges}節表~\ref{tab:edge_types}所描述之五類關係型邊緣，於本論文寫作過程中發現其中三類（\texttt{shadow}、\texttt{veg\_et}、\texttt{convective}）在原始訓練管線中實際上從未被真正建立過。本附錄如實記錄此一缺陷之發現過程、根本原因、修正方法，以及修正後重新訓練之結果，供讀者核實表~\ref{tab:main_results}、圖~\ref{fig:gnnexplainer}等處數值之來源。
+第~\ref{subsec:edges}節表~\ref{tab:edge_types}所描述之五類關係型邊緣，於本論文寫作過程中發現其中三類（\texttt{shadow}、\texttt{veg\_et}、\texttt{convective}）在原始訓練流程中實際上從未被真正建立過。本附錄記錄此一缺陷之發現過程、根本原因、修正方法，以及修正後重新訓練之結果，供讀者核實表~\ref{tab:main_results}、圖~\ref{fig:gnnexplainer}等處數值之來源。
 
 \subsection{問題發現}
 
@@ -334,22 +334,48 @@
 \subsection{修正方法}
 
 \begin{enumerate}
-    \item \textbf{幾何後處理重建來源索引}：新增 \texttt{01\_data\_generation/scripts/11\_build\_dynamic\_edge\_cache.py}，對既有場景幾何（\texttt{scenarios.pkl} 之建物、喬木輪廓）與逐時步太陽方位角，重現與 \texttt{03\_lbt\_batch\_runner.py} 原始 \texttt{\_in\_shadow()} 完全相同之陰影判定幾何邏輯，但額外記錄「是哪一棟建物造成該空氣節點陰影」「是哪一棵喬木覆蓋該空氣節點」之來源物件索引，而非僅記錄布林旗標。此步驟為純幾何後處理，不需重新執行 EnergyPlus／Ladybug 模擬，300 個場景、11 個時步、6,241 個空氣節點之完整重建耗時約 48 分鐘。風向資料則取自 \texttt{epw.get\_typical\_day(month=7, stat="hottest")}（與原始模擬管線一致之月份設定，非正文先前所述之 6 月），作為全體場景共用之逐時風向序列。
+    \item \textbf{幾何後處理重建來源索引}：新增 \texttt{01\_data\_generation/scripts/11\_build\_dynamic\_edge\_cache.py}，對既有場景幾何（\texttt{scenarios.pkl} 之建物、喬木輪廓）與逐時步太陽方位角，重現與 \texttt{03\_lbt\_batch\_runner.py} 原始 \texttt{\_in\_shadow()} 完全相同之陰影判定幾何邏輯，但額外記錄「是哪一棟建物造成該空氣節點陰影」「是哪一棵喬木覆蓋該空氣節點」之來源物件索引，而非僅記錄布林旗標。此步驟為純幾何後處理，不需重新執行 EnergyPlus／Ladybug 模擬，300 個場景、11 個時步、6,241 個空氣節點之完整重建耗時約 48 分鐘。風向資料則取自 \texttt{epw.get\_typical\_day(month=7, stat="hottest")}（與原始模擬流程一致之月份設定，非正文先前所述之 6 月），作為全體場景共用之逐時風向序列。
     \item \textbf{擴充物件節點以涵蓋喬木}：\texttt{\_extract\_object\_features()} 修改為依序擷取建物（索引 $[0, N_{\text{bldg}})$）後接喬木（索引 $[N_{\text{bldg}}, N_{\text{obj}})$），共用原有 7 維特徵格式，喬木列之樓層數／總樓地板面積等建物專屬欄位以 0 表示。
     \item \textbf{\texttt{get()} 方法建立真實動態邊}：新增 \texttt{\_build\_dynamic\_edges()} 方法，讀取上述來源索引快取，為每個時步建立：\texttt{shadow}（建築物件 $\to$ 陰影空氣節點）、\texttt{veg\_et}（喬木物件 $\to$ 覆蓋範圍內空氣節點）、\texttt{convective}（沿既有 KNN 毗鄰邊、依當時風向篩選出「上風處 $\to$ 下風處」方向之子集）三類邊索引張量，格式符合 \texttt{03\_model/urbangraph.py} 之 \texttt{\_merge\_edges()} 所預期之 \texttt{\{rel: (src, dst, None)\}} 結構。
 \end{enumerate}
 
-修正後之管線已以真實案例驗證：場景 0 之 \texttt{shadow} 邊數量隨時步在 30\%--46\% 空氣節點區間變化（與正午太陽高度角較高時陰影範圍縮小之物理直覺相符）、\texttt{veg\_et} 邊數量因喬木冠層幾何不隨太陽角度變化而全時步恆定、\texttt{convective} 邊數量約為 KNN 毗鄰邊總數之一半（符合「僅保留下風向子集」之設計）。
+修正後之流程已以真實案例驗證：場景 0 之 \texttt{shadow} 邊數量隨時步在 30\%--46\% 空氣節點區間變化（與正午太陽高度角較高時陰影範圍縮小之物理直覺相符）、\texttt{veg\_et} 邊數量因喬木冠層幾何不隨太陽角度變化而全時步恆定、\texttt{convective} 邊數量約為 KNN 毗鄰邊總數之一半（符合「僅保留下風向子集」之設計）。
 
 \subsection{重新訓練結果}
 
-以修正後管線於 \texttt{ground\_truth\_v2.h5}（300 場景，同第四章所用資料集）重新執行 \texttt{04\_training/retrain\_v2.py}，未使用暖啟動（warm-start），訓練於 GPU（NVIDIA RTX 5070 Ti）上進行，第 113 個 Epoch 因連續 20 個 Epoch 驗證損失無改善觸發早停，最佳權重取自第 93 個 Epoch（驗證 $R^2=0.9963$），儲存於 \texttt{checkpoints\_v2\_dynedges/}。測試集評估結果（3,707,154 預測點次）為 $R^2=0.9956$、RMSE$=0.197\,^\circ\text{C}$、MAE$=0.105\,^\circ\text{C}$、熱壓力等級分類準確率 98.3\%——與修正前 \texttt{checkpoints\_v2\_fixed} 之 $R^2=0.9957$、RMSE$=0.194\,^\circ\text{C}$ 幾乎無法區分。
+以修正後流程於 \texttt{ground\_truth\_v2.h5}（300 場景，同第四章所用資料集）重新執行 \texttt{04\_training/retrain\_v2.py}，未使用暖啟動（warm-start），訓練於 GPU（NVIDIA RTX 5070 Ti）上進行，第 113 個 Epoch 因連續 20 個 Epoch 驗證損失無改善觸發早停，最佳權重取自第 93 個 Epoch（驗證 $R^2=0.9963$），儲存於 \texttt{checkpoints\_v2\_dynedges/}。測試集評估結果（3,707,154 預測點次）為 $R^2=0.9956$、RMSE$=0.197\,^\circ\text{C}$、MAE$=0.105\,^\circ\text{C}$、熱壓力等級分類準確率 98.3\%——與修正前 \texttt{checkpoints\_v2\_fixed} 之 $R^2=0.9957$、RMSE$=0.194\,^\circ\text{C}$ 幾乎無法區分。
 
 此一「聚合指標幾乎不變」之結果本身即具資訊量：空氣節點特徵中原已包含之 \texttt{shadow\_nt}、\texttt{bh\_nt}、\texttt{th\_nt} 等靜態特徵，顯然已能讓 MLP／LSTM 部分捕捉到陰影與植被效應之主要變異量，使得「透過圖邊額外傳遞這些資訊」對整體預測誤差之邊際貢獻有限。然而，修正之核心價值不在於數值精度，而在於模型內部機制之真實性：修正後，圖~\ref{fig:gnnexplainer}(c) 之 GNNExplainer 分析顯示五類關係之 RGCN 權重范數（第 1--3 層分別約 6.5--12）皆落於相近量級，不再是修正前那種「僅兩類關係有意義、其餘三類為訓練殘留初始值」之退化狀態，第~\ref{subsec:trustworthiness}節之可解釋性論述方能成立於真實運作之模型機制上，而非建立在未被使用的圖結構之上。
 
 \subsection{已知限制}
 
-第四章消融實驗（表~\ref{tab:ablation}）之 A0、A3--A6 五個變體，其訓練皆早於本次修正，圖結構部分同樣僅具 \texttt{semantic}／\texttt{contiguity} 兩類靜態邊；圖~\ref{fig:scatter_test}、圖~\ref{fig:hourly_r2}、圖~\ref{fig:confusion} 三張視覺化亦沿用修正前之推論輸出繪製（見第~\ref{subsec:overall_metrics}節註腳）。上述限制皆已於對應章節內文誠實標註，完整重新執行消融實驗與視覺化列為後續工作。
+第四章消融實驗（表~\ref{tab:ablation}）之 A0、A3--A6 五個變體，其原始訓練早於本次修正，圖結構部分同樣僅具 \texttt{semantic}／\texttt{contiguity} 兩類靜態邊；本論文完稿前已依本附錄所述方法，於真實場景資料集（動態邊已修正）上重新訓練該五個變體，表~\ref{tab:ablation}與相應內文已更新為重新訓練後之結果。第四章圖~\ref{fig:scatter_test}、圖~\ref{fig:hourly_r2}、圖~\ref{fig:confusion}、圖~\ref{fig:training_curves} 亦均為本研究最終採用之 V5-300 模型（動態邊已修正）之直接推論輸出，不涉及本節所述之程序化主線缺陷。
+
+
+\subsection{真實場景資料集（V1--V4）之同類缺陷與 V5 修正}
+\label{appx:v5_dynamic_edges_fix}
+
+上述缺陷之發現與修正原先針對本研究之程序化主線（第~\ref{sec:evaluation}節，\texttt{checkpoints\_v2\_dynedges}）。本節記錄同一類缺陷亦存在於本研究另一條真實場景資料集訓練線（V1--V4，第~\ref{sec:v4_validation}節），以及最終於 V5-300 一併修正之完整過程，供讀者核實表~\ref{tab:main_results}、圖~\ref{fig:gnnexplainer}等處數值之來源。
+
+\paragraph{問題發現} 於程序化主線之缺陷確認後，本研究進一步檢視真實場景資料集訓練線之對應資料前處理流程，發現其動態邊快取（\texttt{dynamic\_edge\_cache.h5}）同樣從未針對真實場景實際建立——V1--V4 之訓練與評估自始至終皆未真正產出此檔案，故 V1--V4 之異質圖訊息傳遞亦僅透過 \texttt{semantic}、\texttt{contiguity} 兩類靜態邊進行，與程序化主線修正前之狀態同屬一類缺陷。V4 於第~\ref{sec:v4_validation}節所述之表面測試集數值（$R^2 \approx 0.99$ 量級），即在此一未修正狀態下取得，不具方法完整性，故本論文不將其作為有效驗證結果引用。
+
+\paragraph{修正方法} 本研究新增動態邊快取重建腳本 \texttt{01\_data\_generation/scripts/16\_build\_dynamic\_edge\_cache\_v5.py}，邏輯上與程序化主線所用之 \texttt{11\_build\_dynamic\_edge\_cache.py} 一致（重建陰影／樹冠覆蓋之來源物件索引），但額外針對真實場景資料集之特性強化兩點：其一，太陽方位角逐場景以其真實經緯度與所屬月份代表日期實際解算，而非沿用單一場域之共用太陽路徑；其二，風向資料改採中央氣象署新竹站（C0D660）之真實逐月觀測風向，取代程序化主線所用之單一典型日風向。此一動態邊快取修正，與第~\ref{sec:ladybug_workflow}節所述模擬引擎由自製近似式全面替換為 Radiance／EnergyPlus 官方流程，共同構成 V4 至 V5 之版本轉變。
+
+\paragraph{修正後結果} 以修正後之真實場景資料集（210／45／45 場景訓練／驗證／測試切分）重新訓練，最佳驗證權重取自第 119 個 Epoch（驗證 $R^2=0.9837$），測試集評估結果（166,188 預測點次）為 $R^2=0.9753$、RMSE$=0.833\,^\circ\text{C}$、MAE$=0.524\,^\circ\text{C}$、熱壓力等級分類準確率 93.9\%，儲存於 \texttt{checkpoints\_v5\_300/}，即為本研究最終採用之主要報告模型 V5-300。圖~\ref{fig:gnnexplainer}(c) 之 GNNExplainer 關係權重范數分析顯示，五類關係之范數皆落於相近量級、無任何一類呈現「未收到真實梯度訊號」之殘留初始值型態，此為動態邊缺陷已修正之直接可視化證據。
+
+
+\section{消融實驗數值精度細節}
+\label{appx:ablation_numeric_detail}
+
+本附錄記錄第~\ref{subsec:ablation_discussion}節消融結果之訓練工程層面細節，供有意深入理解模型訓練行為之讀者查閱；正文僅摘錄與設計輔助宗旨直接相關之結論。
+
+\subsection{純 MLP 基準線（A0）數值優勢之成因}
+
+不具空間圖結構的純 MLP（A0）於 $R^2$、RMSE 兩項數值指標上均優於本研究之完整提案架構，其成因有三：其一，UTCI 之主要變異量很大程度由太陽仰角（時間）與節點座標（位置）直接決定，此一高度規律性的映射任務本身即適合 MLP 之全局統計擬合，且 MLP 參數量遠低於 RGCN+LSTM，於 210 個真實訓練場景之有限樣本規模下相對不易過擬合；其二，A0 缺乏物理約束之預測誤差對整體 RMSE 的拉抬有限（其對建築設計決策構成之誤導風險，詳見正文第~\ref{subsec:ablation_discussion}節）；其三，RGCN 的訊息聚合機制引入鄰域平均效應，相當於一種空間正則化，於 Radiance／EnergyPlus 模擬所呈現之更劇烈局部熱極端值情境下（如背風側熱滯留或高反照率鋪面周邊之 MRT 尖峰，第~\ref{sec:v4_validation}節），此一空間平滑效應對峰值之低估較程序化近似式資料更為顯著，構成 RMSE 上升之額外來源。
+
+\subsection{A6 與 V5-300 官方 checkpoint 之數值差異}
+
+本節消融實驗中獨立重跑之完整模型變體（A6）與表~\ref{tab:main_results}之 V5-300 官方主要報告模型，雖架構與訓練資料完全相同，數值仍有可辨識差異（A6：$R^2=0.9655$；V5-300：$R^2=0.9753$）。此屬兩次獨立訓練執行（未固定相同隨機種子）於 210 個真實訓練場景之有限樣本規模下的正常訓練變異，而非方法不一致；表~\ref{tab:main_results}、圖~\ref{fig:training_curves}--\ref{fig:spatial_comparison}與本論文其餘各章節，均以官方 V5-300 checkpoint 為準。
 
 
 \section{FastAPI／WebSocket 端到端延遲拆解}

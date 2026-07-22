@@ -32,10 +32,10 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 _ROOT     = Path(__file__).resolve().parent.parent
 MODEL_DIR = _ROOT / "03_model"
 DATA_DIR  = _ROOT / "02_graph_construction"
-CKPT_PATH = _ROOT / "checkpoints_v2_dynedges" / "best_model.pt"
-H5_PATH   = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "ground_truth_v2.h5"
-SCENARIO_PKL = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "scenarios.pkl"
-EPW_PKL   = _ROOT / "01_data_generation" / "outputs" / "raw_simulations" / "epw_data.pkl"
+CKPT_PATH = _ROOT / "04_training" / "checkpoints_v5_300" / "best_model.pt"
+H5_PATH   = _ROOT / "01_data_generation" / "outputs" / "real_simulations_v5" / "ground_truth_v5.h5"
+SCENARIO_PKL = _ROOT / "01_data_generation" / "outputs" / "real_simulations_v5" / "scenarios_v5_subset.pkl"
+EPW_PKL   = _ROOT / "01_data_generation" / "outputs" / "real_simulations_v5" / "epw_data.pkl"
 FIG_DIR   = Path(__file__).resolve().parent / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 

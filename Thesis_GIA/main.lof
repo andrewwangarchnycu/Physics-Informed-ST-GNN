@@ -10,40 +10,39 @@
 \contentsline {figure}{\numberline {7}{\ignorespaces 整合運算框架資料架構圖}}{25}{figure.caption.12}%
 \contentsline {figure}{\numberline {8}{\ignorespaces 研究場域地理脈絡}}{29}{figure.caption.13}%
 \contentsline {figure}{\numberline {9}{\ignorespaces IoT 微型感測器空間分布實測圖}}{31}{figure.caption.14}%
-\contentsline {figure}{\numberline {10}{\ignorespaces V4 研究範圍選定}}{31}{figure.caption.15}%
+\contentsline {figure}{\numberline {10}{\ignorespaces 研究範圍選定}}{31}{figure.caption.15}%
 \contentsline {figure}{\numberline {11}{\ignorespaces 樹冠高度資料與研究場域對照}}{32}{figure.caption.16}%
-\contentsline {figure}{\numberline {12}{\ignorespaces V4 真實訓練場景選取結果}}{34}{figure.caption.17}%
-\contentsline {figure}{\numberline {13}{\ignorespaces 真實訓練場景代表性樣本}}{35}{figure.caption.18}%
-\contentsline {figure}{\numberline {14}{\ignorespaces 熱舒適訓練資料之逐時生成}}{37}{figure.caption.19}%
-\contentsline {figure}{\numberline {15}{\ignorespaces 隨機生成場景示意}}{39}{figure.caption.20}%
-\contentsline {figure}{\numberline {16}{\ignorespaces OSM 地表鋪面與材質圖資擷取}}{40}{figure.caption.21}%
-\contentsline {figure}{\numberline {17}{\ignorespaces 三服務融合建物向量化流程}}{42}{figure.caption.22}%
-\contentsline {figure}{\numberline {18}{\ignorespaces 都市街道剖面示意：太陽角度、建築陰影、喬木樹蔭與行人熱壓力}}{45}{figure.caption.25}%
-\contentsline {figure}{\numberline {19}{\ignorespaces 異質圖建構實例}}{46}{figure.caption.27}%
-\contentsline {figure}{\numberline {20}{\ignorespaces 異質圖拓樸全域視角}}{47}{figure.caption.28}%
-\contentsline {figure}{\numberline {21}{\ignorespaces 真實 GIS 圖資建構之異質圖範例}}{48}{figure.caption.29}%
-\contentsline {figure}{\numberline {22}{\ignorespaces 整合運算框架示意圖}}{50}{figure.caption.30}%
-\contentsline {figure}{\numberline {23}{\ignorespaces PI-ST-GNN 模型架構總覽}}{51}{figure.caption.31}%
-\contentsline {figure}{\numberline {24}{\ignorespaces RGCN 訊息聚合機制示意圖}}{52}{figure.caption.32}%
-\contentsline {figure}{\numberline {25}{\ignorespaces 物理引導損失函數示意圖}}{53}{figure.caption.33}%
-\contentsline {figure}{\numberline {26}{\ignorespaces 非同步通訊架構時序圖}}{57}{figure.caption.34}%
+\contentsline {figure}{\numberline {12}{\ignorespaces 真實訓練場景選取結果}}{35}{figure.caption.17}%
+\contentsline {figure}{\numberline {13}{\ignorespaces 真實訓練場景代表性樣本}}{36}{figure.caption.18}%
+\contentsline {figure}{\numberline {14}{\ignorespaces V5 模擬熱力圖陣列}}{37}{figure.caption.19}%
+\contentsline {figure}{\numberline {15}{\ignorespaces 熱舒適訓練資料之逐時生成}}{39}{figure.caption.20}%
+\contentsline {figure}{\numberline {16}{\ignorespaces 隨機生成場景示意}}{41}{figure.caption.21}%
+\contentsline {figure}{\numberline {17}{\ignorespaces OSM 地表鋪面與材質圖資擷取}}{42}{figure.caption.22}%
+\contentsline {figure}{\numberline {18}{\ignorespaces 三服務融合建物向量化流程}}{44}{figure.caption.23}%
+\contentsline {figure}{\numberline {19}{\ignorespaces 都市街道剖面示意：太陽角度、建築陰影、喬木樹蔭與行人熱壓力}}{47}{figure.caption.26}%
+\contentsline {figure}{\numberline {20}{\ignorespaces 異質圖建構實例}}{48}{figure.caption.28}%
+\contentsline {figure}{\numberline {21}{\ignorespaces 異質圖拓樸全域視角}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {22}{\ignorespaces 真實 GIS 圖資建構之異質圖範例}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {23}{\ignorespaces 整合運算框架示意圖}}{52}{figure.caption.31}%
+\contentsline {figure}{\numberline {24}{\ignorespaces PI-ST-GNN 模型架構總覽}}{53}{figure.caption.32}%
+\contentsline {figure}{\numberline {25}{\ignorespaces RGCN 訊息聚合機制示意圖}}{54}{figure.caption.33}%
+\contentsline {figure}{\numberline {26}{\ignorespaces 物理引導損失函數示意圖}}{55}{figure.caption.34}%
+\contentsline {figure}{\numberline {27}{\ignorespaces 非同步通訊架構時序圖}}{59}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {27}{\ignorespaces 模型訓練收斂曲線}}{62}{figure.caption.36}%
-\contentsline {figure}{\numberline {28}{\ignorespaces 測試集預測值散點圖}}{63}{figure.caption.38}%
-\contentsline {figure}{\numberline {29}{\ignorespaces 逐時段驗證 $R^2$ 分佈}}{64}{figure.caption.39}%
-\contentsline {figure}{\numberline {30}{\ignorespaces 熱壓力等級分類混淆矩陣}}{65}{figure.caption.40}%
-\contentsline {figure}{\numberline {31}{\ignorespaces 空間 UTCI 熱壓力場比較}}{65}{figure.caption.41}%
-\contentsline {figure}{\numberline {32}{\ignorespaces 輸入特徵場與輸出場空間分佈}}{66}{figure.caption.42}%
-\contentsline {figure}{\numberline {33}{\ignorespaces 消融實驗各變體比較圖}}{68}{figure.caption.44}%
-\contentsline {figure}{\numberline {34}{\ignorespaces V4 訓練收斂曲線}}{71}{figure.caption.46}%
-\contentsline {figure}{\numberline {35}{\ignorespaces V4 測試集散點圖與殘差分佈}}{71}{figure.caption.47}%
-\contentsline {figure}{\numberline {36}{\ignorespaces 真實測試場景之預測比較}}{72}{figure.caption.48}%
+\contentsline {figure}{\numberline {28}{\ignorespaces 模型訓練收斂曲線}}{63}{figure.caption.37}%
+\contentsline {figure}{\numberline {29}{\ignorespaces 測試集預測值散點圖}}{65}{figure.caption.39}%
+\contentsline {figure}{\numberline {30}{\ignorespaces 逐時段驗證 $R^2$ 分佈}}{65}{figure.caption.40}%
+\contentsline {figure}{\numberline {31}{\ignorespaces 熱壓力等級分類混淆矩陣}}{66}{figure.caption.41}%
+\contentsline {figure}{\numberline {32}{\ignorespaces 空間 UTCI 熱壓力場比較}}{67}{figure.caption.42}%
+\contentsline {figure}{\numberline {33}{\ignorespaces 輸入特徵場與輸出場空間分佈}}{68}{figure.caption.43}%
+\contentsline {figure}{\numberline {34}{\ignorespaces 消融實驗各變體比較圖}}{70}{figure.caption.45}%
+\contentsline {figure}{\numberline {35}{\ignorespaces 真實測試場景之預測比較}}{74}{figure.caption.47}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {37}{\ignorespaces 基準二目標 NSGA-II 收斂結果}}{75}{figure.caption.49}%
-\contentsline {figure}{\numberline {38}{\ignorespaces A/B/C 三種人行路線配置之三目標 NSGA-II 比較實驗}}{78}{figure.caption.50}%
-\contentsline {figure}{\numberline {39}{\ignorespaces 設計疊代示範：從建築輪廓輸入到計算輸出、再到設計回饋調整之閉環}}{80}{figure.caption.51}%
-\contentsline {figure}{\numberline {40}{\ignorespaces Grasshopper 元件操作流程（1--8 步驟）}}{82}{figure.caption.52}%
-\contentsline {figure}{\numberline {41}{\ignorespaces GNNExplainer 可解釋性分析}}{84}{figure.caption.53}%
+\contentsline {figure}{\numberline {36}{\ignorespaces 基準二目標 NSGA-II 收斂結果}}{77}{figure.caption.48}%
+\contentsline {figure}{\numberline {37}{\ignorespaces A/B/C 三種人行路線配置之三目標 NSGA-II 比較實驗}}{80}{figure.caption.49}%
+\contentsline {figure}{\numberline {38}{\ignorespaces 設計疊代示範：從建築輪廓輸入到計算輸出、再到設計回饋調整之閉環}}{81}{figure.caption.50}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Grasshopper 元件操作流程（1--8 步驟）}}{83}{figure.caption.51}%
+\contentsline {figure}{\numberline {40}{\ignorespaces GNNExplainer 可解釋性分析}}{85}{figure.caption.52}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsfinish 

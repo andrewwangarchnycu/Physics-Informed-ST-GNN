@@ -1,0 +1,77 @@
+[
+  {
+    "R2": 0.992634654045105,
+    "RMSE": 0.4549030661582947,
+    "MAE": 0.23012040555477142,
+    "category_accuracy": 0.9738729631501672,
+    "per_category_accuracy": {
+      "Moderate Heat Stress (26–32)": 0.9709150775140623,
+      "Strong Heat Stress (32–38)": 0.9824264804021889,
+      "Very Strong Heat Stress (38–46)": 0.9797328519079704,
+      "Extreme Heat Stress (>46)": 0.930390654921486
+    },
+    "n_samples": 166188,
+    "variant": "V0",
+    "best_val_loss": 0.0037596792428909493
+  },
+  {
+    "R2": 0.9821370244026184,
+    "RMSE": 0.7084341049194336,
+    "MAE": 0.4528161585330963,
+    "category_accuracy": 0.9510614484800347,
+    "per_category_accuracy": {
+      "Moderate Heat Stress (26–32)": 0.9010838249416929,
+      "Strong Heat Stress (32–38)": 0.9528406815856209,
+      "Very Strong Heat Stress (38–46)": 0.9640650354084056,
+      "Extreme Heat Stress (>46)": 0.9067407123707392
+    },
+    "n_samples": 166188,
+    "variant": "V3",
+    "best_val_loss": 0.01927472909188105
+  },
+  {
+    "R2": 0.980487585067749,
+    "RMSE": 0.7404204607009888,
+    "MAE": 0.44944751262664795,
+    "category_accuracy": 0.9492201603003827,
+    "per_category_accuracy": {
+      "Moderate Heat Stress (26–32)": 0.9102757579914941,
+      "Strong Heat Stress (32–38)": 0.9414290163278017,
+      "Very Strong Heat Stress (38–46)": 0.9680196008897772,
+      "Extreme Heat Stress (>46)": 0.8958253542703944
+    },
+    "n_samples": 166188,
+    "variant": "V4",
+    "best_val_loss": 0.018303875451804036
+  },
+  {
+    "R2": 0.9776619672775269,
+    "RMSE": 0.7922181487083435,
+    "MAE": 0.49642854928970337,
+    "category_accuracy": 0.9455255493778131,
+    "per_category_accuracy": {
+      "Moderate Heat Stress (26–32)": 0.8313897653999177,
+      "Strong Heat Stress (32–38)": 0.938070027138853,
+      "Very Strong Heat Stress (38–46)": 0.9693413714175183,
+      "Extreme Heat Stress (>46)": 0.8952987361164305
+    },
+    "n_samples": 166188,
+    "variant": "V5",
+    "best_val_loss": 0.022039581954272257
+  },
+  {
+    "R2": 0.9655361175537109,
+    "RMSE": 0.9840220212936401,
+    "MAE": 0.5638187527656555,
+    "category_accuracy": 0.9402423761041712,
+    "per_category_accuracy": {
+      "Moderate Heat Stress (26–32)": 0.8082041432295239,
+      "Strong Heat Stress (32–38)": 0.9425412644036126,
+      "Very Strong Heat Stress (38–46)": 0.9631516167510236,
+      "Extreme Heat Stress (>46)": 0.8793086939869782
+    },
+    "n_samples": 166188,
+    "variant": "V6",
+    "best_val_loss": 0.02532440242357552
+  }
+]

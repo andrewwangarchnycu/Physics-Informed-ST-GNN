@@ -18,9 +18,19 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from thesis_diagram_style import apply_rcparams, zone, box, arrow, tag, ACCENTS
+from thesis_diagram_style import apply_rcparams, zone, box, arrow, tag, ACCENTS, ARROW_COLOR
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+
+def elbow(ax, *pts, color=ARROW_COLOR, lw=1.6):
+    """Axis-aligned (vertical/horizontal only) connector through waypoints
+    *pts*; only the final segment gets an arrowhead, and it lands on the
+    destination's outer frame -- no diagonal segments, no routing into a
+    specific inner box."""
+    for (x0, y0), (x1, y1) in zip(pts[:-2], pts[1:-1]):
+        ax.plot([x0, x1], [y0, y1], color=color, linewidth=lw, zorder=2, solid_capstyle="butt")
+    arrow(ax, pts[-2], pts[-1], color=color, lw=lw)
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
 FIG_DIR = _SCRIPT_DIR / "figures"
@@ -42,9 +52,9 @@ tag(ax, 12.0, 8.9, "§3.4.2", ACCENTS[0])
 # ── pixel-aligned fetch ─────────────────────────────────────────────────
 box(ax, 3.05, 6.05, 6.4, 0.85, "相同 EPSG:3857 邊界框／相同像素尺寸取得柵格圖磚\n像素級對齊，無需重新取樣", 8.3)
 
-arrow(ax, (2.1, 7.5), (5.3, 6.9))
-arrow(ax, (6.3, 7.5), (6.3, 6.9))
-arrow(ax, (10.3, 7.5), (7.4, 6.9))
+elbow(ax, (2.275, 7.35), (2.275, 7.15), (3.55, 7.15), (3.55, 6.9))
+elbow(ax, (6.275, 7.35), (6.275, 6.9))
+elbow(ax, (10.275, 7.35), (10.275, 7.15), (8.95, 7.15), (8.95, 6.9))
 
 # ── Zone 2: TOPO01K main processing chain (4 stacked boxes) ────────────
 zone(ax, 0.2, 0.9, 3.7, 4.9, "TOPO01K 主處理鏈", "Main Chain", fontsize=10)
@@ -53,8 +63,7 @@ box(ax, 0.4, 2.95, 3.3, 0.9, "粗細線分離\n形態學開運算去除 hatch", 
 box(ax, 0.4, 1.9, 3.3, 0.9, "子區塊輪廓萃取\ncv2 次像素等高線追蹤", 8.3)
 box(ax, 0.4, 1.05, 3.3, 0.75, "多字元群集樓高辨識\n逐區塊 OCR，非單點中心", 8.0)
 
-arrow(ax, (3.05, 6.05), (3.55, 5.55))
-arrow(ax, (3.55, 5.55), (3.3, 4.9))
+elbow(ax, (3.05, 6.05), (3.05, 5.8))
 arrow(ax, (2.05, 4.0), (2.05, 3.85))
 arrow(ax, (2.05, 2.95), (2.05, 2.8))
 arrow(ax, (2.05, 1.9), (2.05, 1.8))
@@ -66,8 +75,8 @@ box(ax, 4.35, 3.75, 3.4, 0.9, "黑線封閉區域\nflood-fill", 8.3)
 zone(ax, 8.15, 3.6, 3.8, 1.75, "EMAP 驗證", "Validation", fontsize=9.3)
 box(ax, 8.35, 3.75, 3.4, 0.9, "色彩容差比對", 8.3)
 
-arrow(ax, (5.7, 6.05), (5.8, 5.35))
-arrow(ax, (8.5, 6.05), (9.6, 5.35))
+elbow(ax, (5.8, 6.05), (5.8, 5.35))
+elbow(ax, (9.2, 6.05), (9.2, 5.35))
 
 # ── Output: confidence-scored polygons ─────────────────────────────────
 zone(ax, 2.5, -1.05, 8.0, 1.85, "輸出", "Output", fontsize=10.5)
@@ -75,9 +84,9 @@ box(ax, 2.7, -0.9, 7.6, 1.1,
     "跨服務信心度評估：像素重疊率比對 → high / medium / low / unverified\n"
     "輸出：floor_text | floor_kind | floor_number | est_height_m | confidence", 8.4)
 
-arrow(ax, (2.05, 1.05), (3.9, 0.0))
-arrow(ax, (6.05, 3.6), (6.4, 0.35))
-arrow(ax, (10.05, 3.6), (8.4, 0.35))
+elbow(ax, (3.0, 0.9), (3.0, 0.8))
+elbow(ax, (6.0, 3.6), (6.0, 0.8))
+elbow(ax, (9.5, 3.6), (9.5, 0.8))
 
 fig.suptitle("三服務融合建物向量化系統流程  Three-Service GIS Fusion Pipeline",
              fontsize=12.5, fontweight="bold", y=1.0)

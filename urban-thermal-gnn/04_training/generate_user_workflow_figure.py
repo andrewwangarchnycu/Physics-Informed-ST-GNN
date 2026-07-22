@@ -31,7 +31,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 _SCRIPT_DIR = Path(__file__).resolve().parent
 FIG_DIR = _SCRIPT_DIR / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
-apply_rcparams(9.5)
+apply_rcparams(11.5)
 
 C_PREP = ACCENTS[3]
 C_GEOM = ACCENTS[2]
@@ -44,13 +44,13 @@ ax.set_xlim(0, 13)
 ax.set_ylim(0, 13.2)
 ax.axis("off")
 
-def numbered_box(n, x, y, w, h, text, color, fontsize=8.6):
+def numbered_box(n, x, y, w, h, text, color, fontsize=10.3):
     b = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.07,rounding_size=0.09",
                         linewidth=1.2, edgecolor=BOX_EDGE, facecolor=BOX_FILL)
     ax.add_patch(b)
-    ax.add_patch(Circle((x + 0.32, y + h - 0.32), 0.24, facecolor="white", edgecolor=BOX_EDGE, linewidth=1.3, zorder=5))
-    ax.text(x + 0.32, y + h - 0.32, str(n), ha="center", va="center", fontsize=9.5, fontweight="bold", color=TEXT_MAIN, zorder=6)
-    ax.text(x + w/2 + 0.15, y + h/2, text, ha="center", va="center", fontsize=fontsize, color=TEXT_MAIN, linespacing=1.25, fontweight="bold")
+    ax.add_patch(Circle((x + 0.34, y + h - 0.34), 0.28, facecolor="white", edgecolor=BOX_EDGE, linewidth=1.3, zorder=5))
+    ax.text(x + 0.34, y + h - 0.34, str(n), ha="center", va="center", fontsize=11.5, fontweight="bold", color=TEXT_MAIN, zorder=6)
+    ax.text(x + w/2 + 0.15, y + h/2, text, ha="center", va="center", fontsize=fontsize, color=TEXT_MAIN, linespacing=1.3, fontweight="bold")
     tag(ax, x + w - 0.28, y + h - 0.28, "", color, fontsize=6)
 
 def arrow(p1, p2, color=ARROW_COLOR, lw=1.4, style="-|>"):
@@ -58,46 +58,59 @@ def arrow(p1, p2, color=ARROW_COLOR, lw=1.4, style="-|>"):
                          linewidth=lw, color=color, shrinkA=3, shrinkB=3)
     ax.add_patch(a)
 
+def elbow(*pts, color=ARROW_COLOR, lw=1.4):
+    """Axis-aligned (vertical/horizontal only) connector through waypoints
+    *pts*; only the final segment gets an arrowhead, landing on the
+    destination box's outer frame."""
+    for (x0, y0), (x1, y1) in zip(pts[:-2], pts[1:-1]):
+        ax.plot([x0, x1], [y0, y1], color=color, linewidth=lw, zorder=2, solid_capstyle="butt")
+    arrow(pts[-2], pts[-1], color=color, lw=lw)
+
 # ── Step 1-3: one-time preparation + geometry (single row) ──
-numbered_box(1, 0.3, 11.4, 3.7, 1.3, "啟動背景運算服務\n（後端伺服器，一次性）", C_PREP)
-numbered_box(2, 4.3, 11.4, 3.7, 1.3, "安裝通訊套件\npip install websocket-client\n（Rhino Script Editor，一次性）", C_PREP)
-numbered_box(3, 8.3, 11.4, 4.4, 1.3, "準備場地幾何：\n基地邊界、既有／設計建物、喬木位置與尺寸", C_GEOM, fontsize=8.3)
+numbered_box(1, 0.3, 11.4, 3.7, 1.3, "啟動背景運算服務\n（後端伺服器，一次性）", C_PREP, fontsize=10.0)
+numbered_box(2, 4.3, 11.4, 3.7, 1.3, "安裝通訊套件\npip install websocket-client\n（Rhino Script Editor，一次性）", C_PREP, fontsize=9.6)
+numbered_box(3, 8.3, 11.4, 4.4, 1.3, "準備場地幾何：\n基地邊界、既有／設計建物、喬木位置與尺寸", C_GEOM, fontsize=9.8)
 arrow((4.0, 12.05), (4.3, 12.05))
 arrow((8.0, 12.05), (8.3, 12.05))
 
 # ── Step 4: wire to Grasshopper component input ports ──
-numbered_box(4, 4.55, 9.3, 4.1, 1.3, "接上 Grasshopper 元件輸入端口\n（表 gh_inputs 對照）", C_GEOM)
-arrow((10.5, 11.4), (7.3, 10.6))
+numbered_box(4, 4.55, 9.3, 4.1, 1.3, "接上 Grasshopper 元件輸入端口\n（表 gh_inputs 對照）", C_GEOM, fontsize=10.3)
+# step 3 -> step 4: down from step 3's outer bottom edge, jog left, into step 4's outer top edge
+elbow((10.5, 11.4), (10.5, 10.95), (7.3, 10.95), (7.3, 10.6))
 
 # ── Step 5: toggle run switch, branch A/B ──
-numbered_box(5, 4.55, 7.2, 4.1, 1.3, "切換 run 開關為 True\n（送出計算請求）", C_GEOM)
+numbered_box(5, 4.55, 7.2, 4.1, 1.3, "切換 run 開關為 True\n（送出計算請求）", C_GEOM, fontsize=10.3)
 arrow((6.6, 9.3), (6.6, 8.5))
 
 # branch labels
-ax.text(2.6, 6.75, "路徑 A：單次即時評估\n（UTCIPredictor）", ha="center", fontsize=9, fontweight="bold", color=TEXT_MAIN)
-ax.text(10.6, 6.75, "路徑 B：多目標最佳化搜尋\n（UTCIOptimizer）", ha="center", fontsize=9, fontweight="bold", color=TEXT_MAIN)
+ax.text(2.6, 6.75, "路徑 A：單次即時評估\n（UTCIPredictor）", ha="center", fontsize=10.8, fontweight="bold", color=TEXT_MAIN)
+ax.text(10.6, 6.75, "路徑 B：多目標最佳化搜尋\n（UTCIOptimizer）", ha="center", fontsize=10.8, fontweight="bold", color=TEXT_MAIN)
 
-arrow((5.2, 7.2), (2.6, 6.4), color=C_PRED)
-arrow((8.0, 7.2), (10.6, 6.4), color=C_OPT)
+# step 5 -> 6a / 6b: down from step 5's outer bottom edge, jog to each
+# branch's x, straight down into that box's outer top edge
+elbow((5.2, 7.2), (5.2, 6.55), (2.6, 6.55), (2.6, 6.25), color=C_PRED)
+elbow((8.0, 7.2), (8.0, 6.55), (10.5, 6.55), (10.5, 6.25), color=C_OPT)
 
 # ── Step 6a / 6b ──
-numbered_box("6a", 0.5, 5.1, 4.2, 1.15, "立即性回饋，快速回傳結果\n可邊調整設計邊即時觀察熱力圖", C_PRED, fontsize=8.3)
-numbered_box("6b", 8.5, 5.1, 4.0, 1.15, "額外設定法規限制與搜尋規模\n（pop_size, n_gen）後啟動搜尋", C_OPT, fontsize=8.3)
+numbered_box("6a", 0.5, 5.1, 4.2, 1.15, "立即性回饋，快速回傳結果\n可邊調整設計邊即時觀察熱力圖", C_PRED, fontsize=9.8)
+numbered_box("6b", 8.5, 5.1, 4.0, 1.15, "額外設定法規限制與搜尋規模\n（pop_size, n_gen）後啟動搜尋", C_OPT, fontsize=9.8)
 
 arrow((2.6, 5.1), (2.6, 4.35))
 arrow((10.5, 5.1), (10.5, 4.35))
 
 # ── Step 7a / 7b ──
-numbered_box("7a", 0.5, 3.15, 4.2, 1.1, "修改幾何後結果自動更新\n（run 保持 True 即持續運算）", C_PRED, fontsize=8.3)
-numbered_box("7b", 8.5, 3.15, 4.0, 1.1, "背景執行緒搜尋，不阻塞 Rhino\n可隨時取消（cancel=True）", C_OPT, fontsize=8.3)
+numbered_box("7a", 0.5, 3.15, 4.2, 1.1, "修改幾何後結果自動更新\n（run 保持 True 即持續運算）", C_PRED, fontsize=9.8)
+numbered_box("7b", 8.5, 3.15, 4.0, 1.1, "背景執行緒搜尋，不阻塞 Rhino\n可隨時取消（cancel=True）", C_OPT, fontsize=9.8)
 
-arrow((2.6, 3.15), (5.9, 1.85), color="#888888")
-arrow((10.5, 3.15), (7.3, 1.85), color="#888888")
+# step 7a / 7b -> step 8: down from each box's outer bottom edge, jog
+# toward the centre, straight down into step 8's outer top edge
+elbow((2.6, 3.15), (2.6, 2.55), (5.9, 2.55), (5.9, 2.25), color="#888888")
+elbow((10.5, 3.15), (10.5, 2.55), (7.3, 2.55), (7.3, 2.25), color="#888888")
 
 # ── Step 8: read/interpret results (shared) ──
 numbered_box(8, 4.6, 0.9, 4.0, 1.35,
              "取得結果並解讀：\n熱力圖網格 / 數值指標 / 帕累托候選方案\n直接呈現於 Rhino 場景中，供設計調整回饋",
-             C_OUT, fontsize=8.0)
+             C_OUT, fontsize=9.5)
 
 legend_elems = [
     Line2D([0], [0], marker="s", color="w", markerfacecolor=C_PREP, markersize=12, label="一次性前置準備"),
@@ -107,9 +120,9 @@ legend_elems = [
     Line2D([0], [0], marker="s", color="w", markerfacecolor=C_OUT, markersize=12, label="結果讀取與設計回饋"),
 ]
 fig.legend(handles=legend_elems, loc="lower center", bbox_to_anchor=(0.5, -0.05),
-           ncol=3, fontsize=8.5, frameon=False, labelcolor=TEXT_MAIN)
+           ncol=3, fontsize=10.5, frameon=False, labelcolor=TEXT_MAIN)
 
-fig.suptitle("Grasshopper 元件操作流程（1--8 步驟）：資料準備 → 匯入 → 計算 → 結果讀取", fontsize=13, fontweight="bold", y=1.0, color=TEXT_MAIN)
+fig.suptitle("Grasshopper 元件操作流程（1--8 步驟）：資料準備 → 匯入 → 計算 → 結果讀取", fontsize=15, fontweight="bold", y=1.0, color=TEXT_MAIN)
 fig.tight_layout()
 
 out_pdf = FIG_DIR / "fig_user_workflow.pdf"

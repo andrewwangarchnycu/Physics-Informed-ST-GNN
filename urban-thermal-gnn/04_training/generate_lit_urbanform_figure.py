@@ -35,14 +35,16 @@ mpl.rcParams.update({
     "pdf.fonttype": 42, "ps.fonttype": 42,
 })
 
-# House style (matches fig_overview_pistgnn_white.png): buildings/labels in
-# black/gray, colour reserved only as sparing per-mechanism accent tags.
+# House style (matches fig_overview_pistgnn_white.png): grayscale
+# throughout, black-outlined geometry, simple solid/dashed/dotted lines.
+# Colour is reserved only for sunlight/shortwave (the sole exception the
+# committee asked to keep) -- every other mechanism (longwave, wind,
+# wake vortex) is differentiated by line style/shade of gray, not hue.
 C_BLDG   = "#5a5a5a"
-C_SUN    = "#c9704f"
-C_SHADE  = "#2b3a55"
-C_LW     = "#8a6fa3"
-C_WIND   = "#3f7fa6"
-C_VORTEX = "#5b8c5a"
+C_SUN    = "#c9832f"
+C_LW     = "#4d4d4d"
+C_WIND   = "#1a1a1a"
+C_VORTEX = "#8f8f8f"
 TEXT_MAIN = "#000000"
 
 fig, axes = plt.subplots(1, 2, figsize=(13, 6))
@@ -131,9 +133,9 @@ vx, vy, vr = 5.6, 1.6, 1.1
 theta = np.linspace(20, 340, 100)
 vxs = vx + vr * np.cos(np.radians(theta))
 vys = vy + vr * 0.6 * np.sin(np.radians(theta))
-ax.plot(vxs, vys, color=C_VORTEX, linewidth=1.6)
+ax.plot(vxs, vys, color=C_VORTEX, linewidth=1.8, linestyle=(0, (5, 1.5)))
 a = FancyArrowPatch((vxs[-2], vys[-2]), (vxs[-1], vys[-1]), arrowstyle="-|>",
-                     mutation_scale=12, linewidth=1.6, color=C_VORTEX)
+                     mutation_scale=12, linewidth=1.8, color=C_VORTEX)
 ax.add_patch(a)
 ax.text(vx, vy - 1.0, "背風渦流帶\n(Wake Recirculation)", ha="center", fontsize=8.3,
         color=TEXT_MAIN, fontweight="bold")

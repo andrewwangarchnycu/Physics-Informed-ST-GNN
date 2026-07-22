@@ -11,7 +11,7 @@
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.92\textwidth]{../urban-thermal-gnn/04_training/figures/fig_lit_urbantheory.png}
-    \caption[都市意象理論與異質圖表徵之對照]{都市意象理論與異質圖表徵之對照：(a) \citet{lynch1960image} 《城市意象》原書之洛杉磯都市意象分析圖，五項都市意象元素（路徑、邊界、區域、節點、地標）標示如圖例（資料來源：Lynch, 1960，學術引用）；(b) 本研究異質圖表徵直接疊圖於陽明交通大學（光復校區）周邊真實都市紋理——真實 OpenStreetMap 建物足跡、真實 IoT 感測器分布，以及虛線範圍內以真實建物質心為物件節點、KNN 網格為空氣節點所構成之異質圖結構，銜接本研究以真實建物足跡與樓高為建模基礎之立場（第三章）。}
+    \caption[都市意象理論與異質圖表徵之對照]{都市意象理論與異質圖表徵之對照：(a) \citet{lynch1960image} 《城市意象》原書之洛杉磯都市意象分析圖，五項都市意象元素（路徑、邊界、區域、節點、地標）標示如圖例（資料來源：Lynch, 1960，學術引用）；(b) 本研究異質圖表徵直接疊圖於陽明交通大學（光復校區）周邊都市紋理: OpenStreetMap 建物足跡、 IoT 感測器分布，以及虛線範圍內以建物質心為物件節點、KNN 網格為空氣節點所構成之異質圖結構，銜接本研究以建物足跡與樓高為建模基礎之立場（第三章）。}
     \label{fig:lit_urbantheory}
 \end{figure}
 
@@ -59,7 +59,7 @@
 
 \noindent\textbf{研究目的一：建立低延遲全域 UTCI 預測代理模型}
 
-因為傳統高擬真度模擬引擎之運算瓶頸源自其求解偏微分方程之運算邏輯，所以本研究不採用像素型或體素型卷積神經網路（Convolutional Neural Network, CNN）架構，改建構異質圖神經網路（Heterogeneous Graph Neural Network）作為微氣候預測代理模型 \citep{kipf2017semi}：將空氣節點、建築物等實體定義為異質結構中之相異節點類型，並以邊將風場之流體聯通性與輻射場之天空可見率嵌入其中，輸出網格點之 UTCI 分布。為區分不同物理因果關係之訊號貢獻，本研究採用關係圖卷積網路（Relational Graph Convolutional Network, RGCN）取代同質圖卷積 \citep{schlichtkrull2018modeling}；並以真實 OpenStreetMap 都市建物足跡與樓高、ETH 全球樹冠高度及環境部 IoT 逐時實測氣象，取代單純程序化生成之幾何與氣象，使模型錨定於實際都市紋理與觀測氣候，詳見第~\ref{subsec:v4_real_dataset}節。
+因為傳統高擬真度模擬引擎之運算瓶頸源自其求解偏微分方程之運算邏輯，所以本研究不採用像素型或體素型卷積神經網路（Convolutional Neural Network, CNN）架構，改建構異質圖神經網路（Heterogeneous Graph Neural Network）作為微氣候預測代理模型 \citep{kipf2017semi}：將空氣節點、建築物等實體定義為異質結構中之相異節點類型，並以邊將風場之流體聯通性與輻射場之天空可見率嵌入其中，輸出網格點之 UTCI 分布。為區分不同物理因果關係之訊號貢獻，本研究採用關係圖卷積網路（Relational Graph Convolutional Network, RGCN）取代同質圖卷積 \citep{schlichtkrull2018modeling}；並以 OpenStreetMap 都市建物足跡與樓高、ETH 全球樹冠高度及環境部 IoT 逐時實測氣象，取代單純程序化生成之幾何與氣象，使模型錨定於實際都市紋理與觀測氣候，詳見第~\ref{subsec:v4_real_dataset}節。
 
 \noindent\textbf{研究目的二：建立熱舒適人行動線設計評估指標}
 
@@ -86,9 +86,9 @@
 
 承第~\ref{sec:objectives}節之三項研究目的，本研究提出三項對應之研究方法，完整技術細節於第三章「系統分析與設計」中依序展開。三項方法採與研究缺口、研究目的相同之標題格式，依序一一對應：
 
-\noindent\textbf{研究方法一（對應研究目的一）：真實地理資訊建構與物理資訊時空圖神經網路訓練}
+\noindent\textbf{研究方法一（對應研究目的一）：地理資訊建構與物理資訊時空圖神經網路訓練}
 
-以開放 GIS 圖資（OpenStreetMap 建物輪廓與樓高、ETH 全球樹冠高度）與環境部 IoT 感測器資料建立研究場域之真實地理資訊基礎；以物理式運算引擎執行都市微氣候逐時模擬，並以真實 IoT 實測氣象驅動，取得監督訓練所需之熱壓力標籤；建構異質圖神經網路並以物理引導損失函數約束訓練，使模型輸出兼具數值精度與熱力學一致性，實現低延遲全域 UTCI 預測代理模型。
+以開放 GIS 圖資（OpenStreetMap 建物輪廓與樓高、ETH 全球樹冠高度）與環境部 IoT 感測器資料建立研究場域之地理資訊基礎；以物理式運算引擎執行都市微氣候逐時模擬，並以 IoT 實測氣象驅動，取得監督訓練所需之熱壓力標籤；建構異質圖神經網路並以物理引導損失函數約束訓練，使模型輸出兼具數值精度與熱力學一致性，實現低延遲全域 UTCI 預測代理模型。
 
 \noindent\textbf{研究方法二（對應研究目的二）：熱舒適人行動線設計評估機制}
 

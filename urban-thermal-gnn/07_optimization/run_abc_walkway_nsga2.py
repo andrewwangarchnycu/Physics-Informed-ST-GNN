@@ -4,7 +4,8 @@ run_abc_walkway_nsga2.py
 Three-objective NSGA-II runs (mean_utci, walkway_exposure, -green_ratio)
 comparing three fixed pedestrian route definitions (A/B/C) through the
 SAME 80x80 m site and building-design search space, using the trained
-PI-ST-GNN V4 checkpoint.
+PI-ST-GNN V5-300 checkpoint (real Radiance/EnergyPlus-simulated real-scene
+model; falls back to V4/V2 if the V5-300 checkpoint is unavailable).
 
 This is the "A/B/C comparison experiment" requested to address the
 committee's complaint that the thesis lacked a return to building-form and
@@ -59,12 +60,14 @@ sys.path.insert(0, str(_ROOT / "02_graph_construction"))
 OUT_DIR = _HERE / "outputs"
 OUT_DIR.mkdir(exist_ok=True)
 
+_CKPT_V5    = _ROOT / "04_training" / "checkpoints_v5_300" / "best_model.pt"
 _CKPT_V4    = _ROOT / "04_training" / "checkpoints_v4" / "best_model.pt"
 _CKPT_V2    = _ROOT / "checkpoints_v2_fixed" / "best_model.pt"
-CKPT_PATH   = _CKPT_V4 if _CKPT_V4.exists() else _CKPT_V2
+CKPT_PATH   = _CKPT_V5 if _CKPT_V5.exists() else (_CKPT_V4 if _CKPT_V4.exists() else _CKPT_V2)
+_H5_V5      = _ROOT / "01_data_generation/outputs/real_simulations_v5/ground_truth_v5.h5"
 _H5_V4      = _ROOT / "01_data_generation/outputs/real_simulations_v4/ground_truth_v4.h5"
 _H5_LEGACY  = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
-H5_PATH     = _H5_V4 if _H5_V4.exists() else _H5_LEGACY
+H5_PATH     = _H5_V5 if _H5_V5.exists() else (_H5_V4 if _H5_V4.exists() else _H5_LEGACY)
 EPW_PKL_PATH= _ROOT / "01_data_generation/outputs/raw_simulations/epw_data.pkl"
 DEVICE      = "cuda" if torch.cuda.is_available() else "cpu"
 

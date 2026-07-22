@@ -8,10 +8,11 @@ UTCI thermal-stress geometry together with the multi-height air-node
 sampling used by the heterogeneous graph.
 
 House style: matches fig_overview_pistgnn_white.png -- white background,
-black-outlined geometry, bold black bilingual-adjacent labels; colour
-retained only as sparing per-mechanism accent (shadow / shade / air-node /
-thermal-stress swatches), muted to the same desaturated palette used by
-the other redrawn schematic figures.
+black-outlined geometry, bold black bilingual-adjacent labels, grayscale
+throughout. Colour is kept only for the tree canopy and the sun/sunlight
+rays (the two exceptions requested by the committee); every other element
+(shadow, air nodes, pedestrian silhouettes, thermal-stress markers) is
+grayscale, differentiated by shade/fill/marker style instead of hue.
 
 Produces:
   figures/fig_street_crosssection.pdf
@@ -42,12 +43,15 @@ mpl.rcParams.update({
 TEXT_MAIN = "#000000"
 C_BLDG   = "#5a5a5a"
 C_TREE   = "#6f8a63"
-C_SUN    = "#b89a55"
+C_SUN    = "#c9832f"
 C_SHADOW = "#3a3a3a"
-C_AIR    = "#4a6a8a"
-C_HOT    = "#8a3a1f"
-C_COOL   = "#4f7a55"
+C_AIR    = "#707070"
+C_HOT    = "#1a1a1a"
+C_COOL   = "#bfbfbf"
 C_GROUND = "#8a8a8a"
+C_PED_HEAD = "#cfcfcf"
+C_PED_BODY = "#4a4a4a"
+C_TRUNK  = "#4a4a4a"
 
 fig, ax = plt.subplots(figsize=(13, 7.5))
 ax.set_xlim(-2, 32)
@@ -69,7 +73,7 @@ ax.text(27, 9.5, "建築 B（低層）", ha="center", fontsize=9, fontweight="bo
 
 # ── street tree with canopy ──
 tree_x, tree_trunk_h, canopy_r = 14.0, 2.2, 2.3
-ax.plot([tree_x, tree_x], [0, tree_trunk_h], color="#6b4a2f", linewidth=4, solid_capstyle="round")
+ax.plot([tree_x, tree_x], [0, tree_trunk_h], color=C_TRUNK, linewidth=4, solid_capstyle="round")
 canopy_cy = tree_trunk_h + canopy_r * 0.75
 ax.add_patch(Circle((tree_x, canopy_cy), canopy_r, facecolor=C_TREE, edgecolor="#3f5c33", alpha=0.85, linewidth=1.0))
 ax.text(tree_x, canopy_cy + canopy_r + 0.6, "喬木冠層\n（樹蔭）", ha="center", fontsize=8.5, color=TEXT_MAIN, fontweight="bold")
@@ -104,19 +108,19 @@ ax.add_patch(Rectangle((tree_x - canopy_r * 0.9, 0), canopy_r * 1.8, 0.35, facec
 
 # ── pedestrian silhouette at street level, with UTCI thermal-stress marker ──
 ped_x = 19.0
-ax.add_patch(Circle((ped_x, 1.55), 0.35, facecolor="#d9b48f", edgecolor="black", linewidth=0.8, zorder=6))
-ax.add_patch(Rectangle((ped_x - 0.28, 0.15), 0.56, 1.25, facecolor="#5b7fa6", edgecolor="black", linewidth=0.8, zorder=6))
+ax.add_patch(Circle((ped_x, 1.55), 0.35, facecolor=C_PED_HEAD, edgecolor="black", linewidth=0.8, zorder=6))
+ax.add_patch(Rectangle((ped_x - 0.28, 0.15), 0.56, 1.25, facecolor=C_PED_BODY, edgecolor="black", linewidth=0.8, zorder=6))
 ax.text(ped_x, -0.9, "行人", ha="center", fontsize=8.5, color=TEXT_MAIN)
 ax.annotate("高熱壓力\nUTCI > 38°C\n（曝曬於街谷中段）", xy=(ped_x, 2.0), xytext=(ped_x + 3.0, 4.5),
             fontsize=8.3, color=TEXT_MAIN, fontweight="bold", ha="left",
-            arrowprops=dict(arrowstyle="-|>", color=C_HOT, lw=1.2))
+            arrowprops=dict(arrowstyle="-|>", color=C_HOT, lw=1.4))
 
 ped2_x = 13.3
-ax.add_patch(Circle((ped2_x, 1.55), 0.35, facecolor="#d9b48f", edgecolor="black", linewidth=0.8, zorder=6))
-ax.add_patch(Rectangle((ped2_x - 0.28, 0.15), 0.56, 1.25, facecolor="#5b7fa6", edgecolor="black", linewidth=0.8, zorder=6))
+ax.add_patch(Circle((ped2_x, 1.55), 0.35, facecolor=C_PED_HEAD, edgecolor="black", linewidth=0.8, zorder=6))
+ax.add_patch(Rectangle((ped2_x - 0.28, 0.15), 0.56, 1.25, facecolor=C_PED_BODY, edgecolor="black", linewidth=0.8, zorder=6))
 ax.annotate("低熱壓力\nUTCI < 32°C\n（樹蔭遮蔽）", xy=(ped2_x, 2.0), xytext=(ped2_x - 4.6, 5.4),
             fontsize=8.3, color=TEXT_MAIN, fontweight="bold", ha="left",
-            arrowprops=dict(arrowstyle="-|>", color=C_COOL, lw=1.2))
+            arrowprops=dict(arrowstyle="-|>", color="#7a7a7a", lw=1.2, linestyle="--"))
 
 # ── multi-height air-node sampling column (heterogeneous graph air nodes) ──
 air_x = 19.0
@@ -139,8 +143,8 @@ legend_elems = [
     Line2D([0], [0], marker="s", color="w", markerfacecolor=C_SHADOW, alpha=0.75, markersize=11, label="建築陰影範圍"),
     Line2D([0], [0], marker="s", color="w", markerfacecolor=C_TREE, markersize=11, label="喬木樹蔭範圍"),
     Line2D([0], [0], marker="o", color="w", markerfacecolor=C_AIR, markeredgecolor="black", markersize=9, label="空氣節點（多高度取樣）"),
-    Line2D([0], [0], marker="o", color="w", markerfacecolor=C_HOT, markersize=9, label="高熱壓力行人位置"),
-    Line2D([0], [0], marker="o", color="w", markerfacecolor=C_COOL, markersize=9, label="低熱壓力行人位置"),
+    Line2D([0], [0], marker="o", color="w", markerfacecolor=C_HOT, markeredgecolor="black", markersize=9, label="高熱壓力行人位置"),
+    Line2D([0], [0], marker="o", color="w", markerfacecolor=C_COOL, markeredgecolor="black", markersize=9, label="低熱壓力行人位置"),
 ]
 ax.legend(handles=legend_elems, loc="lower center", bbox_to_anchor=(0.5, -0.16),
           ncol=3, fontsize=8.2, frameon=False)

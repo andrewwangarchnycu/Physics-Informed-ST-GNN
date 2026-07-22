@@ -108,7 +108,7 @@ print(f"    (object,semantic,object): {len(semantic_edges)} directed edges (full
 # ── 3. Figure ─────────────────────────────────────────────────────────────
 print("[3] Rendering figure ...")
 fig = plt.figure(figsize=(13, 6.2))
-gs = fig.add_gridspec(1, 3, width_ratios=[1.15, 1.15, 0.9], wspace=0.3, top=0.82)
+gs = fig.add_gridspec(1, 3, width_ratios=[1.15, 1.15, 0.9], wspace=0.3, top=0.78, bottom=0.1)
 axA = fig.add_subplot(gs[0, 0])
 axB = fig.add_subplot(gs[0, 1])
 axC = fig.add_subplot(gs[0, 2])
@@ -191,7 +191,16 @@ legend_b = [
 axB.legend(handles=legend_b, loc="upper right", fontsize=6.5, framealpha=0.9)
 
 # --- Panel C: schema (node/edge types + feature layout, from dataset.py docstring) ---
-axC.axis("off")
+# Keep the axes frame (spines) visible instead of axis("off") so panel C's
+# box has the same top/bottom extent as panels A/B, rather than a tightly
+# cropped text bbox floating at an unrelated height.
+axC.set_xlim(0, 1)
+axC.set_ylim(0, 1)
+axC.set_xticks([])
+axC.set_yticks([])
+for spine in axC.spines.values():
+    spine.set_visible(True)
+    spine.set_linewidth(0.8)
 axC.set_title("(c) heterogeneous graph schema\n(UTCIGraphDataset.get, dim_air=9)", fontsize=9.5)
 
 schema_text = (
@@ -225,6 +234,17 @@ axC.text(0.02, 0.98, schema_text, transform=axC.transAxes,
 
 fig.suptitle("Heterogeneous Graph Construction — 02_graph_construction/dataset.py",
              fontsize=12, fontweight="bold", y=0.98)
+
+# --- Force all three panel frames to share identical top/bottom edges ---
+# fig.colorbar(ax=axA) and the legends can each nudge their host axes'
+# bounding box independently; explicitly re-syncing y0/y1 here guarantees
+# the (a)/(b)/(c) frames -- and therefore their titles -- line up exactly,
+# regardless of any such incidental layout shifts.
+posA, posB, posC = axA.get_position(), axB.get_position(), axC.get_position()
+y0 = max(posA.y0, posB.y0, posC.y0)   # highest bottom edge (common lower bound)
+y1 = min(posA.y1, posB.y1, posC.y1)   # lowest top edge (common upper bound)
+for ax, pos in ((axA, posA), (axB, posB), (axC, posC)):
+    ax.set_position([pos.x0, y0, pos.width, y1 - y0])
 
 out_pdf = FIG_DIR / "fig_graph_construction.pdf"
 out_png = FIG_DIR / "fig_graph_construction.png"

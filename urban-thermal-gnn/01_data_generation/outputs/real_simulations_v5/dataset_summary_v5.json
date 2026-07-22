@@ -1,0 +1,45 @@
+{
+  "pipeline_version": "v5_real_radiance_energyplus",
+  "n_scenarios": 300,
+  "split": {
+    "train": 210,
+    "val": 45,
+    "test": 45
+  },
+  "n_scenes_real_supervised": 300,
+  "data_sources": [
+    "OSM buildings (footprints+heights)",
+    "ETH GlobalCanopyHeight 10m",
+    "MOENV IoT temperature + humidity (real 2025-06..08)",
+    "TWN_NOR_Hsinchu.City.467570_TMYx.2011-2025.epw (climate.onebuilding.org, ERA5-based) for wind + solar",
+    "Ladybug Tools 'utci_comfort_map' recipe: real Radiance (enhanced 2-phase shortwave MRT) + real EnergyPlus (envelope surface temps for longwave MRT)",
+    "Ladybug Tools 'sky_view' recipe: real Radiance SVF"
+  ],
+  "nodes_per_scenario": {
+    "min": 136,
+    "max": 400,
+    "mean": 341.45
+  },
+  "normalization": {
+    "ta": {
+      "mean": 32.8511,
+      "std": 2.3644
+    },
+    "mrt": {
+      "mean": 51.8504,
+      "std": 10.7357
+    },
+    "va": {
+      "mean": 2.4678,
+      "std": 0.4621
+    },
+    "rh": {
+      "mean": 71.8347,
+      "std": 11.5713
+    },
+    "utci": {
+      "mean": 40.168,
+      "std": 5.0146
+    }
+  }
+}

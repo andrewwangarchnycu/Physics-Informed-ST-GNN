@@ -3,8 +3,9 @@ run_real_nsga2.py
 ==================
 Standalone script that actually executes the real NSGA-II optimizer
 (nsga2_engine.NSGA2Optimizer + fitness.FitnessEvaluator) against the
-trained PIN-ST-GNN checkpoint, mirroring exactly how 06_deployment/app.py
-wires these objects together for the live Grasshopper WebSocket endpoint.
+trained PI-ST-GNN checkpoint (V5-300 by default; falls back to V4/V2 if
+unavailable), mirroring exactly how 06_deployment/app.py wires these
+objects together for the live Grasshopper WebSocket endpoint.
 
 Purpose: produce a REAL convergence log (generation -> best_utci,
 best_green, n_feasible, pareto_count) instead of a fabricated/schematic
@@ -37,12 +38,14 @@ sys.path.insert(0, str(_ROOT / "02_graph_construction"))
 OUT_DIR = _HERE / "outputs"
 OUT_DIR.mkdir(exist_ok=True)
 
+_CKPT_V5    = _ROOT / "04_training" / "checkpoints_v5_300" / "best_model.pt"
 _CKPT_V4    = _ROOT / "04_training" / "checkpoints_v4" / "best_model.pt"
 _CKPT_V2    = _ROOT / "checkpoints_v2_fixed" / "best_model.pt"
-CKPT_PATH   = _CKPT_V4 if _CKPT_V4.exists() else _CKPT_V2
+CKPT_PATH   = _CKPT_V5 if _CKPT_V5.exists() else (_CKPT_V4 if _CKPT_V4.exists() else _CKPT_V2)
+_H5_V5      = _ROOT / "01_data_generation/outputs/real_simulations_v5/ground_truth_v5.h5"
 _H5_V4      = _ROOT / "01_data_generation/outputs/real_simulations_v4/ground_truth_v4.h5"
 _H5_LEGACY  = _ROOT / "01_data_generation/outputs/raw_simulations/ground_truth.h5"
-H5_PATH     = _H5_V4 if _H5_V4.exists() else _H5_LEGACY
+H5_PATH     = _H5_V5 if _H5_V5.exists() else (_H5_V4 if _H5_V4.exists() else _H5_LEGACY)
 # Real CWB weather-forcing sequence for the LSTM's env/time embedding -- this
 # is version-independent (same physical 2025 weather data used across
 # V1-V4), so it is NOT swapped when the checkpoint/H5 version changes.
